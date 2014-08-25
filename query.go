@@ -1,11 +1,11 @@
-// autocamper is a prototype for automatically booking campsites on ReserveAmerica.
-package main
+// The autocamper package contains all of the brains for querying campsites.
+package autocamper
 
 import (
-	//"io/ioutil"
+	"bytes"
 	"log"
-	"net/http"
 	"net/url"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -13,6 +13,9 @@ import (
 var (
 	// reserveAmericaUrl is the search URL to request reservation information from.
 	reserveAmericaUrl = "http://www.reserveamerica.com/unifSearch.do"
+
+	// searchPageExpiry is how long search pages can be cached for.
+	searchPageExpiry = time.Duration(86400) * time.Second
 )
 
 // SearchCriteria defines a list of attributes that can be sent to ReserveAmerica.
@@ -20,7 +23,9 @@ type SearchCriteria struct {
 }
 
 // Search performs a query against the ReserveAmerica site.
-func Search(locationCriteria string) (*http.Response, error) {
+func Search(locationCriteria string) (CachedHttpResponse, error) {
+
+	// TODO(tstromberg): Stop hardcoding values.
 	v := url.Values{
 		"locationCriteria":  {locationCriteria},
 		"locationPosition":  {"::-122.4750292:37.7597481:"},
@@ -30,9 +35,10 @@ func Search(locationCriteria string) (*http.Response, error) {
 		"lengthOfStay":      {"2"},
 		"camping_2003_3012": {"3"},
 	}
+
 	log.Printf("POSTing to %s - values: %s", reserveAmericaUrl, v)
-	resp, err := http.PostForm("http://www.reserveamerica.com/unifSearch.do", v)
-	log.Printf("Response: %s", resp)
+	resp, err := cachedFetch("http://www.reserveamerica.com/unifSearch.do", v, searchPageExpiry)
+	log.Printf("Response: %s", resp.StatusCode)
 	if err != nil {
 		log.Printf("Err: %s", err)
 	}
@@ -40,16 +46,11 @@ func Search(locationCriteria string) (*http.Response, error) {
 }
 
 // Parse parses the results of a ReserveAmerica search page.
-func Parse(resp *http.Response) error {
-	// body, err := ioutil.ReadAll(resp.Body)
-	// if err != nil {
-	//	return err
-	//}
-	// Just debugging things here.
-	//log.Printf("Body: %s", body)
-	//return nil
+func Parse(body []byte) error {
+	log.Printf("Body: %s", body)
 
-	doc, err := goquery.NewDocumentFromResponse(resp)
+	buf := bytes.NewBuffer(body)
+	doc, err := goquery.NewDocumentFromReader(buf)
 	if err != nil {
 		return err
 	}
@@ -60,15 +61,4 @@ func Parse(resp *http.Response) error {
 	})
 
 	return nil
-}
-
-func main() {
-	resp, err := Search("94122")
-	if err != nil {
-		log.Fatalf("Fetch error: %s", err)
-	}
-	err = Parse(resp)
-	if err != nil {
-		log.Fatalf("Parse error: %s", err)
-	}
 }

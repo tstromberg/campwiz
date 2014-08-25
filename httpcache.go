@@ -2,6 +2,15 @@
 package autocamper
 
 import (
+	"bytes"
+	"encoding/gob"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/url"
+	"os"
+	"time"
+
 	"github.com/steveyen/gkvlite"
 )
 
@@ -9,8 +18,11 @@ var (
 	// cachePath is the location of the cache
 	cachePath = os.ExpandEnv("${HOME}/.autocamper.cache")
 
-	// httpCache is a gkvlite collection that documents can be fetched from.
-	httpCache = getCacheCollection("query")
+	// store is a gkvlite Store
+	store = getCacheStore()
+
+	// collection is a gkvlite collection that documents can be fetched from.
+	collection = store.SetCollection("cache", nil)
 )
 
 // CachedHttpResponse defines which data may be cached for an HTTP response.
@@ -25,11 +37,12 @@ type CachedHttpResponse struct {
 
 // cachedFetch wraps http.Get/http.Post behind a persistent cache.
 func cachedFetch(url string, v url.Values, maxAge time.Duration) (CachedHttpResponse, error) {
-	key := []byte(url + ":" + v.Encode())
-	cachedBytes, err := httpCache.Get(key)
+	key := []byte(url + "?" + v.Encode())
+	cachedBytes, err := collection.Get(key)
 
 	// Item is in cache, but we do not yet know if it is too old.
 	if cachedBytes != nil {
+		log.Printf("FOUND: %s", key)
 		var cr CachedHttpResponse
 		buf := bytes.NewBuffer(cachedBytes)
 		dec := gob.NewDecoder(buf)
@@ -41,14 +54,16 @@ func cachedFetch(url string, v url.Values, maxAge time.Duration) (CachedHttpResp
 			age := time.Since(cr.MTime)
 			log.Printf("Item age is %s", age)
 			if age < maxAge {
-				log.Printf("Calling it a hit.")
+				log.Printf("HIT: %s")
 				return cr, nil
+			} else {
+				log.Printf("MISS (TOO OLD): %s", key)
 			}
 		}
 	}
 
 	// It's a miss.
-	log.Printf("Calling it a miss.")
+	log.Printf("MISS: %s", key)
 	// GET vs POST
 	var r *http.Response
 	if v != nil {
@@ -71,19 +86,21 @@ func cachedFetch(url string, v url.Values, maxAge time.Duration) (CachedHttpResp
 		log.Printf("Failed to encode response: %s", err)
 	} else {
 		bufBytes, err := ioutil.ReadAll(&buf)
+		log.Printf("Buf bytes: %s", bufBytes)
 		if err != nil {
 			log.Printf("Failed to read back encoded response: %s", err)
 		} else {
-			httpCache.Set(key, bufBytes)
+			log.Printf("Storing %s", key)
+			collection.Set(key, bufBytes)
+			store.Flush()
 		}
 	}
 	return cr, nil
 }
 
-
 // Returns a gkvlite collection
-func getCacheCollection(name string) *gkvlite.Collection {
-	f, err := os.Create(cachePath)
+func getCacheStore() *gkvlite.Store {
+	f, err := os.OpenFile(cachePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -91,5 +108,5 @@ func getCacheCollection(name string) *gkvlite.Collection {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return s.SetCollection(name, nil)
+	return s
 }

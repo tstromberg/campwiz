@@ -2,15 +2,17 @@
 package main
 
 import (
-	"autocamper"
+	"log"
+
+	"github.com/tstromberg/autocamper"
 )
 
 func main() {
-	resp, err := campquery.Search("94122")
+	resp, err := autocamper.Search("94122")
 	if err != nil {
 		log.Fatalf("Fetch error: %s", err)
 	}
-	err = campquery.Parse(resp.Body)
+	err = autocamper.Parse(resp.Body)
 	if err != nil {
 		log.Fatalf("Parse error: %s", err)
 	}
