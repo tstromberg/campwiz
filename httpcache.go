@@ -67,9 +67,9 @@ func cachedFetch(url string, v url.Values, maxAge time.Duration) (CachedHttpResp
 	// GET vs POST
 	var r *http.Response
 	if v != nil {
-		r, err = http.Get(url)
-	} else {
 		r, err = http.PostForm(url, v)
+	} else {
+		r, err = http.Get(url)
 	}
 
 	// Write the response into the cache. Mask over any failures.
