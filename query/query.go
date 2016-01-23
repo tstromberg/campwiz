@@ -25,16 +25,16 @@ type SearchCriteria struct {
 
 // Search performs a query against the ReserveAmerica site.
 func Search(locationCriteria string) (cache.Result, error) {
+	// % curl -L -vvv 'http://www.reserveamerica.com/unifSearch.do' -H 'Content-Type: application/x-www-form-urlencoded' --data 'locationCriteria=SAN+FRANCISCO%2C+CA%2C+USA&locationPosition=%3A%3A-122.41941550000001%3A37.7749295%3A%3ACA&interest=camping&lookingFor=2003&campingDate=Sat+Jan+30+2016&lengthOfStay=2'
 
 	// TODO(tstromberg): Stop hardcoding values.
 	v := url.Values{
 		"locationCriteria":  {locationCriteria},
-		"locationPosition":  {"::-122.4750292:37.7597481:"},
+		"locationPosition":  {"::-122.41941550000001:37.7749295::CA"},
 		"interest":          {"camping"},
 		"lookingFor":        {"2003"},
-		"campingDate":       {"Fri Aug 29 2016"},
+		"campingDate":       {"Sat Jan 30 2016"},
 		"lengthOfStay":      {"2"},
-		"camping_2003_3012": {"3"},
 	}
 
 	log.Printf("POSTing to %s - values: %s", reserveAmericaUrl, v)
