@@ -40,6 +40,10 @@ type Request struct {
 	Method string
 	// URL
 	URL string
+	// Referrer
+	Referrer string
+	// Cookies
+	Cookies []*http.Cookie
 	// POST form values
 	Form url.Values
 	// Maximum age of content.
@@ -48,21 +52,31 @@ type Request struct {
 
 // Key returns a cache-key.
 func (r Request) Key() []byte {
-	return []byte(r.Method + "-" + r.URL + "?" + r.Form.Encode())
+	var buf bytes.Buffer
+	buf.WriteString(r.Method + " ")
+	buf.WriteString(r.URL + "?" + r.Form.Encode())
+	for _, c := range(r.Cookies) {
+		buf.WriteString(fmt.Sprintf("+cookie=%s", c.String()))
+	}
+	return buf.Bytes()
 }
 
 // Result defines which data may be cached for an HTTP response.
 type Result struct {
+	// URL result is from
+	URL string
 	// Status Code
 	StatusCode int
-
 	// HTTP headers
 	Header http.Header
-
+	// Cookies are the cookies that came with the request.
+	Cookies []*http.Cookie
 	// Body is the entire HTTP message body.
 	Body []byte
 	// MTime is when this value was last updated in the cache.
 	MTime time.Time
+	// If entry was served from cache
+	Cached bool
 }
 
 // tryCache attempts a cache-only fetch.
@@ -98,16 +112,26 @@ func Fetch(req Request) (Result, error) {
 		log.Printf("MISS[%s]: %v", req.Key(), req, err)
 	} else {
 		log.Printf("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
+		res.Cached = true
 		return res, nil
 	}
 
 	client := &http.Client{Jar: cookieJar}
-	hr, err := http.NewRequest(req.Method, req.URL, nil)
+	hr, err := http.NewRequest(req.Method, req.URL, bytes.NewBufferString(req.Form.Encode()))
 	if err != nil {
 		return res, err
 	}
-	hr.Form = req.Form
+
 	hr.Header.Add("User-Agent", userAgent)
+
+	for _, c := range(req.Cookies) {
+		hr.AddCookie(c)
+	}
+
+	if req.Method == "POST" {
+		hr.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	}
+	log.Printf("Fetching: %+v", hr)
 	r, err := client.Do(hr)
 	if err != nil {
 		return res, err
@@ -118,7 +142,14 @@ func Fetch(req Request) (Result, error) {
 	if err != nil {
 		return Result{}, err
 	}
-	cr := Result{r.StatusCode, r.Header, body, time.Now()}
+	cr := Result{
+		URL: req.URL,
+		StatusCode: r.StatusCode,
+		Header: r.Header,
+		Cookies: r.Cookies(),
+		Body: body,
+		MTime: time.Now(),
+	}
 
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
@@ -136,6 +167,7 @@ func Fetch(req Request) (Result, error) {
 			store.Flush()
 		}
 	}
+	cr.Cached = false
 	return cr, nil
 }
 
