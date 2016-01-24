@@ -33,7 +33,6 @@ var (
 	cookieJar, _ = cookiejar.New(nil)
 )
 
-
 // Request defines what can be passed in as a request
 type Request struct {
 	// Method type
@@ -55,8 +54,11 @@ func (r Request) Key() []byte {
 	var buf bytes.Buffer
 	buf.WriteString(r.Method + " ")
 	buf.WriteString(r.URL + "?" + r.Form.Encode())
-	for _, c := range(r.Cookies) {
+	for _, c := range r.Cookies {
 		buf.WriteString(fmt.Sprintf("+cookie=%s", c.String()))
+	}
+	if r.Referrer != "" {
+		buf.WriteString(fmt.Sprintf("+ref=%s", r.Referrer))
 	}
 	return buf.Bytes()
 }
@@ -81,6 +83,7 @@ type Result struct {
 
 // tryCache attempts a cache-only fetch.
 func tryCache(req Request) (Result, error) {
+	log.Printf("tryCache: %+v", req)
 	var res Result
 	cachedBytes, err := collection.Get(req.Key())
 	if err != nil {
@@ -97,16 +100,16 @@ func tryCache(req Request) (Result, error) {
 	}
 
 	age := time.Since(res.MTime)
-	log.Printf("Item age is %s", age)
 	if age > req.MaxAge {
 		return res, fmt.Errorf("%s was too old.", req.URL)
 	}
+	log.Printf("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
 	return res, nil
 }
 
-
 // Fetch wraps http.Get/http.Post behind a persistent cache.
 func Fetch(req Request) (Result, error) {
+	log.Printf("Fetch: %+v", req)
 	res, err := tryCache(req)
 	if err != nil {
 		log.Printf("MISS[%s]: %v", req.Key(), req, err)
@@ -124,7 +127,7 @@ func Fetch(req Request) (Result, error) {
 
 	hr.Header.Add("User-Agent", userAgent)
 
-	for _, c := range(req.Cookies) {
+	for _, c := range req.Cookies {
 		hr.AddCookie(c)
 	}
 
@@ -143,12 +146,12 @@ func Fetch(req Request) (Result, error) {
 		return Result{}, err
 	}
 	cr := Result{
-		URL: req.URL,
+		URL:        req.URL,
 		StatusCode: r.StatusCode,
-		Header: r.Header,
-		Cookies: r.Cookies(),
-		Body: body,
-		MTime: time.Now(),
+		Header:     r.Header,
+		Cookies:    r.Cookies(),
+		Body:       body,
+		MTime:      time.Now(),
 	}
 
 	var buf bytes.Buffer
