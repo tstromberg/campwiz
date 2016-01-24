@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
@@ -32,7 +33,7 @@ var (
 	mileageRegex = regexp.MustCompile(`(\d+\.\d+)mi`)
 
 	// regexp for availability parsing
-	availableRegex = regexp.MustCompile(`(\d+) matching`)
+	availableRegex = regexp.MustCompile(`(.*?)\((\d+)\)`)
 )
 
 // SearchCriteria defines a list of attributes that can be sent to ReserveAmerica.
@@ -45,15 +46,25 @@ type Criteria struct {
 	MaxPages    int
 }
 
+type Availability struct {
+	Group         int64
+	Standard      int64
+	Accessible    int64
+	Equestrian    int64
+	Day           int64
+	RvTrailerOnly int64
+}
+
 type Result struct {
-	Name          string
-	ContractCode  string
-	ParkId        int
-	Distance      float64
-	State         string
-	ShortDesc     string
-	MatchingSites int64
-	URL           string
+	Name         string
+	ContractCode string
+	ParkId       int64
+	Distance     float64
+	State        string
+	ShortDesc    string
+	Availability Availability
+	URL          string
+	Amenities    string
 }
 
 // firstPage creates the initial request object for a search.
@@ -134,9 +145,58 @@ func parseError(e error, body []byte) error {
 	return fmt.Errorf("parse error: %v - saved body to %s", e, f.Name())
 }
 
+// availableSiteCounts returns the number of single & group sites available for a card.
+func availableSiteCounts(card *goquery.Selection, amenities string) (Availability, error) {
+	a := Availability{}
+
+	sel := card.Find("span.site_type_item a")
+	for i := range sel.Nodes {
+		sm := availableRegex.FindStringSubmatch(sel.Eq(i).Text())
+		if len(sm) > 0 {
+			ctype := sm[1]
+			count, err := strconv.ParseInt(sm[2], 10, 64)
+			if err != nil {
+				return a, err
+			}
+			if strings.Contains(ctype, "DAY") {
+				a.Day += count
+				log.Printf("Day: %s (%d)", ctype, count)
+				continue
+			}
+			if strings.Contains(ctype, "GROUP") {
+				a.Group += count
+				log.Printf("Group: %s (%d)", ctype, count)
+				continue
+			}
+			if strings.Contains(ctype, "RV/TRAILER") {
+				a.RvTrailerOnly += count
+				log.Printf("Rv/Trailer: %s (%d)", ctype, count)
+				continue
+			}
+			if strings.Contains(ctype, "HORSE") || strings.Contains(ctype, "EQUESTRIAN") {
+				a.Equestrian += count
+				log.Printf("Equestrian: %s (%d)", ctype, count)
+				continue
+			}
+
+			// We have no way of knowing how many sites are accessible or not :(
+			if strings.Contains(amenities, "Accessible") && a.Accessible == 0 {
+				log.Printf("Accessible: %s (%d)", ctype, 1)
+				a.Accessible = 1
+				count = count - 1
+			}
+
+			if count > 0 {
+				log.Printf("Standard: %s (%d)", ctype, count)
+				a.Standard += count
+			}
+		}
+	}
+	return a, nil
+}
+
 // parse the results of a search page
 func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]Result, error) {
-
 	source, err := url.Parse(sourceURL)
 	if err != nil {
 		return nil, err
@@ -179,10 +239,10 @@ func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]Result
 	sel := doc.Find("div.facility_view_card")
 	for i := range sel.Nodes {
 		card := sel.Eq(i)
-		log.Printf("Found %d: %+v", i, card)
 		r := Result{}
 		link := card.Find("a.facility_link")
 		r.Name = link.Text()
+		log.Printf("Parsing: %s", r.Name)
 		href, exists := link.Attr("href")
 		if !exists {
 			return results, parseError(fmt.Errorf("Could not find %s href", link.Text()), body)
@@ -205,16 +265,16 @@ func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]Result
 			}
 		}
 
+		// Parse amenities
+		r.Amenities = card.Find("div.sites_amenities").First().Text()
+		log.Printf("Amenities: %s", r.Amenities)
+
 		// Parse Matching sites
-		sm := availableRegex.FindStringSubmatch(card.Find("h2").Text())
-		if len(sm) > 0 {
-			matching, err := strconv.ParseInt(sm[1], 10, 64)
-			if err != nil {
-				return results, err
-			} else {
-				r.MatchingSites = matching
-			}
+		a, err := availableSiteCounts(card, r.Amenities)
+		if err != nil {
+			return results, err
 		}
+		r.Availability = a
 		results = append(results, r)
 	}
 
