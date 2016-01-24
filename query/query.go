@@ -47,12 +47,14 @@ type Criteria struct {
 }
 
 type Availability struct {
-	Group         int64
-	Standard      int64
-	Accessible    int64
-	Equestrian    int64
-	Day           int64
-	RvTrailerOnly int64
+	Group      int64
+	Standard   int64
+	Accessible int64
+	Equestrian int64
+	Day        int64
+	Boat       int64
+	WalkIn     int64
+	Rv         int64
 }
 
 type Result struct {
@@ -168,14 +170,24 @@ func availableSiteCounts(card *goquery.Selection, amenities string) (Availabilit
 				log.Printf("Group: %s (%d)", ctype, count)
 				continue
 			}
-			if strings.Contains(ctype, "RV/TRAILER") {
-				a.RvTrailerOnly += count
-				log.Printf("Rv/Trailer: %s (%d)", ctype, count)
+			if strings.Contains(ctype, "RV/TRAILER") || strings.Contains(ctype, "RV ELECTRIC") {
+				a.Rv += count
+				log.Printf("Rv: %s (%d)", ctype, count)
 				continue
 			}
 			if strings.Contains(ctype, "HORSE") || strings.Contains(ctype, "EQUESTRIAN") {
 				a.Equestrian += count
 				log.Printf("Equestrian: %s (%d)", ctype, count)
+				continue
+			}
+			if strings.Contains(ctype, "WALK") || strings.Contains(ctype, "HIKE") {
+				a.WalkIn += count
+				log.Printf("WalkIn: %s (%d)", ctype, count)
+				continue
+			}
+			if strings.Contains(ctype, "BOAT") || strings.Contains(ctype, "FLOAT") {
+				a.Boat += count
+				log.Printf("Boat: %s (%d)", ctype, count)
 				continue
 			}
 

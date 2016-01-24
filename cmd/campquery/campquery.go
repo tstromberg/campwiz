@@ -18,6 +18,9 @@ var (
 	maxPages    = flag.Int("max_pages", 10, "Number of pages to request")
 	maxDistance = flag.Int("max_distance", 200, "Furthest distance in miles to query for")
 	group       = flag.Bool("group", false, "Search for group sites")
+	boat        = flag.Bool("boat", false, "Search for boat sites")
+	walkin      = flag.Bool("walkin", true, "Search for walk-in sites")
+	standard    = flag.Bool("standard", true, "Search for standard camp sites")
 )
 
 func main() {
@@ -49,10 +52,20 @@ func main() {
 	}
 	for _, r := range results {
 		if *group && r.Availability.Group > 0 {
-			fmt.Printf("* %+v\n", r)
+			fmt.Printf("* (Group) %+v\n", r)
+			continue
 		}
-		if !*group && r.Availability.Standard > 0 {
-			fmt.Printf("* %+v\n", r)
+		if *boat && r.Availability.Boat > 0 {
+			fmt.Printf("* (Boat) %+v\n", r)
+			continue
+		}
+		if *walkin && r.Availability.WalkIn > 0 {
+			fmt.Printf("* (Walk-In) %+v\n", r)
+			continue
+		}
+		if *standard && r.Availability.Standard > 0 {
+			fmt.Printf("* (Standard) %+v\n", r)
+			continue
 		}
 	}
 }
