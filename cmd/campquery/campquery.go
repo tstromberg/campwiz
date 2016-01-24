@@ -47,6 +47,8 @@ func main() {
 		log.Fatalf("Fetch error: %s", err)
 	}
 	for _, r := range(results) {
-		fmt.Printf("* %+v\n", r)
+		if r.MatchingSites > 0 {
+			fmt.Printf("* %+v\n", r)
+		}
 	}
 }

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/url"
+	"regexp"
 	"strconv"
 	"time"
 
@@ -22,6 +23,15 @@ var (
 
 	// date format used by reserveamerica
 	searchDate = "Mon Jan 2 2006"
+
+	// amount of time to sleep between uncached fetches
+	uncachedDelay = time.Second * 2
+
+	// regexp for mileage parsing
+	mileageRegex = regexp.MustCompile(`(\d+\.\d+)mi`)
+	
+	// regexp for availability parsing
+	availableRegex = regexp.MustCompile(`(\d+) matching`)
 )
 
 // SearchCriteria defines a list of attributes that can be sent to ReserveAmerica.
@@ -41,7 +51,7 @@ type Result struct {
 	Distance	float64
 	State string
 	ShortDesc string
-	MatchingSites	int
+	MatchingSites	int64
 	SourceURL	string
 }
 
@@ -109,7 +119,7 @@ func Search(crit Criteria) ([]Result, error) {
 		parsed = append(parsed, pr...)
 		if ! r.Cached {
 			log.Printf("Previous request was uncached, sleeping ...")
-			time.Sleep(500 * time.Millisecond)
+			time.Sleep(uncachedDelay)
 		}
 	}
 	return parsed, nil
@@ -118,19 +128,46 @@ func Search(crit Criteria) ([]Result, error) {
 // Parse parses the results of a ReserveAmerica search page.
 func Parse(body []byte) ([]Result, error) {
 	var results []Result
-	log.Printf("Body: %s", body)
+	// log.Printf("Body: %s", body)
 
 	buf := bytes.NewBuffer(body)
 	doc, err := goquery.NewDocumentFromReader(buf)
 	if err != nil {
 		return results, err
 	}
-	log.Printf("Doc: %s", doc)
+	// log.Printf("Doc: %s", doc)
 
 
-	doc.Find("a.facility_link").Each(func(i int, s *goquery.Selection) {
-		log.Printf("Found %d: %s", i, s.Text())
-		r := Result{Name: s.Text()}
+	doc.Find("div.facility_view_card").Each(func(i int, s *goquery.Selection) {
+		_, h := s.Html()
+		log.Printf("Found %d: %s", i, h)
+		r := Result{}
+		r.Name = s.Find("a.facility_link").Text()
+
+		// Parse distance
+		mm := mileageRegex.FindStringSubmatch(s.Find("span.sufix").Text())
+		if len(mm) > 0 {
+			distance, err := strconv.ParseFloat(mm[1], 64)
+			if err != nil {
+				log.Printf("Unable to parse: %s", mm[0])
+			} else {
+				r.Distance = distance
+			}
+		}
+
+		// Parse Matching sites
+		log.Printf("h2: %v", s.Find("h2").Text())
+		sm := availableRegex.FindStringSubmatch(s.Find("h2").Text())
+		log.Printf("h2 matches: %v", sm)
+		if len(sm) > 0 {
+			matching, err := strconv.ParseInt(sm[1], 10, 64)
+			if err != nil {
+				log.Printf("Unable to parse: %s", sm[0])
+			} else {
+				r.MatchingSites = matching
+			}
+		}
+
 		results = append(results, r)
 	})
 
