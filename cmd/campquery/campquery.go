@@ -48,7 +48,7 @@ func main() {
 	}
 	results, err := query.Search(crit)
 	if err != nil {
-		log.Fatalf("Fetch error: %s", err)
+		log.Fatalf("Search error: %s", err)
 	}
 	for _, r := range results {
 		if *group && r.Availability.Group > 0 {

@@ -60,7 +60,7 @@ type Availability struct {
 type Result struct {
 	Name         string
 	ContractCode string
-	ParkId       int64
+	ParkId       string
 	Distance     float64
 	State        string
 	ShortDesc    string
@@ -255,6 +255,8 @@ func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]Result
 		link := card.Find("a.facility_link")
 		r.Name = link.Text()
 		log.Printf("Parsing: %s", r.Name)
+
+		r.ShortDesc = strings.Replace(card.Find("span.description").First().Text(), "[more]", "", 1)
 		href, exists := link.Attr("href")
 		if !exists {
 			return results, parseError(fmt.Errorf("Could not find %s href", link.Text()), body)
@@ -265,6 +267,8 @@ func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]Result
 			} else {
 				r.URL = source.ResolveReference(target).String()
 			}
+			r.ParkId = target.Query()["parkId"][0]
+			r.ContractCode = target.Query()["contractCode"][0]
 		}
 		// Parse distance
 		mm := mileageRegex.FindStringSubmatch(card.Find("span.sufix").Text())
