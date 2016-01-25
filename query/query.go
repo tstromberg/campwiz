@@ -14,6 +14,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/tstromberg/autocamper/cache"
+	"github.com/tstromberg/autocamper/result"
 )
 
 var (
@@ -44,29 +45,6 @@ type Criteria struct {
 	Nights      int
 	MaxDistance int
 	MaxPages    int
-}
-
-type Availability struct {
-	Group      int64
-	Standard   int64
-	Accessible int64
-	Equestrian int64
-	Day        int64
-	Boat       int64
-	WalkIn     int64
-	Rv         int64
-}
-
-type Result struct {
-	Name         string
-	ContractCode string
-	ParkId       string
-	Distance     float64
-	State        string
-	ShortDesc    string
-	Availability Availability
-	URL          string
-	Amenities    string
 }
 
 // firstPage creates the initial request object for a search.
@@ -104,7 +82,7 @@ func nextPage(c Criteria, r cache.Result, page int) cache.Request {
 }
 
 // Search performs a query against the ReserveAmerica site, returning parsed results.
-func Search(crit Criteria) ([]Result, error) {
+func Search(crit Criteria) ([]result.Result, error) {
 	log.Printf("Search: %+v", crit)
 	r, err := cache.Fetch(firstPage(crit))
 	if err != nil {
@@ -148,8 +126,8 @@ func parseError(e error, body []byte) error {
 }
 
 // availableSiteCounts returns the number of single & group sites available for a card.
-func availableSiteCounts(card *goquery.Selection, amenities string) (Availability, error) {
-	a := Availability{}
+func availableSiteCounts(card *goquery.Selection, amenities string) (result.Availability, error) {
+	a := result.Availability{}
 
 	sel := card.Find("span.site_type_item a")
 	for i := range sel.Nodes {
@@ -208,7 +186,7 @@ func availableSiteCounts(card *goquery.Selection, amenities string) (Availabilit
 }
 
 // parse the results of a search page
-func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]Result, error) {
+func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]result.Result, error) {
 	source, err := url.Parse(sourceURL)
 	if err != nil {
 		return nil, err
@@ -247,11 +225,11 @@ func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]Result
 		return nil, parseError(fmt.Errorf("page=%d, expected %d", page, expectedPage), body)
 	}
 
-	var results []Result
+	var results []result.Result
 	sel := doc.Find("div.facility_view_card")
 	for i := range sel.Nodes {
 		card := sel.Eq(i)
-		r := Result{}
+		r := result.Result{}
 		link := card.Find("a.facility_link")
 		r.Name = link.Text()
 		log.Printf("Parsing: %s", r.Name)

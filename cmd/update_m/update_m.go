@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/tstromberg/autocamper/data"
 	"gopkg.in/yaml.v2"
 )
 
@@ -20,19 +21,9 @@ var (
 	MaxDescWords = 50
 )
 
-type Site struct {
-	Name    string
-	SRating int
-	Desc    string
-}
-
-type Entries struct {
-	Sites []Site
-}
-
-func parse(scanner *bufio.Scanner) Entries {
-	var e Entries
-	s := Site{}
+func parse(scanner *bufio.Scanner) data.MEntries {
+	var e data.MEntries
+	s := data.MEntry{}
 	for scanner.Scan() {
 		line := scanner.Text()
 		log.Printf("Line: %s", line)
@@ -41,9 +32,9 @@ func parse(scanner *bufio.Scanner) Entries {
 			log.Printf("Title: %s", m[1])
 			// Clear the previous entry.
 			if s.Name != "" && s.SRating > 0 {
-				e.Sites = append(e.Sites, s)
+				e.Entries = append(e.Entries, s)
 			}
-			s = Site{Name: m[1]}
+			s = data.MEntry{Name: m[1]}
 			continue
 		}
 		m = sRatingRe.FindStringSubmatch(line)
@@ -68,7 +59,7 @@ func parse(scanner *bufio.Scanner) Entries {
 		}
 
 	}
-	e.Sites = append(e.Sites, s)
+	e.Entries = append(e.Entries, s)
 	return e
 }
 

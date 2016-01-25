@@ -7,6 +7,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/tstromberg/autocamper/data"
 	"github.com/tstromberg/autocamper/query"
 )
 
@@ -46,11 +47,19 @@ func main() {
 		MaxPages:    *maxPages,
 		MaxDistance: *maxDistance,
 	}
+	err = data.LoadM("../../data/m.yaml")
+	if err != nil {
+		log.Fatalf("Could not load m.yaml: %v", err)
+	}
+
 	results, err := query.Search(crit)
 	if err != nil {
 		log.Fatalf("Search error: %s", err)
 	}
+
 	for _, r := range results {
+		data.Merge(&r)
+
 		if *group && r.Availability.Group > 0 {
 			fmt.Printf("* (Group) %+v\n", r)
 			continue
