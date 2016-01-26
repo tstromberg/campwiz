@@ -1,0 +1,11 @@
+{{ range .}}
+---
+{{ .Name }} ({{ .Distance}}mi) - Scenic: {{ .M.SRating }}
+{{ .URL }}
+{{ with .M.Locale }}{{ . }}{{ end }}
+{{ with .M.Desc }}
+{{ . }}
+{{ else  }}
+{{ .ShortDesc }}
+{{ end }}
+{{ end }}

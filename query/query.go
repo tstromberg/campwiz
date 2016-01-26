@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/url"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -82,7 +83,7 @@ func nextPage(c Criteria, r cache.Result, page int) cache.Request {
 }
 
 // Search performs a query against the ReserveAmerica site, returning parsed results.
-func Search(crit Criteria) ([]result.Result, error) {
+func Search(crit Criteria) (result.Results, error) {
 	log.Printf("Search: %+v", crit)
 	r, err := cache.Fetch(firstPage(crit))
 	if err != nil {
@@ -111,6 +112,7 @@ func Search(crit Criteria) ([]result.Result, error) {
 			time.Sleep(uncachedDelay)
 		}
 	}
+	sort.Sort(parsed)
 	return parsed, nil
 }
 
@@ -186,7 +188,7 @@ func availableSiteCounts(card *goquery.Selection, amenities string) (result.Avai
 }
 
 // parse the results of a search page
-func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]result.Result, error) {
+func parseResultsPage(body []byte, sourceURL string, expectedPage int) (result.Results, error) {
 	source, err := url.Parse(sourceURL)
 	if err != nil {
 		return nil, err
@@ -225,7 +227,7 @@ func parseResultsPage(body []byte, sourceURL string, expectedPage int) ([]result
 		return nil, parseError(fmt.Errorf("page=%d, expected %d", page, expectedPage), body)
 	}
 
-	var results []result.Result
+	var results result.Results
 	sel := doc.Find("div.facility_view_card")
 	for i := range sel.Nodes {
 		card := sel.Eq(i)

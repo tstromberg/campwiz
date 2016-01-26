@@ -5,10 +5,14 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
+	"sort"
+	"text/template"
 	"time"
 
 	"github.com/tstromberg/autocamper/data"
 	"github.com/tstromberg/autocamper/query"
+	"github.com/tstromberg/autocamper/result"
 )
 
 var (
@@ -28,6 +32,11 @@ func main() {
 	var t time.Time
 	var err error
 	flag.Parse()
+
+	tmpl, err := template.ParseFiles("ascii.tmpl")
+	if err != nil {
+		panic(err)
+	}
 
 	if *date != "" {
 		t, err = time.Parse("2006-01-02", *date)
@@ -57,24 +66,36 @@ func main() {
 		log.Fatalf("Search error: %s", err)
 	}
 
+	var filtered result.Results
+
 	for _, r := range results {
 		data.Merge(&r)
 
 		if *group && r.Availability.Group > 0 {
-			fmt.Printf("* (Group) %+v\n", r)
+			filtered = append(filtered, r)
+			log.Printf("* (Group) %+v\n", r)
 			continue
 		}
 		if *boat && r.Availability.Boat > 0 {
-			fmt.Printf("* (Boat) %+v\n", r)
+			filtered = append(filtered, r)
+			log.Printf("* (Boat) %+v\n", r)
 			continue
 		}
 		if *walkin && r.Availability.WalkIn > 0 {
-			fmt.Printf("* (Walk-In) %+v\n", r)
+			filtered = append(filtered, r)
+			log.Printf("* (Walk-In) %+v\n", r)
 			continue
 		}
 		if *standard && r.Availability.Standard > 0 {
-			fmt.Printf("* (Standard) %+v\n", r)
+			filtered = append(filtered, r)
+			log.Printf("* (Standard) %+v\n", r)
 			continue
 		}
+
+	}
+	sort.Sort(filtered)
+	err = tmpl.ExecuteTemplate(os.Stdout, "ascii.tmpl", filtered)
+	if err != nil {
+		panic(err)
 	}
 }
