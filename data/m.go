@@ -17,8 +17,8 @@ type MEntries struct {
 }
 
 // MMatches finds the most likely key name for a campsite.
-func MMatches(r *result.Result) []string {
-	keyName := strings.ToUpper(ShortName(r.Name))
+func MMatches(name string) []string {
+	keyName := strings.ToUpper(name)
 	log.Printf("MMatches(%s) ...", keyName)
 
 	// Three levels of matches.
@@ -32,25 +32,27 @@ func MMatches(r *result.Result) []string {
 	keywords := strings.Split(keyName, " ")
 
 	for k, _ := range M {
-
 		i := strings.Index(k, keyName)
+		log.Printf("Testing: keyName=%s == k=%s (index=%d)", keyName, k, i)
+		// The whole key does not exist.
 		if i == -1 {
-			wordMatches := 0
-			// remove spaces
-			nospk := strings.Join(strings.Split(k, " "), "")
-			for _, kw := range keywords {
-				if strings.Contains(nospk, kw) {
-					wordMatches += 1
+			var wordMatches []string
+			kwords := strings.Split(k, " ")
+			for _, kw := range kwords {
+				for _, keyword := range keywords {
+					if keyword == kw {
+						wordMatches = append(wordMatches, kw)
+					}
 				}
 			}
-			if wordMatches == len(keywords) {
-				log.Printf("Found allwords match for %s: %s", keyName, k)
+			if len(wordMatches) == len(keywords) {
+				log.Printf("All words match for %s: %s", keyName, k)
 				allWords = append(allWords, k)
-			} else if wordMatches > 0 {
-				log.Printf("Found some match for %s: %s", keyName, k)
+			} else if len(wordMatches) > 1 {
+				log.Printf("Partial match for %s: %s (matches=%v)", keyName, k, wordMatches)
 				someWords = append(someWords, k)
-			} else if wordMatches == 1 {
-				log.Printf("Found single word match for %s: %s", keyName, k)
+			} else if len(wordMatches) == 1 {
+				log.Printf("Found single word match for %s: %s (matches=%v)", keyName, k, wordMatches)
 				singleWord = append(singleWord, k)
 			}
 			continue

@@ -85,23 +85,33 @@ func ShortName(s string) string {
 func Merge(r *result.Result) {
 	log.Printf("Merge: %s", r.Name)
 
-	mm := MMatches(r)
-	if len(mm) > 1 {
-		// So, we have multiple matches. Perhaps the locale will help?
-		log.Printf("No unique for %s: %+v", r.Name, mm)
-		for _, m := range mm {
-			// private knowledge
-			if strings.Contains(r.ShortDesc, strings.Split(m, " - ")[1]) {
-				log.Printf("Lucky desc match: %s", m)
-				r.M = M[m]
-				break
+	variations := []string{
+		r.Name,
+		strings.Join(strings.Split(ShortName(ExpandAcronyms(r.Name)), " "), ""),
+		ShortName(r.Name),
+		ExpandAcronyms(r.Name),
+		ShortName(ExpandAcronyms(r.Name)),
+	}
+	log.Printf("Merge Variations: %v", strings.Join(variations, "|"))
+	for _, name := range variations {
+		mm := MMatches(name)
+		log.Printf("MMatches(%s) result: %v", name, mm)
+		if len(mm) > 1 {
+			// So, we have multiple matches. Perhaps the locale will help?
+			log.Printf("No unique for %s: %+v", name, mm)
+			for _, m := range mm {
+				// private knowledge
+				if strings.Contains(r.ShortDesc, strings.Split(m, " - ")[1]) {
+					log.Printf("Lucky desc match: %s", m)
+					r.M = M[m]
+					return
+				}
 			}
+		} else if len(mm) == 1 {
+			log.Printf("Match: %+v", mm)
+			r.M = M[mm[0]]
+			return
 		}
-		return
-	} else if len(mm) == 1 {
-		log.Printf("Match: %+v", mm)
-		r.M = M[mm[0]]
-		return
 	}
 	log.Printf("Unable to match: %+v", r)
 }

@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/url"
 	"regexp"
-	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -25,8 +24,8 @@ var (
 	// searchPageExpiry is how long search pages can be cached for.
 	searchPageExpiry = time.Duration(6*3600) * time.Second
 
-	// date format used by reserveamerica
-	searchDate = "Mon Jan 2 2006"
+	// the date format used
+	campingDateFormat = "Mon Jan 2 2006"
 
 	// amount of time to sleep between uncached fetches
 	uncachedDelay = time.Millisecond * 750
@@ -42,14 +41,19 @@ var (
 type Criteria struct {
 	Lat         float64
 	Lon         float64
-	Date        time.Time
+	Dates       []time.Time
 	Nights      int
 	MaxDistance int
 	MaxPages    int
+
+	IncludeStandard bool
+	IncludeGroup    bool
+	IncludeBoatIn   bool
+	IncludeWalkIn   bool
 }
 
 // firstPage creates the initial request object for a search.
-func firstPage(c Criteria) cache.Request {
+func firstPage(c Criteria, t time.Time) cache.Request {
 	// % curl -L -vvv 'http://www.reserveamerica.com/unifSearch.do' -H 'Content-Type: application/x-www-form-urlencoded' --data 'locationCriteria=SAN+FRANCISCO%2C+CA%2C+USA&locationPosition=%3A%3A-122.41941550000001%3A37.7749295%3A%3ACA&interest=camping&lookingFor=2003&campingDate=Sat+Jan+30+2016&lengthOfStay=2'
 
 	v := url.Values{
@@ -57,7 +61,7 @@ func firstPage(c Criteria) cache.Request {
 		"locationPosition": {fmt.Sprintf("::%3.14f:%3.7f::CA", c.Lat, c.Lon)},
 		"interest":         {"camping"},
 		"lookingFor":       {"2003"},
-		"campingDate":      {c.Date.Format(searchDate)},
+		"campingDate":      {t.Format(campingDateFormat)},
 		"lengthOfStay":     {strconv.Itoa(c.Nights)},
 	}
 
@@ -71,7 +75,7 @@ func firstPage(c Criteria) cache.Request {
 }
 
 // nextPage creates requests for subsequent pages.
-func nextPage(c Criteria, r cache.Result, page int) cache.Request {
+func nextPage(r cache.Result, page int) cache.Request {
 	url := fmt.Sprintf("%s/unifSearchResults.do?currentPage=%d&paging=true&facilityType=all&agencyKey=&facilityAvailable=show_all&viewType=view_list&selectedLetter=ALL&owner=&hiddenFilters=false", baseURL, page)
 	return cache.Request{
 		Method:   "GET",
@@ -82,26 +86,27 @@ func nextPage(c Criteria, r cache.Result, page int) cache.Request {
 	}
 }
 
-// Search performs a query against the ReserveAmerica site, returning parsed results.
-func Search(crit Criteria) (result.Results, error) {
-	log.Printf("Search: %+v", crit)
-	r, err := cache.Fetch(firstPage(crit))
+// searchForDate runs a search for a single date
+func searchForDate(crit Criteria, date time.Time) (result.Results, error) {
+	log.Printf("searchForDate: %+v", crit)
+
+	r, err := cache.Fetch(firstPage(crit, date))
 	if err != nil {
 		return nil, err
 	}
 
-	parsed, err := parseResultsPage(r.Body, r.URL, 1)
+	parsed, err := parseResultsPage(r.Body, r.URL, date, 1)
 	if err != nil {
 		return nil, err
 	}
 
 	for i := 1; i < crit.MaxPages; i++ {
-		r, err := cache.Fetch(nextPage(crit, r, i))
+		r, err := cache.Fetch(nextPage(r, i))
 		if err != nil {
 			return parsed, err
 		}
 
-		pr, err := parseResultsPage(r.Body, r.URL, i+1)
+		pr, err := parseResultsPage(r.Body, r.URL, date, i+1)
 		if err != nil {
 			return parsed, err
 		}
@@ -112,8 +117,22 @@ func Search(crit Criteria) (result.Results, error) {
 			time.Sleep(uncachedDelay)
 		}
 	}
-	sort.Sort(parsed)
 	return parsed, nil
+}
+
+// Search performs a RA, returns parsed results.
+func Search(crit Criteria) (result.Results, error) {
+	var results result.Results
+	for _, d := range crit.Dates {
+		dr, err := searchForDate(crit, d)
+		if err != nil {
+			return results, err
+		}
+		results = append(results, dr...)
+	}
+	filtered := filter(crit, results)
+	merged := merge(filtered)
+	return merged, nil
 }
 
 // parseError returns a nice error message with a debug file.
@@ -188,7 +207,7 @@ func availableSiteCounts(card *goquery.Selection, amenities string) (result.Avai
 }
 
 // parse the results of a search page
-func parseResultsPage(body []byte, sourceURL string, expectedPage int) (result.Results, error) {
+func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage int) (result.Results, error) {
 	source, err := url.Parse(sourceURL)
 	if err != nil {
 		return nil, err
@@ -267,10 +286,11 @@ func parseResultsPage(body []byte, sourceURL string, expectedPage int) (result.R
 
 		// Parse Matching sites
 		a, err := availableSiteCounts(card, r.Amenities)
+		a.Date = t
 		if err != nil {
 			return results, err
 		}
-		r.Availability = a
+		r.Availability = append(r.Availability, a)
 		results = append(results, r)
 	}
 

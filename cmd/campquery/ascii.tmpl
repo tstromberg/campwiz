@@ -1,11 +1,18 @@
-{{ range .}}
----
-{{ .Name }} ({{ .Distance}}mi) - Scenic: {{ .M.SRating }}
-{{ .URL }}
+{{ range .Results}}
+--------------------------------------------------------------------------------
+
+{{ .Name }} ({{ .Distance}}mi)
+Scenic Rating: {{ .M.SRating }}
 {{ with .M.Locale }}{{ . }}{{ end }}
+{{ range .Availability}}
+Available {{ .Date.Month }} {{ .Date.Day }}: {{ with .Standard }}{{ . }} standard{{ end }} {{ with .WalkIn }}{{ . }} walk-in{{ end }} {{ with .Boat }}{{ . }} boat{{ end }} {{ with .Group }}{{ . }} group{{ end }}
+{{ end }}
 {{ with .M.Desc }}
 {{ . }}
 {{ else  }}
 {{ .ShortDesc }}
 {{ end }}
+{{ .URL }}
 {{ end }}
+
+--------------------------------------------------------------------------------
