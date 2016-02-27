@@ -7,8 +7,10 @@ Building:
 
 ```shell
 export GOPATH=`pwd`
+# Disregard the error message
 go get github.com/tstromberg/autocamper
 go get github.com/PuerkitoBio/goquery
 go get github.com/steveyen/gkvlite
-go run src/github.com/tstromberg/autocamper/cmd/campquery/campquery.go
+cd github.com/tstromberg/autocamper/cmd/campquery
+go run campquery.go --help
 ```
