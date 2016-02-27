@@ -6,8 +6,9 @@ Building:
 =========
 
 ```shell
-% export GOPATH=`pwd`
-% go get github.com/PuerkitoBio/goquery
-% go get github.com/steveyen/gkvlite
-% go build src/github.com/tstromberg/autocamper/cmd/campquery/campquery.go
+export GOPATH=`pwd`
+go get github.com/tstromberg/autocamper
+go get github.com/PuerkitoBio/goquery
+go get github.com/steveyen/gkvlite
+go run src/github.com/tstromberg/autocamper/cmd/campquery/campquery.go
 ```
