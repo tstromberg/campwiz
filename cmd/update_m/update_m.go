@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/golang/glog"
 	"github.com/tstromberg/campwiz/data"
 	"github.com/tstromberg/campwiz/result"
 	"gopkg.in/yaml.v2"
@@ -59,15 +60,15 @@ func parse(scanner *bufio.Scanner) (data.MEntries, error) {
 	s := result.MEntry{}
 	for scanner.Scan() {
 		line := scanner.Text()
-		log.Printf("Line: %s", line)
+		glog.V(1).Infof("Line: %s", line)
 		m := titleRe.FindStringSubmatch(line)
 		if len(m) > 0 && line == strings.ToUpper(line) {
-			log.Printf("Title: %s", m[1])
+			glog.V(1).Infof("Title: %s", m[1])
 			// Clear the previous entry.
 			if s.Name != "" && s.SRating > 0 {
 				s.Key = key(s.Name, s.Locale)
 				if _, exists := seen[s.Key]; exists {
-					log.Printf("Ignoring duplicate: %s (its ok)", s.Key)
+					glog.V(1).Infof("Ignoring duplicate: %s (its ok)", s.Key)
 					continue
 				}
 				seen[s.Key] = true
@@ -78,19 +79,19 @@ func parse(scanner *bufio.Scanner) (data.MEntries, error) {
 		}
 		m = sRatingRe.FindStringSubmatch(line)
 		if len(m) > 0 {
-			log.Printf("SRating: %s", m[1])
+			glog.V(1).Infof("SRating: %s", m[1])
 			s.SRating, _ = strconv.Atoi(m[1])
 			continue
 		}
 		m = LocaleRe.FindStringSubmatch(line)
 		if s.SRating > 0 && len(m) > 0 {
-			log.Printf("Locale: %s", m[1])
+			glog.V(1).Infof("Locale: %s", m[1])
 			s.Locale = m[1]
 		}
 
 		m = DescRe.FindStringSubmatch(line)
 		if s.SRating > 0 && len(m) > 0 {
-			log.Printf("Desc: %s", m[1])
+			glog.V(1).Infof("Desc: %s", m[1])
 			if s.Desc == "" {
 				s.Desc = m[1]
 			} else if len(strings.Split(s.Desc, " ")) < MaxDescWords {

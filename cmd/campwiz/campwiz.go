@@ -11,6 +11,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/golang/glog"
 	"github.com/tstromberg/campwiz/data"
 	"github.com/tstromberg/campwiz/query"
 	"github.com/tstromberg/campwiz/result"
@@ -34,7 +35,6 @@ type TemplateContext struct {
 	Criteria query.Criteria
 	Results  result.Results
 }
-
 
 func main() {
 	var t time.Time
@@ -84,7 +84,7 @@ func main() {
 	fmt.Printf("Criteria: %+v\n", crit)
 	fmt.Println("Searching (this may take a minute) ...")
 	results, err := query.Search(crit)
-	log.Printf("RESULTS: %+v", results)
+	glog.V(1).Infof("RESULTS: %+v", results)
 	if err != nil {
 		panic(fmt.Sprintf("Search error: %s", err))
 	}

@@ -4,7 +4,6 @@ package data
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"strings"
 
 	"github.com/golang/glog"
@@ -20,7 +19,7 @@ type MEntries struct {
 // MMatches finds the most likely key name for a campsite.
 func MMatches(name string) []string {
 	keyName := strings.ToUpper(name)
-	log.Printf("MMatches(%s) ...", keyName)
+	glog.V(1).Infof("MMatches(%s) ...", keyName)
 
 	// Three levels of matches.
 	var exact []string
@@ -47,13 +46,13 @@ func MMatches(name string) []string {
 				}
 			}
 			if len(wordMatches) == len(keywords) {
-				log.Printf("All words match for %s: %s", keyName, k)
+				glog.V(1).Infof("All words match for %s: %s", keyName, k)
 				allWords = append(allWords, k)
 			} else if len(wordMatches) > 1 {
-				log.Printf("Partial match for %s: %s (matches=%v)", keyName, k, wordMatches)
+				glog.V(1).Infof("Partial match for %s: %s (matches=%v)", keyName, k, wordMatches)
 				someWords = append(someWords, k)
 			} else if len(wordMatches) == 1 {
-				log.Printf("Found single word match for %s: %s (matches=%v)", keyName, k, wordMatches)
+				glog.V(1).Infof("Found single word match for %s: %s (matches=%v)", keyName, k, wordMatches)
 				singleWord = append(singleWord, k)
 			}
 			continue
@@ -61,14 +60,14 @@ func MMatches(name string) []string {
 		if i == 0 {
 			if strings.HasPrefix(k, keyName+" - ") {
 				exact = append(exact, k)
-				log.Printf("Found exact match for %s: %s", keyName, k)
+				glog.V(1).Infof("Found exact match for %s: %s", keyName, k)
 				continue
 			}
-			log.Printf("Found prefix match for %s: %s", keyName, k)
+			glog.V(1).Infof("Found prefix match for %s: %s", keyName, k)
 			prefix = append(prefix, k)
 			continue
 		} else if i > 0 {
-			log.Printf("Found substring match for %s: %s", keyName, k)
+			glog.V(1).Infof("Found substring match for %s: %s", keyName, k)
 			contains = append(contains, k)
 		}
 	}
@@ -102,13 +101,13 @@ func LoadM(path string) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("Loaded %d entries from %s ...", len(ms.Entries), path)
+	glog.V(1).Infof("Loaded %d entries from %s ...", len(ms.Entries), path)
 	for _, m := range ms.Entries {
 		if val, ok := M[m.Key]; ok {
 			return fmt.Errorf("%s already loaded. Previous=%+v, New=%+v", path, val, m)
 		}
 		M[m.Key] = m
-		log.Printf("Loaded [%s]: %+v", m.Name, m)
+		glog.V(1).Infof("Loaded [%s]: %+v", m.Name, m)
 	}
 	return nil
 }

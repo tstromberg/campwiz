@@ -1,14 +1,13 @@
 package query
 
 import (
-	"log"
-
+	"github.com/golang/glog"
 	"github.com/tstromberg/campwiz/result"
 )
 
 // filter applies post-fetch criteria filtering.
 func filter(c Criteria, res result.Results) result.Results {
-	log.Printf("Filtering %d results ...", len(res))
+	glog.V(1).Infof("Filtering %d results ...", len(res))
 	var filtered result.Results
 
 	for _, r := range res {

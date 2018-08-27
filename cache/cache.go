@@ -13,6 +13,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/golang/glog"
 	"github.com/steveyen/gkvlite"
 )
 
@@ -83,7 +84,7 @@ type Result struct {
 
 // tryCache attempts a cache-only fetch.
 func tryCache(req Request) (Result, error) {
-	log.Printf("tryCache: %+v", req)
+	glog.V(1).Infof("tryCache: %+v", req)
 	var res Result
 	cachedBytes, err := collection.Get(req.Key())
 	if err != nil {
@@ -103,18 +104,18 @@ func tryCache(req Request) (Result, error) {
 	if age > req.MaxAge {
 		return res, fmt.Errorf("%s was too old.", req.URL)
 	}
-	log.Printf("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
+	glog.V(1).Infof("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
 	return res, nil
 }
 
 // Fetch wraps http.Get/http.Post behind a persistent cache.
 func Fetch(req Request) (Result, error) {
-	log.Printf("Fetch: %+v", req)
+	glog.V(1).Infof("Fetch: %+v", req)
 	res, err := tryCache(req)
 	if err != nil {
-		log.Printf("MISS[%s]: %v", req.Key(), req, err)
+		glog.V(1).Infof("MISS[%s]: %v", req.Key(), req, err)
 	} else {
-		log.Printf("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
+		glog.V(1).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
 		res.Cached = true
 		return res, nil
 	}
@@ -134,7 +135,7 @@ func Fetch(req Request) (Result, error) {
 	if req.Method == "POST" {
 		hr.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	}
-	log.Printf("Fetching: %+v", hr)
+	glog.V(1).Infof("Fetching: %+v", hr)
 	r, err := client.Do(hr)
 	if err != nil {
 		return res, err
@@ -161,11 +162,11 @@ func Fetch(req Request) (Result, error) {
 		return cr, fmt.Errorf("encoding %+v: %v", cr, err)
 	} else {
 		bufBytes, err := ioutil.ReadAll(&buf)
-		log.Printf("Buf bytes: %s", bufBytes)
+		glog.V(1).Infof("Buf bytes: %s", bufBytes)
 		if err != nil {
-			log.Printf("Failed to read back encoded response: %s", err)
+			glog.V(1).Infof("Failed to read back encoded response: %s", err)
 		} else {
-			log.Printf("Storing %s", req.Key())
+			glog.V(1).Infof("Storing %s", req.Key())
 			collection.Set(req.Key(), bufBytes)
 			store.Flush()
 		}

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"go/build"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -96,17 +95,17 @@ func ExpandAcronyms(s string) string {
 	}
 	expanded := strings.Join(words, " ")
 	if expanded != s {
-		log.Printf("Expanded %s to: %s", s, expanded)
+		glog.V(1).Infof("Expanded %s to: %s", s, expanded)
 	}
 	return expanded
 }
 
 func ShortenName(s string) (string, bool) {
-	log.Printf("Shorten: %s", s)
+	glog.V(1).Infof("Shorten: %s", s)
 	keyWords := strings.Split(ExpandAcronyms(s), " ")
 	for i, kw := range keyWords {
 		if _, exists := ExtraWords[strings.ToUpper(kw)]; exists {
-			log.Printf("Removing extra word in %s: %s", s, kw)
+			glog.V(1).Infof("Removing extra word in %s: %s", s, kw)
 			keyWords = append(keyWords[:i], keyWords[i+1:]...)
 			return strings.Join(keyWords, " "), true
 		}
@@ -126,7 +125,7 @@ func ShortName(s string) string {
 }
 
 func Merge(r *result.Result) {
-	log.Printf("Merge: %s", r.Name)
+	glog.V(1).Infof("Merge: %s", r.Name)
 
 	variations := []string{
 		r.Name,
@@ -135,26 +134,26 @@ func Merge(r *result.Result) {
 		ExpandAcronyms(r.Name),
 		ShortName(ExpandAcronyms(r.Name)),
 	}
-	log.Printf("Merge Variations: %v", strings.Join(variations, "|"))
+	glog.V(1).Infof("Merge Variations: %v", strings.Join(variations, "|"))
 	for _, name := range variations {
 		mm := MMatches(name)
-		log.Printf("MMatches(%s) result: %v", name, mm)
+		glog.V(1).Infof("MMatches(%s) result: %v", name, mm)
 		if len(mm) > 1 {
 			// So, we have multiple matches. Perhaps the locale will help?
-			log.Printf("No unique for %s: %+v", name, mm)
+			glog.V(1).Infof("No unique for %s: %+v", name, mm)
 			for _, m := range mm {
 				// private knowledge
 				if strings.Contains(r.ShortDesc, strings.Split(m, " - ")[1]) {
-					log.Printf("Lucky desc match: %s", m)
+					glog.V(1).Infof("Lucky desc match: %s", m)
 					r.M = M[m]
 					return
 				}
 			}
 		} else if len(mm) == 1 {
-			log.Printf("Match: %+v", mm)
+			glog.V(1).Infof("Match: %+v", mm)
 			r.M = M[mm[0]]
 			return
 		}
 	}
-	log.Printf("Unable to match: %+v", r)
+	glog.V(1).Infof("Unable to match: %+v", r)
 }
