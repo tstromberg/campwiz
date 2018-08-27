@@ -32,7 +32,7 @@ func MMatches(name string) []string {
 
 	for k := range M {
 		i := strings.Index(k, keyName)
-		glog.Infof("Testing: keyName=%s == k=%s (index=%d)", keyName, k, i)
+		glog.V(4).Infof("Testing: keyName=%s == k=%s (index=%d)", keyName, k, i)
 		// The whole key does not exist.
 		if i == -1 {
 			var wordMatches []string
@@ -45,13 +45,13 @@ func MMatches(name string) []string {
 				}
 			}
 			if len(wordMatches) == len(keywords) {
-				glog.V(1).Infof("All words match for %s: %s", keyName, k)
+				glog.V(2).Infof("All words match for %s: %s", keyName, k)
 				allWords = append(allWords, k)
 			} else if len(wordMatches) > 1 {
-				glog.V(1).Infof("Partial match for %s: %s (matches=%v)", keyName, k, wordMatches)
+				glog.V(2).Infof("Partial match for %s: %s (matches=%v)", keyName, k, wordMatches)
 				someWords = append(someWords, k)
 			} else if len(wordMatches) == 1 {
-				glog.V(1).Infof("Found single word match for %s: %s (matches=%v)", keyName, k, wordMatches)
+				glog.V(3).Infof("Found single word match for %s: %s (matches=%v)", keyName, k, wordMatches)
 				singleWord = append(singleWord, k)
 			}
 			continue
@@ -59,14 +59,14 @@ func MMatches(name string) []string {
 		if i == 0 {
 			if strings.HasPrefix(k, keyName+" - ") {
 				exact = append(exact, k)
-				glog.V(1).Infof("Found exact match for %s: %s", keyName, k)
+				glog.V(2).Infof("Found exact match for %s: %s", keyName, k)
 				continue
 			}
-			glog.V(1).Infof("Found prefix match for %s: %s", keyName, k)
+			glog.V(2).Infof("Found prefix match for %s: %s", keyName, k)
 			prefix = append(prefix, k)
 			continue
 		} else if i > 0 {
-			glog.V(1).Infof("Found substring match for %s: %s", keyName, k)
+			glog.V(2).Infof("Found substring match for %s: %s", keyName, k)
 			contains = append(contains, k)
 		}
 	}
