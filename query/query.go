@@ -93,7 +93,7 @@ func nextPage(r cache.Result, page int) cache.Request {
 
 // searchForDate runs a search for a single date
 func searchForDate(crit Criteria, date time.Time) (result.Results, error) {
-	glog.V(1).Infof("searchForDate: %+v", crit)
+	glog.Infof("searchForDate: %+v", crit)
 
 	// This page is going to redirect you.
 	r, err := cache.Fetch(firstPage(crit, date))
@@ -136,8 +136,11 @@ func Search(crit Criteria) (result.Results, error) {
 		}
 		results = append(results, dr...)
 	}
+	glog.Infof("Found %d results", len(results))
 	filtered := filter(crit, results)
+	glog.Infof("Post-filter: %d results", len(filtered))
 	merged := merge(filtered)
+	glog.Infof("Post-merge: %d results", len(merged))
 	return merged, nil
 }
 
@@ -215,7 +218,7 @@ func availableSiteCounts(card *goquery.Selection, amenities string) (result.Avai
 	return a, nil
 }
 
-func parseCard(source *url.URL, card *goquery.Selection) (result.Result, error) {
+func parseCard(source *url.URL, card *goquery.Selection, date time.Time) (result.Result, error) {
 	glog.Infof("Parsing card: %s", card.Text())
 	r := result.Result{}
 	link := card.Find("a.facility_link")
@@ -256,7 +259,7 @@ func parseCard(source *url.URL, card *goquery.Selection) (result.Result, error) 
 
 	// Parse Matching sites
 	a, err := availableSiteCounts(card, r.Amenities)
-	//	a.Date = t
+	a.Date = date
 	if err != nil {
 		return r, err
 	}
@@ -266,7 +269,7 @@ func parseCard(source *url.URL, card *goquery.Selection) (result.Result, error) 
 }
 
 // parse the results of a search page
-func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage int) (result.Results, error) {
+func parseResultsPage(body []byte, sourceURL string, date time.Time, expectedPage int) (result.Results, error) {
 	glog.Infof("*************** Parsing %s - expected page: %d", sourceURL, expectedPage)
 	source, err := url.Parse(sourceURL)
 	if err != nil {
@@ -310,7 +313,7 @@ func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage i
 	var results result.Results
 	sel := doc.Find("div.facility_view_card")
 	for i := range sel.Nodes {
-		r, err := parseCard(source, sel.Eq(i))
+		r, err := parseCard(source, sel.Eq(i), date)
 		if err != nil {
 			glog.Warningf("Unable to parse card %d: %v", i, err)
 			continue
