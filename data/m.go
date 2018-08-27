@@ -106,7 +106,7 @@ func LoadM() error {
 			return fmt.Errorf("already loaded. Previous=%+v, New=%+v", val, m)
 		}
 		M[m.Key] = m
-		glog.V(1).Infof("Loaded [%s]: %+v", m.Name, m)
+		glog.V(3).Infof("Loaded [%s]: %+v", m.Name, m)
 	}
 	return nil
 }

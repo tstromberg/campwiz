@@ -19,7 +19,7 @@ import (
 
 var (
 	// raURL is the search URL to request reservation information from.
-	baseURL = "http://www.reserveamerica.com/"
+	baseURL = "https://www.reserveamerica.com"
 
 	// searchPageExpiry is how long search pages can be cached for.
 	searchPageExpiry = time.Duration(6*3600) * time.Second
@@ -65,13 +65,18 @@ func firstPage(c Criteria, t time.Time) cache.Request {
 		"lengthOfStay":     {strconv.Itoa(c.Nights)},
 	}
 
-	return cache.Request{
+	r := cache.Request{
 		Method:   "POST",
 		URL:      baseURL + "/unifSearch.do",
 		Referrer: baseURL,
 		Form:     v,
 		MaxAge:   searchPageExpiry,
 	}
+	glog.Infof("First page: %s", r.URL)
+	for v, k := range v {
+		glog.Infof("Form value %s = %q", v, k)
+	}
+	return r
 }
 
 // nextPage creates requests for subsequent pages.
@@ -90,6 +95,7 @@ func nextPage(r cache.Result, page int) cache.Request {
 func searchForDate(crit Criteria, date time.Time) (result.Results, error) {
 	glog.V(1).Infof("searchForDate: %+v", crit)
 
+	// This page is going to redirect you.
 	r, err := cache.Fetch(firstPage(crit, date))
 	if err != nil {
 		return nil, err
@@ -137,12 +143,15 @@ func Search(crit Criteria) (result.Results, error) {
 
 // parseError returns a nice error message with a debug file.
 func parseError(e error, body []byte) error {
-	f, err := ioutil.TempFile("", "query")
+	f, err := ioutil.TempFile("", "query.*.html")
 	defer f.Close()
 	if err != nil {
 		return fmt.Errorf("parse error: %v (unable to save: %v)", e, err)
 	}
-	ioutil.WriteFile(f.Name(), body, 0444)
+	err = ioutil.WriteFile(f.Name(), body, 0444)
+	if err != nil {
+		return err
+	}
 	return fmt.Errorf("parse error: %v - saved body to %s", e, f.Name())
 }
 
@@ -220,10 +229,11 @@ func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage i
 		return nil, parseError(err, body)
 	}
 
-	rl := doc.Find("div.usearch_results_label").First().Text()
-	glog.V(1).Infof("Results label: %s", rl)
+	rl := doc.Find("div.facility_view_header_near").First().Text()
+	glog.V(1).Infof("Results label: %q", rl)
 
-	ps := doc.Find("select#pageSelector option")
+	// Find the marker that tells us what page we are on.
+	ps := doc.Find("select[name=pageSelector] option")
 	if ps.Length() == 0 {
 		return nil, parseError(fmt.Errorf("Could not find select#pageSelector"), body)
 	}
@@ -253,31 +263,35 @@ func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage i
 		r := result.Result{}
 		link := card.Find("a.facility_link")
 		r.Name = link.Text()
-		glog.V(1).Infof("Parsing: %s", r.Name)
+		glog.Infof("Parsing: %s", r.Name)
 
 		r.ShortDesc = strings.Replace(card.Find("span.description").First().Text(), "[more]", "", 1)
 		href, exists := link.Attr("href")
 		if !exists {
 			return results, parseError(fmt.Errorf("Could not find %s href", link.Text()), body)
-		} else {
-			target, err := url.Parse(href)
-			if err != nil {
-				return nil, fmt.Errorf("Could not parse href %s: %v", href, err)
-			} else {
-				r.URL = source.ResolveReference(target).String()
-			}
-			r.ParkId = target.Query()["parkId"][0]
-			r.ContractCode = target.Query()["contractCode"][0]
 		}
+		glog.Infof("Site URL: %s", href)
+
+		target, err := url.Parse(href)
+		if err != nil {
+			return nil, fmt.Errorf("Could not parse href %s: %v", href, err)
+		}
+		r.URL = source.ResolveReference(target).String()
+		pids := target.Query()["parkId"]
+		if len(pids) == 0 {
+			glog.Infof("Skipping %s (no parkId field)", href)
+			continue
+		}
+		r.ParkId = pids[0]
+		r.ContractCode = target.Query()["contractCode"][0]
 		// Parse distance
 		mm := mileageRegex.FindStringSubmatch(card.Find("span.sufix").Text())
 		if len(mm) > 0 {
 			distance, err := strconv.ParseFloat(mm[1], 64)
 			if err != nil {
 				return results, err
-			} else {
-				r.Distance = distance
 			}
+			r.Distance = distance
 		}
 
 		// Parse amenities

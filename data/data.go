@@ -63,6 +63,7 @@ func path(name string) string {
 	}
 
 	for _, d := range []string{
+		"./",
 		"../",
 		"../../",
 		filepath.Join(filepath.Dir(binpath)),

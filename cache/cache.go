@@ -102,7 +102,7 @@ func tryCache(req Request) (Result, error) {
 
 	age := time.Since(res.MTime)
 	if age > req.MaxAge {
-		return res, fmt.Errorf("%s was too old.", req.URL)
+		return res, fmt.Errorf("URL %s cache was too old", req.URL)
 	}
 	glog.V(1).Infof("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
 	return res, nil
@@ -154,22 +154,25 @@ func Fetch(req Request) (Result, error) {
 		Body:       body,
 		MTime:      time.Now(),
 	}
+	glog.Infof("Fetched %s, status=%d, bytes=%d", req.URL, r.StatusCode, len(body))
 
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err = enc.Encode(&cr)
 	if err != nil {
 		return cr, fmt.Errorf("encoding %+v: %v", cr, err)
+	}
+	bufBytes, err := ioutil.ReadAll(&buf)
+	glog.V(4).Infof("Buf bytes: %s", bufBytes)
+	if err != nil {
+		glog.V(1).Infof("Failed to read back encoded response: %s", err)
 	} else {
-		bufBytes, err := ioutil.ReadAll(&buf)
-		glog.V(1).Infof("Buf bytes: %s", bufBytes)
+		glog.V(1).Infof("Storing %s", req.Key())
+		err := collection.Set(req.Key(), bufBytes)
 		if err != nil {
-			glog.V(1).Infof("Failed to read back encoded response: %s", err)
-		} else {
-			glog.V(1).Infof("Storing %s", req.Key())
-			collection.Set(req.Key(), bufBytes)
-			store.Flush()
+			return Result{}, err
 		}
+		store.Flush()
 	}
 	cr.Cached = false
 	return cr, nil
@@ -177,6 +180,7 @@ func Fetch(req Request) (Result, error) {
 
 // Returns a gkvlite collection
 func getCacheStore() *gkvlite.Store {
+	glog.Infof("Opening cache store: %s", cachePath)
 	f, err := os.OpenFile(cachePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
 	if err != nil {
 		log.Fatal(err)
