@@ -4,8 +4,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"os"
 	"strings"
 	"text/template"
@@ -28,7 +26,6 @@ var (
 	boat        = flag.Bool("boat", false, "Search for boat sites")
 	walkin      = flag.Bool("walkin", true, "Search for walk-in sites")
 	standard    = flag.Bool("standard", true, "Search for standard camp sites")
-	verbose     = flag.Bool("v", false, "Enable verbose mode")
 )
 
 type TemplateContext struct {
@@ -40,14 +37,12 @@ func main() {
 	var t time.Time
 	var err error
 	flag.Parse()
-	if !*verbose {
-		log.SetOutput(ioutil.Discard)
-	}
-	tmpl, err := template.ParseFiles("ascii.tmpl")
+	outTmpl, err := data.Read("ascii.tmpl")
 	if err != nil {
-		panic(err)
+		glog.Fatalf("Failed to read template: %v", err)
 	}
-	err = data.LoadM("../../data/m.yaml")
+	tmpl := template.Must(template.New("name").Parse(string(outTmpl)))
+	err = data.LoadM()
 	if err != nil {
 		panic(fmt.Sprintf("Could not load m.yaml: %v", err))
 	}

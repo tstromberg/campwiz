@@ -3,7 +3,6 @@ package data
 
 import (
 	"fmt"
-	"io/ioutil"
 	"strings"
 
 	"github.com/golang/glog"
@@ -90,9 +89,9 @@ func MMatches(name string) []string {
 	return singleWord
 }
 
-func LoadM(path string) error {
+func LoadM() error {
 	M = make(map[string]result.MEntry)
-	f, err := ioutil.ReadFile(path)
+	f, err := Read("m.yaml")
 	if err != nil {
 		return err
 	}
@@ -104,7 +103,7 @@ func LoadM(path string) error {
 	glog.V(1).Infof("Loaded %d entries from %s ...", len(ms.Entries), path)
 	for _, m := range ms.Entries {
 		if val, ok := M[m.Key]; ok {
-			return fmt.Errorf("%s already loaded. Previous=%+v, New=%+v", path, val, m)
+			return fmt.Errorf("already loaded. Previous=%+v, New=%+v", val, m)
 		}
 		M[m.Key] = m
 		glog.V(1).Infof("Loaded [%s]: %+v", m.Name, m)

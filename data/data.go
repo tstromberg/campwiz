@@ -48,6 +48,7 @@ var (
 )
 
 func exists(p string) bool {
+	glog.V(2).Infof("Checking %s", p)
 	if _, err := os.Stat(p); os.IsNotExist(err) {
 		return false
 	}
@@ -55,6 +56,7 @@ func exists(p string) bool {
 }
 
 func path(name string) string {
+	glog.V(2).Infof("Finding path to %s ...", name)
 	binpath, err := os.Executable()
 	if err != nil {
 		binpath = "."
@@ -68,9 +70,10 @@ func path(name string) string {
 	} {
 		p := filepath.Join(d, "data", name)
 		if exists(p) {
+			glog.V(1).Infof("Found %s", p)
 			return p
 		}
-		glog.V(2).Infof("%s not in %s", name, path)
+		glog.V(1).Infof("%s not in %s", name, path)
 	}
 	return ""
 }
@@ -78,7 +81,7 @@ func path(name string) string {
 // Find path to data, return data from it.
 func Read(name string) ([]byte, error) {
 	p := path(name)
-	if p != "" {
+	if p == "" {
 		return nil, fmt.Errorf("Could not find %s", name)
 	}
 	return ioutil.ReadFile(p)
