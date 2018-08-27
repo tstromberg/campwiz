@@ -215,6 +215,57 @@ func availableSiteCounts(card *goquery.Selection, amenities string) (result.Avai
 	return a, nil
 }
 
+func parseCard(source *url.URL, card *goquery.Selection) (result.Result, error) {
+	r := result.Result{}
+	link := card.Find("a.facility_link")
+	r.Name = link.Text()
+	glog.Infof("Parsing card: %s", r.Name)
+	glog.V(1).Infof("Card: %s", card.Text())
+
+	r.ShortDesc = strings.Replace(card.Find("span.description").First().Text(), "[more]", "", 1)
+	href, exists := link.Attr("href")
+	if !exists {
+		return r, fmt.Errorf("Could not find %s href", link.Text())
+	}
+	glog.Infof("Site URL: %s", href)
+
+	target, err := url.Parse(href)
+	if err != nil {
+		return r, fmt.Errorf("Could not parse href %s: %v", href, err)
+	}
+	r.URL = source.ResolveReference(target).String()
+
+	pids := target.Query()["parkId"]
+	if len(pids) == 0 {
+		return r, fmt.Errorf("%s has no parkId", href)
+	}
+	r.ParkId = pids[0]
+	r.ContractCode = target.Query()["contractCode"][0]
+	// Parse distance
+	mm := mileageRegex.FindStringSubmatch(card.Find("span.sufix").Text())
+	if len(mm) > 0 {
+		distance, err := strconv.ParseFloat(mm[1], 64)
+		if err != nil {
+			return r, err
+		}
+		r.Distance = distance
+	}
+
+	// Parse amenities
+	r.Amenities = card.Find("div.sites_amenities").First().Text()
+	glog.V(1).Infof("Amenities: %s", r.Amenities)
+
+	// Parse Matching sites
+	a, err := availableSiteCounts(card, r.Amenities)
+	//	a.Date = t
+	if err != nil {
+		return r, err
+	}
+	r.Availability = append(r.Availability, a)
+	glog.Infof("Card result: %+v", r)
+	return r, nil
+}
+
 // parse the results of a search page
 func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage int) (result.Results, error) {
 	source, err := url.Parse(sourceURL)
@@ -259,52 +310,11 @@ func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage i
 	var results result.Results
 	sel := doc.Find("div.facility_view_card")
 	for i := range sel.Nodes {
-		card := sel.Eq(i)
-		r := result.Result{}
-		link := card.Find("a.facility_link")
-		r.Name = link.Text()
-		glog.Infof("Parsing: %s", r.Name)
-
-		r.ShortDesc = strings.Replace(card.Find("span.description").First().Text(), "[more]", "", 1)
-		href, exists := link.Attr("href")
-		if !exists {
-			return results, parseError(fmt.Errorf("Could not find %s href", link.Text()), body)
-		}
-		glog.Infof("Site URL: %s", href)
-
-		target, err := url.Parse(href)
+		r, err := parseCard(source, sel.Eq(i))
 		if err != nil {
-			return nil, fmt.Errorf("Could not parse href %s: %v", href, err)
-		}
-		r.URL = source.ResolveReference(target).String()
-		pids := target.Query()["parkId"]
-		if len(pids) == 0 {
-			glog.Infof("Skipping %s (no parkId field)", href)
+			glog.Warningf("Unable to parse card %d: %v", i, err)
 			continue
 		}
-		r.ParkId = pids[0]
-		r.ContractCode = target.Query()["contractCode"][0]
-		// Parse distance
-		mm := mileageRegex.FindStringSubmatch(card.Find("span.sufix").Text())
-		if len(mm) > 0 {
-			distance, err := strconv.ParseFloat(mm[1], 64)
-			if err != nil {
-				return results, err
-			}
-			r.Distance = distance
-		}
-
-		// Parse amenities
-		r.Amenities = card.Find("div.sites_amenities").First().Text()
-		glog.V(1).Infof("Amenities: %s", r.Amenities)
-
-		// Parse Matching sites
-		a, err := availableSiteCounts(card, r.Amenities)
-		a.Date = t
-		if err != nil {
-			return results, err
-		}
-		r.Availability = append(r.Availability, a)
 		results = append(results, r)
 	}
 
