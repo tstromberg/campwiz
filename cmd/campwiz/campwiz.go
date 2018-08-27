@@ -41,7 +41,7 @@ func main() {
 	if err != nil {
 		glog.Fatalf("Failed to read template: %v", err)
 	}
-	tmpl := template.Must(template.New("name").Parse(string(outTmpl)))
+	tmpl := template.Must(template.New("ascii").Parse(string(outTmpl)))
 	err = data.LoadM()
 	if err != nil {
 		panic(fmt.Sprintf("Could not load m.yaml: %v", err))
@@ -84,7 +84,7 @@ func main() {
 		panic(fmt.Sprintf("Search error: %s", err))
 	}
 	ctx := TemplateContext{Criteria: crit, Results: results}
-	err = tmpl.ExecuteTemplate(os.Stdout, "ascii.tmpl", ctx)
+	err = tmpl.ExecuteTemplate(os.Stdout, "ascii", ctx)
 	if err != nil {
 		panic(err)
 	}

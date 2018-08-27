@@ -81,7 +81,7 @@ func firstPage(c Criteria, t time.Time) cache.Request {
 
 // nextPage creates requests for subsequent pages.
 func nextPage(r cache.Result, page int) cache.Request {
-	url := fmt.Sprintf("%s/unifSearchResults.do?currentPage=%d&paging=true&facilityType=all&agencyKey=&facilityAvailable=show_all&viewType=view_list&selectedLetter=ALL&owner=&hiddenFilters=false", baseURL, page)
+	url := fmt.Sprintf("%s/unifSearchResults.do?currentPage=%d&paging=true&facilityType=all&agencyKey=&facilityAvailable=show_all&viewType=view_list&selectedLetter=ALL&activityType=&owner=&hiddenFilters=false", baseURL, page)
 	return cache.Request{
 		Method:   "GET",
 		URL:      url,
@@ -216,11 +216,10 @@ func availableSiteCounts(card *goquery.Selection, amenities string) (result.Avai
 }
 
 func parseCard(source *url.URL, card *goquery.Selection) (result.Result, error) {
+	glog.Infof("Parsing card: %s", card.Text())
 	r := result.Result{}
 	link := card.Find("a.facility_link")
 	r.Name = link.Text()
-	glog.Infof("Parsing card: %s", r.Name)
-	glog.V(1).Infof("Card: %s", card.Text())
 
 	r.ShortDesc = strings.Replace(card.Find("span.description").First().Text(), "[more]", "", 1)
 	href, exists := link.Attr("href")
@@ -268,6 +267,7 @@ func parseCard(source *url.URL, card *goquery.Selection) (result.Result, error) 
 
 // parse the results of a search page
 func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage int) (result.Results, error) {
+	glog.Infof("*************** Parsing %s - expected page: %d", sourceURL, expectedPage)
 	source, err := url.Parse(sourceURL)
 	if err != nil {
 		return nil, err
@@ -322,5 +322,6 @@ func parseResultsPage(body []byte, sourceURL string, t time.Time, expectedPage i
 		return nil, parseError(fmt.Errorf("Unable to parse entries from body"), body)
 	}
 
+	glog.Infof("Finished parsing %s - %d results", sourceURL, len(results))
 	return results, nil
 }

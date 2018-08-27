@@ -110,15 +110,17 @@ func tryCache(req Request) (Result, error) {
 
 // Fetch wraps http.Get/http.Post behind a persistent cache.
 func Fetch(req Request) (Result, error) {
-	glog.V(1).Infof("Fetch: %+v", req)
+	glog.V(1).Infof("Fetch(): %+v", req)
 	res, err := tryCache(req)
 	if err != nil {
-		glog.V(1).Infof("MISS[%s]: %v", req.Key(), req, err)
+		glog.V(2).Infof("MISS[%s]: %v", req.Key(), req, err)
 	} else {
-		glog.V(1).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
+		glog.V(2).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
 		res.Cached = true
 		return res, nil
 	}
+
+	glog.Infof("URL: %s", req.URL)
 
 	client := &http.Client{Jar: cookieJar}
 	hr, err := http.NewRequest(req.Method, req.URL, bytes.NewBufferString(req.Form.Encode()))
@@ -130,12 +132,21 @@ func Fetch(req Request) (Result, error) {
 
 	for _, c := range req.Cookies {
 		hr.AddCookie(c)
+		glog.Infof("Cookie: %s", c)
+	}
+
+	for k, v := range req.Form {
+		glog.Infof("Form value: %s=%q", k, v)
 	}
 
 	if req.Method == "POST" {
 		hr.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	}
-	glog.V(1).Infof("Fetching: %+v", hr)
+
+	for k, v := range hr.Header {
+		glog.Infof("Header value: %s=%q", k, v)
+	}
+
 	r, err := client.Do(hr)
 	if err != nil {
 		return res, err
