@@ -84,7 +84,7 @@ type Result struct {
 
 // tryCache attempts a cache-only fetch.
 func tryCache(req Request) (Result, error) {
-	glog.V(1).Infof("tryCache: %+v", req)
+	glog.V(3).Infof("tryCache: %+v", req)
 	var res Result
 	cachedBytes, err := collection.Get(req.Key())
 	if err != nil {
@@ -104,7 +104,7 @@ func tryCache(req Request) (Result, error) {
 	if age > req.MaxAge {
 		return res, fmt.Errorf("URL %s cache was too old", req.URL)
 	}
-	glog.V(1).Infof("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
+	glog.V(2).Infof("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
 	return res, nil
 }
 
