@@ -7,6 +7,7 @@ import (
 	"log"
 	"strings"
 
+	"github.com/golang/glog"
 	"github.com/tstromberg/campwiz/result"
 
 	"gopkg.in/yaml.v2"
@@ -31,9 +32,9 @@ func MMatches(name string) []string {
 
 	keywords := strings.Split(keyName, " ")
 
-	for k, _ := range M {
+	for k := range M {
 		i := strings.Index(k, keyName)
-		log.Printf("Testing: keyName=%s == k=%s (index=%d)", keyName, k, i)
+		glog.Infof("Testing: keyName=%s == k=%s (index=%d)", keyName, k, i)
 		// The whole key does not exist.
 		if i == -1 {
 			var wordMatches []string
@@ -104,7 +105,7 @@ func LoadM(path string) error {
 	log.Printf("Loaded %d entries from %s ...", len(ms.Entries), path)
 	for _, m := range ms.Entries {
 		if val, ok := M[m.Key]; ok {
-			return fmt.Errorf("%s already loaded. Previous=%+v, New=%+v", val, m)
+			return fmt.Errorf("%s already loaded. Previous=%+v, New=%+v", path, val, m)
 		}
 		M[m.Key] = m
 		log.Printf("Loaded [%s]: %+v", m.Name, m)

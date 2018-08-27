@@ -2,9 +2,15 @@
 package data
 
 import (
+	"fmt"
+	"go/build"
+	"io/ioutil"
 	"log"
+	"os"
+	"path/filepath"
 	"strings"
 
+	"github.com/golang/glog"
 	"github.com/tstromberg/campwiz/result"
 )
 
@@ -42,9 +48,41 @@ var (
 	}
 )
 
+func exists(p string) bool {
+	if _, err := os.Stat(p); os.IsNotExist(err) {
+		return false
+	}
+	return true
+}
+
+func path(name string) string {
+	binpath, err := os.Executable()
+	if err != nil {
+		binpath = "."
+	}
+
+	for _, d := range []string{
+		"../",
+		"../../",
+		filepath.Join(filepath.Dir(binpath)),
+		filepath.Join(build.Default.GOPATH, "github.com/tstromberg/campwiz"),
+	} {
+		p := filepath.Join(d, "data", name)
+		if exists(p) {
+			return p
+		}
+		glog.V(2).Infof("%s not in %s", name, path)
+	}
+	return ""
+}
+
 // Find path to data, return data from it.
-func Read(s string) []byte {
-	
+func Read(name string) ([]byte, error) {
+	p := path(name)
+	if p != "" {
+		return nil, fmt.Errorf("Could not find %s", name)
+	}
+	return ioutil.ReadFile(p)
 }
 
 func ExpandAcronyms(s string) string {
