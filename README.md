@@ -1,16 +1,17 @@
-autocamper
+campwiz
 ==========
-Tool that reserves campsites so you don't have to.
+Command-line interface to find campsites.
+
+Currently integrated with "Reserve America". 
 
 Building:
 =========
 
 ```shell
-export GOPATH=`pwd`
-# Disregard the error message
-go get github.com/tstromberg/autocamper
-go get github.com/PuerkitoBio/goquery
-go get github.com/steveyen/gkvlite
-cd github.com/tstromberg/autocamper/cmd/campquery
-go run campquery.go --help
+go get -u go get -u github.com/tstromberg/campwiz/... 
 ```
+
+Usage:
+======
+
+```shell

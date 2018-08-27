@@ -11,9 +11,9 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/tstromberg/autocamper/data"
-	"github.com/tstromberg/autocamper/query"
-	"github.com/tstromberg/autocamper/result"
+	"github.com/tstromberg/campwiz/data"
+	"github.com/tstromberg/campwiz/query"
+	"github.com/tstromberg/campwiz/result"
 )
 
 var (
@@ -34,6 +34,7 @@ type TemplateContext struct {
 	Criteria query.Criteria
 	Results  result.Results
 }
+
 
 func main() {
 	var t time.Time

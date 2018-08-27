@@ -3,7 +3,7 @@ package query
 import (
 	"log"
 
-	"github.com/tstromberg/autocamper/result"
+	"github.com/tstromberg/campwiz/result"
 )
 
 // filter applies post-fetch criteria filtering.

@@ -1,4 +1,4 @@
-// The autocamper package contains all of the brains for querying campsites.
+// The campwiz package contains all of the brains for querying campsites.
 package cache
 
 import (
@@ -18,7 +18,7 @@ import (
 
 var (
 	// cachePath is the location of the cache
-	cachePath = os.ExpandEnv("${HOME}/.autocamper.cache")
+	cachePath = os.ExpandEnv("${HOME}/.campwiz.cache")
 
 	// store is a gkvlite Store
 	store = getCacheStore()

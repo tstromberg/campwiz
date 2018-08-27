@@ -1,4 +1,4 @@
-// The autocamper package contains all of the brains for querying campsites.
+// The campwiz package contains all of the brains for querying campsites.
 package query
 
 import (
@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tstromberg/autocamper/cache"
-	"github.com/tstromberg/autocamper/result"
+	"github.com/tstromberg/campwiz/cache"
+	"github.com/tstromberg/campwiz/result"
 )
 
 var (

@@ -7,7 +7,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/tstromberg/autocamper/result"
+	"github.com/tstromberg/campwiz/result"
 
 	"gopkg.in/yaml.v2"
 )

@@ -4,8 +4,8 @@ import (
 	"log"
 	"sort"
 
-	"github.com/tstromberg/autocamper/data"
-	"github.com/tstromberg/autocamper/result"
+	"github.com/tstromberg/campwiz/data"
+	"github.com/tstromberg/campwiz/result"
 )
 
 // merge merges multiple dates together and multiple datasets.

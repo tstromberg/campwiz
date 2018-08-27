@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/tstromberg/autocamper/result"
+	"github.com/tstromberg/campwiz/result"
 )
 
 var (
@@ -41,6 +41,11 @@ var (
 		"USE":        true,
 	}
 )
+
+// Find path to data, return data from it.
+func Read(s string) []byte {
+	
+}
 
 func ExpandAcronyms(s string) string {
 	var words []string

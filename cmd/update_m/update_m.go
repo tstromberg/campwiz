@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/tstromberg/autocamper/data"
-	"github.com/tstromberg/autocamper/result"
+	"github.com/tstromberg/campwiz/data"
+	"github.com/tstromberg/campwiz/result"
 	"gopkg.in/yaml.v2"
 )
 
