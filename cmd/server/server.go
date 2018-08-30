@@ -13,9 +13,20 @@ import (
 	"github.com/tstromberg/campwiz/result"
 )
 
+type formValues struct {
+	Dates    string
+	Nights   int
+	Distance int
+	Standard bool
+	Group    bool
+	WalkIn   bool
+	BoatIn   bool
+}
+
 type TemplateContext struct {
 	Criteria query.Criteria
 	Results  result.Results
+	Form     formValues
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -33,8 +44,17 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		glog.Errorf("Failed to read template: %v", err)
 	}
 	tmpl := template.Must(template.New("http").Parse(string(outTmpl)))
-	ctx := TemplateContext{Criteria: crit, Results: results}
-	tmpl.ExecuteTemplate(w, "http", ctx)
+	ctx := TemplateContext{
+		Criteria: crit,
+		Results:  results,
+		Form: formValues{
+			Dates: "2018-09-20",
+		},
+	}
+	err = tmpl.ExecuteTemplate(w, "http", ctx)
+	if err != nil {
+		glog.Errorf("template: %v", err)
+	}
 }
 
 func init() {
