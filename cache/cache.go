@@ -13,8 +13,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/golang/glog"
 	"github.com/steveyen/gkvlite"
+	"k8s.io/klog/v2"
 )
 
 var (
@@ -84,7 +84,7 @@ type Result struct {
 
 // tryCache attempts a cache-only fetch.
 func tryCache(req Request) (Result, error) {
-	glog.V(3).Infof("tryCache: %+v", req)
+	klog.V(3).Infof("tryCache: %+v", req)
 	var res Result
 	cachedBytes, err := collection.Get(req.Key())
 	if err != nil {
@@ -104,23 +104,23 @@ func tryCache(req Request) (Result, error) {
 	if age > req.MaxAge {
 		return res, fmt.Errorf("URL %s cache was too old", req.URL)
 	}
-	glog.V(2).Infof("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
+	klog.V(2).Infof("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
 	return res, nil
 }
 
 // Fetch wraps http.Get/http.Post behind a persistent cache.
 func Fetch(req Request) (Result, error) {
-	glog.V(1).Infof("Fetch(): %+v", req)
+	klog.V(1).Infof("Fetch(): %+v", req)
 	res, err := tryCache(req)
 	if err != nil {
-		glog.V(2).Infof("MISS[%s]: %v", req.Key(), req, err)
+		klog.V(2).Infof("MISS[%s]: %v", req.Key(), req, err)
 	} else {
-		glog.V(2).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
+		klog.V(2).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
 		res.Cached = true
 		return res, nil
 	}
 
-	glog.Infof("URL: %s", req.URL)
+	klog.Infof("URL: %s", req.URL)
 
 	client := &http.Client{Jar: cookieJar}
 	hr, err := http.NewRequest(req.Method, req.URL, bytes.NewBufferString(req.Form.Encode()))
@@ -132,11 +132,11 @@ func Fetch(req Request) (Result, error) {
 
 	for _, c := range req.Cookies {
 		hr.AddCookie(c)
-		glog.Infof("Cookie: %s", c)
+		klog.Infof("Cookie: %s", c)
 	}
 
 	for k, v := range req.Form {
-		glog.Infof("Form value: %s=%q", k, v)
+		klog.Infof("Form value: %s=%q", k, v)
 	}
 
 	if req.Method == "POST" {
@@ -144,7 +144,7 @@ func Fetch(req Request) (Result, error) {
 	}
 
 	for k, v := range hr.Header {
-		glog.Infof("Header value: %s=%q", k, v)
+		klog.Infof("Header value: %s=%q", k, v)
 	}
 
 	r, err := client.Do(hr)
@@ -165,7 +165,7 @@ func Fetch(req Request) (Result, error) {
 		Body:       body,
 		MTime:      time.Now(),
 	}
-	glog.Infof("Fetched %s, status=%d, bytes=%d", req.URL, r.StatusCode, len(body))
+	klog.Infof("Fetched %s, status=%d, bytes=%d", req.URL, r.StatusCode, len(body))
 
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
@@ -174,11 +174,11 @@ func Fetch(req Request) (Result, error) {
 		return cr, fmt.Errorf("encoding %+v: %v", cr, err)
 	}
 	bufBytes, err := ioutil.ReadAll(&buf)
-	glog.V(4).Infof("Buf bytes: %s", bufBytes)
+	klog.V(4).Infof("Buf bytes: %s", bufBytes)
 	if err != nil {
-		glog.V(1).Infof("Failed to read back encoded response: %s", err)
+		klog.V(1).Infof("Failed to read back encoded response: %s", err)
 	} else {
-		glog.V(1).Infof("Storing %s", req.Key())
+		klog.V(1).Infof("Storing %s", req.Key())
 		err := collection.Set(req.Key(), bufBytes)
 		if err != nil {
 			return Result{}, err
@@ -191,7 +191,7 @@ func Fetch(req Request) (Result, error) {
 
 // Returns a gkvlite collection
 func getCacheStore() *gkvlite.Store {
-	glog.Infof("Opening cache store: %s", cachePath)
+	klog.Infof("Opening cache store: %s", cachePath)
 	f, err := os.OpenFile(cachePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
 	if err != nil {
 		log.Fatal(err)

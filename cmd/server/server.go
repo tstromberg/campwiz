@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"text/template"
 
-	"github.com/golang/glog"
 	"github.com/tstromberg/campwiz/data"
 	"github.com/tstromberg/campwiz/query"
 	"github.com/tstromberg/campwiz/result"
+	"k8s.io/klog/v2"
 )
 
 type formValues struct {
@@ -31,17 +31,17 @@ type TemplateContext struct {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Incoming request: %+v", r)
-	glog.Infof("Incoming request: %+v", r)
+	klog.Infof("Incoming request: %+v", r)
 	crit := query.Criteria{}
 	results, err := query.Search(crit)
-	glog.V(1).Infof("RESULTS: %+v", results)
+	klog.V(1).Infof("RESULTS: %+v", results)
 	if err != nil {
-		glog.Errorf("Search error: %s", err)
+		klog.Errorf("Search error: %s", err)
 	}
 
 	outTmpl, err := data.Read("http.tmpl")
 	if err != nil {
-		glog.Errorf("Failed to read template: %v", err)
+		klog.Errorf("Failed to read template: %v", err)
 	}
 	tmpl := template.Must(template.New("http").Parse(string(outTmpl)))
 	ctx := TemplateContext{
@@ -53,7 +53,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	err = tmpl.ExecuteTemplate(w, "http", ctx)
 	if err != nil {
-		glog.Errorf("template: %v", err)
+		klog.Errorf("template: %v", err)
 	}
 }
 
@@ -63,5 +63,5 @@ func init() {
 
 func main() {
 	http.HandleFunc("/", handler)
-	glog.Fatal(http.ListenAndServe(":8080", nil))
+	klog.Fatal(http.ListenAndServe(":8080", nil))
 }
