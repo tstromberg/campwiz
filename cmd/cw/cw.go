@@ -60,9 +60,8 @@ func processFlags() error {
 
 func main() {
 	//	wordPtr := flag.String("word", "foo", "a string")
-
-	flag.Parse()
 	klog.InitFlags(nil)
+	flag.Parse()
 	if err := processFlags(); err != nil {
 		klog.Exitf("processing error: %v", err)
 	}

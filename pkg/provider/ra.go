@@ -3,6 +3,7 @@ package provider
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"net/url"
 	"strconv"
 	"time"
@@ -19,7 +20,7 @@ var (
 	searchPageExpiry = time.Duration(6*3600) * time.Second
 
 	// amount of time to sleep between uncached fetches
-	uncachedDelay = time.Millisecond * 300
+	uncachedDelay = time.Millisecond * 600
 
 	// maximum number of pages to fetch
 	maxPages = 15
@@ -87,7 +88,7 @@ type jaxAvailability struct {
 type jaxDetails struct {
 	ID           int32
 	ContrCode    string
-	raURL        string
+	URL          string
 	Availability jaxAvailability
 }
 
@@ -100,6 +101,23 @@ type jaxResponse struct {
 	Records      []jaxRecord
 }
 
+func mergeCookies(old []*http.Cookie, new []*http.Cookie) []*http.Cookie {
+	merged := []*http.Cookie{}
+	seen := map[string]bool{}
+
+	for _, c := range new {
+		merged = append(merged, c)
+		seen[c.Name] = true
+	}
+	for _, c := range old {
+		if !seen[c.Name] {
+			merged = append(merged, c)
+		}
+	}
+
+	return merged
+}
+
 // searchRA runs a search for a single date
 func searchRA(crit Query, date time.Time) ([]Result, error) {
 	klog.Infof("searchRA: %+v", crit)
@@ -109,25 +127,30 @@ func searchRA(crit Query, date time.Time) ([]Result, error) {
 	if err != nil {
 		return nil, fmt.Errorf("fetch start: %w", err)
 	}
+
+	cookies := sr.Cookies
 	klog.Infof("start page cached: %v cookies: %+v", sr.Cached, sr.Cookies)
 
 	var results []Result
 
 	for i := 0; i < maxPages; i++ {
-		klog.Infof("page: %d", i)
+		klog.Infof(">>>>>>>>> requesting page: %d", i)
 		req := pageRequest(crit, date, i)
-		req.Cookies = sr.Cookies
+		req.Cookies = cookies
 
 		resp, err := cache.Fetch(req)
 		if err != nil {
 			return nil, fmt.Errorf("fetch: %w", err)
 		}
+		cookies = mergeCookies(cookies, resp.Cookies)
 
 		var jr jaxResponse
-		err = json.Unmarshal(resp.Body, &resp)
+		err = json.Unmarshal(resp.Body, &jr)
 		if err != nil {
 			return nil, fmt.Errorf("unmarshal: %w", err)
 		}
+
+		klog.Infof("unmarshalled data: %+v", jr)
 
 		if jr.Control.CurrentPage != i {
 			return nil, fmt.Errorf("got page %d, expected page %d. control: %+v", jr.Control.CurrentPage, i, jr.Control)

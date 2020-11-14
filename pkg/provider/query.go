@@ -6,8 +6,8 @@ const (
 	// Constants from https://developer.active.com/docs/read/Campground_Search_API
 	// Site Types
 
-	RV      = 2001
-	Cabin   = 10001
+	RV      = 2001  // RV website
+	Cabin   = 10001 // Cabin or lodging
 	Tent    = 2003
 	Trailer = 2002
 	Group   = 9002
@@ -16,6 +16,7 @@ const (
 	Boat    = 2004
 
 	// Features
+
 	Biking                 = 4001
 	Boating                = 4002
 	EquipmentRental        = 4003

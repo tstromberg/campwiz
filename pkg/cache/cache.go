@@ -120,10 +120,21 @@ func Fetch(req Request) (Result, error) {
 		return res, nil
 	}
 
-	klog.Infof("URL: %s", req.URL)
+	url := req.URL
+	if req.Method == "GET" && len(req.Form) > 0 {
+		url = url + "?" + req.Form.Encode()
+	}
+
+	klog.Infof("URL: %s", url)
 
 	client := &http.Client{Jar: cookieJar}
-	hr, err := http.NewRequest(req.Method, req.URL, bytes.NewBufferString(req.Form.Encode()))
+
+	post := bytes.NewBufferString(req.Form.Encode())
+	if req.Method == "GET" {
+		post = bytes.NewBufferString("")
+	}
+
+	hr, err := http.NewRequest(req.Method, url, post)
 	if err != nil {
 		return res, err
 	}
@@ -133,10 +144,6 @@ func Fetch(req Request) (Result, error) {
 	for _, c := range req.Cookies {
 		hr.AddCookie(c)
 		klog.Infof("Cookie: %s", c)
-	}
-
-	for k, v := range req.Form {
-		klog.Infof("Form value: %s=%q", k, v)
 	}
 
 	if req.Method == "POST" {
