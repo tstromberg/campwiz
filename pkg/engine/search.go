@@ -4,7 +4,6 @@ package query
 import (
 	"time"
 
-	"github.com/tstromberg/campwiz/pkg/result"
 	"k8s.io/klog/v2"
 )
 
@@ -19,8 +18,8 @@ var (
 	uncachedDelay = time.Millisecond * 750
 )
 
-// Criteria defines a list of attributes that can be sent to the camp engines
-type Criteria struct {
+// Query defines a list of attributes that can be sent to the camp engines
+type Query struct {
 	Lat         float64
 	Lon         float64
 	Dates       []time.Time
@@ -35,8 +34,8 @@ type Criteria struct {
 }
 
 // Search performs a RA, returns parsed results.
-func Search(crit Criteria) (result.Results, error) {
-	var results result.Results
+func Search(q Query) ([]engine.Result, error) {
+	var results []engine.Result
 	for _, d := range crit.Dates {
 		dr, err := searchRA(crit, d)
 		if err != nil {

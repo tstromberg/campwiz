@@ -1,18 +1,16 @@
-// M specific code.
-package data
+package mixer
 
 import (
 	"fmt"
 	"strings"
 
-	"github.com/tstromberg/campwiz/pkg/result"
 	"k8s.io/klog/v2"
 
 	"gopkg.in/yaml.v2"
 )
 
 type MEntries struct {
-	Entries []result.MEntry
+	Entries []Xref
 }
 
 // MMatches finds the most likely key name for a campsite.
@@ -90,7 +88,7 @@ func MMatches(name string) []string {
 }
 
 func LoadM() error {
-	M = make(map[string]result.MEntry)
+	M = make(map[string]result.Xref)
 	f, err := Read("m.yaml")
 	if err != nil {
 		return err

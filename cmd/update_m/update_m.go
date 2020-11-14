@@ -10,8 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/tstromberg/campwiz/pkg/data"
-	"github.com/tstromberg/campwiz/pkg/result"
+	"github.com/tstromberg/campwiz/pkg/mixer"
 	"gopkg.in/yaml.v2"
 	"k8s.io/klog/v2"
 )
@@ -29,7 +28,7 @@ func key(name string, locale string) string {
 	key := name
 	var shortened bool
 	for {
-		key, shortened = data.ShortenName(key)
+		key, shortened = mixer.ShortenName(key)
 		if !shortened {
 			break
 		}
@@ -57,7 +56,7 @@ func parse(scanner *bufio.Scanner) (data.MEntries, error) {
 	var e data.MEntries
 	seen := make(map[string]bool)
 
-	s := result.MEntry{}
+	s := result.Xref{}
 	for scanner.Scan() {
 		line := scanner.Text()
 		klog.V(1).Infof("Line: %s", line)
@@ -74,7 +73,7 @@ func parse(scanner *bufio.Scanner) (data.MEntries, error) {
 				seen[s.Key] = true
 				e.Entries = append(e.Entries, s)
 			}
-			s = result.MEntry{Name: m[1]}
+			s = result.Xref{Name: m[1]}
 			continue
 		}
 		m = sRatingRe.FindStringSubmatch(line)

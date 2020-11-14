@@ -192,7 +192,7 @@ func Fetch(req Request) (Result, error) {
 // Returns a gkvlite collection
 func getCacheStore() *gkvlite.Store {
 	klog.Infof("Opening cache store: %s", cachePath)
-	f, err := os.OpenFile(cachePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
+	f, err := os.OpenFile(cachePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0o600)
 	if err != nil {
 		log.Fatal(err)
 	}

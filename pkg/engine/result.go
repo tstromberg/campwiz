@@ -1,17 +1,10 @@
-package result
+package query
 
 import (
 	"fmt"
 	"time"
 )
 
-type MEntry struct {
-	Key     string
-	Name    string
-	SRating int
-	Desc    string
-	Locale  string
-}
 
 type Availability struct {
 	Date       time.Time
@@ -36,24 +29,10 @@ type Result struct {
 	Availability []Availability
 	URL          string
 	Amenities    string
-	M            MEntry
+	M            Xref
 }
 
 // Returns a unique key for a specific site.
 func (r Result) SiteKey() string {
 	return fmt.Sprintf("%s:%s:%s", r.ContractCode, r.ParkId, r.Name)
-}
-
-type Results []Result
-
-func (slice Results) Len() int {
-	return len(slice)
-}
-
-func (slice Results) Less(i, j int) bool {
-	return slice[i].M.SRating > slice[j].M.SRating
-}
-
-func (slice Results) Swap(i, j int) {
-	slice[i], slice[j] = slice[j], slice[i]
 }

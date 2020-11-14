@@ -1,5 +1,4 @@
-// Mix in data from different sources.
-package data
+package mixer
 
 import (
 	"fmt"
@@ -9,12 +8,26 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/tstromberg/campwiz/pkg/result"
 	"k8s.io/klog/v2"
 )
 
+type MixedResult struct {
+	Result engine.Result
+	XRef            Xref
+}
+
+
+// Cross-reference entry
+type Xref struct {
+	Key     string
+	Name    string
+	SRating int
+	Desc    string
+	Locale  string
+}
+
 var (
-	M map[string]result.MEntry
+	M map[string]Xref
 
 	Acronyms = map[string]string{
 		"MT.": "MOUNT",
@@ -128,7 +141,7 @@ func ShortName(s string) string {
 	return s
 }
 
-func Merge(r *result.Result) {
+func Mix(r *result.Result) {
 	klog.V(2).Infof("Merge: %s", r.Name)
 
 	variations := []string{

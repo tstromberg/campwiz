@@ -8,4 +8,5 @@ require (
 	github.com/steveyen/gkvlite v0.0.0-20141117050110-5b47ed6d7458
 	gopkg.in/yaml.v2 v2.3.0
 	k8s.io/klog/v2 v2.4.0
+	mvdan.cc/gofumpt v0.0.0-20201107090320-a024667a00f1 // indirect
 )

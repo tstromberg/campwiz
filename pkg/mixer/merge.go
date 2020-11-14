@@ -1,15 +1,13 @@
-package query
+package mixer
 
 import (
 	"sort"
 
-	"github.com/tstromberg/campwiz/pkg/data"
-	"github.com/tstromberg/campwiz/pkg/result"
 	"k8s.io/klog/v2"
 )
 
 // merge merges multiple dates together and multiple datasets.
-func merge(res result.Results) result.Results {
+func merge(res []engine.Result) []engine.Result {
 	klog.V(1).Infof("Merging %d results ...", len(res))
 	m := make(map[string]result.Result)
 	for _, r := range res {
@@ -28,7 +26,7 @@ func merge(res result.Results) result.Results {
 		}
 	}
 
-	var merged result.Results
+	var merged []engine.Result
 	for k, v := range m {
 		klog.V(1).Infof("%s: %+v", k, v)
 		merged = append(merged, v)
