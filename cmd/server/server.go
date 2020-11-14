@@ -60,6 +60,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func init() {
 	flag.Parse()
 }
+
 func main() {
 	http.HandleFunc("/", handler)
 	glog.Fatal(http.ListenAndServe(":8080", nil))
