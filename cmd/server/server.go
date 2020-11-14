@@ -8,9 +8,15 @@ import (
 	"net/http"
 	"text/template"
 
+	"github.com/peterbourgon/diskv"
+	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/provider"
 	"github.com/tstromberg/campwiz/pkg/relpath"
 	"k8s.io/klog/v2"
+)
+
+var (
+	dv *diskv.Diskv
 )
 
 type formValues struct {
@@ -33,7 +39,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Incoming request: %+v", r)
 	klog.Infof("Incoming request: %+v", r)
 	crit := provider.Query{}
-	results, err := provider.Search(crit)
+	results, err := provider.Search(crit, dv)
 	klog.V(1).Infof("RESULTS: %+v", results)
 	if err != nil {
 		klog.Errorf("Search error: %s", err)
@@ -63,6 +69,12 @@ func init() {
 }
 
 func main() {
+	var err error
+	dv, err = cache.Initialize()
+	if err != nil {
+		klog.Exitf("error: %w", err)
+	}
+
 	http.HandleFunc("/", handler)
 	klog.Fatal(http.ListenAndServe(":8080", nil))
 }

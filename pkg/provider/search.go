@@ -3,6 +3,7 @@ package provider
 import (
 	"fmt"
 
+	"github.com/peterbourgon/diskv"
 	"k8s.io/klog/v2"
 )
 
@@ -39,10 +40,10 @@ func mergeDates(res []Result) []Result {
 }
 
 // Search performs a RA, returns parsed results.
-func Search(q Query) ([]Result, error) {
+func Search(q Query, dv *diskv.Diskv) ([]Result, error) {
 	var results []Result
 	for _, d := range q.Dates {
-		dr, err := searchRA(q, d)
+		dr, err := searchRA(q, d, dv)
 		if err != nil {
 			return results, err
 		}

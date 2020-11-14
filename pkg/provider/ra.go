@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/peterbourgon/diskv"
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"k8s.io/klog/v2"
 )
@@ -119,11 +120,11 @@ func mergeCookies(old []*http.Cookie, new []*http.Cookie) []*http.Cookie {
 }
 
 // searchRA runs a search for a single date
-func searchRA(crit Query, date time.Time) ([]Result, error) {
+func searchRA(crit Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
 	klog.Infof("searchRA: %+v", crit)
 
 	// grab the current cookies
-	sr, err := cache.Fetch(startPage())
+	sr, err := cache.Fetch(startPage(), dv)
 	if err != nil {
 		return nil, fmt.Errorf("fetch start: %w", err)
 	}
@@ -138,7 +139,7 @@ func searchRA(crit Query, date time.Time) ([]Result, error) {
 		req := pageRequest(crit, date, i)
 		req.Cookies = cookies
 
-		resp, err := cache.Fetch(req)
+		resp, err := cache.Fetch(req, dv)
 		if err != nil {
 			return nil, fmt.Errorf("fetch: %w", err)
 		}

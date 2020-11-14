@@ -3,35 +3,32 @@ package cache
 
 import (
 	"bytes"
+	"crypto/md5"
 	"encoding/gob"
 	"fmt"
+	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
 	"os"
+	"path/filepath"
+	"regexp"
 	"time"
 
-	"github.com/steveyen/gkvlite"
+	"github.com/peterbourgon/diskv"
 	"k8s.io/klog/v2"
 )
 
 var (
-	// cachePath is the location of the cache
-	cachePath = os.ExpandEnv("${HOME}/.campwiz.cache")
-
-	// store is a gkvlite Store
-	store = getCacheStore()
-
-	// collection is a gkvlite collection that documents can be fetched from.
-	collection = store.SetCollection("cache", nil)
-
 	// user-agent to emulate
 	userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.48 Safari/537.36"
 
 	// cookie jar
 	cookieJar, _ = cookiejar.New(nil)
+
+	// nonWords
+	nonWordRe = regexp.MustCompile(`\W+`)
 )
 
 // Request defines what can be passed in as a request
@@ -51,7 +48,7 @@ type Request struct {
 }
 
 // Key returns a cache-key.
-func (r Request) Key() []byte {
+func (r Request) Key() string {
 	var buf bytes.Buffer
 	buf.WriteString(r.Method + " ")
 	buf.WriteString(r.URL + "?" + r.Form.Encode())
@@ -61,7 +58,18 @@ func (r Request) Key() []byte {
 	if r.Referrer != "" {
 		buf.WriteString(fmt.Sprintf("+ref=%s", r.Referrer))
 	}
-	return buf.Bytes()
+
+	key := nonWordRe.ReplaceAllString(buf.String(), "_")
+	if len(key) > 64 {
+		h := md5.New()
+		_, err := io.WriteString(h, key)
+		if err != nil {
+			klog.Errorf("key error: %w", err)
+			return fmt.Sprintf("%64.64s", key)
+		}
+		return fmt.Sprintf("%32.32s%x", key, h.Sum(nil))
+	}
+	return key
 }
 
 // Result defines which data may be cached for an HTTP response.
@@ -83,10 +91,10 @@ type Result struct {
 }
 
 // tryCache attempts a cache-only fetch.
-func tryCache(req Request) (Result, error) {
+func tryCache(req Request, dv *diskv.Diskv) (Result, error) {
 	klog.V(3).Infof("tryCache: %+v", req)
 	var res Result
-	cachedBytes, err := collection.Get(req.Key())
+	cachedBytes, err := dv.Read(req.Key())
 	if err != nil {
 		return res, err
 	}
@@ -108,12 +116,12 @@ func tryCache(req Request) (Result, error) {
 	return res, nil
 }
 
-// Fetch wraps http.Get/http.Post behind a persistent cache.
-func Fetch(req Request) (Result, error) {
+// Fetch wraps http.Get/http.Post behind a persistent ca
+func Fetch(req Request, dv *diskv.Diskv) (Result, error) {
 	klog.V(1).Infof("Fetch(): %+v", req)
-	res, err := tryCache(req)
+	res, err := tryCache(req, dv)
 	if err != nil {
-		klog.V(2).Infof("MISS[%s]: %v", req.Key(), req, err)
+		klog.V(2).Infof("MISS[%s]: %+v due to %v", req.Key(), req, err)
 	} else {
 		klog.V(2).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
 		res.Cached = true
@@ -186,26 +194,25 @@ func Fetch(req Request) (Result, error) {
 		klog.V(1).Infof("Failed to read back encoded response: %s", err)
 	} else {
 		klog.V(1).Infof("Storing %s", req.Key())
-		err := collection.Set(req.Key(), bufBytes)
+		err := dv.Write(req.Key(), bufBytes)
 		if err != nil {
-			return Result{}, err
+			klog.Errorf("unable to cache %s: %v", req.Key(), err)
+			return cr, nil
 		}
-		store.Flush()
 	}
 	cr.Cached = false
 	return cr, nil
 }
 
-// Returns a gkvlite collection
-func getCacheStore() *gkvlite.Store {
-	klog.Infof("Opening cache store: %s", cachePath)
-	f, err := os.OpenFile(cachePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0o600)
+// Initialize returns an initialized cache
+func Initialize() (*diskv.Diskv, error) {
+	root, err := os.UserCacheDir()
 	if err != nil {
-		log.Fatal(err)
+		return nil, fmt.Errorf("cache dir: %w", err)
 	}
-	s, err := gkvlite.NewStore(f)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return s
+
+	return diskv.New(diskv.Options{
+		BasePath:     filepath.Join(root, "campwiz"),
+		CacheSizeMax: 1024 * 1024 * 1024,
+	}), nil
 }

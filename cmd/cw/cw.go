@@ -9,6 +9,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/mixer"
 	"github.com/tstromberg/campwiz/pkg/provider"
 	"k8s.io/klog/v2"
@@ -23,6 +24,11 @@ type templateContext struct {
 }
 
 func processFlags() error {
+	dv, err := cache.Initialize()
+	if err != nil {
+		return err
+	}
+
 	q := provider.Query{
 		Lon:        -122.07237049999999,
 		Lat:        37.4092297,
@@ -30,7 +36,7 @@ func processFlags() error {
 		StayLength: 4,
 	}
 
-	rs, err := provider.Search(q)
+	rs, err := provider.Search(q, dv)
 	if err != nil {
 		return fmt.Errorf("search: %w", err)
 	}
