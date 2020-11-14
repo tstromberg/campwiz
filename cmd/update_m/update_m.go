@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/tstromberg/campwiz/data"
-	"github.com/tstromberg/campwiz/result"
+	"github.com/tstromberg/campwiz/pkg/data"
+	"github.com/tstromberg/campwiz/pkg/result"
 	"gopkg.in/yaml.v2"
 	"k8s.io/klog/v2"
 )

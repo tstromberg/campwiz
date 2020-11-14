@@ -8,7 +8,7 @@ Building:
 =========
 
 ```shell
-go get -u go get -u github.com/tstromberg/campwiz/... 
+go get -u go get -u github.com/tstromberg/campwiz/pkg/... 
 ```
 
 Usage:

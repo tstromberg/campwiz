@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"text/template"
 
-	"github.com/tstromberg/campwiz/data"
-	"github.com/tstromberg/campwiz/query"
-	"github.com/tstromberg/campwiz/result"
+	"github.com/tstromberg/campwiz/pkg/data"
+	"github.com/tstromberg/campwiz/pkg/query"
+	"github.com/tstromberg/campwiz/pkg/result"
 	"k8s.io/klog/v2"
 )
 

@@ -3,8 +3,8 @@ package query
 import (
 	"sort"
 
-	"github.com/tstromberg/campwiz/data"
-	"github.com/tstromberg/campwiz/result"
+	"github.com/tstromberg/campwiz/pkg/data"
+	"github.com/tstromberg/campwiz/pkg/result"
 	"k8s.io/klog/v2"
 )
 

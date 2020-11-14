@@ -1,4 +1,3 @@
-// The campwiz package contains all of the brains for querying campsites.
 package query
 
 import (
@@ -12,23 +11,14 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tstromberg/campwiz/cache"
-	"github.com/tstromberg/campwiz/result"
+	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/result"
 	"k8s.io/klog/v2"
 )
 
 var (
 	// raURL is the search URL to request reservation information from.
 	baseURL = "https://www.reserveamerica.com"
-
-	// searchPageExpiry is how long search pages can be cached for.
-	searchPageExpiry = time.Duration(6*3600) * time.Second
-
-	// the date format used
-	campingDateFormat = "Mon Jan 2 2006"
-
-	// amount of time to sleep between uncached fetches
-	uncachedDelay = time.Millisecond * 750
 
 	// regexp for mileage parsing
 	mileageRegex = regexp.MustCompile(`(\d+\.\d+)mi`)
@@ -37,37 +27,23 @@ var (
 	availableRegex = regexp.MustCompile(`(.*?)\((\d+)\)`)
 )
 
-// SearchCriteria defines a list of attributes that can be sent to ReserveAmerica.
-type Criteria struct {
-	Lat         float64
-	Lon         float64
-	Dates       []time.Time
-	Nights      int
-	MaxDistance int
-	MaxPages    int
-
-	IncludeStandard bool
-	IncludeGroup    bool
-	IncludeBoatIn   bool
-	IncludeWalkIn   bool
-}
-
 // firstPage creates the initial request object for a search.
 func firstPage(c Criteria, t time.Time) cache.Request {
+	// https://www.reserveamerica.com/explore/search-results?type=nearby&longitude=-122.443&latitude=37.7562&interest=camping&pageNumber=0
 	// % curl -L -vvv 'http://www.reserveamerica.com/unifSearch.do' -H 'Content-Type: application/x-www-form-urlencoded' --data 'locationCriteria=SAN+FRANCISCO%2C+CA%2C+USA&locationPosition=%3A%3A-122.41941550000001%3A37.7749295%3A%3ACA&interest=camping&lookingFor=2003&campingDate=Sat+Jan+30+2016&lengthOfStay=2'
 
 	v := url.Values{
-		"locationCriteria": {"San Francisco, CA"},
-		"locationPosition": {fmt.Sprintf("::%3.14f:%3.7f::CA", c.Lat, c.Lon)},
-		"interest":         {"camping"},
-		"lookingFor":       {"2003"},
-		"campingDate":      {t.Format(campingDateFormat)},
-		"lengthOfStay":     {strconv.Itoa(c.Nights)},
+		"pageNumber":   {"0"},
+		"longitude":    {fmt.Sprintf("%3.7f", c.Longitude)},
+		"latitude":     {fmt.Sprintf("%3.14f", c.Latitude)},
+		"arrivalDate":  {c.ArrivalDate},
+		"interest":     {c.Interest},
+		"lengthOfStay": {strconv.Itoa(c.Nights)},
 	}
 
 	r := cache.Request{
 		Method:   "POST",
-		URL:      baseURL + "/unifSearch.do",
+		URL:      baseURL + "/explore/search-results",
 		Referrer: baseURL,
 		Form:     v,
 		MaxAge:   searchPageExpiry,
@@ -91,8 +67,8 @@ func nextPage(r cache.Result, page int) cache.Request {
 	}
 }
 
-// searchForDate runs a search for a single date
-func searchForDate(crit Criteria, date time.Time) (result.Results, error) {
+// searchRA runs a search for a single date
+func searchRA(crit Criteria, date time.Time) (result.Results, error) {
 	klog.Infof("searchForDate: %+v", crit)
 
 	// This page is going to redirect you.
@@ -124,24 +100,6 @@ func searchForDate(crit Criteria, date time.Time) (result.Results, error) {
 		}
 	}
 	return parsed, nil
-}
-
-// Search performs a RA, returns parsed results.
-func Search(crit Criteria) (result.Results, error) {
-	var results result.Results
-	for _, d := range crit.Dates {
-		dr, err := searchForDate(crit, d)
-		if err != nil {
-			return results, err
-		}
-		results = append(results, dr...)
-	}
-	klog.Infof("Found %d results", len(results))
-	filtered := filter(crit, results)
-	klog.Infof("Post-filter: %d results", len(filtered))
-	merged := merge(filtered)
-	klog.Infof("Post-merge: %d results", len(merged))
-	return merged, nil
 }
 
 // parseError returns a nice error message with a debug file.
