@@ -4,11 +4,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"text/template"
 
-	"github.com/tstromberg/campwiz/pkg/mixer"
-	"github.com/tstromberg/campwiz/pkg/engine"
+	"github.com/tstromberg/campwiz/pkg/provider"
+	"github.com/tstromberg/campwiz/pkg/relpath"
 	"k8s.io/klog/v2"
 )
 
@@ -22,30 +23,31 @@ type formValues struct {
 	BoatIn   bool
 }
 
-type TemplateContext struct {
-	Query engine.Query
-	Results  []engine.Result
-	Form     formValues
+type templateContext struct {
+	Query   provider.Query
+	Results []provider.Result
+	Form    formValues
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Incoming request: %+v", r)
 	klog.Infof("Incoming request: %+v", r)
-	crit := engine.Query{}
-	results, err := engine.Search(crit)
+	crit := provider.Query{}
+	results, err := provider.Search(crit)
 	klog.V(1).Infof("RESULTS: %+v", results)
 	if err != nil {
 		klog.Errorf("Search error: %s", err)
 	}
 
-	outTmpl, err := data.Read("http.tmpl")
+	p := relpath.Find("templates/http.tmpl")
+	outTmpl, err := ioutil.ReadFile(p)
 	if err != nil {
 		klog.Errorf("Failed to read template: %v", err)
 	}
 	tmpl := template.Must(template.New("http").Parse(string(outTmpl)))
-	ctx := TemplateContext{
-		Query: crit,
-		Results:  results,
+	ctx := templateContext{
+		Query:   crit,
+		Results: results,
 		Form: formValues{
 			Dates: "2018-09-20",
 		},

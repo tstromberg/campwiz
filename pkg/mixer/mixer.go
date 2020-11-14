@@ -1,35 +1,14 @@
 package mixer
 
 import (
-	"fmt"
-	"go/build"
-	"io/ioutil"
-	"os"
-	"path/filepath"
 	"strings"
 
+	"github.com/tstromberg/campwiz/pkg/provider"
 	"k8s.io/klog/v2"
 )
 
-type MixedResult struct {
-	Result engine.Result
-	XRef            Xref
-}
-
-
-// Cross-reference entry
-type Xref struct {
-	Key     string
-	Name    string
-	SRating int
-	Desc    string
-	Locale  string
-}
-
 var (
-	M map[string]Xref
-
-	Acronyms = map[string]string{
+	knownAcronyms = map[string]string{
 		"MT.": "MOUNT",
 		"SB":  "STATE BEACH",
 		"SRA": "STATE RECREATION AREA",
@@ -38,6 +17,7 @@ var (
 		"NP":  "NATIONAL PARK",
 	}
 
+	// ExtraWords are common words that can be thrown out for matching
 	ExtraWords = map[string]bool{
 		"&":          true,
 		"(CA)":       true,
@@ -60,51 +40,16 @@ var (
 	}
 )
 
-func exists(p string) bool {
-	klog.V(2).Infof("Checking %s", p)
-	if _, err := os.Stat(p); os.IsNotExist(err) {
-		return false
-	}
-	return true
+// MixedResult is a result with associated cross-reference data
+type MixedResult struct {
+	Result     provider.Result
+	References []XRef
 }
 
-func path(name string) string {
-	klog.V(2).Infof("Finding path to %s ...", name)
-	binpath, err := os.Executable()
-	if err != nil {
-		binpath = "."
-	}
-
-	for _, d := range []string{
-		"./",
-		"../",
-		"../../",
-		filepath.Join(filepath.Dir(binpath)),
-		filepath.Join(build.Default.GOPATH, "github.com/tstromberg/campwiz"),
-	} {
-		p := filepath.Join(d, "data", name)
-		if exists(p) {
-			klog.V(1).Infof("Found %s", p)
-			return p
-		}
-		klog.V(1).Infof("%s not in %s", name, path)
-	}
-	return ""
-}
-
-// Find path to data, return data from it.
-func Read(name string) ([]byte, error) {
-	p := path(name)
-	if p == "" {
-		return nil, fmt.Errorf("Could not find %s", name)
-	}
-	return ioutil.ReadFile(p)
-}
-
-func ExpandAcronyms(s string) string {
+func expandAcronyms(s string) string {
 	var words []string
 	for _, w := range strings.Split(s, " ") {
-		if val, exists := Acronyms[strings.ToUpper(w)]; exists {
+		if val, exists := knownAcronyms[strings.ToUpper(w)]; exists {
 			words = append(words, val)
 		} else {
 			words = append(words, w)
@@ -117,9 +62,10 @@ func ExpandAcronyms(s string) string {
 	return expanded
 }
 
+// ShortenName is a one-pass shortening
 func ShortenName(s string) (string, bool) {
 	klog.V(3).Infof("Shorten: %s", s)
-	keyWords := strings.Split(ExpandAcronyms(s), " ")
+	keyWords := strings.Split(expandAcronyms(s), " ")
 	for i, kw := range keyWords {
 		if _, exists := ExtraWords[strings.ToUpper(kw)]; exists {
 			klog.V(1).Infof("Removing extra word in %s: %s", s, kw)
@@ -130,6 +76,7 @@ func ShortenName(s string) (string, bool) {
 	return s, false
 }
 
+// ShortName returns the shortest possible name for a string
 func ShortName(s string) string {
 	var shortened bool
 	for {
@@ -141,36 +88,11 @@ func ShortName(s string) string {
 	return s
 }
 
-func Mix(r *result.Result) {
-	klog.V(2).Infof("Merge: %s", r.Name)
-
-	variations := []string{
-		r.Name,
-		strings.Join(strings.Split(ShortName(ExpandAcronyms(r.Name)), " "), ""),
-		ShortName(r.Name),
-		ExpandAcronyms(r.Name),
-		ShortName(ExpandAcronyms(r.Name)),
+// Mix combines results with cross-references
+func Mix(results []provider.Result, xrefs []XRef) []MixedResult {
+	ms := []MixedResult{}
+	for _, r := range results {
+		ms = append(ms, MixedResult{Result: r})
 	}
-	klog.V(2).Infof("Merge Variations: %v", strings.Join(variations, "|"))
-	for _, name := range variations {
-		mm := MMatches(name)
-		klog.V(2).Infof("MMatches(%s) result: %v", name, mm)
-		if len(mm) > 1 {
-			// So, we have multiple matches. Perhaps the locale will help?
-			klog.V(2).Infof("No unique for %s: %+v", name, mm)
-			for _, m := range mm {
-				// private knowledge
-				if strings.Contains(r.ShortDesc, strings.Split(m, " - ")[1]) {
-					klog.V(2).Infof("Lucky desc match: %s", m)
-					r.M = M[m]
-					return
-				}
-			}
-		} else if len(mm) == 1 {
-			klog.V(2).Infof("Match: %+v", mm)
-			r.M = M[mm[0]]
-			return
-		}
-	}
-	klog.V(2).Infof("Unable to match: %+v", r)
+	return ms
 }

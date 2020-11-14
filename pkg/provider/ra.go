@@ -1,4 +1,4 @@
-package query
+package provider
 
 import (
 	"encoding/json"
@@ -13,9 +13,16 @@ import (
 
 var (
 	// raURL is the search URL to request reservation information from.
-	baseURL = "https://www.reserveamerica.com"
+	raURL = "https://" + "www." + "reserve" + "america.com"
 
-	maxPages = 10
+	// searchPageExpiry is how long search pages can be cached for.
+	searchPageExpiry = time.Duration(6*3600) * time.Second
+
+	// amount of time to sleep between uncached fetches
+	uncachedDelay = time.Millisecond * 300
+
+	// maximum number of pages to fetch
+	maxPages = 15
 )
 
 // pageRequest creates the request object for a search.
@@ -28,7 +35,7 @@ func pageRequest(c Query, arrival time.Time, num int) cache.Request {
 		"lng":     {fmt.Sprintf("%3.3f", c.Lon)},  // Longitude
 		"lat":     {fmt.Sprintf("%3.3f", c.Lat)},  // Latitude
 		"arv":     {arrival.Format("2006-01-02")}, // arrival date,
-		"lsy":     {strconv.Itoa(c.Nights)},       // length of stay
+		"lsy":     {strconv.Itoa(c.StayLength)},   // length of stay
 		"pa99999": {"2003"},                       // looking for (tent). See https://developer.active.com/docs/read/Campground_Search_API
 		// "pa12": # of people
 		// "pa24": waterfront
@@ -38,8 +45,8 @@ func pageRequest(c Query, arrival time.Time, num int) cache.Request {
 
 	r := cache.Request{
 		Method:   "GET",
-		URL:      baseURL + "/jaxrs-json/search",
-		Referrer: baseURL,
+		URL:      raURL + "/jaxrs-json/search",
+		Referrer: raURL,
 		Form:     v,
 		MaxAge:   searchPageExpiry,
 	}
@@ -54,8 +61,8 @@ func pageRequest(c Query, arrival time.Time, num int) cache.Request {
 func startPage() cache.Request {
 	return cache.Request{
 		Method:   "GET",
-		URL:      baseURL + "/explore/search-results",
-		Referrer: baseURL,
+		URL:      raURL + "/explore/search-results",
+		Referrer: raURL,
 		MaxAge:   searchPageExpiry,
 	}
 }
@@ -66,7 +73,7 @@ type jaxControl struct {
 }
 
 type jaxRecord struct {
-	NamingId  string
+	NamingID  string
 	Name      string
 	Proximity float32
 	Details   jaxDetails
@@ -80,7 +87,7 @@ type jaxAvailability struct {
 type jaxDetails struct {
 	ID           int32
 	ContrCode    string
-	BaseURL      string
+	raURL        string
 	Availability jaxAvailability
 }
 
@@ -94,7 +101,7 @@ type jaxResponse struct {
 }
 
 // searchRA runs a search for a single date
-func searchRA(crit Query, date time.Time) ([]result.Result, error) {
+func searchRA(crit Query, date time.Time) ([]Result, error) {
 	klog.Infof("searchRA: %+v", crit)
 
 	// grab the current cookies
@@ -104,7 +111,7 @@ func searchRA(crit Query, date time.Time) ([]result.Result, error) {
 	}
 	klog.Infof("start page cached: %v cookies: %+v", sr.Cached, sr.Cookies)
 
-	var results []result.Result
+	var results []Result
 
 	for i := 0; i < maxPages; i++ {
 		klog.Infof("page: %d", i)
@@ -117,13 +124,13 @@ func searchRA(crit Query, date time.Time) ([]result.Result, error) {
 		}
 
 		var jr jaxResponse
-		err := json.Unmarshal(resp.Body, &resp)
+		err = json.Unmarshal(resp.Body, &resp)
 		if err != nil {
 			return nil, fmt.Errorf("unmarshal: %w", err)
 		}
 
 		if jr.Control.CurrentPage != i {
-			return nil, fmt.Errorf("got page %d, expected page %d. control: %+v", jr.Control.CurrentPage, expectedPage, jr.Control)
+			return nil, fmt.Errorf("got page %d, expected page %d. control: %+v", jr.Control.CurrentPage, i, jr.Control)
 		}
 
 		for _, jrs := range jr.Records {
@@ -131,7 +138,7 @@ func searchRA(crit Query, date time.Time) ([]result.Result, error) {
 				Name: jrs.Name,
 			}
 
-			results = append(results, r...)
+			results = append(results, r)
 		}
 
 		if !resp.Cached {
@@ -140,7 +147,7 @@ func searchRA(crit Query, date time.Time) ([]result.Result, error) {
 		}
 
 		if jr.Control.CurrentPage == jr.TotalPages {
-			klog.Infof("fetched final page (%d)", pr.Control.CurrentPage)
+			klog.Infof("fetched final page (%d)", jr.Control.CurrentPage)
 			break
 		}
 	}
