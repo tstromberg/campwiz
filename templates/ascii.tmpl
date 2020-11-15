@@ -3,11 +3,14 @@
 {{ .Result.Name }} ({{ .Result.Distance}}mi)
 {{ with .Locale }}{{ . }}{{ end }}
 {{ range .Result.Availability}}
-{{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}: {{.URL}}
+  * {{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}
+    {{.URL}}
 {{ end }}
-{{ with .Desc }}
-{{ . }}
-{{ end }}
-{{ end }}
+{{ with .Desc }}{{ . }}{{ end -}}
 
+{{- range .Refs }}
+   {{ .Source.Name }}: {{ .Rating }}/{{ .Source.RatingMax }} {{ .Source.RatingDesc }}
+   {{ .Name }}: {{ .Desc }}
+{{ end }}
+{{ end }}
 --------------------------------------------------------------------------------

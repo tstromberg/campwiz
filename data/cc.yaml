@@ -1,7 +1,7 @@
 source:
   name: CC
-  ratingDesc: scenery
-  ratingMax: 10
+  rating_desc: scenery
+  rating_max: 10
   
 entries:
 - id: SALMON HARBOR RV RESORT - Smith River

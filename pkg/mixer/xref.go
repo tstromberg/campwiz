@@ -21,8 +21,8 @@ type XRef struct {
 
 type XrefSource struct {
 	Name       string
-	RatingDesc string
-	RatingMax  float64
+	RatingDesc string  `yaml:"rating_desc"`
+	RatingMax  float64 `yaml:"rating_max"`
 }
 
 // XrefData is cross-reference data loaded from YAML

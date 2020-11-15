@@ -47,7 +47,7 @@ type MixedResult struct {
 	Desc       string
 	Locale     string
 	Ammenities []string
-	Refs       map[string]XRef
+	Refs       []XRef
 }
 
 func expandAcronyms(s string) string {
@@ -96,7 +96,7 @@ func ShortName(s string) string {
 func Mix(results []provider.Result, xrefs []XRef) []MixedResult {
 	ms := []MixedResult{}
 	for _, r := range results {
-		ms = append(ms, MixedResult{Result: r})
+		ms = append(ms, MixedResult{Result: r, Refs: findXRefs(r, xrefs)})
 	}
 	return ms
 }
