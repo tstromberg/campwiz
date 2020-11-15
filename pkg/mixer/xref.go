@@ -2,15 +2,31 @@ package mixer
 
 // XRef is a cross-reference entry
 type XRef struct {
+	ID     string  // UNIQ key within the source
+	Name   string  // Name of site
+	Rating float64 // How does this rate?
+
+	Tags []string // Is this place notable for anything, like scenery?
+
+	Desc        string // Description
+	Locale      string // Long location info
+	ShortLocale string // Shortened location information
+
+	// Hard-coded mapping to a site ID
 	SiteID string // NOTE: Currently unused
 
-	Key    string // Key within the source
-	Source string // Name of source
+	// Synthetic part of the data
+	Source XrefSource
+}
 
-	Name   string // Name of site
-	Rating int    // 0-9 rating
-	Desc   string // Description
-	Locale string // Long location info
+type XrefSource struct {
+	Name       string
+	RatingDesc string
+	RatingMax  float64
+}
 
-	ShortLocale string // Shortened location information
+// XrefData is cross-reference data loaded from YAML
+type XrefData struct {
+	Source  XrefSource
+	Entries []XRef
 }

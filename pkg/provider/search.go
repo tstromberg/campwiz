@@ -1,15 +1,13 @@
 package provider
 
 import (
-	"fmt"
-
 	"github.com/peterbourgon/diskv"
 	"k8s.io/klog/v2"
 )
 
 // siteKey returns a unique key for a specific site.
 func siteKey(r Result) string {
-	return fmt.Sprintf("%s:%d:%s", r.Contract, r.ParkID, r.Name)
+	return r.ID
 }
 
 // merge merges multiple dates together

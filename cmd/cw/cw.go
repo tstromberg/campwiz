@@ -18,9 +18,8 @@ import (
 const dateFormat = "2006-01-02"
 
 type templateContext struct {
-	Query   provider.Query
-	Results []mixer.MixedResult
-	//	Form    formValues
+	Query        provider.Query
+	MixedResults []mixer.MixedResult
 }
 
 func processFlags() error {
@@ -56,8 +55,8 @@ func processFlags() error {
 
 	tmpl := template.Must(template.New("ascii").Parse(string(bs)))
 	c := templateContext{
-		Query:   q,
-		Results: ms,
+		Query:        q,
+		MixedResults: ms,
 	}
 
 	err = tmpl.ExecuteTemplate(os.Stdout, "ascii", c)

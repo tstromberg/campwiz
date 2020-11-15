@@ -4,16 +4,21 @@ import (
 	"time"
 )
 
+type Availability struct {
+	SiteType string
+	Date     time.Time
+	URL      string
+}
+
 // Result is supposed to be a vendor neutral result of results
 type Result struct {
-	Name         string
-	Distance     float64
-	State        string
-	ShortDesc    string
-	Availability []time.Time
-	URL          string
-	Amenities    string
+	ID string
 
-	Contract string
-	ParkID   int
+	Name     string
+	Distance float64
+
+	States []string
+
+	Availability []Availability
+	Amenities    string
 }

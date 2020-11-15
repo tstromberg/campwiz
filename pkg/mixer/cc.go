@@ -10,11 +10,6 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// CCData is CC data loaded from YAML
-type CCData struct {
-	Entries []XRef
-}
-
 func findXRefs(r provider.Result, sources []XRef) []XRef {
 	return nil
 	/*
@@ -136,7 +131,7 @@ func LoadCC() ([]XRef, error) {
 		return nil, err
 	}
 
-	var ccd CCData
+	var ccd XrefData
 	err = yaml.Unmarshal(f, &ccd)
 	if err != nil {
 		return nil, err
@@ -145,8 +140,6 @@ func LoadCC() ([]XRef, error) {
 	klog.V(1).Infof("Loaded %d entries from %s ...", len(ccd.Entries), p)
 
 	var xs []XRef
-	for _, m := range ccd.Entries {
-		xs = append(xs, m)
-	}
+	xs = append(xs, ccd.Entries...)
 	return xs, nil
 }

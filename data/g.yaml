@@ -1,0 +1,12 @@
+source:
+  name: Google
+  ratingDesc: User rating
+  ratingMax: 5.0
+  
+entries:
+- id: STAN_1040013
+  name: Frank Raines Regional Park
+  site_id: STAN_1040013
+  rating: 4.5
+
+

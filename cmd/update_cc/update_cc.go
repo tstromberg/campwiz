@@ -52,8 +52,8 @@ func key(name string, locale string) string {
 }
 
 // parse parses text, emits entries.
-func parse(scanner *bufio.Scanner) (mixer.CCData, error) {
-	var e mixer.CCData
+func parse(scanner *bufio.Scanner) (mixer.XrefData, error) {
+	var e mixer.XrefData
 	seen := make(map[string]bool)
 
 	s := mixer.XRef{}
@@ -65,12 +65,12 @@ func parse(scanner *bufio.Scanner) (mixer.CCData, error) {
 			klog.V(1).Infof("Title: %s", m[1])
 			// Clear the previous entry.
 			if s.Name != "" && s.Rating > 0 {
-				s.Key = key(s.Name, s.Locale)
-				if _, exists := seen[s.Key]; exists {
-					klog.V(1).Infof("Ignoring duplicate: %s (its ok)", s.Key)
+				s.ID = key(s.Name, s.Locale)
+				if _, exists := seen[s.ID]; exists {
+					klog.V(1).Infof("Ignoring duplicate: %s (its ok)", s.ID)
 					continue
 				}
-				seen[s.Key] = true
+				seen[s.ID] = true
 				e.Entries = append(e.Entries, s)
 			}
 			s = mixer.XRef{Name: m[1]}
@@ -79,7 +79,11 @@ func parse(scanner *bufio.Scanner) (mixer.CCData, error) {
 		m = ratingRe.FindStringSubmatch(line)
 		if len(m) > 0 {
 			klog.V(1).Infof("Rating: %s", m[1])
-			s.Rating, _ = strconv.Atoi(m[1])
+			var err error
+			s.Rating, err = strconv.ParseFloat(m[1], 64)
+			if err != nil {
+				klog.Errorf("unable to parse float %q: %v", m[1], err)
+			}
 			continue
 		}
 		m = localeRe.FindStringSubmatch(line)
@@ -104,11 +108,11 @@ func parse(scanner *bufio.Scanner) (mixer.CCData, error) {
 		}
 
 	}
-	s.Key = key(s.Name, s.Locale)
-	if _, exists := seen[s.Key]; exists {
-		return e, fmt.Errorf("%s was already seen", s.Key)
+	s.ID = key(s.Name, s.Locale)
+	if _, exists := seen[s.ID]; exists {
+		return e, fmt.Errorf("%s was already seen", s.ID)
 	}
-	seen[s.Key] = true
+	seen[s.ID] = true
 	e.Entries = append(e.Entries, s)
 	return e, nil
 }

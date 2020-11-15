@@ -42,8 +42,12 @@ var (
 
 // MixedResult is a result with associated cross-reference data
 type MixedResult struct {
-	Result     provider.Result
-	References []XRef
+	Result provider.Result
+
+	Desc       string
+	Locale     string
+	Ammenities []string
+	Refs       map[string]XRef
 }
 
 func expandAcronyms(s string) string {

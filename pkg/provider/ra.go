@@ -77,7 +77,7 @@ type jaxControl struct {
 type jaxRecord struct {
 	NamingID  string
 	Name      string
-	Proximity float32
+	Proximity float64
 	Details   jaxDetails
 }
 
@@ -87,9 +87,7 @@ type jaxAvailability struct {
 }
 
 type jaxDetails struct {
-	ID           int32
-	ContrCode    string
-	URL          string
+	BaseURL      string
 	Availability jaxAvailability
 }
 
@@ -119,9 +117,43 @@ func mergeCookies(old []*http.Cookie, new []*http.Cookie) []*http.Cookie {
 	return merged
 }
 
+func parseSearchPage(bs []byte, date time.Time, q Query) ([]Result, int, int, error) {
+	var jr jaxResponse
+	err := json.Unmarshal(bs, &jr)
+	if err != nil {
+		return nil, 0, 0, fmt.Errorf("unmarshal: %w", err)
+	}
+
+	klog.V(2).Infof("unmarshalled data: %+v", jr)
+
+	var results []Result
+	for _, r := range jr.Records {
+		if !r.Details.Availability.Available {
+			continue
+		}
+		a := Availability{
+			SiteType: "campsite",
+			Date:     date,
+			URL:      raURL + r.Details.BaseURL + "&arrivalDate=" + date.Format("2006-01-02") + "&lengthOfStay=" + strconv.Itoa(q.StayLength),
+		}
+
+		rr := Result{
+			ID:           r.NamingID,
+			Name:         r.Name,
+			Distance:     r.Proximity,
+			Availability: []Availability{a},
+		}
+
+		klog.Infof("%s is available: %+v", r.Name, rr)
+		results = append(results, rr)
+	}
+
+	return results, jr.Control.CurrentPage, jr.TotalPages, nil
+}
+
 // searchRA runs a search for a single date
-func searchRA(crit Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
-	klog.Infof("searchRA: %+v", crit)
+func searchRA(q Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
+	klog.Infof("searchRA: %+v", q)
 
 	// grab the current cookies
 	sr, err := cache.Fetch(startPage(), dv)
@@ -136,7 +168,7 @@ func searchRA(crit Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
 
 	for i := 0; i < maxPages; i++ {
 		klog.Infof(">>>>>>>>> requesting page: %d", i)
-		req := pageRequest(crit, date, i)
+		req := pageRequest(q, date, i)
 		req.Cookies = cookies
 
 		resp, err := cache.Fetch(req, dv)
@@ -145,24 +177,19 @@ func searchRA(crit Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
 		}
 		cookies = mergeCookies(cookies, resp.Cookies)
 
-		var jr jaxResponse
-		err = json.Unmarshal(resp.Body, &jr)
+		pageResults, currentPage, totalPages, err := parseSearchPage(resp.Body, date, q)
 		if err != nil {
-			return nil, fmt.Errorf("unmarshal: %w", err)
+			return nil, fmt.Errorf("parse: %w", err)
 		}
 
-		klog.Infof("unmarshalled data: %+v", jr)
-
-		if jr.Control.CurrentPage != i {
-			return nil, fmt.Errorf("got page %d, expected page %d. control: %+v", jr.Control.CurrentPage, i, jr.Control)
+		if currentPage != i {
+			return nil, fmt.Errorf("got page %d, expected page %d", currentPage, i)
 		}
 
-		for _, jrs := range jr.Records {
-			r := Result{
-				Name: jrs.Name,
-			}
+		results = append(results, pageResults...)
 
-			results = append(results, r)
+		if currentPage >= totalPages-1 {
+			break
 		}
 
 		if !resp.Cached {
@@ -170,11 +197,8 @@ func searchRA(crit Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
 			time.Sleep(uncachedDelay)
 		}
 
-		if jr.Control.CurrentPage == jr.TotalPages {
-			klog.Infof("fetched final page (%d)", jr.Control.CurrentPage)
-			break
-		}
 	}
 
+	klog.Infof("returning %d results", len(results))
 	return results, nil
 }
