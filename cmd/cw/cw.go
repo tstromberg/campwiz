@@ -31,7 +31,7 @@ func processFlags() error {
 	q := provider.Query{
 		Lon:        -122.07237049999999,
 		Lat:        37.4092297,
-		Dates:      []time.Time{time.Now().Add(24 * 90 * time.Hour)},
+		Dates:      []time.Time{time.Now().Add(24 * 120 * time.Hour)},
 		StayLength: 4,
 	}
 

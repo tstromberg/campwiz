@@ -8,8 +8,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestParseSearchPage(t *testing.T) {
-	bs, err := ioutil.ReadFile("testdata/search.json")
+func TestParseSMCSearchPage(t *testing.T) {
+	bs, err := ioutil.ReadFile("testdata/smc_feed.xml")
 	if err != nil {
 		t.Fatalf("readfile: %v", err)
 	}
