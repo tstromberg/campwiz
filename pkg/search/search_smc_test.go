@@ -1,4 +1,4 @@
-package provider
+package search
 
 import (
 	"io/ioutil"
@@ -8,8 +8,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestParseSearchPage(t *testing.T) {
-	bs, err := ioutil.ReadFile("testdata/ra_search.json")
+func TestParseSMCSearchPage(t *testing.T) {
+	bs, err := ioutil.ReadFile("testmetadata/smc_feed.xml")
 	if err != nil {
 		t.Fatalf("readfile: %v", err)
 	}
@@ -23,22 +23,14 @@ func TestParseSearchPage(t *testing.T) {
 		Lat:        37.4092297,
 	}
 
-	got, gotPage, gotTotal, err := parseSearchPage(bs, date, q)
+	got, err := parseSMCSearchPage("coyote-point", bs, date, q)
 	if err != nil {
 		t.Fatalf("error: %v", err)
 	}
 
-	if gotPage != 0 {
-		t.Errorf("got page: %d, want: %d", gotPage, 0)
-	}
-
-	if gotTotal != 17 {
-		t.Errorf("got total: %d, want: %d", gotTotal, 17)
-	}
-
 	want := []Result{
 		{
-			ID:       "STAN_1040013",
+			ID:       "parks.smcgov.org/coyote-point",
 			Name:     "FRANK RAINES REGIONAL PARK",
 			Distance: 62.91,
 			Availability: []Availability{

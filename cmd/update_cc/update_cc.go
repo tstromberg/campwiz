@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/tstromberg/campwiz/pkg/mixer"
+	"github.com/tstromberg/campwiz/pkg/metadata"
 	"gopkg.in/yaml.v2"
 	"k8s.io/klog/v2"
 )
@@ -23,12 +23,12 @@ var (
 	maxDescWords = 50
 )
 
-// key returns a "unique" string for a compground.
+// key returns a "unique" string for a campground.
 func key(name string, locale string) string {
 	key := name
 	var shortened bool
 	for {
-		key, shortened = mixer.ShortenName(key)
+		key, shortened = mangle.Shorten(key)
 		if !shortened {
 			break
 		}
@@ -37,7 +37,7 @@ func key(name string, locale string) string {
 	var location []string
 	for _, word := range strings.Split(locale, " ") {
 		if word == strings.Title(word) {
-			if _, exists := mixer.ExtraWords[strings.ToUpper(word)]; !exists {
+			if _, exists := mangle.ExtraWords[strings.ToUpper(word)]; !exists {
 				location = append(location, word)
 			}
 		} else if len(location) > 1 {
@@ -52,11 +52,11 @@ func key(name string, locale string) string {
 }
 
 // parse parses text, emits entries.
-func parse(scanner *bufio.Scanner) (mixer.XrefData, error) {
-	var e mixer.XrefData
+func parse(scanner *bufio.Scanner) (metadata.XrefData, error) {
+	var e metadata.XrefData
 	seen := make(map[string]bool)
 
-	s := mixer.XRef{}
+	s := metadata.XRef{}
 	for scanner.Scan() {
 		line := scanner.Text()
 		klog.V(1).Infof("Line: %s", line)
@@ -73,7 +73,7 @@ func parse(scanner *bufio.Scanner) (mixer.XrefData, error) {
 				seen[s.ID] = true
 				e.Entries = append(e.Entries, s)
 			}
-			s = mixer.XRef{Name: m[1]}
+			s = metadata.XRef{Name: m[1]}
 			continue
 		}
 		m = ratingRe.FindStringSubmatch(line)

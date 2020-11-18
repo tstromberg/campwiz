@@ -4,9 +4,9 @@ source:
   ratingMax: 5.0
   
 entries:
-- id: STAN_1040013
+- id: g/us/ca/stanislaus/frank_raines
   name: Frank Raines Regional Park
-  site_id: STAN_1040013
+  site_id: ra/STAN_1040013
   rating: 4.5
 
 

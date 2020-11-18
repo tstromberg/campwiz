@@ -8,15 +8,15 @@ import (
 	"net/http"
 	"text/template"
 
-	"github.com/peterbourgon/diskv"
 	"github.com/tstromberg/campwiz/pkg/cache"
-	"github.com/tstromberg/campwiz/pkg/provider"
+	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/relpath"
+	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
 
 var (
-	dv *diskv.Diskv
+	cs cache.Store
 )
 
 type formValues struct {
@@ -30,19 +30,24 @@ type formValues struct {
 }
 
 type templateContext struct {
-	Query   provider.Query
-	Results []provider.Result
+	Query   search.Query
+	Results []search.Result
 	Form    formValues
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Incoming request: %+v", r)
 	klog.Infof("Incoming request: %+v", r)
-	crit := provider.Query{}
-	results, err := provider.Search(crit, dv)
-	klog.V(1).Infof("RESULTS: %+v", results)
+	q := search.Query{}
+
+	xrefs, err := metadata.Load()
 	if err != nil {
-		klog.Errorf("Search error: %s", err)
+		klog.Errorf("loadcc failed: %w", err)
+	}
+
+	rs, err := search.All(q, cs, xrefs)
+	if err != nil {
+		klog.Errorf("search: %w", err)
 	}
 
 	p := relpath.Find("templates/http.tmpl")
@@ -52,8 +57,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	tmpl := template.Must(template.New("http").Parse(string(outTmpl)))
 	ctx := templateContext{
-		Query:   crit,
-		Results: results,
+		Query:   q,
+		Results: rs,
 		Form: formValues{
 			Dates: "2018-09-20",
 		},
@@ -70,7 +75,7 @@ func init() {
 
 func main() {
 	var err error
-	dv, err = cache.Initialize()
+	cs, err = cache.Initialize()
 	if err != nil {
 		klog.Exitf("error: %w", err)
 	}

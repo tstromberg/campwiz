@@ -1,9 +1,9 @@
-package mixer
+// Package mangle performs text manipulation
+package mangle
 
 import (
 	"strings"
 
-	"github.com/tstromberg/campwiz/pkg/provider"
 	"k8s.io/klog/v2"
 )
 
@@ -40,17 +40,7 @@ var (
 	}
 )
 
-// MixedResult is a result with associated cross-reference data
-type MixedResult struct {
-	Result provider.Result
-
-	Desc       string
-	Locale     string
-	Ammenities []string
-	Refs       []XRef
-}
-
-func expandAcronyms(s string) string {
+func Expand(s string) string {
 	var words []string
 	for _, w := range strings.Split(s, " ") {
 		if val, exists := knownAcronyms[strings.ToUpper(w)]; exists {
@@ -66,10 +56,10 @@ func expandAcronyms(s string) string {
 	return expanded
 }
 
-// ShortenName is a one-pass shortening
-func ShortenName(s string) (string, bool) {
+// Shorten is a one-pass shortening
+func Shorten(s string) (string, bool) {
 	klog.V(3).Infof("Shorten: %s", s)
-	keyWords := strings.Split(expandAcronyms(s), " ")
+	keyWords := strings.Split(Expand(s), " ")
 	for i, kw := range keyWords {
 		if _, exists := ExtraWords[strings.ToUpper(kw)]; exists {
 			klog.V(1).Infof("Removing extra word in %s: %s", s, kw)
@@ -80,23 +70,14 @@ func ShortenName(s string) (string, bool) {
 	return s, false
 }
 
-// ShortName returns the shortest possible name for a string
-func ShortName(s string) string {
+// Shortest returns the shortest possible name for a string
+func Shortest(s string) string {
 	var shortened bool
 	for {
-		s, shortened = ShortenName(s)
+		s, shortened = Shorten(s)
 		if !shortened {
 			break
 		}
 	}
 	return s
-}
-
-// Mix combines results with cross-references
-func Mix(results []provider.Result, xrefs []XRef) []MixedResult {
-	ms := []MixedResult{}
-	for _, r := range results {
-		ms = append(ms, MixedResult{Result: r, Refs: findXRefs(r, xrefs)})
-	}
-	return ms
 }

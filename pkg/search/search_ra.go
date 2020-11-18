@@ -1,4 +1,4 @@
-package provider
+package search
 
 import (
 	"encoding/json"
@@ -8,7 +8,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/peterbourgon/diskv"
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"k8s.io/klog/v2"
 )
@@ -117,7 +116,7 @@ func mergeCookies(old []*http.Cookie, new []*http.Cookie) []*http.Cookie {
 	return merged
 }
 
-func parseSearchPage(bs []byte, date time.Time, q Query) ([]Result, int, int, error) {
+func parseRASearchPage(bs []byte, date time.Time, q Query) ([]Result, int, int, error) {
 	var jr jaxResponse
 	err := json.Unmarshal(bs, &jr)
 	if err != nil {
@@ -152,11 +151,11 @@ func parseSearchPage(bs []byte, date time.Time, q Query) ([]Result, int, int, er
 }
 
 // searchRA runs a search for a single date
-func searchRA(q Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
+func searchRA(q Query, date time.Time, cs cache.Store) ([]Result, error) {
 	klog.Infof("searchRA: %+v", q)
 
 	// grab the current cookies
-	sr, err := cache.Fetch(startPage(), dv)
+	sr, err := cache.Fetch(startPage(), cs)
 	if err != nil {
 		return nil, fmt.Errorf("fetch start: %w", err)
 	}
@@ -171,13 +170,13 @@ func searchRA(q Query, date time.Time, dv *diskv.Diskv) ([]Result, error) {
 		req := pageRequest(q, date, i)
 		req.Cookies = cookies
 
-		resp, err := cache.Fetch(req, dv)
+		resp, err := cache.Fetch(req, cs)
 		if err != nil {
 			return nil, fmt.Errorf("fetch: %w", err)
 		}
 		cookies = mergeCookies(cookies, resp.Cookies)
 
-		pageResults, currentPage, totalPages, err := parseSearchPage(resp.Body, date, q)
+		pageResults, currentPage, totalPages, err := parseRASearchPage(resp.Body, date, q)
 		if err != nil {
 			return nil, fmt.Errorf("parse: %w", err)
 		}

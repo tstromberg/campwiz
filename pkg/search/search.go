@@ -1,7 +1,8 @@
-package provider
+package search
 
 import (
-	"github.com/peterbourgon/diskv"
+	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/metadata"
 	"k8s.io/klog/v2"
 )
 
@@ -16,7 +17,7 @@ func mergeDates(res []Result) []Result {
 	m := make(map[string]Result)
 	for _, r := range res {
 		key := siteKey(r)
-		// Merge availability mixer.
+		// Merge availability metadata.
 		if val, exists := m[key]; exists {
 			klog.V(1).Infof("%s: Appending availability: %+v (previous: %+v)", key, r.Availability, val.Availability)
 			val.Availability = append(val.Availability, r.Availability...)
@@ -37,11 +38,18 @@ func mergeDates(res []Result) []Result {
 	return merged
 }
 
-// Search performs a RA, returns parsed results.
-func Search(q Query, dv *diskv.Diskv) ([]Result, error) {
+// All performs a RA, returns parsed results.
+func All(q Query, cs cache.Store, xrefs map[string]metadata.XRef) ([]Result, error) {
 	var results []Result
 	for _, d := range q.Dates {
-		dr, err := searchRA(q, d, dv)
+		// TODO: Parallel search between providers
+		dr, err := searchRA(q, d, cs)
+		if err != nil {
+			return results, err
+		}
+		results = append(results, dr...)
+
+		dr, err = searchSMC(q, d, cs)
 		if err != nil {
 			return results, err
 		}

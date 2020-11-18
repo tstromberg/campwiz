@@ -90,11 +90,16 @@ type Result struct {
 	Cached bool
 }
 
+type Store interface {
+	Read(string) ([]byte, error)
+	Write(string, []byte) error
+}
+
 // tryCache attempts a cache-only fetch.
-func tryCache(req Request, dv *diskv.Diskv) (Result, error) {
+func tryCache(req Request, cs Store) (Result, error) {
 	klog.V(3).Infof("tryCache: %+v", req)
 	var res Result
-	cachedBytes, err := dv.Read(req.Key())
+	cachedBytes, err := cs.Read(req.Key())
 	if err != nil {
 		return res, err
 	}
@@ -117,9 +122,9 @@ func tryCache(req Request, dv *diskv.Diskv) (Result, error) {
 }
 
 // Fetch wraps http.Get/http.Post behind a persistent ca
-func Fetch(req Request, dv *diskv.Diskv) (Result, error) {
+func Fetch(req Request, cs Store) (Result, error) {
 	klog.V(1).Infof("Fetch(): %+v", req)
-	res, err := tryCache(req, dv)
+	res, err := tryCache(req, cs)
 	if err != nil {
 		klog.V(2).Infof("MISS[%s]: %+v due to %v", req.Key(), req, err)
 	} else {
@@ -194,7 +199,7 @@ func Fetch(req Request, dv *diskv.Diskv) (Result, error) {
 		klog.V(1).Infof("Failed to read back encoded response: %s", err)
 	} else {
 		klog.V(1).Infof("Storing %s", req.Key())
-		err := dv.Write(req.Key(), bufBytes)
+		err := cs.Write(req.Key(), bufBytes)
 		if err != nil {
 			klog.Errorf("unable to cache %s: %v", req.Key(), err)
 			return cr, nil

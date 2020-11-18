@@ -1,32 +1,42 @@
-package mixer
+package mix
 
 import (
-	"io/ioutil"
 	"strings"
 
-	"github.com/tstromberg/campwiz/pkg/provider"
-	"github.com/tstromberg/campwiz/pkg/relpath"
-	"k8s.io/klog/v2"
-
-	"gopkg.in/yaml.v2"
+	"github.com/tstromberg/campwiz/pkg/mangle"
+	"github.com/tstromberg/campwiz/pkg/metadata"
+	"github.com/tstromberg/campwiz/pkg/search"
+	"k8s.io/klog"
 )
 
-func findXRefs(r provider.Result, xrefs []XRef) []XRef {
-	var matching []XRef
+// MixedResult is a result with associated cross-reference data
+type MixedResult struct {
+	Result search.Result
+
+	Desc       string
+	Locale     string
+	Ammenities []string
+	Refs       []metadata.XRef
+}
+
+func FindXRefs(r search.Result, xrefs map[string]metadata.XRef) []metadata.XRef {
+	var matching []metadata.XRef
 
 	for _, xref := range xrefs {
-		if xref.SiteID == r.ID {
-			matching = append(matching, xref)
-			continue
+		for _, sid := range xref.SiteIDs {
+			if sid == r.ID {
+				matching = append(matching, xref)
+				continue
+			}
 		}
 	}
 
 	variations := []string{
 		r.Name,
-		strings.Join(strings.Split(ShortName(expandAcronyms(r.Name)), " "), ""),
-		ShortName(r.Name),
-		expandAcronyms(r.Name),
-		ShortName(expandAcronyms(r.Name)),
+		strings.Join(strings.Split(mangle.Shortest(mangle.Expand(r.Name)), " "), ""),
+		mangle.Shortest(r.Name),
+		mangle.Expand(r.Name),
+		mangle.Shortest(mangle.Expand(r.Name)),
 	}
 
 	klog.V(2).Infof("Merge Variations: %v", strings.Join(variations, "|"))
@@ -53,17 +63,17 @@ func findXRefs(r provider.Result, xrefs []XRef) []XRef {
 }
 
 // fuzzyMatch finds the most likely matching cross-references for a site by name
-func fuzzyMatch(name string, xrefs []XRef) []XRef {
+func fuzzyMatch(name string, xrefs map[string]metadata.XRef) []metadata.XRef {
 	keyName := strings.ToUpper(name)
 	klog.V(1).Infof("fuzzyMatch(%s) ...", keyName)
 
 	// Three levels of matches.
-	var exact []XRef
-	var prefix []XRef
-	var contains []XRef
-	var allWords []XRef
-	var someWords []XRef
-	var singleWord []XRef
+	var exact []metadata.XRef
+	var prefix []metadata.XRef
+	var contains []metadata.XRef
+	var allWords []metadata.XRef
+	var someWords []metadata.XRef
+	var singleWord []metadata.XRef
 
 	keywords := strings.Split(keyName, " ")
 
@@ -127,26 +137,11 @@ func fuzzyMatch(name string, xrefs []XRef) []XRef {
 	return singleWord
 }
 
-// LoadCC returns CC cross-reference data
-func LoadCC() ([]XRef, error) {
-	p := relpath.Find("data/cc.yaml")
-	f, err := ioutil.ReadFile(p)
-	if err != nil {
-		return nil, err
+// Combine combines results with cross-references
+func Combine(results []search.Result, xrefs map[string]metadata.XRef) []MixedResult {
+	ms := []MixedResult{}
+	for _, r := range results {
+		ms = append(ms, MixedResult{Result: r, Refs: FindXRefs(r, xrefs)})
 	}
-
-	var ccd XrefData
-	err = yaml.Unmarshal(f, &ccd)
-	if err != nil {
-		return nil, err
-	}
-
-	klog.V(1).Infof("Loaded %d entries from %s ...", len(ccd.Entries), p)
-
-	var xs []XRef
-	for _, e := range ccd.Entries {
-		e.Source = ccd.Source
-		xs = append(xs, e)
-	}
-	return xs, nil
+	return ms
 }

@@ -10,42 +10,43 @@ import (
 	"time"
 
 	"github.com/tstromberg/campwiz/pkg/cache"
-	"github.com/tstromberg/campwiz/pkg/mixer"
-	"github.com/tstromberg/campwiz/pkg/provider"
+	"github.com/tstromberg/campwiz/pkg/metadata"
+	"github.com/tstromberg/campwiz/pkg/mix"
+	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
 
 const dateFormat = "2006-01-02"
 
 type templateContext struct {
-	Query        provider.Query
-	MixedResults []mixer.MixedResult
+	Query        search.Query
+	MixedResults []mix.MixedResult
 }
 
 func processFlags() error {
-	dv, err := cache.Initialize()
+	cs, err := cache.Initialize()
 	if err != nil {
 		return err
 	}
 
-	q := provider.Query{
+	q := search.Query{
 		Lon:        -122.07237049999999,
 		Lat:        37.4092297,
 		Dates:      []time.Time{time.Now().Add(24 * 120 * time.Hour)},
 		StayLength: 4,
 	}
 
-	rs, err := provider.Search(q, dv)
-	if err != nil {
-		return fmt.Errorf("search: %w", err)
-	}
-
-	xrefs, err := mixer.LoadCC()
+	xrefs, err := metadata.Load()
 	if err != nil {
 		return fmt.Errorf("loadcc failed: %w", err)
 	}
 
-	ms := mixer.Mix(rs, xrefs)
+	rs, err := search.All(q, cs, xrefs)
+	if err != nil {
+		return fmt.Errorf("search: %w", err)
+	}
+
+	ms := mix.Combine(rs, xrefs)
 	klog.V(1).Infof("RESULTS: %+v", ms)
 
 	bs, err := ioutil.ReadFile("templates/ascii.tmpl")

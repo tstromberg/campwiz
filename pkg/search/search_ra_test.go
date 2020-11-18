@@ -1,4 +1,4 @@
-package provider
+package search
 
 import (
 	"io/ioutil"
@@ -8,8 +8,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestParseSMCSearchPage(t *testing.T) {
-	bs, err := ioutil.ReadFile("testdata/smc_feed.xml")
+func TestParseRASearchPage(t *testing.T) {
+	bs, err := ioutil.ReadFile("testmetadata/ra_search.json")
 	if err != nil {
 		t.Fatalf("readfile: %v", err)
 	}
@@ -23,7 +23,7 @@ func TestParseSMCSearchPage(t *testing.T) {
 		Lat:        37.4092297,
 	}
 
-	got, gotPage, gotTotal, err := parseSearchPage(bs, date, q)
+	got, gotPage, gotTotal, err := parseRASearchPage(bs, date, q)
 	if err != nil {
 		t.Fatalf("error: %v", err)
 	}
