@@ -37,6 +37,21 @@ var (
 		"REGIONAL":   true,
 		"STATE":      true,
 		"USE":        true,
+		"GROUP":      true,
+		"VILLAGE":    true,
+		"WALK-IN":    true,
+		"RESORT":     true,
+		"VISITOR":    true,
+		"LONG":       true,
+		"TERM":       true,
+		"RV":         true,
+		"SITES":      true,
+		"FAMILY":     true,
+		"SPA":        true,
+		"ON":         true,
+		"THE":        true,
+		"BAY":        true,
+		"BY":         true,
 	}
 )
 
@@ -82,8 +97,8 @@ func Shortest(s string) string {
 	return s
 }
 
-// Localizer returns a shorter locale name
-func Localizer(s string) string {
+// Locale returns a shorter locale name
+func Locale(s string) string {
 	new := []string{}
 
 	for i, w := range strings.Split(s, " ") {
@@ -107,5 +122,21 @@ func Localizer(s string) string {
 		new = append(new, w)
 	}
 
+	return strings.Join(new, " ")
+}
+
+func Title(s string) string {
+	new := []string{}
+	for _, w := range strings.Split(strings.ToLower(s), " ") {
+		switch w {
+		case "a", "on", "in", "an", "the", "to", "at":
+			new = append(new, w)
+			continue
+		case "rv", "svra", "nps":
+			new = append(new, strings.ToTitle(w))
+		default:
+			new = append(new, strings.Title(w))
+		}
+	}
 	return strings.Join(new, " ")
 }

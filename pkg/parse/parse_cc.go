@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"io"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -78,7 +79,7 @@ func CC(r io.Reader) ([]metadata.XRef, error) {
 				entries = append(entries, xref)
 			}
 
-			xref = metadata.XRef{Name: m[1]}
+			xref = metadata.XRef{Name: mangle.Title(m[1])}
 			continue
 		}
 
@@ -95,7 +96,7 @@ func CC(r io.Reader) ([]metadata.XRef, error) {
 		m = ccLocaleRe.FindStringSubmatch(line)
 		if xref.Rating > 0 && len(m) > 0 {
 			klog.V(1).Infof("Locale: %s", m[1])
-			xref.Locale = mangle.Localizer(m[1])
+			xref.Locale = mangle.Locale(m[1])
 		}
 
 		m = ccDescRe.FindStringSubmatch(line)
@@ -109,12 +110,15 @@ func CC(r io.Reader) ([]metadata.XRef, error) {
 	}
 
 	// Close out the final parsed entry
-	xref.ID = ccKey(xref.Name, xref.Locale)
-	if _, exists := seen[xref.ID]; exists {
-		klog.Warningf("Ignoring duplicate: %s (its ok)", xref.ID)
-	} else {
-		entries = append(entries, xref)
+	if xref.Name != "" {
+		xref.ID = ccKey(xref.Name, xref.Locale)
+		if _, exists := seen[xref.ID]; exists {
+			klog.Warningf("Ignoring duplicate: %s (its ok)", xref.ID)
+		} else {
+			entries = append(entries, xref)
+		}
 	}
 
+	sort.Slice(entries, func(i, j int) bool { return entries[i].ID < entries[j].ID })
 	return entries, nil
 }

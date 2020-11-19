@@ -2,14 +2,18 @@
 package main
 
 import (
+	"bytes"
+	"compress/gzip"
+	"encoding/base64"
 	"flag"
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/parse"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 	"k8s.io/klog/v2"
 )
 
@@ -36,7 +40,10 @@ func main() {
 			log.Fatalf("parse error: %v", err)
 		}
 
-		xd.Entries = append(xd.Entries, xrefs...)
+		for _, x := range xrefs {
+			x.Desc = compress(x.Desc)
+			xd.Entries = append(xd.Entries, x)
+		}
 	}
 
 	d, err := yaml.Marshal(&xd)
@@ -44,4 +51,19 @@ func main() {
 		log.Fatalf("error: %v", err)
 	}
 	fmt.Printf("%s", d)
+}
+
+func compress(s string) string {
+	var buf bytes.Buffer
+	zw := gzip.NewWriter(&buf)
+	_, err := zw.Write([]byte(s))
+	if err != nil {
+		klog.Fatalf("write error: %v", err)
+	}
+
+	if err := zw.Close(); err != nil {
+		klog.Fatalf("close error: %v", err)
+	}
+
+	return strings.Replace(base64.RawStdEncoding.EncodeToString(buf.Bytes()), metadata.CompressHeader, metadata.CompressPrefix, -1)
 }

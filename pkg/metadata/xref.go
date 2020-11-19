@@ -1,25 +1,28 @@
 package metadata
 
+var CompressHeader = `H4sIAAAAAAAA/`
+var CompressPrefix = `z`
+
 // XRef is a cross-reference entry
 type XRef struct {
-	ID   string // `yaml:"id"`
-	Name string // `yaml:"name,omitempty"`
+	ID   string `yaml:"id"`
+	Name string `yaml:"name,omitempty"`
 
-	Related []string // `yaml:"related,omitempty"`
-	URLs    []string // `yaml:"urls,omitempty"`
+	Related []string `yaml:"related,omitempty"`
+	URLs    []string `yaml:"urls,omitempty"`
 
-	Rating     float64  // `yaml:"rating,omitempty"`
-	Tags       []string // `yaml:"tags,omitempty"`
-	Facilities []string // `yaml:"facilities,omitempty"`
-	Desc       string   // `yaml:"desc,omitempty"`
-	Owner      string   // `yaml:"owner,omitempty"`
+	Rating     float64  `yaml:"rating,omitempty"`
+	Tags       []string `yaml:"tags,omitempty"`
+	Facilities []string `yaml:"facilities,omitempty"`
+	Desc       string   `yaml:"desc,omitempty"`
+	Owner      string   `yaml:"owner,omitempty"`
 
-	Locale string  // `yaml:"locale,omitempty"`
-	Lat    float64 // `yaml:"lat,omitempty"`
-	Lon    float64 // `yaml:"lon,omitempty"`
+	Locale string  `yaml:"locale,omitempty"`
+	Lat    float64 `yaml:"lat,omitempty"`
+	Lon    float64 `yaml:"lon,omitempty"`
 
 	// Synthetic part of the data
-	Source XrefSource // `yaml:"omitempty"`
+	Source XrefSource `yaml:"__src,omitempty"`
 }
 
 type XrefSource struct {
