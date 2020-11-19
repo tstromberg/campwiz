@@ -6,7 +6,7 @@ import (
 	"github.com/tstromberg/campwiz/pkg/mangle"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/search"
-	"k8s.io/klog"
+	"k8s.io/klog/v2"
 )
 
 // MixedResult is a result with associated cross-reference data
@@ -23,7 +23,7 @@ func FindXRefs(r search.Result, xrefs map[string]metadata.XRef) []metadata.XRef 
 	var matching []metadata.XRef
 
 	for _, xref := range xrefs {
-		for _, sid := range xref.SiteIDs {
+		for _, sid := range xref.Related {
 			if sid == r.ID {
 				matching = append(matching, xref)
 				continue

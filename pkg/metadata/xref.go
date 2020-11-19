@@ -2,26 +2,24 @@ package metadata
 
 // XRef is a cross-reference entry
 type XRef struct {
-	ID         string   // unique key across all sources
-	SiteIDs    []string // Campsites this cross-reference applies to
-	Name       string   // Name of site
-	Rating     float64  // How does this rate?
-	Tags       []string // Is this place notable for anything, like scenery?
-	Ammenities []string
-	Desc       string // Description
+	ID   string // `yaml:"id"`
+	Name string // `yaml:"name,omitempty"`
 
-	Owner  string // name of owner
-	Locale string // free-form location information
+	Related []string // `yaml:"related,omitempty"`
+	URLs    []string // `yaml:"urls,omitempty"`
 
-	Park   string // The park this is in, if any
-	City   string // City the park is in
-	County string // County the park is in
+	Rating     float64  // `yaml:"rating,omitempty"`
+	Tags       []string // `yaml:"tags,omitempty"`
+	Facilities []string // `yaml:"facilities,omitempty"`
+	Desc       string   // `yaml:"desc,omitempty"`
+	Owner      string   // `yaml:"owner,omitempty"`
 
-	Lat float64 // Latitude
-	Lon float64 // Longitude
+	Locale string  // `yaml:"locale,omitempty"`
+	Lat    float64 // `yaml:"lat,omitempty"`
+	Lon    float64 // `yaml:"lon,omitempty"`
 
 	// Synthetic part of the data
-	Source XrefSource
+	Source XrefSource // `yaml:"omitempty"`
 }
 
 type XrefSource struct {
