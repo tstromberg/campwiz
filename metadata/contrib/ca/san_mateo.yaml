@@ -1,0 +1,12 @@
+  - id: /contrib/us/ca/san_mateo/coyote-point
+    name: Coyote Point Recreation Area
+    desc: "Coyote Point Recreation Area RV Sites in San Mateo California offers 3 partial hookup (water and 20 amp electric) RV sites for rigs <38' in length. Advance reservations required. Located along the bay Coyote Point is a regional recreation area that provides a wide variety of opportunities: picnicking, swimming, windsurfing, bicycling, jogging, fishing, boating, and sailing."
+    related:
+      - /smc/coyote-point
+    urls:
+      official: "https://parks.smcgov.org/coyote-point-recreation-area"
+      gmaps: "https://www.bing.com/maps?q=coyote+point+recreation+area&cvid=7116f31498be46b58fe1cd13aa5a5b3d&pglt=43&FORM=ANSPA1&PC=U531"
+      yelp: "https://www.yelp.com/biz/coyote-point-recreation-area-san-mateo"
+    lat: 37.5872676
+    lon: -122.3212952
+    locale: Along the bay within the San Mateo city limits

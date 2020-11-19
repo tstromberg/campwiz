@@ -81,3 +81,31 @@ func Shortest(s string) string {
 	}
 	return s
 }
+
+// Localizer returns a shorter locale name
+func Localizer(s string) string {
+	new := []string{}
+
+	for i, w := range strings.Split(s, " ") {
+
+		if i == 0 {
+			switch w {
+			case "on", "in":
+				continue
+			}
+		}
+
+		if i == 1 && w == "the" {
+			continue
+		}
+
+		if w == "in" {
+			new = append(new, "/")
+			continue
+		}
+
+		new = append(new, w)
+	}
+
+	return strings.Join(new, " ")
+}

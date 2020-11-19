@@ -95,7 +95,7 @@ func CC(r io.Reader) ([]metadata.XRef, error) {
 		m = ccLocaleRe.FindStringSubmatch(line)
 		if xref.Rating > 0 && len(m) > 0 {
 			klog.V(1).Infof("Locale: %s", m[1])
-			xref.Locale = m[1]
+			xref.Locale = mangle.Localizer(m[1])
 		}
 
 		m = ccDescRe.FindStringSubmatch(line)
