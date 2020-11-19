@@ -11,7 +11,7 @@ import (
 
 // LoadCC returns CC cross-reference data
 func LoadCC() (map[string]XRef, error) {
-	p := relpath.Find("metadata/cc.yaml")
+	p := relpath.Find("metadata/imported/cc.yaml")
 	f, err := ioutil.ReadFile(p)
 	if err != nil {
 		return nil, err
