@@ -78,8 +78,8 @@ func fuzzyMatch(name string, xrefs map[string]metadata.XRef) []metadata.XRef {
 	keywords := strings.Split(keyName, " ")
 
 	for _, xref := range xrefs {
-		k := xref.ID
-		i := strings.Index(k, keyName)
+		k := xref.Name
+		i := strings.Index(strings.ToLower(k), strings.ToLower(keyName))
 		klog.V(4).Infof("Testing: keyName=%s == k=%s (index=%d)", keyName, k, i)
 		// The whole key does not exist.
 		if i == -1 {
