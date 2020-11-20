@@ -116,6 +116,11 @@ func parseRASearchPage(bs []byte, date time.Time, q Query) ([]Result, int, int, 
 
 	var results []Result
 	for _, r := range jr.Records {
+		if int(r.Proximity) > q.MaxDistance {
+			klog.V(1).Infof("Skipping %s - too far (%.0f miles)", r.Name, r.Proximity)
+			continue
+		}
+
 		if !r.Details.Availability.Available {
 			continue
 		}

@@ -18,6 +18,7 @@ import (
 )
 
 var datesFlag *[]string = pflag.StringSlice("dates", []string{}, "dates to search for")
+var milesFlag *int = pflag.Int("miles", 100, "distance to search within")
 
 const dateFormat = "2006-01-02"
 
@@ -33,9 +34,10 @@ func processFlags() error {
 	}
 
 	q := search.Query{
-		Lon:        -122.07237049999999,
-		Lat:        37.4092297,
-		StayLength: 4,
+		Lon:         -122.07237049999999,
+		Lat:         37.4092297,
+		StayLength:  4,
+		MaxDistance: *milesFlag,
 	}
 
 	for _, ds := range *datesFlag {
