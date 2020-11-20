@@ -2,6 +2,7 @@ package parse
 
 import (
 	"bufio"
+	"html"
 	"io"
 	"regexp"
 	"sort"
@@ -18,6 +19,7 @@ var (
 	ccRatingRe = regexp.MustCompile(`Scenic rating: (\d+)`)
 	ccDescRe   = regexp.MustCompile(`<p class="noindent">(.*?)</p>`)
 	ccLocaleRe = regexp.MustCompile(`^<p class="noindentt_1">(.*?)</p>`)
+	tagRe      = regexp.MustCompile(`<.*?>`)
 	//	ccFacilitiesRe = regexp.MustCompile(`<p class="noindent"><strong>Campsites, facilities:</strong>(.*?)</p>`)
 	//	ccReserveRe    = regexp.MustCompile(`<p class="noindent"><strong>Reservations, fees:</strong> (.*?)</p>`)
 	//	ccContactRe    = regexp.MustCompile(`^<p class="noindent"><strong>Contact:</strong> (.*?)</p>`)
@@ -52,6 +54,10 @@ func ccKey(name string, locale string) string {
 	return "/cc/" + strings.ToLower(location[0]) + "/" + strings.ToLower(strings.Replace(key, " ", "_", -1))
 }
 
+func htmlText(s string) string {
+	return html.UnescapeString(tagRe.ReplaceAllString(s, ""))
+}
+
 // CC scans CC HTML, emits cross-references
 func CC(r io.Reader) ([]metadata.XRef, error) {
 	scanner := bufio.NewScanner(r)
@@ -79,7 +85,7 @@ func CC(r io.Reader) ([]metadata.XRef, error) {
 				entries = append(entries, xref)
 			}
 
-			xref = metadata.XRef{Name: mangle.Title(m[1])}
+			xref = metadata.XRef{Name: mangle.Title(htmlText(m[1]))}
 			continue
 		}
 
@@ -96,14 +102,14 @@ func CC(r io.Reader) ([]metadata.XRef, error) {
 		m = ccLocaleRe.FindStringSubmatch(line)
 		if xref.Rating > 0 && len(m) > 0 {
 			klog.V(1).Infof("Locale: %s", m[1])
-			xref.Locale = mangle.Locale(m[1])
+			xref.Locale = mangle.Locale(htmlText(m[1]))
 		}
 
 		m = ccDescRe.FindStringSubmatch(line)
 		if xref.Rating > 0 && len(m) > 0 {
 			klog.V(1).Infof("Desc: %s", m[1])
 			if xref.Desc == "" {
-				xref.Desc = m[1]
+				xref.Desc = htmlText(m[1])
 			}
 			continue
 		}
