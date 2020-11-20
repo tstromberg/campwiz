@@ -15,21 +15,10 @@ import (
 var (
 	// raURL is the search URL to request reservation information from.
 	raURL = "https://" + "www." + "reserve" + "america.com"
-
-	// searchPageExpiry is how long search pages can be cached for.
-	searchPageExpiry = time.Duration(6*3600) * time.Second
-
-	// amount of time to sleep between uncached fetches
-	uncachedDelay = time.Millisecond * 600
-
-	// maximum number of pages to fetch
-	maxPages = 15
 )
 
-// pageRequest creates the request object for a search.
-func pageRequest(c Query, arrival time.Time, num int) cache.Request {
-	// https://www.reserveamerica.com/jaxrs-json/search?rcp=0&stype=nearby&lng=-122.443&lat=37.7562&arv=2021-02-05&lsy=2&pa99999=2003&pa12=4&pa24=true&interest=camping&rcs=20
-
+// raPageRequest creates the request object for a search.
+func raPageRequest(c Query, arrival time.Time, num int) cache.Request {
 	v := url.Values{
 		"rcp":     {strconv.Itoa(num)},            // page number
 		"stype":   {"nearby"},                     // search type
@@ -58,8 +47,8 @@ func pageRequest(c Query, arrival time.Time, num int) cache.Request {
 	return r
 }
 
-// startPage returns a request for the search page
-func startPage() cache.Request {
+// raStartPage returns a request for the search page
+func raStartPage() cache.Request {
 	return cache.Request{
 		Method:   "GET",
 		URL:      raURL + "/explore/search-results",
@@ -155,7 +144,7 @@ func searchRA(q Query, date time.Time, cs cache.Store) ([]Result, error) {
 	klog.Infof("searchRA: %+v", q)
 
 	// grab the current cookies
-	sr, err := cache.Fetch(startPage(), cs)
+	sr, err := cache.Fetch(raStartPage(), cs)
 	if err != nil {
 		return nil, fmt.Errorf("fetch start: %w", err)
 	}
@@ -167,7 +156,7 @@ func searchRA(q Query, date time.Time, cs cache.Store) ([]Result, error) {
 
 	for i := 0; i < maxPages; i++ {
 		klog.Infof(">>>>>>>>> requesting page: %d", i)
-		req := pageRequest(q, date, i)
+		req := raPageRequest(q, date, i)
 		req.Cookies = cookies
 
 		resp, err := cache.Fetch(req, cs)

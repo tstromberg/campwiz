@@ -1,9 +1,22 @@
 package search
 
 import (
+	"time"
+
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"k8s.io/klog/v2"
+)
+
+var (
+	// searchPageExpiry is how long search pages can be cached for.
+	searchPageExpiry = time.Duration(6*3600) * time.Second
+
+	// amount of time to sleep between uncached fetches
+	uncachedDelay = time.Millisecond * 600
+
+	// maximum number of pages to fetch
+	maxPages = 15
 )
 
 // siteKey returns a unique key for a specific site.
@@ -43,7 +56,7 @@ func All(q Query, cs cache.Store, xrefs map[string]metadata.XRef) ([]Result, err
 	var results []Result
 	for _, d := range q.Dates {
 		// TODO: Parallel search between providers
-		dr, err := searchRA(q, d, cs)
+		dr, err := searchRC(q, d, cs)
 		if err != nil {
 			return results, err
 		}

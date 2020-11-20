@@ -45,18 +45,28 @@ type Request struct {
 	Form url.Values
 	// Maximum age of content.
 	MaxAge time.Duration
+	// POST info
+	ContentType string
+	Body        []byte
 }
 
 // Key returns a cache-key.
 func (r Request) Key() string {
 	var buf bytes.Buffer
+
 	buf.WriteString(r.Method + " ")
 	buf.WriteString(r.URL + "?" + r.Form.Encode())
+
 	for _, c := range r.Cookies {
 		buf.WriteString(fmt.Sprintf("+cookie=%s", c.String()))
+
 	}
 	if r.Referrer != "" {
 		buf.WriteString(fmt.Sprintf("+ref=%s", r.Referrer))
+	}
+
+	if len(r.Body) > 0 {
+		buf.WriteString(fmt.Sprintf("+body=%s", r.Body))
 	}
 
 	key := nonWordRe.ReplaceAllString(buf.String(), "_")
@@ -142,12 +152,12 @@ func Fetch(req Request, cs Store) (Result, error) {
 
 	client := &http.Client{Jar: cookieJar}
 
-	post := bytes.NewBufferString(req.Form.Encode())
-	if req.Method == "GET" {
-		post = bytes.NewBufferString("")
+	getBody := bytes.NewBuffer(req.Body)
+	if req.Method == "POST" && len(req.Form) > 0 {
+		getBody = bytes.NewBufferString(req.Form.Encode())
 	}
 
-	hr, err := http.NewRequest(req.Method, url, post)
+	hr, err := http.NewRequest(req.Method, url, getBody)
 	if err != nil {
 		return res, err
 	}
@@ -160,11 +170,20 @@ func Fetch(req Request, cs Store) (Result, error) {
 	}
 
 	if req.Method == "POST" {
-		hr.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+		if len(req.Form) > 0 {
+			hr.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+		} else {
+			hr.Header.Add("Content-Type", req.ContentType)
+		}
+
 	}
 
 	for k, v := range hr.Header {
 		klog.Infof("Header value: %s=%q", k, v)
+	}
+
+	if getBody.Len() > 0 {
+		klog.Infof("Request body: %s", getBody)
 	}
 
 	r, err := client.Do(hr)

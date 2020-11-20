@@ -17,6 +17,9 @@ type Result struct {
 	Name     string
 	Distance float64
 
+	Description string
+	URL         string
+
 	States []string
 
 	Availability []Availability

@@ -155,7 +155,7 @@ func Combine(results []search.Result, xrefs map[string]metadata.XRef) []MixedRes
 		for i := range refs {
 			refs[i].Desc = ellipsis(refs[i].Desc)
 		}
-		ms = append(ms, MixedResult{Result: r, Refs: refs})
+		ms = append(ms, MixedResult{Result: r, Refs: refs, Desc: r.Description})
 	}
 
 	return ms
