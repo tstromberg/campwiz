@@ -9,6 +9,8 @@ import (
 	"k8s.io/klog/v2"
 )
 
+var wordMax = 65
+
 // MixedResult is a result with associated cross-reference data
 type MixedResult struct {
 	Result search.Result
@@ -137,11 +139,24 @@ func fuzzyMatch(name string, xrefs map[string]metadata.XRef) []metadata.XRef {
 	return singleWord
 }
 
+func ellipsis(s string) string {
+	words := strings.Split(s, " ")
+	if len(words) < wordMax {
+		return s
+	}
+	return strings.Join(words[0:wordMax], " ") + " ..."
+}
+
 // Combine combines results with cross-references
 func Combine(results []search.Result, xrefs map[string]metadata.XRef) []MixedResult {
 	ms := []MixedResult{}
 	for _, r := range results {
-		ms = append(ms, MixedResult{Result: r, Refs: FindXRefs(r, xrefs)})
+		refs := FindXRefs(r, xrefs)
+		for i := range refs {
+			refs[i].Desc = ellipsis(refs[i].Desc)
+		}
+		ms = append(ms, MixedResult{Result: r, Refs: refs})
 	}
+
 	return ms
 }

@@ -45,7 +45,6 @@ func decompress(s string) string {
 	if err != nil {
 		klog.Fatalf("decode fail: %v", err)
 	}
-	klog.Infof("bs: %s", strings.Replace(s, CompressPrefix, CompressHeader, 1))
 
 	buf := bytes.NewReader(bs)
 	zr, err := gzip.NewReader(buf)

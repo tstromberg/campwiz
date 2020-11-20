@@ -2,15 +2,15 @@
 --------------------------------------------------------------------------------
 {{ .Result.Name }} ({{ .Result.Distance}}mi)
 {{ with .Locale }}{{ . }}{{ end }}
-{{ range .Result.Availability}}
+{{- range .Result.Availability}}
   * {{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}
     {{.URL}}
-{{ end }}
+{{- end }}
 {{ with .Desc }}{{ . }}{{ end -}}
-
 {{- range .Refs }}
-   {{ .Source.Name }}: {{ .Rating }}/{{ .Source.RatingMax }} {{ .Source.RatingDesc }}
-   {{ .Name }}: {{ .Desc }}
-{{ end }}
+ > {{ .Source.Name }}: [{{ .Rating }}/{{ .Source.RatingMax }} {{ .Source.RatingDesc }}]
+ >
+ >  {{.Desc}}
+{{- end }}
 {{ end }}
 --------------------------------------------------------------------------------
