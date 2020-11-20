@@ -2,19 +2,22 @@
 package main
 
 import (
-	"flag"
+	goflag "flag"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"text/template"
 	"time"
 
+	pflag "github.com/spf13/pflag"
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/mix"
 	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
+
+var datesFlag *[]string = pflag.StringSlice("dates", []string{}, "dates to search for")
 
 const dateFormat = "2006-01-02"
 
@@ -32,8 +35,15 @@ func processFlags() error {
 	q := search.Query{
 		Lon:        -122.07237049999999,
 		Lat:        37.4092297,
-		Dates:      []time.Time{time.Now().Add(24 * 120 * time.Hour)},
 		StayLength: 4,
+	}
+
+	for _, ds := range *datesFlag {
+		t, err := time.Parse(dateFormat, ds)
+		if err != nil {
+			klog.Fatalf("unable to parse date %q: %v", ds, err)
+		}
+		q.Dates = append(q.Dates, t)
 	}
 
 	xrefs, err := metadata.Load()
@@ -67,7 +77,9 @@ func processFlags() error {
 func main() {
 	//	wordPtr := flag.String("word", "foo", "a string")
 	klog.InitFlags(nil)
-	flag.Parse()
+	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
+	pflag.Parse()
+
 	if err := processFlags(); err != nil {
 		klog.Exitf("processing error: %v", err)
 	}
