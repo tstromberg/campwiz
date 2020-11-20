@@ -133,7 +133,12 @@ func tryCache(req Request, cs Store) (Result, error) {
 
 // Fetch wraps http.Get/http.Post behind a persistent ca
 func Fetch(req Request, cs Store) (Result, error) {
-	klog.V(1).Infof("Fetch(): %+v", req)
+	url := req.URL
+	if req.Method == "GET" && len(req.Form) > 0 {
+		url = url + "?" + req.Form.Encode()
+	}
+
+	klog.V(1).Infof("fetching %s: %+v", url, req)
 	res, err := tryCache(req, cs)
 	if err != nil {
 		klog.V(2).Infof("MISS[%s]: %+v due to %v", req.Key(), req, err)
@@ -142,13 +147,6 @@ func Fetch(req Request, cs Store) (Result, error) {
 		res.Cached = true
 		return res, nil
 	}
-
-	url := req.URL
-	if req.Method == "GET" && len(req.Form) > 0 {
-		url = url + "?" + req.Form.Encode()
-	}
-
-	klog.Infof("URL: %s", url)
 
 	client := &http.Client{Jar: cookieJar}
 
@@ -178,6 +176,7 @@ func Fetch(req Request, cs Store) (Result, error) {
 
 	}
 
+	klog.Infof("URL: %s", url)
 	for k, v := range hr.Header {
 		klog.Infof("Header value: %s=%q", k, v)
 	}

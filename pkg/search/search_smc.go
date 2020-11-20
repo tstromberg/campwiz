@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"net/url"
+	"strings"
 	"time"
 
 	"github.com/tstromberg/campwiz/pkg/cache"
@@ -13,19 +14,19 @@ import (
 )
 
 var (
-	smcSiteCodes = []string{"coyote-point"}
-	smcRoot      = "secure" + ".itinio" + ".com" + "/sanmateo"
+	smcSiteCodes = []string{"coyote-point", "huddart-park"}
+	smcRoot      = "https://" + "secure" + ".itinio" + ".com" + "/sanmateo"
 	metaSmcRoot  = "u/us/ca/san_mateo/"
-	smcCenterLon = 37.4250399
-	smcCenterLat = -122.4130398
+	smcCenterLat = 37.4250399
+	smcCenterLon = -122.4130398
 )
 
 // searchSMC searches San Mateo County Parks for a single date
 func searchSMC(q Query, date time.Time, cs cache.Store) ([]Result, error) {
 	dist := geo.MilesApart(q.Lat, q.Lon, smcCenterLat, smcCenterLon)
-	klog.Infof("searchSMC, distance to center: %.1f miles", dist)
+	klog.Infof("searchSMC, distance to center from %f / %f is %.1f miles", q.Lat, q.Lon, dist)
 	if dist > float64(q.MaxDistance) {
-		klog.Warningf("skipping smc search -- too far away")
+		klog.Warningf("skipping smc search -- further than %d miles", q.MaxDistance)
 		return nil, nil
 	}
 
@@ -51,12 +52,21 @@ func searchSMC(q Query, date time.Time, cs cache.Store) ([]Result, error) {
 }
 
 func smcSiteURL(code string) string {
-	return "https://" + smcRoot + "/" + code
+	return smcRoot + "/" + code
 }
 
 // endDate returns a calculated end date
 func endDate(start time.Time, stayLength int) time.Time {
 	return start.Add(time.Duration(stayLength) * 24 * time.Hour)
+}
+
+// smcStartPage returns a request for the search page
+func smcStartPage(code string) cache.Request {
+	return cache.Request{
+		Method: "GET",
+		URL:    smcSiteURL(code),
+		MaxAge: searchPageExpiry,
+	}
 }
 
 func smcSiteRequest(code string, q Query, date time.Time) cache.Request {
@@ -70,7 +80,7 @@ func smcSiteRequest(code string, q Query, date time.Time) cache.Request {
 
 	r := cache.Request{
 		Method:   "GET",
-		URL:      smcRoot + "/feed.html",
+		URL:      smcRoot + "/campsites/feed.html",
 		Referrer: smcSiteURL(code),
 		Form:     v,
 		MaxAge:   searchPageExpiry,
@@ -79,7 +89,7 @@ func smcSiteRequest(code string, q Query, date time.Time) cache.Request {
 }
 
 func checkSMCSite(code string, q Query, date time.Time, cs cache.Store) (*Result, bool, error) {
-	sr, err := cache.Fetch(smcSiteRequest(code, q, date), cs)
+	sr, err := cache.Fetch(smcStartPage(code), cs)
 	if err != nil {
 		return nil, false, fmt.Errorf("fetch start: %w", err)
 	}
@@ -110,12 +120,16 @@ type Site struct {
 	Available int      `xml:"avail,attr"`
 }
 
+func codeToTitle(s string) string {
+	return strings.Title(strings.Replace(s, "-", " ", -1))
+}
+
 func parseSMCSearchPage(code string, bs []byte, date time.Time, q Query) (*Result, error) {
 	var sites Sites
 
 	err := xml.Unmarshal(bs, &sites)
 	if err != nil {
-		return nil, fmt.Errorf("unmarshal: %w", err)
+		return nil, fmt.Errorf("unmarshal: %w\ncontent: %s", err, bs)
 	}
 
 	klog.V(2).Infof("unmarshalled data: %+v", sites)
@@ -132,7 +146,7 @@ func parseSMCSearchPage(code string, bs []byte, date time.Time, q Query) (*Resul
 
 		r := &Result{
 			ID:           "parks.smcgov.org/" + code,
-			Name:         "nothing yet",
+			Name:         codeToTitle(code),
 			Distance:     geo.MilesApart(q.Lat, q.Lon, smcCenterLat, smcCenterLon),
 			Availability: []Availability{a},
 		}

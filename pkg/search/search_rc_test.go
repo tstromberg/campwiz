@@ -33,12 +33,6 @@ func TestRCPageRequest(t *testing.T) {
 		Body:        []byte{},
 	}
 
-	want.Body = []byte(wantBody)
-
-	if diff := cmp.Diff(wantBody, string(got.Body)); diff != "" {
-		t.Errorf("rcPageRequest() body mismatch (-want +got):\n%s", diff)
-	}
-
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("rcPageRequest() mismatch (-want +got):\n%s", diff)
 	}

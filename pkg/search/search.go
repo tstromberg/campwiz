@@ -58,13 +58,19 @@ func All(q Query, cs cache.Store, xrefs map[string]metadata.XRef) ([]Result, err
 		// TODO: Parallel search between providers
 		dr, err := searchRC(q, d, cs)
 		if err != nil {
-			return results, err
+			klog.Errorf("searchRC failed: %v", err)
+		}
+		results = append(results, dr...)
+
+		dr, err = searchRA(q, d, cs)
+		if err != nil {
+			klog.Errorf("searchRA failed: %v", err)
 		}
 		results = append(results, dr...)
 
 		dr, err = searchSMC(q, d, cs)
 		if err != nil {
-			return results, err
+			klog.Errorf("searchSMC failed: %v", err)
 		}
 		results = append(results, dr...)
 	}

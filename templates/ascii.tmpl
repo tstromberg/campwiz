@@ -1,6 +1,6 @@
 {{ range .MixedResults}}
 --------------------------------------------------------------------------------
-{{ .Result.Name }} ({{ .Result.Distance}}mi)
+{{ .Result.Name }} ({{ printf "%.0f" .Result.Distance }}mi)
 {{ with .Locale }}{{ . }}{{ end }}
 {{- range .Result.Availability}}
   * {{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}

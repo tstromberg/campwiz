@@ -51,18 +51,18 @@ type rcResponse struct {
 }
 
 // rcPageRequest creates the request object for a search.
-func rcPageRequest(c Query, arrival time.Time) (cache.Request, error) {
+func rcPageRequest(q Query, arrival time.Time) (cache.Request, error) {
 	rcr := rcRequest{
-		Latitude:            fmt.Sprintf("%.4f", c.Lat),
-		Longitude:           fmt.Sprintf("%.4f", c.Lon),
+		Latitude:            fmt.Sprintf("%.4f", q.Lat),
+		Longitude:           fmt.Sprintf("%.4f", q.Lon),
 		StartDate:           arrival.Format("01-02-2006"),
 		CountNearby:         true,
 		CustomerID:          "0",
-		Nights:              fmt.Sprintf("%d", c.StayLength),
+		Nights:              fmt.Sprintf("%d", q.StayLength),
 		PlaceID:             0,
 		RefreshFavourites:   true,
 		Sort:                "Distance",
-		NearbyLimit:         100,
+		NearbyLimit:         q.MaxDistance,
 		NearbyOnlyAvailable: true,
 		NearbyCountLimit:    100,
 	}
