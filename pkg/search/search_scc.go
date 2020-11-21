@@ -11,7 +11,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/geo"
-	"k8s.io/klog"
+	"k8s.io/klog/v2"
 )
 
 var (

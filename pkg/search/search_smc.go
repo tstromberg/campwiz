@@ -10,13 +10,12 @@ import (
 
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/geo"
-	"k8s.io/klog"
+	"k8s.io/klog/v2"
 )
 
 var (
 	smcSiteCodes = []string{"coyote-point", "huddart-park"}
 	smcRoot      = "https://" + "secure" + ".itinio" + ".com" + "/sanmateo"
-	metaSmcRoot  = "u/us/ca/san_mateo/"
 	smcCenterLat = 37.4250399
 	smcCenterLon = -122.4130398
 )
