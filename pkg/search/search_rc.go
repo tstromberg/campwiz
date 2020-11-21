@@ -9,10 +9,8 @@ import (
 	"k8s.io/klog/v2"
 )
 
-var (
-	// raURL is the search URL to request reservation information from.
-	rcURL = "https://" + "www." + "reserve" + "california.com"
-)
+// raURL is the search URL to request reservation information from.
+var rcURL = "https://" + "www." + "reserve" + "california.com"
 
 type rcRequest struct {
 	PlaceID             int    `json:"PlaceId"`
@@ -34,6 +32,7 @@ type rcRequest struct {
 	MinVehicleLength    int    `json:"MinVehicleLength"`
 	UnitTypesGroupIDs   []int  `json:"UnitTypeGroupIds"`
 }
+
 type rcPlace struct {
 	AllHighlights     string  `json:"Allhighlights"`
 	Available         bool    `json:"Available"`

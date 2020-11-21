@@ -10,6 +10,7 @@ import (
 var (
 	knownAcronyms = map[string]string{
 		"MT.": "MOUNT",
+		"MT":  "MOUNT",
 		"SB":  "STATE BEACH",
 		"SRA": "STATE RECREATION AREA",
 		"SP":  "STATE PARK",

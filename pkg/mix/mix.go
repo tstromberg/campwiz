@@ -66,6 +66,11 @@ func FindXRefs(r search.Result, xrefs map[string]metadata.XRef) []metadata.XRef 
 
 // fuzzyMatch finds the most likely matching cross-references for a site by name
 func fuzzyMatch(name string, xrefs map[string]metadata.XRef) []metadata.XRef {
+	if name == "" {
+		klog.Warningf("fuzzyMatch called with empty name")
+		return nil
+	}
+
 	keyName := strings.ToUpper(name)
 	klog.V(1).Infof("fuzzyMatch(%s) ...", keyName)
 
@@ -136,7 +141,10 @@ func fuzzyMatch(name string, xrefs map[string]metadata.XRef) []metadata.XRef {
 	if len(someWords) > 0 {
 		return someWords
 	}
-	return singleWord
+	if len(singleWord) == 1 {
+		return singleWord
+	}
+	return nil
 }
 
 func ellipsis(s string) string {

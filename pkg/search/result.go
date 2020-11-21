@@ -6,6 +6,7 @@ import (
 
 type Availability struct {
 	SiteType string
+	Count    int
 	Date     time.Time
 	URL      string
 }

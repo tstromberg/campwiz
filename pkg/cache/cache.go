@@ -16,6 +16,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/moul/http2curl"
 	"github.com/peterbourgon/diskv"
 	"k8s.io/klog/v2"
 )
@@ -141,7 +142,7 @@ func Fetch(req Request, cs Store) (Result, error) {
 	klog.V(1).Infof("fetching %s: %+v", url, req)
 	res, err := tryCache(req, cs)
 	if err != nil {
-		klog.V(2).Infof("MISS[%s]: %+v due to %v", req.Key(), req, err)
+		klog.V(2).Infof("MISS[%s]: %+v, tryCache returned: %v", req.Key(), req, err)
 	} else {
 		klog.V(2).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
 		res.Cached = true
@@ -160,6 +161,10 @@ func Fetch(req Request, cs Store) (Result, error) {
 		return res, err
 	}
 
+	if req.Referrer != "" {
+		hr.Header.Add("Referrer", req.Referrer)
+	}
+
 	hr.Header.Add("User-Agent", userAgent)
 
 	for _, c := range req.Cookies {
@@ -176,19 +181,18 @@ func Fetch(req Request, cs Store) (Result, error) {
 
 	}
 
-	klog.Infof("URL: %s", url)
-	for k, v := range hr.Header {
-		klog.Infof("Header value: %s=%q", k, v)
-	}
-
-	if getBody.Len() > 0 {
-		klog.Infof("Request body: %s", getBody)
+	cmd, err := http2curl.GetCurlCommand(hr)
+	if err != nil {
+		klog.Errorf("unable to convert to curl: %+v", req)
+	} else {
+		klog.Infof("debug: %s", cmd)
 	}
 
 	r, err := client.Do(hr)
 	if err != nil {
 		return res, err
 	}
+	klog.V(2).Infof("r: %+v", r)
 
 	// Write the response into the cache. Mask over any failures.
 	body, err := ioutil.ReadAll(r.Body)
@@ -199,11 +203,20 @@ func Fetch(req Request, cs Store) (Result, error) {
 		URL:        req.URL,
 		StatusCode: r.StatusCode,
 		Header:     r.Header,
-		Cookies:    r.Cookies(),
+		Cookies:    cookieJar.Cookies(r.Request.URL), // r.Cookies does not include everything
 		Body:       body,
 		MTime:      time.Now(),
 	}
-	klog.Infof("Fetched %s, status=%d, bytes=%d", req.URL, r.StatusCode, len(body))
+
+	klog.Infof("Fetched %s, status=%d, cookies=%s, bytes=%d", req.URL, r.StatusCode, r.Cookies(), len(body))
+	for k, v := range r.Header {
+		klog.Infof("Response header: %s=%q", k, v)
+	}
+	for _, c := range cr.Cookies {
+		klog.Infof("CookieJar: %s", c)
+	}
+
+	klog.V(2).Infof("body: %s", body)
 
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
@@ -219,7 +232,7 @@ func Fetch(req Request, cs Store) (Result, error) {
 		klog.V(1).Infof("Storing %s", req.Key())
 		err := cs.Write(req.Key(), bufBytes)
 		if err != nil {
-			klog.Errorf("unable to cache %s: %v", req.Key(), err)
+			klog.Errorf("unable to write %s: %v", req.Key(), err)
 			return cr, nil
 		}
 	}
@@ -233,9 +246,11 @@ func Initialize() (*diskv.Diskv, error) {
 	if err != nil {
 		return nil, fmt.Errorf("cache dir: %w", err)
 	}
+	cacheDir := filepath.Join(root, "campwiz")
+	klog.Infof("cache dir is %s", cacheDir)
 
 	return diskv.New(diskv.Options{
-		BasePath:     filepath.Join(root, "campwiz"),
+		BasePath:     cacheDir,
 		CacheSizeMax: 1024 * 1024 * 1024,
 	}), nil
 }

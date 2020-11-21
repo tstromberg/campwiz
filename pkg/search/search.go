@@ -53,10 +53,18 @@ func mergeDates(res []Result) []Result {
 
 // All performs a RA, returns parsed results.
 func All(q Query, cs cache.Store, xrefs map[string]metadata.XRef) ([]Result, error) {
+	klog.Infof("search query: %+v", q)
+
 	var results []Result
 	for _, d := range q.Dates {
 		// TODO: Parallel search between providers
-		dr, err := searchRC(q, d, cs)
+		dr, err := searchSCC(q, d, cs)
+		if err != nil {
+			klog.Errorf("searchSCC failed: %v", err)
+		}
+		results = append(results, dr...)
+
+		dr, err = searchRC(q, d, cs)
 		if err != nil {
 			klog.Errorf("searchRC failed: %v", err)
 		}

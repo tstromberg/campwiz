@@ -12,10 +12,8 @@ import (
 	"k8s.io/klog/v2"
 )
 
-var (
-	// raURL is the search URL to request reservation information from.
-	raURL = "https://" + "www." + "reserve" + "america.com"
-)
+// raURL is the search URL to request reservation information from.
+var raURL = "https://" + "www." + "reserve" + "america.com"
 
 // raPageRequest creates the request object for a search.
 func raPageRequest(c Query, arrival time.Time, num int) cache.Request {
