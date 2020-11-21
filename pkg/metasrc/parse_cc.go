@@ -1,4 +1,4 @@
-package parse
+package metasrc
 
 import (
 	"bufio"
@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/mangle"
-	"github.com/tstromberg/campwiz/pkg/metadata"
 	"k8s.io/klog/v2"
 )
 
@@ -59,12 +59,12 @@ func htmlText(s string) string {
 }
 
 // CC scans CC HTML, emits cross-references
-func CC(r io.Reader) ([]metadata.XRef, error) {
+func CC(r io.Reader) ([]campwiz.Ref, error) {
 	scanner := bufio.NewScanner(r)
 	seen := make(map[string]bool)
 
-	var entries []metadata.XRef
-	var xref metadata.XRef
+	var entries []campwiz.Ref
+	var xref campwiz.Ref
 
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -85,7 +85,7 @@ func CC(r io.Reader) ([]metadata.XRef, error) {
 				entries = append(entries, xref)
 			}
 
-			xref = metadata.XRef{Name: mangle.Title(htmlText(m[1]))}
+			xref = campwiz.Ref{Name: mangle.Title(htmlText(m[1]))}
 			continue
 		}
 

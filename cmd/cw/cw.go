@@ -10,11 +10,12 @@ import (
 	"time"
 
 	pflag "github.com/spf13/pflag"
+	"github.com/tstromberg/campwiz/pkg/backend"
 	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/mix"
 	"github.com/tstromberg/campwiz/pkg/relpath"
-	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
 
@@ -23,12 +24,14 @@ var milesFlag *int = pflag.Int("miles", 100, "distance to search within")
 var nightsFlag *int = pflag.Int("nights", 2, "number of nights to stay")
 var latFlag *float64 = pflag.Float64("lat", 37.4092297, "latitude to search from")
 var lonFlag *float64 = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
+var providersFlag *[]string = pflag.StringSlice("providers", []string{"ramerica", "rcalifornia", "scc", "smc"}, "site providers to include")
 
 const dateFormat = "2006-01-02"
 
 type templateContext struct {
-	Query        search.Query
-	MixedResults []mix.MixedResult
+	Query     campwiz.Query
+	Annotated []campwiz.AnnotatedResult
+	Errors    []error
 }
 
 func processFlags() error {
@@ -37,7 +40,7 @@ func processFlags() error {
 		return err
 	}
 
-	q := search.Query{
+	q := campwiz.Query{
 		Lon:         *lonFlag,
 		Lat:         *latFlag,
 		StayLength:  *nightsFlag,
@@ -57,13 +60,8 @@ func processFlags() error {
 		return fmt.Errorf("loadcc failed: %w", err)
 	}
 
-	rs, err := search.All(q, cs, xrefs)
-	if err != nil {
-		return fmt.Errorf("search: %w", err)
-	}
-
+	rs, errs := backend.Search(*providersFlag, q, cs)
 	ms := mix.Combine(rs, xrefs)
-	klog.V(1).Infof("RESULTS: %+v", ms)
 
 	bs, err := ioutil.ReadFile(relpath.Find("templates/ascii.tmpl"))
 	if err != nil {
@@ -72,8 +70,9 @@ func processFlags() error {
 
 	tmpl := template.Must(template.New("ascii").Parse(string(bs)))
 	c := templateContext{
-		Query:        q,
-		MixedResults: ms,
+		Query:     q,
+		Annotated: ms,
+		Errors:    errs,
 	}
 
 	err = tmpl.ExecuteTemplate(os.Stdout, "ascii", c)

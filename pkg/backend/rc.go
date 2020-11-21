@@ -1,13 +1,31 @@
-package search
+package backend
 
 import (
 	"encoding/json"
 	"fmt"
+	"net/http/cookiejar"
 	"time"
 
 	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"k8s.io/klog/v2"
 )
+
+// RCalifornia handles RCalifornia queries
+type RCalifornia struct {
+	store cache.Store
+	jar   *cookiejar.Jar
+}
+
+// Name is a human readable name
+func (b *RCalifornia) Name() string {
+	return "RCalifornia"
+}
+
+// List lists available sites
+func (b *RCalifornia) List(q campwiz.Query) ([]campwiz.Result, error) {
+	return nil, nil
+}
 
 // raURL is the search URL to request reservation information from.
 var rcURL = "https://" + "www." + "reserve" + "california.com"
@@ -50,7 +68,7 @@ type rcResponse struct {
 }
 
 // rcPageRequest creates the request object for a search.
-func rcPageRequest(q Query, arrival time.Time) (cache.Request, error) {
+func rcPageRequest(q campwiz.Query, arrival time.Time) (cache.Request, error) {
 	rcr := rcRequest{
 		Latitude:            fmt.Sprintf("%.4f", q.Lat),
 		Longitude:           fmt.Sprintf("%.4f", q.Lon),
@@ -83,7 +101,7 @@ func rcPageRequest(q Query, arrival time.Time) (cache.Request, error) {
 	return r, nil
 }
 
-func parseRCSearchPage(bs []byte, date time.Time, q Query) ([]Result, error) {
+func parseRCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
 	klog.Infof("parse rc page: %s", bs)
 
 	var rr rcResponse
@@ -94,25 +112,25 @@ func parseRCSearchPage(bs []byte, date time.Time, q Query) ([]Result, error) {
 
 	klog.V(2).Infof("unmarshalled data: %+v", rr)
 
-	var results []Result
+	var results []campwiz.Result
 	for _, r := range rr.NearbyPlaces {
 		if !r.Available {
 			continue
 		}
 
-		a := Availability{
+		a := campwiz.Availability{
 			SiteType: "campsite",
 			Date:     date,
 			URL:      rcURL + "/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
 		}
 
-		rr := Result{
+		rr := campwiz.Result{
 			ID:           fmt.Sprintf("/rc/%d", r.PlaceID),
 			Name:         r.Name,
 			Description:  r.Description,
-			Amenities:    r.AllHighlights,
+			Features:     r.AllHighlights,
 			Distance:     float64(r.MilesFromSelected),
-			Availability: []Availability{a},
+			Availability: []campwiz.Availability{a},
 			URL:          r.URL,
 		}
 
@@ -124,7 +142,7 @@ func parseRCSearchPage(bs []byte, date time.Time, q Query) ([]Result, error) {
 }
 
 // searchRC runs a search for a single date
-func searchRC(q Query, date time.Time, cs cache.Store) ([]Result, error) {
+func searchRC(q campwiz.Query, date time.Time, cs cache.Store) ([]campwiz.Result, error) {
 	req, err := rcPageRequest(q, date)
 	if err != nil {
 		return nil, fmt.Errorf("request: %w", err)

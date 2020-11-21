@@ -1,4 +1,4 @@
-package search
+package campwiz
 
 import (
 	"time"
@@ -24,5 +24,15 @@ type Result struct {
 	States []string
 
 	Availability []Availability
-	Amenities    string
+	Features     string
+}
+
+// AnnotatedResult is a result with associated cross-reference data
+type AnnotatedResult struct {
+	Result Result
+
+	Desc       string
+	Locale     string
+	Ammenities []string
+	Refs       []Ref
 }

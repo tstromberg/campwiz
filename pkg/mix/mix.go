@@ -3,26 +3,15 @@ package mix
 import (
 	"strings"
 
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/mangle"
-	"github.com/tstromberg/campwiz/pkg/metadata"
-	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
 
 var wordMax = 65
 
-// MixedResult is a result with associated cross-reference data
-type MixedResult struct {
-	Result search.Result
-
-	Desc       string
-	Locale     string
-	Ammenities []string
-	Refs       []metadata.XRef
-}
-
-func FindXRefs(r search.Result, xrefs map[string]metadata.XRef) []metadata.XRef {
-	var matching []metadata.XRef
+func FindRefs(r campwiz.Result, xrefs map[string]campwiz.Ref) []campwiz.Ref {
+	var matching []campwiz.Ref
 
 	for _, xref := range xrefs {
 		for _, sid := range xref.Related {
@@ -65,7 +54,7 @@ func FindXRefs(r search.Result, xrefs map[string]metadata.XRef) []metadata.XRef 
 }
 
 // fuzzyMatch finds the most likely matching cross-references for a site by name
-func fuzzyMatch(name string, xrefs map[string]metadata.XRef) []metadata.XRef {
+func fuzzyMatch(name string, xrefs map[string]campwiz.Ref) []campwiz.Ref {
 	if name == "" {
 		klog.Warningf("fuzzyMatch called with empty name")
 		return nil
@@ -75,12 +64,12 @@ func fuzzyMatch(name string, xrefs map[string]metadata.XRef) []metadata.XRef {
 	klog.V(1).Infof("fuzzyMatch(%s) ...", keyName)
 
 	// Three levels of matches.
-	var exact []metadata.XRef
-	var prefix []metadata.XRef
-	var contains []metadata.XRef
-	var allWords []metadata.XRef
-	var someWords []metadata.XRef
-	var singleWord []metadata.XRef
+	var exact []campwiz.Ref
+	var prefix []campwiz.Ref
+	var contains []campwiz.Ref
+	var allWords []campwiz.Ref
+	var someWords []campwiz.Ref
+	var singleWord []campwiz.Ref
 
 	keywords := strings.Split(keyName, " ")
 
@@ -156,14 +145,14 @@ func ellipsis(s string) string {
 }
 
 // Combine combines results with cross-references
-func Combine(results []search.Result, xrefs map[string]metadata.XRef) []MixedResult {
-	ms := []MixedResult{}
+func Combine(results []campwiz.Result, xrefs map[string]campwiz.Ref) []campwiz.AnnotatedResult {
+	ms := []campwiz.AnnotatedResult{}
 	for _, r := range results {
-		refs := FindXRefs(r, xrefs)
+		refs := FindRefs(r, xrefs)
 		for i := range refs {
 			refs[i].Desc = ellipsis(refs[i].Desc)
 		}
-		ms = append(ms, MixedResult{Result: r, Refs: refs, Desc: r.Description})
+		ms = append(ms, campwiz.AnnotatedResult{Result: r, Refs: refs, Desc: r.Description})
 	}
 
 	return ms

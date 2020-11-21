@@ -11,8 +11,9 @@ import (
 	"os"
 	"strings"
 
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/metadata"
-	"github.com/tstromberg/campwiz/pkg/parse"
+	"github.com/tstromberg/campwiz/pkg/metasrc"
 	"gopkg.in/yaml.v3"
 	"k8s.io/klog/v2"
 )
@@ -21,8 +22,8 @@ func main() {
 	klog.InitFlags(nil)
 	flag.Parse()
 
-	xd := metadata.XrefData{
-		Source: metadata.XrefSource{
+	xd := campwiz.RefData{
+		Source: campwiz.RefSource{
 			Name:       "CC",
 			RatingDesc: "Scenery",
 			RatingMax:  10,
@@ -35,7 +36,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		xrefs, err := parse.CC(f)
+		xrefs, err := metasrc.CC(f)
 		if err != nil {
 			log.Fatalf("parse error: %v", err)
 		}

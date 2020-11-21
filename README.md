@@ -1,17 +1,22 @@
 campwiz
 ==========
-Command-line interface to find campsites.
+Command-line interface that lists Bay Area campsites that are available on a particular date, using:
 
-Currently integrated with "Reserve America". 
+* Santa Clara County Parks
+* San Mateo County Parks
+* Reserve America
+* Reserve California
 
 Building:
 =========
 
 ```shell
-go get -u go get -u github.com/tstromberg/campwiz/pkg/... 
+go get -u github.com/tstromberg/campwiz/pkg/cw
 ```
 
 Usage:
 ======
 
 ```shell
+cw --dates 2021-02-05 --nights 1
+```

@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"strings"
 
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/relpath"
 	"k8s.io/klog/v2"
 
@@ -14,14 +15,14 @@ import (
 )
 
 // LoadCC returns CC cross-reference data
-func LoadCC() (map[string]XRef, error) {
+func LoadCC() (map[string]campwiz.Ref, error) {
 	p := relpath.Find("metadata/imported/cc.yaml")
 	f, err := ioutil.ReadFile(p)
 	if err != nil {
 		return nil, err
 	}
 
-	var ccd XrefData
+	var ccd campwiz.RefData
 	err = yaml.Unmarshal(f, &ccd)
 	if err != nil {
 		return nil, err
@@ -29,7 +30,7 @@ func LoadCC() (map[string]XRef, error) {
 
 	klog.V(1).Infof("Loaded %d entries from %s ...", len(ccd.Entries), p)
 
-	xs := map[string]XRef{}
+	xs := map[string]campwiz.Ref{}
 	for _, e := range ccd.Entries {
 		if strings.HasPrefix(e.Desc, CompressPrefix) {
 			e.Desc = decompress(e.Desc)

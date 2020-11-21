@@ -2,7 +2,7 @@ package mix
 
 import "testing"
 
-func TestFindXRefs(t *testing.T) {
+func TestFindRefs(t *testing.T) {
 	/*
 		var tests = []struct {
 			in  string

@@ -1,4 +1,4 @@
-package search
+package backend
 
 import (
 	"io/ioutil"
@@ -8,6 +8,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 )
 
 func TestParseSMCSearchPage(t *testing.T) {
@@ -19,7 +20,7 @@ func TestParseSMCSearchPage(t *testing.T) {
 	if err != nil {
 		t.Fatalf("time parse: %v", err)
 	}
-	q := Query{
+	q := campwiz.Query{
 		StayLength: 4,
 		Lon:        -122.07237049999999,
 		Lat:        37.4092297,
@@ -30,12 +31,12 @@ func TestParseSMCSearchPage(t *testing.T) {
 		t.Fatalf("error: %v", err)
 	}
 
-	want := []Result{
+	want := []campwiz.Result{
 		{
 			ID:       "parks.smcgov.org/coyote-point",
 			Name:     "FRANK RAINES REGIONAL PARK",
 			Distance: 62.91,
-			Availability: []Availability{
+			Availability: []campwiz.Availability{
 				{URL: "https://www.reserveamerica.com/camping/frank-raines-regional-park/r/facilityDetails.do?contractCode=STAN&parkId=1040013&arrivalDate=2021-02-12&lengthOfStay=4"},
 			},
 		},
@@ -43,7 +44,7 @@ func TestParseSMCSearchPage(t *testing.T) {
 			ID:       "PRCG_1060800",
 			Name:     "Clear Lake Campground",
 			Distance: 81.47,
-			Availability: []Availability{
+			Availability: []campwiz.Availability{
 				{URL: "https://www.reserveamerica.com/camping/frank-raines-regional-park/r/facilityDetails.do?contractCode=STAN&parkId=1040013&arrivalDate=2021-02-12&lengthOfStay=4"},
 			},
 		},
@@ -51,7 +52,7 @@ func TestParseSMCSearchPage(t *testing.T) {
 			ID:       "STAN_1040012",
 			Name:     "WOODWARD RESERVOIR REGIONAL PARK",
 			Distance: 85.81,
-			Availability: []Availability{
+			Availability: []campwiz.Availability{
 				{URL: "https://www.reserveamerica.com/camping/frank-raines-regional-park/r/facilityDetails.do?contractCode=STAN&parkId=1040013&arrivalDate=2021-02-12&lengthOfStay=4"},
 			},
 		},
@@ -59,7 +60,7 @@ func TestParseSMCSearchPage(t *testing.T) {
 			ID:       "STAN_1040011",
 			Name:     "MODESTO RESERVOIR REGIONAL PARK",
 			Distance: 98.04,
-			Availability: []Availability{
+			Availability: []campwiz.Availability{
 				{URL: "https://www.reserveamerica.com/camping/frank-raines-regional-park/r/facilityDetails.do?contractCode=STAN&parkId=1040013&arrivalDate=2021-02-12&lengthOfStay=4"},
 			},
 		},
@@ -67,7 +68,7 @@ func TestParseSMCSearchPage(t *testing.T) {
 			ID:       "PRCG_1073051",
 			Name:     "Yosemite Ridge Resort",
 			Distance: 130.33,
-			Availability: []Availability{
+			Availability: []campwiz.Availability{
 				{URL: "https://www.reserveamerica.com/camping/frank-raines-regional-park/r/facilityDetails.do?contractCode=STAN&parkId=1040013&arrivalDate=2021-02-12&lengthOfStay=4"},
 			},
 		},
@@ -83,7 +84,7 @@ func TestSMCSiteRequest(t *testing.T) {
 	if err != nil {
 		t.Fatalf("time parse: %v", err)
 	}
-	q := Query{
+	q := campwiz.Query{
 		StayLength: 4,
 		Lon:        -122.07237049999999,
 		Lat:        37.4092297,

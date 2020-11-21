@@ -1,14 +1,16 @@
-package search
+package backend
 
 import (
 	"encoding/xml"
 	"fmt"
 	"math/rand"
+	"net/http/cookiejar"
 	"net/url"
 	"strings"
 	"time"
 
 	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/geo"
 	"k8s.io/klog/v2"
 )
@@ -20,8 +22,24 @@ var (
 	smcCenterLon = -122.4130398
 )
 
+// SanMateoCounty handles Santa Mateo County Parks queries
+type SanMateoCounty struct {
+	store cache.Store
+	jar   *cookiejar.Jar
+}
+
+// Name is a human readable name
+func (b *SanMateoCounty) Name() string {
+	return "San Mateo County"
+}
+
+// List lists available sites
+func (b *SanMateoCounty) List(q campwiz.Query) ([]campwiz.Result, error) {
+	return nil, nil
+}
+
 // searchSMC searches San Mateo County Parks for a single date
-func searchSMC(q Query, date time.Time, cs cache.Store) ([]Result, error) {
+func searchSMC(q campwiz.Query, date time.Time, cs cache.Store) ([]campwiz.Result, error) {
 	dist := geo.MilesApart(q.Lat, q.Lon, smcCenterLat, smcCenterLon)
 	klog.Infof("searchSMC, distance to center from %f / %f is %.1f miles", q.Lat, q.Lon, dist)
 	if dist > float64(q.MaxDistance) {
@@ -30,7 +48,7 @@ func searchSMC(q Query, date time.Time, cs cache.Store) ([]Result, error) {
 	}
 
 	klog.Infof("searchSMC: %+v", q)
-	var results []Result
+	var results []campwiz.Result
 
 	for _, code := range smcSiteCodes {
 		result, cached, err := checkSMCSite(code, q, date, cs)
@@ -68,7 +86,7 @@ func smcStartPage(code string) cache.Request {
 	}
 }
 
-func smcSiteRequest(code string, q Query, date time.Time) cache.Request {
+func smcSiteRequest(code string, q campwiz.Query, date time.Time) cache.Request {
 	// https://secure.itinio.com/sanmateo/campsites/feed.html?startDate=2021-01-01&endDate=2021-01-02&code=0.9170750459654033
 
 	v := url.Values{
@@ -87,7 +105,7 @@ func smcSiteRequest(code string, q Query, date time.Time) cache.Request {
 	return r
 }
 
-func checkSMCSite(code string, q Query, date time.Time, cs cache.Store) (*Result, bool, error) {
+func checkSMCSite(code string, q campwiz.Query, date time.Time, cs cache.Store) (*campwiz.Result, bool, error) {
 	sr, err := cache.Fetch(smcStartPage(code), cs)
 	if err != nil {
 		return nil, false, fmt.Errorf("fetch start: %w", err)
@@ -123,7 +141,7 @@ func codeToTitle(s string) string {
 	return strings.Title(strings.Replace(s, "-", " ", -1))
 }
 
-func parseSMCSearchPage(code string, bs []byte, date time.Time, q Query) (*Result, error) {
+func parseSMCSearchPage(code string, bs []byte, date time.Time, q campwiz.Query) (*campwiz.Result, error) {
 	var sites Sites
 
 	err := xml.Unmarshal(bs, &sites)
@@ -137,17 +155,17 @@ func parseSMCSearchPage(code string, bs []byte, date time.Time, q Query) (*Resul
 		if s.Available != 1 {
 			continue
 		}
-		a := Availability{
+		a := campwiz.Availability{
 			SiteType: "campsite",
 			Date:     date,
 			URL:      smcSiteURL(code),
 		}
 
-		r := &Result{
+		r := &campwiz.Result{
 			ID:           "parks.smcgov.org/" + code,
 			Name:         codeToTitle(code),
 			Distance:     geo.MilesApart(q.Lat, q.Lon, smcCenterLat, smcCenterLon),
-			Availability: []Availability{a},
+			Availability: []campwiz.Availability{a},
 		}
 
 		klog.Infof("%s is available: %+v", r.Name, r)

@@ -25,11 +25,11 @@ var (
 	// user-agent to emulate
 	userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.48 Safari/537.36"
 
-	// cookie jar
-	cookieJar, _ = cookiejar.New(nil)
-
 	// nonWords
 	nonWordRe = regexp.MustCompile(`\W+`)
+
+	// How long to cache by default
+	DefaultMaxAge = 4 * time.Hour
 )
 
 // Request defines what can be passed in as a request
@@ -40,6 +40,8 @@ type Request struct {
 	URL string
 	// Referrer
 	Referrer string
+	// CookieJar
+	Jar *cookiejar.Jar
 	// Cookies
 	Cookies []*http.Cookie
 	// POST form values
@@ -83,8 +85,8 @@ func (r Request) Key() string {
 	return key
 }
 
-// Result defines which data may be cached for an HTTP response.
-type Result struct {
+// Response defines which data may be cached for an HTTP response.
+type Response struct {
 	// URL result is from
 	URL string
 	// Status Code
@@ -107,9 +109,10 @@ type Store interface {
 }
 
 // tryCache attempts a cache-only fetch.
-func tryCache(req Request, cs Store) (Result, error) {
+func tryCache(req Request, cs Store) (Response, error) {
 	klog.V(3).Infof("tryCache: %+v", req)
-	var res Result
+
+	var res Response
 	cachedBytes, err := cs.Read(req.Key())
 	if err != nil {
 		return res, err
@@ -132,8 +135,46 @@ func tryCache(req Request, cs Store) (Result, error) {
 	return res, nil
 }
 
+// applyDefault applies default request options
+func applyDefaults(req Request) (Request, error) {
+	// Apply defaults
+	if req.MaxAge == 0 {
+		req.MaxAge = DefaultMaxAge
+	}
+	if req.Method == "" {
+		req.Method = "GET"
+	}
+
+	if req.Method == "POST" && len(req.Form) > 0 {
+		req.Body = []byte(req.Form.Encode())
+	}
+
+	if req.Jar == nil {
+		jar, err := cookiejar.New(nil)
+		req.Jar = jar
+		if err != nil {
+			return req, fmt.Errorf("cookiejar: %v", err)
+		}
+	}
+
+	if len(req.Cookies) == 0 {
+		u, err := url.Parse(req.URL)
+		if err != nil {
+			return req, fmt.Errorf("url parse: %w", err)
+		}
+		req.Cookies = req.Jar.Cookies(u)
+	}
+
+	return req, nil
+}
+
 // Fetch wraps http.Get/http.Post behind a persistent ca
-func Fetch(req Request, cs Store) (Result, error) {
+func Fetch(req Request, cs Store) (Response, error) {
+	req, err := applyDefaults(req)
+	if err != nil {
+		return Response{}, fmt.Errorf("apply defaults: %w", err)
+	}
+
 	url := req.URL
 	if req.Method == "GET" && len(req.Form) > 0 {
 		url = url + "?" + req.Form.Encode()
@@ -149,12 +190,9 @@ func Fetch(req Request, cs Store) (Result, error) {
 		return res, nil
 	}
 
-	client := &http.Client{Jar: cookieJar}
+	client := &http.Client{Jar: req.Jar}
 
 	getBody := bytes.NewBuffer(req.Body)
-	if req.Method == "POST" && len(req.Form) > 0 {
-		getBody = bytes.NewBufferString(req.Form.Encode())
-	}
 
 	hr, err := http.NewRequest(req.Method, url, getBody)
 	if err != nil {
@@ -197,13 +235,13 @@ func Fetch(req Request, cs Store) (Result, error) {
 	// Write the response into the cache. Mask over any failures.
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		return Result{}, err
+		return Response{}, err
 	}
-	cr := Result{
+	cr := Response{
 		URL:        req.URL,
 		StatusCode: r.StatusCode,
 		Header:     r.Header,
-		Cookies:    cookieJar.Cookies(r.Request.URL), // r.Cookies does not include everything
+		Cookies:    req.Jar.Cookies(r.Request.URL),
 		Body:       body,
 		MTime:      time.Now(),
 	}
@@ -248,6 +286,7 @@ func Initialize() (*diskv.Diskv, error) {
 	}
 	cacheDir := filepath.Join(root, "campwiz")
 	klog.Infof("cache dir is %s", cacheDir)
+	klog.Infof("default expiry is %s", DefaultMaxAge)
 
 	return diskv.New(diskv.Options{
 		BasePath:     cacheDir,

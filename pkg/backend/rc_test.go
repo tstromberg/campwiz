@@ -1,4 +1,4 @@
-package search
+package backend
 
 import (
 	"testing"
@@ -6,6 +6,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 )
 
 func TestRCPageRequest(t *testing.T) {
@@ -13,7 +14,7 @@ func TestRCPageRequest(t *testing.T) {
 	if err != nil {
 		t.Fatalf("time parse: %v", err)
 	}
-	q := Query{
+	q := campwiz.Query{
 		StayLength: 4,
 		Lon:        -122.07237049999999,
 		Lat:        37.4092297,

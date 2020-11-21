@@ -1,4 +1,4 @@
-package search
+package campwiz
 
 import "time"
 

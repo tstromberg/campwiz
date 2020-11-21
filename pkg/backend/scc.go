@@ -1,8 +1,9 @@
-package search
+package backend
 
 import (
 	"bytes"
 	"fmt"
+	"net/http/cookiejar"
 	"net/url"
 	"strconv"
 	"strings"
@@ -10,6 +11,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/tstromberg/campwiz/pkg/cache"
+	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/geo"
 	"k8s.io/klog/v2"
 )
@@ -21,8 +23,24 @@ var (
 	sccCenterLon = -122.4130398
 )
 
+// SantaClaraCounty handles Santa Clara County Parks queries
+type SantaClaraCounty struct {
+	store cache.Store
+	jar   *cookiejar.Jar
+}
+
+// Name is a human readable name
+func (b *SantaClaraCounty) Name() string {
+	return "Santa Clara County"
+}
+
+// List lists available sites
+func (b *SantaClaraCounty) List(q campwiz.Query) ([]campwiz.Result, error) {
+	return nil, nil
+}
+
 // searchSCC searches San Mateo County Parks for a single date
-func searchSCC(q Query, date time.Time, cs cache.Store) ([]Result, error) {
+func searchSCC(q campwiz.Query, date time.Time, cs cache.Store) ([]campwiz.Result, error) {
 	dist := geo.MilesApart(q.Lat, q.Lon, sccCenterLat, sccCenterLon)
 	klog.Infof("searchSCC, distance to center from %f / %f is %.1f miles", q.Lat, q.Lon, dist)
 	if dist > float64(q.MaxDistance) {
@@ -59,7 +77,7 @@ func sccStartPage() cache.Request {
 	}
 }
 
-func sccSiteRequest(q Query, date time.Time) cache.Request {
+func sccSiteRequest(q campwiz.Query, date time.Time) cache.Request {
 	firstBook := time.Now().Add(24 * time.Hour)
 	lastBook := time.Now().Add(6 * 30 * 24 * time.Hour)
 	v := url.Values{
@@ -77,7 +95,7 @@ func sccSiteRequest(q Query, date time.Time) cache.Request {
 		"center_idno":               {"0"},
 		"facility_use_type_idno":    {"0"},
 	}
-	klog.Infof("query: %+v", q)
+	klog.Infof("campwiz.Query: %+v", q)
 	klog.Infof("values: %+v", v)
 
 	r := cache.Request{
@@ -90,8 +108,8 @@ func sccSiteRequest(q Query, date time.Time) cache.Request {
 	return r
 }
 
-func parseSCCSearchPage(bs []byte, date time.Time, q Query) ([]Result, error) {
-	var results []Result
+func parseSCCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
+	var results []campwiz.Result
 
 	// Load the HTML document
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(bs))
@@ -126,17 +144,17 @@ func parseSCCSearchPage(bs []byte, date time.Time, q Query) ([]Result, error) {
 
 		// TODO: Support multiple types + populate count
 		seen[name+stype] = true
-		a := Availability{
+		a := campwiz.Availability{
 			SiteType: stype,
 			Date:     date,
 			URL:      sccRoot + s.Find(".FilterElement a").AttrOr("href", ""),
 		}
 
-		r := Result{
+		r := campwiz.Result{
 			ID:           metaSccRoot + strings.ToLower(strings.Replace(name, " ", "_", -1)),
 			Name:         name,
 			Distance:     geo.MilesApart(q.Lat, q.Lon, sccCenterLat, sccCenterLon),
-			Availability: []Availability{a},
+			Availability: []campwiz.Availability{a},
 		}
 
 		results = append(results, r)
