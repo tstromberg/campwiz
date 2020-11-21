@@ -13,12 +13,16 @@ import (
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/mix"
+	"github.com/tstromberg/campwiz/pkg/relpath"
 	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
 
-var datesFlag *[]string = pflag.StringSlice("dates", []string{}, "dates to search for")
+var datesFlag *[]string = pflag.StringSlice("dates", []string{"2021-03-05"}, "dates to search for")
 var milesFlag *int = pflag.Int("miles", 100, "distance to search within")
+var nightsFlag *int = pflag.Int("nights", 2, "number of nights to stay")
+var latFlag *float64 = pflag.Float64("lat", 37.4092297, "latitude to search from")
+var lonFlag *float64 = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
 
 const dateFormat = "2006-01-02"
 
@@ -34,9 +38,9 @@ func processFlags() error {
 	}
 
 	q := search.Query{
-		Lon:         -122.07237049999999,
-		Lat:         37.4092297,
-		StayLength:  4,
+		Lon:         *lonFlag,
+		Lat:         *latFlag,
+		StayLength:  *nightsFlag,
 		MaxDistance: *milesFlag,
 	}
 
@@ -61,7 +65,7 @@ func processFlags() error {
 	ms := mix.Combine(rs, xrefs)
 	klog.V(1).Infof("RESULTS: %+v", ms)
 
-	bs, err := ioutil.ReadFile("templates/ascii.tmpl")
+	bs, err := ioutil.ReadFile(relpath.Find("templates/ascii.tmpl"))
 	if err != nil {
 		return fmt.Errorf("readfile: %w", err)
 	}
