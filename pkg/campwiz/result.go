@@ -24,7 +24,7 @@ type Result struct {
 	States []string
 
 	Availability []Availability
-	Features     string
+	Features     []string
 }
 
 // AnnotatedResult is a result with associated cross-reference data

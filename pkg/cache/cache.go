@@ -73,14 +73,14 @@ func (r Request) Key() string {
 	}
 
 	key := nonWordRe.ReplaceAllString(buf.String(), "_")
-	if len(key) > 64 {
+	if len(key) > 78 {
 		h := md5.New()
 		_, err := io.WriteString(h, key)
 		if err != nil {
 			klog.Errorf("key error: %w", err)
-			return fmt.Sprintf("%64.64s", key)
+			return fmt.Sprintf("%78.78s", key)
 		}
-		return fmt.Sprintf("%32.32s%x", key, h.Sum(nil))
+		return fmt.Sprintf("%48.48s%x", key, h.Sum(nil))
 	}
 	return key
 }
@@ -131,7 +131,7 @@ func tryCache(req Request, cs Store) (Response, error) {
 	if age > req.MaxAge {
 		return res, fmt.Errorf("URL %s cache was too old", req.URL)
 	}
-	klog.V(2).Infof("Cached item: %s (cookies=%+v)", res.URL, res.Cookies)
+	klog.V(2).Infof("Found %s at %s (cookies=%+v)", res.URL, req.Key(), res.Cookies)
 	return res, nil
 }
 
@@ -150,6 +150,7 @@ func applyDefaults(req Request) (Request, error) {
 	}
 
 	if req.Jar == nil {
+		klog.Infof("request has no cookie jar, creating one!")
 		jar, err := cookiejar.New(nil)
 		req.Jar = jar
 		if err != nil {
@@ -163,6 +164,7 @@ func applyDefaults(req Request) (Request, error) {
 			return req, fmt.Errorf("url parse: %w", err)
 		}
 		req.Cookies = req.Jar.Cookies(u)
+		klog.Infof("found %d cookies in the jar for %s: %+v", len(req.Cookies), req.URL, req.Cookies)
 	}
 
 	return req, nil
@@ -170,6 +172,7 @@ func applyDefaults(req Request) (Request, error) {
 
 // Fetch wraps http.Get/http.Post behind a persistent ca
 func Fetch(req Request, cs Store) (Response, error) {
+	klog.V(2).Infof("incoming fetch: %+v", req)
 	req, err := applyDefaults(req)
 	if err != nil {
 		return Response{}, fmt.Errorf("apply defaults: %w", err)
@@ -193,6 +196,10 @@ func Fetch(req Request, cs Store) (Response, error) {
 		if err != nil {
 			return Response{}, err
 		}
+
+		klog.Infof("adding %d cookies to jar for %s: %+v", len(res.Cookies), u, res.Cookies)
+		// Set the cookie for the entire site
+		u.Path = "/"
 		req.Jar.SetCookies(u, res.Cookies)
 		return res, nil
 	}
@@ -267,8 +274,8 @@ func Fetch(req Request, cs Store) (Response, error) {
 	if err != nil {
 		return cr, fmt.Errorf("encoding %+v: %v", cr, err)
 	}
+
 	bufBytes, err := ioutil.ReadAll(&buf)
-	klog.V(4).Infof("Buf bytes: %s", bufBytes)
 	if err != nil {
 		klog.V(1).Infof("Failed to read back encoded response: %s", err)
 	} else {
@@ -279,6 +286,7 @@ func Fetch(req Request, cs Store) (Response, error) {
 			return cr, nil
 		}
 	}
+
 	cr.Cached = false
 	return cr, nil
 }

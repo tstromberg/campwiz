@@ -12,7 +12,7 @@ import (
 func TestRAmericaParse(t *testing.T) {
 	ra := &RAmerica{}
 
-	bs, err := ioutil.ReadFile("testmetadata/ra_search.json")
+	bs, err := ioutil.ReadFile("testdata/ra_search.json")
 	if err != nil {
 		t.Fatalf("readfile: %v", err)
 	}
@@ -21,9 +21,10 @@ func TestRAmericaParse(t *testing.T) {
 		t.Fatalf("time parse: %v", err)
 	}
 	q := campwiz.Query{
-		StayLength: 4,
-		Lon:        -122.07237049999999,
-		Lat:        37.4092297,
+		StayLength:  4,
+		Lon:         -122.07237049999999,
+		Lat:         37.4092297,
+		MaxDistance: 100,
 	}
 
 	got, gotPage, gotTotal, err := ra.parseResp(bs, date, q)
@@ -68,14 +69,6 @@ func TestRAmericaParse(t *testing.T) {
 			ID:       "STAN_1040011",
 			Name:     "MODESTO RESERVOIR REGIONAL PARK",
 			Distance: 98.04,
-			Availability: []campwiz.Availability{
-				{URL: "https://www.reserveamerica.com/camping/frank-raines-regional-park/r/facilityDetails.do?contractCode=STAN&parkId=1040013&arrivalDate=2021-02-12&lengthOfStay=4"},
-			},
-		},
-		{
-			ID:       "PRCG_1073051",
-			Name:     "Yosemite Ridge Resort",
-			Distance: 130.33,
 			Availability: []campwiz.Availability{
 				{URL: "https://www.reserveamerica.com/camping/frank-raines-regional-park/r/facilityDetails.do?contractCode=STAN&parkId=1040013&arrivalDate=2021-02-12&lengthOfStay=4"},
 			},

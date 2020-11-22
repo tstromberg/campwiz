@@ -76,6 +76,37 @@ func (b *RAmerica) startPage() cache.Request {
 	return cache.Request{URL: b.url("/explore/search-results"), Referrer: b.url("/"), Jar: b.jar}
 }
 
+type raControl struct {
+	CurrentPage int
+	PageSize    int
+}
+
+type raRecord struct {
+	NamingID  string
+	Name      string
+	Proximity float64
+	Details   raDetails
+}
+
+type raAvailability struct {
+	Available      bool
+	ReservableType string
+}
+
+type raDetails struct {
+	BaseURL      string
+	Availability raAvailability
+}
+
+type raResponse struct {
+	TotalRecords int
+	TotalPages   int
+	StartIndex   int
+	EndIndex     int
+	Control      raControl
+	Records      []raRecord
+}
+
 // parseResp parses the search response
 func (b *RAmerica) parseResp(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, int, int, error) {
 	klog.V(1).Infof("parsing %d bytes", len(bs))
@@ -88,7 +119,7 @@ func (b *RAmerica) parseResp(bs []byte, date time.Time, q campwiz.Query) ([]camp
 
 	var results []campwiz.Result
 	for _, r := range jr.Records {
-		if int(r.Proximity) > q.MaxDistance {
+		if q.MaxDistance > 0 && int(r.Proximity) > q.MaxDistance {
 			klog.V(1).Infof("Skipping %s - too far (%.0f miles)", r.Name, r.Proximity)
 			continue
 		}
@@ -96,6 +127,7 @@ func (b *RAmerica) parseResp(bs []byte, date time.Time, q campwiz.Query) ([]camp
 		if !r.Details.Availability.Available {
 			continue
 		}
+
 		a := campwiz.Availability{
 			SiteType: "campsite",
 			Date:     date,

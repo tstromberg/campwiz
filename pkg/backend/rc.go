@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http/cookiejar"
+	"strings"
 	"time"
 
 	"github.com/tstromberg/campwiz/pkg/cache"
@@ -24,11 +25,56 @@ func (b *RCalifornia) Name() string {
 
 // List lists available sites
 func (b *RCalifornia) List(q campwiz.Query) ([]campwiz.Result, error) {
-	return nil, nil
+	var res []campwiz.Result
+	for _, d := range q.Dates {
+		rs, err := b.avail(q, d)
+		if err != nil {
+			return res, fmt.Errorf("onDate: %w", err)
+		}
+		res = append(res, rs...)
+	}
+
+	return mergeDates(res), nil
 }
 
-// raURL is the search URL to request reservation information from.
-var rcURL = "https://" + "www." + "reserve" + "california.com"
+// url is the root URL to use for requests
+func (b *RCalifornia) url(s string) string {
+	return "https://" + "www." + "reserve" + "california.com" + s
+}
+
+// req creates the request object for a search.
+func (b *RCalifornia) req(q campwiz.Query, arrival time.Time) (cache.Request, error) {
+	rcr := rcRequest{
+		Latitude:            fmt.Sprintf("%.4f", q.Lat),
+		Longitude:           fmt.Sprintf("%.4f", q.Lon),
+		StartDate:           arrival.Format("01-02-2006"),
+		CountNearby:         true,
+		CustomerID:          "0",
+		Nights:              fmt.Sprintf("%d", q.StayLength),
+		PlaceID:             0,
+		RefreshFavourites:   true,
+		Sort:                "Distance",
+		NearbyLimit:         q.MaxDistance,
+		NearbyOnlyAvailable: true,
+		NearbyCountLimit:    100,
+	}
+
+	body, err := json.Marshal(&rcr)
+	if err != nil {
+		return cache.Request{}, fmt.Errorf("marshal: %w", err)
+	}
+
+	r := cache.Request{
+		Method:      "POST",
+		URL:         "https://calirdr.usedirect.com/rdr/rdr/search/place",
+		Referrer:    b.url("/"),
+		MaxAge:      searchPageExpiry,
+		ContentType: "application/json",
+		Body:        body,
+	}
+
+	return r, nil
+}
 
 type rcRequest struct {
 	PlaceID             int    `json:"PlaceId"`
@@ -67,41 +113,7 @@ type rcResponse struct {
 	NearbyPlaces []rcPlace
 }
 
-// rcPageRequest creates the request object for a search.
-func rcPageRequest(q campwiz.Query, arrival time.Time) (cache.Request, error) {
-	rcr := rcRequest{
-		Latitude:            fmt.Sprintf("%.4f", q.Lat),
-		Longitude:           fmt.Sprintf("%.4f", q.Lon),
-		StartDate:           arrival.Format("01-02-2006"),
-		CountNearby:         true,
-		CustomerID:          "0",
-		Nights:              fmt.Sprintf("%d", q.StayLength),
-		PlaceID:             0,
-		RefreshFavourites:   true,
-		Sort:                "Distance",
-		NearbyLimit:         q.MaxDistance,
-		NearbyOnlyAvailable: true,
-		NearbyCountLimit:    100,
-	}
-
-	body, err := json.Marshal(&rcr)
-	if err != nil {
-		return cache.Request{}, fmt.Errorf("marshal: %w", err)
-	}
-
-	r := cache.Request{
-		Method:      "POST",
-		URL:         "https://calirdr.usedirect.com/rdr/rdr/search/place",
-		Referrer:    rcURL,
-		MaxAge:      searchPageExpiry,
-		ContentType: "application/json",
-		Body:        body,
-	}
-
-	return r, nil
-}
-
-func parseRCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
+func (b *RCalifornia) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
 	klog.Infof("parse rc page: %s", bs)
 
 	var rr rcResponse
@@ -121,14 +133,14 @@ func parseRCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Re
 		a := campwiz.Availability{
 			SiteType: "campsite",
 			Date:     date,
-			URL:      rcURL + "/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
+			URL:      b.url("/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx"),
 		}
 
 		rr := campwiz.Result{
 			ID:           fmt.Sprintf("/rc/%d", r.PlaceID),
 			Name:         r.Name,
 			Description:  r.Description,
-			Features:     r.AllHighlights,
+			Features:     strings.Split(strings.TrimSuffix(r.AllHighlights, "<br>"), "<br>"),
 			Distance:     float64(r.MilesFromSelected),
 			Availability: []campwiz.Availability{a},
 			URL:          r.URL,
@@ -141,19 +153,19 @@ func parseRCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Re
 	return results, nil
 }
 
-// searchRC runs a search for a single date
-func searchRC(q campwiz.Query, date time.Time, cs cache.Store) ([]campwiz.Result, error) {
-	req, err := rcPageRequest(q, date)
+// avail returns sites available on a single date
+func (b *RCalifornia) avail(q campwiz.Query, d time.Time) ([]campwiz.Result, error) {
+	req, err := b.req(q, d)
 	if err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
 
-	resp, err := cache.Fetch(req, cs)
+	resp, err := cache.Fetch(req, b.store)
 	if err != nil {
 		return nil, fmt.Errorf("fetch: %w", err)
 	}
 
-	results, err := parseRCSearchPage(resp.Body, date, q)
+	results, err := b.parse(resp.Body, d, q)
 	if err != nil {
 		return nil, fmt.Errorf("parse: %w", err)
 	}
