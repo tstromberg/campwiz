@@ -26,6 +26,7 @@ func (b *RAmerica) Name() string {
 
 // List lists available sites
 func (b *RAmerica) List(q campwiz.Query) ([]campwiz.Result, error) {
+	klog.Infof("RAmerica.List: %+v", q)
 	_, err := cache.Fetch(b.startPage(), b.store)
 	if err != nil {
 		return nil, fmt.Errorf("fetch start: %w", err)
@@ -77,11 +78,13 @@ func (b *RAmerica) startPage() cache.Request {
 
 // parseResp parses the search response
 func (b *RAmerica) parseResp(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, int, int, error) {
+	klog.V(1).Infof("parsing %d bytes", len(bs))
 	var jr raResponse
 	err := json.Unmarshal(bs, &jr)
 	if err != nil {
 		return nil, 0, 0, fmt.Errorf("unmarshal: %w", err)
 	}
+	klog.V(2).Infof("unmarshalled: %+v", jr)
 
 	var results []campwiz.Result
 	for _, r := range jr.Records {

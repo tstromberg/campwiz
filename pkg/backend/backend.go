@@ -77,6 +77,7 @@ func Search(providers []string, q campwiz.Query, cs cache.Store) ([]campwiz.Resu
 		prs, err := p.List(q)
 		if err != nil {
 			errs = append(errs, fmt.Errorf("%s list: %v", pname, err))
+			klog.Errorf("%s list failed: %v", err)
 			continue
 		}
 

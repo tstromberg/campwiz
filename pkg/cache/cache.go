@@ -175,26 +175,30 @@ func Fetch(req Request, cs Store) (Response, error) {
 		return Response{}, fmt.Errorf("apply defaults: %w", err)
 	}
 
-	url := req.URL
+	encURL := req.URL
 	if req.Method == "GET" && len(req.Form) > 0 {
-		url = url + "?" + req.Form.Encode()
+		encURL = encURL + "?" + req.Form.Encode()
 	}
 
-	klog.V(1).Infof("fetching %s: %+v", url, req)
+	klog.V(1).Infof("fetching %s: %+v", encURL, req)
 	res, err := tryCache(req, cs)
 	if err != nil {
 		klog.V(2).Infof("MISS[%s]: %+v, tryCache returned: %v", req.Key(), req, err)
 	} else {
 		klog.V(2).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
+		klog.V(3).Infof("cached cookies: %v", res.Cookies)
+		klog.V(4).Infof("cached body: %s", res.Body)
 		res.Cached = true
+		u, err := url.Parse(res.URL)
+		if err != nil {
+			return Response{}, err
+		}
+		req.Jar.SetCookies(u, res.Cookies)
 		return res, nil
 	}
 
-	client := &http.Client{Jar: req.Jar}
-
 	getBody := bytes.NewBuffer(req.Body)
-
-	hr, err := http.NewRequest(req.Method, url, getBody)
+	hr, err := http.NewRequest(req.Method, encURL, getBody)
 	if err != nil {
 		return res, err
 	}
@@ -226,6 +230,7 @@ func Fetch(req Request, cs Store) (Response, error) {
 		klog.Infof("debug: %s", cmd)
 	}
 
+	client := &http.Client{Jar: req.Jar}
 	r, err := client.Do(hr)
 	if err != nil {
 		return res, err
