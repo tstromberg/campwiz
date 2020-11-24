@@ -9,6 +9,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/mangle"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/metasrc"
@@ -27,7 +28,15 @@ func main() {
 
 	records := []metasrc.RosettaEntry{}
 
-	for id, xref := range xrefs {
+	// sort ids for predictable runtime behavior
+	ids := []string{}
+	for id := range xrefs {
+		ids = append(ids, id)
+	}
+	sort.Strings(ids)
+
+	for _, id := range ids {
+		xref := xrefs[id]
 		if !strings.HasPrefix(id, "/cc") {
 			continue
 		}
@@ -35,13 +44,31 @@ func main() {
 		name := html.UnescapeString(xref.Name)
 		locale := mangle.ShortLocale(html.UnescapeString(xref.Locale))
 
+		refs := map[string]string{"CC": fmt.Sprintf("%s (%s)", name, locale)}
+
 		records = append(records, metasrc.RosettaEntry{
-			ID:              nid,
-			ReservationName: name,
-			Locale:          mangle.Locale(locale),
-			Stienstra:       fmt.Sprintf("%s (%s)", name, locale),
+			ID:          nid,
+			ReserveName: name,
+			Locale:      mangle.Locale(locale),
+			Refs:        refs,
 		})
 	}
+
+	cs, err := cache.Initialize()
+	if err != nil {
+		klog.Fatalf("cache init: %v", err)
+	}
+
+	for i, r := range records {
+		ur, err := metasrc.RosettaSearch(r, cs)
+		if err != nil {
+			klog.Errorf("search error: %v", err)
+			continue
+		}
+		records[i] = ur
+
+	}
+
 	sort.Slice(records, func(i, j int) bool { return records[i].ID < records[j].ID })
 
 	content, err := yaml.Marshal(&records)

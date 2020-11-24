@@ -47,7 +47,8 @@ type Request struct {
 	// POST form values
 	Form url.Values
 	// Maximum age of content.
-	MaxAge time.Duration
+	MaxAge  time.Duration
+	Headers map[string]string
 	// POST info
 	ContentType string
 	Body        []byte
@@ -73,6 +74,7 @@ func (r Request) Key() string {
 	}
 
 	key := nonWordRe.ReplaceAllString(buf.String(), "_")
+	klog.Infof("raw key: %s", key)
 	if len(key) > 78 {
 		h := md5.New()
 		_, err := io.WriteString(h, key)
@@ -215,6 +217,10 @@ func Fetch(req Request, cs Store) (Response, error) {
 	}
 
 	hr.Header.Add("User-Agent", userAgent)
+
+	for k, v := range req.Headers {
+		hr.Header.Add(k, v)
+	}
 
 	for _, c := range req.Cookies {
 		hr.AddCookie(c)
