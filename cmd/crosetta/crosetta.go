@@ -12,7 +12,7 @@ import (
 	"github.com/tstromberg/campwiz/pkg/mangle"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/metasrc"
-	"gopkg.in/yaml.v1"
+	"gopkg.in/yaml.v3"
 	"k8s.io/klog/v2"
 )
 

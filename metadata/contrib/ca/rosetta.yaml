@@ -298,10 +298,10 @@
   reservation_name: Hanna Flat
   locale: Big Bear Lake / San Bernardino
   stienstra: Hanna Flat (Big Bear Lake / San Bernardino)
-- id: "/ca/big/holloway\u2019s_marina"
-  reservation_name: "Holloway\u2019s Marina And RV Park"
+- id: /ca/big/holloway’s_marina
+  reservation_name: Holloway’s Marina And RV Park
   locale: Big Bear Lake
-  stienstra: "Holloway\u2019s Marina And RV Park (Big Bear Lake)"
+  stienstra: Holloway’s Marina And RV Park (Big Bear Lake)
 - id: /ca/big/limekiln
   reservation_name: Limekiln State Park
   locale: Big Sur
@@ -354,14 +354,14 @@
   reservation_name: Big Trees
   locale: Bishop Creek / Inyo
   stienstra: Big Trees (Bishop Creek / Inyo)
-- id: "/ca/bishop/brown\u2019s_millpond"
-  reservation_name: "Brown\u2019s Millpond Campground"
+- id: /ca/bishop/brown’s_millpond
+  reservation_name: Brown’s Millpond Campground
   locale: Bishop
-  stienstra: "Brown\u2019s Millpond Campground (Bishop)"
-- id: "/ca/bishop/brown\u2019s_town"
-  reservation_name: "Brown\u2019s Town"
+  stienstra: Brown’s Millpond Campground (Bishop)
+- id: /ca/bishop/brown’s_town
+  reservation_name: Brown’s Town
   locale: Bishop
-  stienstra: "Brown\u2019s Town (Bishop)"
+  stienstra: Brown’s Town (Bishop)
 - id: /ca/bishop/creekside
   reservation_name: Creekside RV Park
   locale: Fork Bishop Creek
@@ -457,8 +457,7 @@
 - id: /ca/bow/bow_willow_at_mountain_palm_springs
   reservation_name: Bow Willow at Mountain Palm Springs
   locale: Bow Willow Canyon / Anza-Borrego Desert
-  stienstra: Bow Willow at Mountain Palm Springs (Bow Willow Canyon / Anza-Borrego
-    Desert)
+  stienstra: Bow Willow at Mountain Palm Springs (Bow Willow Canyon / Anza-Borrego Desert)
 - id: /ca/bowman/faucherie
   reservation_name: Faucherie Group Camp
   locale: Bowman Lake / Tahoe
@@ -707,10 +706,10 @@
   reservation_name: White Oaks
   locale: Chews Ridge / Los Padres
   stienstra: White Oaks (Chews Ridge / Los Padres)
-- id: "/ca/children\u2019s/shady_cove"
+- id: /ca/children’s/shady_cove
   reservation_name: Shady Cove Group And Walk-In
-  locale: "Children\u2019s / San Bernardino"
-  stienstra: "Shady Cove Group And Walk-In (Children\u2019s / San Bernardino)"
+  locale: Children’s / San Bernardino
+  stienstra: Shady Cove Group And Walk-In (Children’s / San Bernardino)
 - id: /ca/chiquito/lower_chiquito
   reservation_name: Lower Chiquito
   locale: Chiquito Creek / Sierra
@@ -755,10 +754,10 @@
   reservation_name: El Prado Group Camp
   locale: Cleveland
   stienstra: El Prado Group Camp (Cleveland)
-- id: "/ca/cleveland/o\u2019neill_equestrian"
-  reservation_name: "O\u2019neill Regional Park And Equestrian Camp"
+- id: /ca/cleveland/o’neill_equestrian
+  reservation_name: O’neill Regional Park And Equestrian Camp
   locale: Cleveland
-  stienstra: "O\u2019neill Regional Park And Equestrian Camp (Cleveland)"
+  stienstra: O’neill Regional Park And Equestrian Camp (Cleveland)
 - id: /ca/coffee/big_flat
   reservation_name: Big Flat
   locale: Coffee Creek / Klamath
@@ -963,10 +962,10 @@
   reservation_name: Wildrose
   locale: Death Valley
   stienstra: Wildrose (Death Valley)
-- id: "/ca/deep/fisherman\u2019s_hike-in"
-  reservation_name: "Fisherman\u2019s Hike-In"
+- id: /ca/deep/fisherman’s_hike-in
+  reservation_name: Fisherman’s Hike-In
   locale: Deep Creek / San Bernardino
-  stienstra: "Fisherman\u2019s Hike-In (Deep Creek / San Bernardino)"
+  stienstra: Fisherman’s Hike-In (Deep Creek / San Bernardino)
 - id: /ca/deer/alder_creek
   reservation_name: Alder Creek
   locale: Deer Creek / Lassen
@@ -1011,10 +1010,10 @@
   reservation_name: Holey Meadow Group Camp
   locale: Double Bunk Creek / Giant Sequoia Monument
   stienstra: Holey Meadow Group Camp (Double Bunk Creek / Giant Sequoia Monument)
-- id: "/ca/duncan/howard\u2019s_gulch"
-  reservation_name: "Howard\u2019s Gulch"
+- id: /ca/duncan/howard’s_gulch
+  reservation_name: Howard’s Gulch
   locale: Duncan Reservoir / Modoc
-  stienstra: "Howard\u2019s Gulch (Duncan Reservoir / Modoc)"
+  stienstra: Howard’s Gulch (Duncan Reservoir / Modoc)
 - id: /ca/dunsmuir/best_in_west
   reservation_name: Best in the West Resort
   locale: Dunsmuir
@@ -1147,10 +1146,10 @@
   reservation_name: Canyon Creek
   locale: Faucherie Lake / Tahoe
   stienstra: Canyon Creek (Faucherie Lake / Tahoe)
-- id: "/ca/feather/clio\u2019s_rivers_edge"
-  reservation_name: "Clio\u2019s Rivers Edge RV Park"
+- id: /ca/feather/clio’s_rivers_edge
+  reservation_name: Clio’s Rivers Edge RV Park
   locale: Feather River
-  stienstra: "Clio\u2019s Rivers Edge RV Park (Feather River)"
+  stienstra: Clio’s Rivers Edge RV Park (Feather River)
 - id: /ca/feather/feather_falls_trailhead
   reservation_name: Feather Falls Trailhead Campground
   locale: Feather Falls Scenic / Plumas
@@ -1199,10 +1198,10 @@
   reservation_name: Jackass Meadow
   locale: Florence Lake / Sierra
   stienstra: Jackass Meadow (Florence Lake / Sierra)
-- id: "/ca/folsom/beal\u2019s_point"
-  reservation_name: "Beal\u2019s Point"
+- id: /ca/folsom/beal’s_point
+  reservation_name: Beal’s Point
   locale: Folsom Lake
-  stienstra: "Beal\u2019s Point (Folsom Lake)"
+  stienstra: Beal’s Point (Folsom Lake)
 - id: /ca/folsom/negro_bar
   reservation_name: Negro Bar Group Camp
   locale: Folsom Lake
@@ -1359,10 +1358,10 @@
   reservation_name: Ocean Mesa
   locale: Goleta
   stienstra: Ocean Mesa (Goleta)
-- id: "/ca/graeagle/movin\u2019_west"
-  reservation_name: "Movin\u2019 West RV Park"
+- id: /ca/graeagle/movin’_west
+  reservation_name: Movin’ West RV Park
   locale: Graeagle
-  stienstra: "Movin\u2019 West RV Park (Graeagle)"
+  stienstra: Movin’ West RV Park (Graeagle)
 - id: /ca/grass/nevada_fairgrounds
   reservation_name: Nevada County Fairgrounds
   locale: Grass Valley
@@ -1387,10 +1386,10 @@
   reservation_name: Anchor Bay Campground
   locale: Gualala
   stienstra: Anchor Bay Campground (Gualala)
-- id: "/ca/guerneville/burke\u2019s_canoe_trips"
-  reservation_name: "Burke\u2019s Canoe Trips"
+- id: /ca/guerneville/burke’s_canoe_trips
+  reservation_name: Burke’s Canoe Trips
   locale: Russian River near Guerneville
-  stienstra: "Burke\u2019s Canoe Trips (Russian River near Guerneville)"
+  stienstra: Burke’s Canoe Trips (Russian River near Guerneville)
 - id: /ca/guerneville/river_bend
   reservation_name: River Bend Resort
   locale: Russian River near Guerneville
@@ -1551,10 +1550,10 @@
   reservation_name: Hidden Springs
   locale: Humboldt Redwoods
   stienstra: Hidden Springs (Humboldt Redwoods)
-- id: "/ca/humboldt/johnny\u2019s_marina"
-  reservation_name: "Johnny\u2019s Marina And RV Park"
+- id: /ca/humboldt/johnny’s_marina
+  reservation_name: Johnny’s Marina And RV Park
   locale: Humboldt Bay near Eureka
-  stienstra: "Johnny\u2019s Marina And RV Park (Humboldt Bay near Eureka)"
+  stienstra: Johnny’s Marina And RV Park (Humboldt Bay near Eureka)
 - id: /ca/humboldt/samoa_boat_ramp
   reservation_name: Samoa Boat Ramp County Park
   locale: Humboldt Bay near Eureka
@@ -1639,10 +1638,10 @@
   reservation_name: Independence Creek
   locale: Independence
   stienstra: Independence Creek (Independence)
-- id: "/ca/independence/upper_lower_gray\u2019s_meadow"
-  reservation_name: "Upper And Lower Gray\u2019s Meadow"
+- id: /ca/independence/upper_lower_gray’s_meadow
+  reservation_name: Upper And Lower Gray’s Meadow
   locale: Independence Creek / Inyo
-  stienstra: "Upper And Lower Gray\u2019s Meadow (Independence Creek / Inyo)"
+  stienstra: Upper And Lower Gray’s Meadow (Independence Creek / Inyo)
 - id: /ca/indian/blue_oak
   reservation_name: Blue Oak
   locale: Indian Valley Reservoir
@@ -2015,10 +2014,10 @@
   reservation_name: Camp 4
   locale: Kings River / Sequoia
   stienstra: Camp 4 (Kings River / Sequoia)
-- id: "/ca/kings/4_\xBD"
-  reservation_name: "Camp 4 \xBD"
+- id: /ca/kings/4_½
+  reservation_name: Camp 4 ½
   locale: Kings River / Sequoia
-  stienstra: "Camp 4 \xBD (Kings River / Sequoia)"
+  stienstra: Camp 4 ½ (Kings River / Sequoia)
 - id: /ca/kings/azalea
   reservation_name: Azalea
   locale: Grant Grove Kings Canyon
@@ -2115,10 +2114,10 @@
   reservation_name: Klamath Riverside RV Park
   locale: Klamath River
   stienstra: Klamath Riverside RV Park (Klamath River)
-- id: "/ca/klamath/klamath\u2019s_camper_corral"
-  reservation_name: "Klamath\u2019s Camper Corral RV Park And Campground"
+- id: /ca/klamath/klamath’s_camper_corral
+  reservation_name: Klamath’s Camper Corral RV Park And Campground
   locale: Klamath River
-  stienstra: "Klamath\u2019s Camper Corral RV Park And Campground (Klamath River)"
+  stienstra: Klamath’s Camper Corral RV Park And Campground (Klamath River)
 - id: /ca/klamath/lake_shastina
   reservation_name: Lake Shastina
   locale: Klamath and Weed
@@ -2207,10 +2206,10 @@
   reservation_name: Dusty Campground
   locale: Lake Britton
   stienstra: Dusty Campground (Lake Britton)
-- id: "/ca/lake/ed_z\u2019berg_sugar_pine_point"
-  reservation_name: "Ed Z\u2019berg Sugar Pine Point State Park"
+- id: /ca/lake/ed_z’berg_sugar_pine_point
+  reservation_name: Ed Z’berg Sugar Pine Point State Park
   locale: Lake Tahoe
-  stienstra: "Ed Z\u2019berg Sugar Pine Point State Park (Lake Tahoe)"
+  stienstra: Ed Z’berg Sugar Pine Point State Park (Lake Tahoe)
 - id: /ca/lake/el_cariso
   reservation_name: El Cariso Campground
   locale: Lake Elsinore / Cleveland
@@ -2715,10 +2714,10 @@
   reservation_name: Memorial Park
   locale: Los Padres
   stienstra: Memorial Park (Los Padres)
-- id: "/ca/los/mount_pi\xF1os"
-  reservation_name: "Mount Pi\xF1os"
+- id: /ca/los/mount_piños
+  reservation_name: Mount Piños
   locale: Los Padres
-  stienstra: "Mount Pi\xF1os (Los Padres)"
+  stienstra: Mount Piños (Los Padres)
 - id: /ca/los/mt._figueroa
   reservation_name: Mt. Figueroa
   locale: Los Padres
@@ -2895,10 +2894,10 @@
   reservation_name: Fowlers Camp
   locale: McCloud River / Shasta-Trinity
   stienstra: Fowlers Camp (McCloud River / Shasta-Trinity)
-- id: "/ca/mccloud/friday\u2019s_retreat_mccloud_fly_fishing_ranch"
-  reservation_name: "Friday\u2019s RV Retreat & Mccloud Fly Fishing Ranch"
+- id: /ca/mccloud/friday’s_retreat_mccloud_fly_fishing_ranch
+  reservation_name: Friday’s RV Retreat & Mccloud Fly Fishing Ranch
   locale: McCloud
-  stienstra: "Friday\u2019s RV Retreat & Mccloud Fly Fishing Ranch (McCloud)"
+  stienstra: Friday’s RV Retreat & Mccloud Fly Fishing Ranch (McCloud)
 - id: /ca/mccloud/mccloud
   reservation_name: Mccloud RV Resort
   locale: McCloud
@@ -3179,10 +3178,10 @@
   reservation_name: Uvas Canyon County Park
   locale: Morgan Hill
   stienstra: Uvas Canyon County Park (Morgan Hill)
-- id: "/ca/morro/monta\xF1a_de_oro"
-  reservation_name: "Monta\xF1a De Oro State Park"
+- id: /ca/morro/montaña_de_oro
+  reservation_name: Montaña De Oro State Park
   locale: Morro Bay
-  stienstra: "Monta\xF1a De Oro State Park (Morro Bay)"
+  stienstra: Montaña De Oro State Park (Morro Bay)
 - id: /ca/morro/morro
   reservation_name: Morro Bay State Park
   locale: Morro Bay
@@ -3233,8 +3232,8 @@
   stienstra: Mcbride Springs (Mount Shasta / Shasta-Trinity)
 - id: /ca/mount/mcgill
   reservation_name: Mcgill
-  locale: "Mount Pi\xF1os / Los Padres"
-  stienstra: "Mcgill (Mount Pi\xF1os / Los Padres)"
+  locale: Mount Piños / Los Padres
+  stienstra: Mcgill (Mount Piños / Los Padres)
 - id: /ca/mount/mount_shasta_koa
   reservation_name: Mount Shasta Koa
   locale: Mount Shasta City
@@ -3411,10 +3410,10 @@
   reservation_name: Dingerville Usa
   locale: Oroville
   stienstra: Dingerville Usa (Oroville)
-- id: "/ca/owens/brown\u2019s_owens_river"
-  reservation_name: "Brown\u2019s Owens River Campground"
+- id: /ca/owens/brown’s_owens_river
+  reservation_name: Brown’s Owens River Campground
   locale: Owens River
-  stienstra: "Brown\u2019s Owens River Campground (Owens River)"
+  stienstra: Brown’s Owens River Campground (Owens River)
 - id: /ca/pacheco/casa_de_fruta_orchard
   reservation_name: Casa De Fruta RV Orchard Resort
   locale: Pacheco Pass
@@ -3503,10 +3502,10 @@
   reservation_name: Happy Traveler RV Park
   locale: Palm Springs
   stienstra: Happy Traveler RV Park (Palm Springs)
-- id: "/ca/palm/sam\u2019s"
-  reservation_name: "Sam\u2019s Family Spa"
+- id: /ca/palm/sam’s
+  reservation_name: Sam’s Family Spa
   locale: Palm Springs
-  stienstra: "Sam\u2019s Family Spa (Palm Springs)"
+  stienstra: Sam’s Family Spa (Palm Springs)
 - id: /ca/palm/sky_valley
   reservation_name: Sky Valley Resort
   locale: Palm Springs
@@ -3559,14 +3558,14 @@
   reservation_name: San Francisco North/Petaluma Koa
   locale: Petaluma
   stienstra: San Francisco North/Petaluma Koa (Petaluma)
-- id: "/ca/pe\xF1a/culp_valley_primitive"
+- id: /ca/peña/culp_valley_primitive
   reservation_name: Culp Valley Primitive Camp Area
-  locale: "Pe\xF1a Springs / Anza-Borrego Desert"
-  stienstra: "Culp Valley Primitive Camp Area (Pe\xF1a Springs / Anza-Borrego Desert)"
-- id: "/ca/pine/brady\u2019s"
-  reservation_name: "Brady\u2019s Camp"
+  locale: Peña Springs / Anza-Borrego Desert
+  stienstra: Culp Valley Primitive Camp Area (Peña Springs / Anza-Borrego Desert)
+- id: /ca/pine/brady’s
+  reservation_name: Brady’s Camp
   locale: Pine Creek / Plumas
-  stienstra: "Brady\u2019s Camp (Pine Creek / Plumas)"
+  stienstra: Brady’s Camp (Pine Creek / Plumas)
 - id: /ca/pine/island
   reservation_name: Island Park
   locale: Pine Flat Lake
@@ -3867,10 +3866,10 @@
   reservation_name: Cloverdale/Healdsburg Koa
   locale: Russian River
   stienstra: Cloverdale/Healdsburg Koa (Russian River)
-- id: "/ca/russian/johnson\u2019s_beach"
-  reservation_name: "Johnson\u2019s Beach & Resort"
+- id: /ca/russian/johnson’s_beach
+  reservation_name: Johnson’s Beach & Resort
   locale: Russian River / Guerneville
-  stienstra: "Johnson\u2019s Beach & Resort (Russian River / Guerneville)"
+  stienstra: Johnson’s Beach & Resort (Russian River / Guerneville)
 - id: /ca/ruth/bailey_canyon
   reservation_name: Bailey Canyon
   locale: Ruth Lake / Six Rivers
@@ -4018,24 +4017,23 @@
 - id: /ca/san/council
   reservation_name: Council Group Camp
   locale: Jenks Lake and the San Gorgonio Wilderness / San Bernardino
-  stienstra: Council Group Camp (Jenks Lake and the San Gorgonio Wilderness / San
-    Bernardino)
+  stienstra: Council Group Camp (Jenks Lake and the San Gorgonio Wilderness / San Bernardino)
 - id: /ca/san/dark_canyon
   reservation_name: Dark Canyon
   locale: San Jacinto Mountains / San Bernardino
   stienstra: Dark Canyon (San Jacinto Mountains / San Bernardino)
-- id: "/ca/san/eddo\u2019s_harbor"
-  reservation_name: "Eddo\u2019s Harbor And RV Park"
+- id: /ca/san/eddo’s_harbor
+  reservation_name: Eddo’s Harbor And RV Park
   locale: San Joaquin River Delta
-  stienstra: "Eddo\u2019s Harbor And RV Park (San Joaquin River Delta)"
+  stienstra: Eddo’s Harbor And RV Park (San Joaquin River Delta)
 - id: /ca/san/el_chorro
   reservation_name: El Chorro Regional Park
   locale: San Luis Obispo
   stienstra: El Chorro Regional Park (San Luis Obispo)
-- id: "/ca/san/fisherman\u2019s_bend_river"
-  reservation_name: "Fisherman\u2019s Bend River Campground"
+- id: /ca/san/fisherman’s_bend_river
+  reservation_name: Fisherman’s Bend River Campground
   locale: San Joaquin River
-  stienstra: "Fisherman\u2019s Bend River Campground (San Joaquin River)"
+  stienstra: Fisherman’s Bend River Campground (San Joaquin River)
 - id: /ca/san/fremont_peak
   reservation_name: Fremont Peak State Park
   locale: San Juan Bautista
@@ -4172,10 +4170,10 @@
   reservation_name: Carpinteria State Beach
   locale: Santa Barbara
   stienstra: Carpinteria State Beach (Santa Barbara)
-- id: "/ca/santa/el_capit\xE1n_beach"
-  reservation_name: "El Capit\xE1n State Beach"
+- id: /ca/santa/el_capitán_beach
+  reservation_name: El Capitán State Beach
   locale: Santa Barbara
-  stienstra: "El Capit\xE1n State Beach (Santa Barbara)"
+  stienstra: El Capitán State Beach (Santa Barbara)
 - id: /ca/santa/falcon_camps
   reservation_name: Falcon Group Camps
   locale: Santa Ana Mountains / Cleveland
@@ -4206,8 +4204,8 @@
   stienstra: Manresa Uplands State Beach Walk-In (Santa Cruz)
 - id: /ca/santa/medeiros
   reservation_name: Medeiros
-  locale: "O\u2019Neill Forebay near Santa Nella"
-  stienstra: "Medeiros (O\u2019Neill Forebay near Santa Nella)"
+  locale: O’Neill Forebay near Santa Nella
+  stienstra: Medeiros (O’Neill Forebay near Santa Nella)
 - id: /ca/santa/middle_santa_ynez
   reservation_name: Middle Santa Ynez
   locale: Santa Ynez River / Los Padres
@@ -4444,10 +4442,10 @@
   reservation_name: Silver Lake West
   locale: Silver Lake / Eldorado
   stienstra: Silver Lake West (Silver Lake / Eldorado)
-- id: "/ca/silverwood/mesa\u2014silverwood_lake"
-  reservation_name: "Mesa\u2014silverwood Lake"
+- id: /ca/silverwood/mesa—silverwood_lake
+  reservation_name: Mesa—silverwood Lake
   locale: Silverwood Lake / Silverwood Lake
-  stienstra: "Mesa\u2014silverwood Lake (Silverwood Lake / Silverwood Lake)"
+  stienstra: Mesa—silverwood Lake (Silverwood Lake / Silverwood Lake)
 - id: /ca/silverwood/mojave_river_forks
   reservation_name: Mojave River Forks Regional Park
   locale: Silverwood Lake
@@ -4516,10 +4514,10 @@
   reservation_name: Redwood Meadows RV Resort
   locale: Smith River
   stienstra: Redwood Meadows RV Resort (Smith River)
-- id: "/ca/smith/xaa-wan\u2019-k\u2019wvt"
-  reservation_name: "Xaa-Wan\u2019-K\u2019wvt Village And Resort"
+- id: /ca/smith/xaa-wan’-k’wvt
+  reservation_name: Xaa-Wan’-K’wvt Village And Resort
   locale: Smith River
-  stienstra: "Xaa-Wan\u2019-K\u2019wvt Village And Resort (Smith River)"
+  stienstra: Xaa-Wan’-K’wvt Village And Resort (Smith River)
 - id: /ca/snow/dixie_glade_horse
   reservation_name: Dixie Glade Horse Camp
   locale: Snow Mountain Wilderness / Mendocino
@@ -4640,10 +4638,10 @@
   reservation_name: Deadman
   locale: Middle Fork the Stanislaus River / Stanislaus
   stienstra: Deadman (Middle Fork the Stanislaus River / Stanislaus)
-- id: "/ca/stanislaus/dimond_\u201Co\u201D"
-  reservation_name: "Dimond \u201Co\u201D"
+- id: /ca/stanislaus/dimond_“o”
+  reservation_name: Dimond “o”
   locale: Stanislaus
-  stienstra: "Dimond \u201Co\u201D (Stanislaus)"
+  stienstra: Dimond “o” (Stanislaus)
 - id: /ca/stanislaus/eureka_valley
   reservation_name: Eureka Valley
   locale: Middle Fork the Stanislaus River / Stanislaus
@@ -4892,10 +4890,10 @@
   reservation_name: Emerald Forest
   locale: Trinidad
   stienstra: Emerald Forest (Trinidad)
-- id: "/ca/trinidad/patrick\u2019s_point"
-  reservation_name: "Patrick\u2019s Point State Park"
+- id: /ca/trinidad/patrick’s_point
+  reservation_name: Patrick’s Point State Park
   locale: Trinidad
-  stienstra: "Patrick\u2019s Point State Park (Trinidad)"
+  stienstra: Patrick’s Point State Park (Trinidad)
 - id: /ca/trinidad/sounds_of_sea
   reservation_name: Sounds Of the Sea RV Park
   locale: Trinidad
@@ -5100,10 +5098,10 @@
   reservation_name: 'Robinson Creek: North & South'
   locale: Twin Lakes / Humboldt-Toiyabe
   stienstra: 'Robinson Creek: North & South (Twin Lakes / Humboldt-Toiyabe)'
-- id: "/ca/u.s./keough\u2019s_hot_springs"
-  reservation_name: "Keough\u2019s Hot Springs"
+- id: /ca/u.s./keough’s_hot_springs
+  reservation_name: Keough’s Hot Springs
   locale: Owens Valley on U.S. 395
-  stienstra: "Keough\u2019s Hot Springs (Owens Valley on U.S. 395)"
+  stienstra: Keough’s Hot Springs (Owens Valley on U.S. 395)
 - id: /ca/union/azalea_cove_hike-in/boat-in
   reservation_name: Azalea Cove Hike-In/Boat-In
   locale: Union Valley Reservoir / Eldorado
@@ -5156,10 +5154,10 @@
   reservation_name: Valencia Travel Village
   locale: Valencia
   stienstra: Valencia Travel Village (Valencia)
-- id: "/ca/van/van_duzen_park:_swimmer\u2019s_delight"
-  reservation_name: "Van Duzen County Park: Swimmer\u2019s Delight"
+- id: /ca/van/van_duzen_park:_swimmer’s_delight
+  reservation_name: 'Van Duzen County Park: Swimmer’s Delight'
   locale: Van Duzen River
-  stienstra: "Van Duzen County Park: Swimmer\u2019s Delight (Van Duzen River)"
+  stienstra: 'Van Duzen County Park: Swimmer’s Delight (Van Duzen River)'
 - id: /ca/ventura/comfort_ojai
   reservation_name: Camp Comfort Park Ojai
   locale: San Antonio Creek Ventura
@@ -5255,13 +5253,11 @@
 - id: /ca/westport/westport-union_landing_beach
   reservation_name: Westport-Union Landing State Beach
   locale: Westport overlooking the Pacific Ocean
-  stienstra: Westport-Union Landing State Beach (Westport overlooking the Pacific
-    Ocean)
+  stienstra: Westport-Union Landing State Beach (Westport overlooking the Pacific Ocean)
 - id: /ca/westport/westport_beach
   reservation_name: Westport Beach RV Park And Campground
   locale: Westport overlooking the Pacific Ocean
-  stienstra: Westport Beach RV Park And Campground (Westport overlooking the Pacific
-    Ocean)
+  stienstra: Westport Beach RV Park And Campground (Westport overlooking the Pacific Ocean)
 - id: /ca/whiskeytown/brandy_creek
   reservation_name: Brandy Creek
   locale: Whiskeytown Lake / Whiskeytown
@@ -5302,10 +5298,10 @@
   reservation_name: East Fork
   locale: Willow Creek
   stienstra: East Fork (Willow Creek)
-- id: "/ca/willow/grey\u2019s_mountain"
-  reservation_name: "Grey\u2019s Mountain"
+- id: /ca/willow/grey’s_mountain
+  reservation_name: Grey’s Mountain
   locale: Willow Creek / Sierra
-  stienstra: "Grey\u2019s Mountain (Willow Creek / Sierra)"
+  stienstra: Grey’s Mountain (Willow Creek / Sierra)
 - id: /ca/willow/kelty_meadow_equestrian
   reservation_name: Kelty Meadow And Equestrian Camp
   locale: Willow Creek / Sierra
