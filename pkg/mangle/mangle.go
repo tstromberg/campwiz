@@ -103,19 +103,20 @@ func Locale(s string) string {
 	new := []string{}
 
 	for i, w := range strings.Split(s, " ") {
+		lw := strings.ToLower(w)
 
 		if i == 0 {
-			switch w {
-			case "on", "in":
+			switch lw {
+			case "on", "in", "near":
 				continue
 			}
 		}
 
-		if i == 1 && w == "the" {
+		if i == 1 && lw == "the" {
 			continue
 		}
 
-		if w == "in" {
+		if lw == "in" {
 			new = append(new, "/")
 			continue
 		}
@@ -123,6 +124,21 @@ func Locale(s string) string {
 		new = append(new, w)
 	}
 
+	return strings.Join(new, " ")
+}
+
+// Locale returns an even shorter locale
+func ShortLocale(s string) string {
+	s = Locale(s)
+	new := []string{}
+	for _, w := range strings.Split(s, " ") {
+		lw := strings.ToLower(w)
+		switch lw {
+		case "national", "forest", "park", "recreation", "area", "state", "east", "of", "west", "north", "south", "at", "to", "demonstration", "off":
+			continue
+		}
+		new = append(new, w)
+	}
 	return strings.Join(new, " ")
 }
 
