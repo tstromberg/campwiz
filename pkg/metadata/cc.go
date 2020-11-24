@@ -11,7 +11,7 @@ import (
 	"github.com/tstromberg/campwiz/pkg/relpath"
 	"k8s.io/klog/v2"
 
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 // LoadCC returns CC cross-reference data
