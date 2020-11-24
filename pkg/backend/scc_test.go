@@ -1,7 +1,6 @@
 package backend
 
 import (
-	"io/ioutil"
 	"testing"
 	"time"
 
@@ -9,13 +8,9 @@ import (
 	"github.com/tstromberg/campwiz/pkg/campwiz"
 )
 
-func TestRAmericaParse(t *testing.T) {
-	ra := &RAmerica{}
+func TestSantaClaraCountyParse(t *testing.T) {
+	b := &SantaClaraCounty{}
 
-	bs, err := ioutil.ReadFile("testdata/ra_search.json")
-	if err != nil {
-		t.Fatalf("readfile: %v", err)
-	}
 	date, err := time.Parse("2006-01-02", "2021-02-12")
 	if err != nil {
 		t.Fatalf("time parse: %v", err)
@@ -27,17 +22,9 @@ func TestRAmericaParse(t *testing.T) {
 		MaxDistance: 100,
 	}
 
-	got, gotPage, gotTotal, err := ra.parse(bs, date, q)
+	got, err := b.parse([]byte("hello"), date, q)
 	if err != nil {
 		t.Fatalf("error: %v", err)
-	}
-
-	if gotPage != 0 {
-		t.Errorf("got page: %d, want: %d", gotPage, 0)
-	}
-
-	if gotTotal != 17 {
-		t.Errorf("got total: %d, want: %d", gotTotal, 17)
 	}
 
 	want := []campwiz.Result{

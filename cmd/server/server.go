@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"text/template"
 
-	"github.com/tstromberg/campwiz/pkg/backend"
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/relpath"
+	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
 
@@ -32,7 +32,7 @@ type formValues struct {
 
 type templateContext struct {
 	Query   campwiz.Query
-	Results []campwiz.Result
+	Results []campwiz.AnnotatedResult
 	Form    formValues
 }
 
@@ -46,7 +46,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		klog.Errorf("loadcc failed: %w", err)
 	}
 
-	rs, errs := backend.Search(q, cs, xrefs)
+	rs, errs := search.Run(search.DefaultProviders, q, cs, xrefs)
 	if errs != nil {
 		klog.Errorf("search: %v", errs)
 	}

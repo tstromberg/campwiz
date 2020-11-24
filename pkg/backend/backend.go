@@ -59,34 +59,6 @@ func New(c Config) (Provider, error) {
 	}
 }
 
-// Search searches for results across providers
-func Search(providers []string, q campwiz.Query, cs cache.Store) ([]campwiz.Result, []error) {
-	klog.Infof("search campwiz.Query: %+v", q)
-
-	// TODO: Paralellize
-	results := []campwiz.Result{}
-	errs := []error{}
-
-	for _, pname := range providers {
-		p, err := New(Config{Type: pname, Store: cs})
-		if err != nil {
-			errs = append(errs, fmt.Errorf("%s init: %v", pname, err))
-			continue
-		}
-
-		prs, err := p.List(q)
-		if err != nil {
-			errs = append(errs, fmt.Errorf("%s list: %v", pname, err))
-			klog.Errorf("%s list failed: %v", err)
-			continue
-		}
-
-		results = append(results, prs...)
-	}
-
-	return results, errs
-}
-
 // mergeDates merges multiple dates together
 func mergeDates(res []campwiz.Result) []campwiz.Result {
 	klog.V(1).Infof("Merging %d results ...", len(res))

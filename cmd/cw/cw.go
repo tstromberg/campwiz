@@ -2,6 +2,7 @@
 package main
 
 import (
+	"flag"
 	goflag "flag"
 	"fmt"
 	"io/ioutil"
@@ -10,21 +11,23 @@ import (
 	"time"
 
 	pflag "github.com/spf13/pflag"
-	"github.com/tstromberg/campwiz/pkg/backend"
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/campwiz"
+	"github.com/tstromberg/campwiz/pkg/mangle"
 	"github.com/tstromberg/campwiz/pkg/metadata"
-	"github.com/tstromberg/campwiz/pkg/mix"
 	"github.com/tstromberg/campwiz/pkg/relpath"
+	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
 
 var datesFlag *[]string = pflag.StringSlice("dates", []string{"2021-03-05"}, "dates to search for")
 var milesFlag *int = pflag.Int("miles", 100, "distance to search within")
 var nightsFlag *int = pflag.Int("nights", 2, "number of nights to stay")
+var sceneryRatingFlag *int = pflag.Int("min_scenery_rating", 6, "minimum scenery rating for inclusion")
+var keywordsFlag *[]string = pflag.StringSlice("keywords", nil, "keywords to search for")
 var latFlag *float64 = pflag.Float64("lat", 37.4092297, "latitude to search from")
 var lonFlag *float64 = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
-var providersFlag *[]string = pflag.StringSlice("providers", []string{"ramerica", "rcalifornia", "scc", "smc"}, "site providers to include")
+var providersFlag *[]string = pflag.StringSlice("providers", search.DefaultProviders, "site providers to include")
 
 const dateFormat = "2006-01-02"
 
@@ -41,10 +44,12 @@ func processFlags() error {
 	}
 
 	q := campwiz.Query{
-		Lon:         *lonFlag,
-		Lat:         *latFlag,
-		StayLength:  *nightsFlag,
-		MaxDistance: *milesFlag,
+		Lon:              *lonFlag,
+		Lat:              *latFlag,
+		StayLength:       *nightsFlag,
+		MaxDistance:      *milesFlag,
+		MinSceneryRating: *sceneryRatingFlag,
+		Keywords:         *keywordsFlag,
 	}
 
 	for _, ds := range *datesFlag {
@@ -60,28 +65,38 @@ func processFlags() error {
 		return fmt.Errorf("loadcc failed: %w", err)
 	}
 
-	rs, errs := backend.Search(*providersFlag, q, cs)
-	ms := mix.Combine(rs, xrefs)
+	ms, errs := search.Run(*providersFlag, q, cs, xrefs)
 
 	bs, err := ioutil.ReadFile(relpath.Find("templates/ascii.tmpl"))
 	if err != nil {
 		return fmt.Errorf("readfile: %w", err)
 	}
 
-	tmpl := template.Must(template.New("ascii").Parse(string(bs)))
+	fmap := template.FuncMap{
+		"Ellipsis": ellipse,
+	}
+
+	t := template.Must(template.New("ascii").Funcs(fmap).Parse(string(bs)))
+
 	c := templateContext{
 		Query:     q,
 		Annotated: ms,
 		Errors:    errs,
 	}
 
-	err = tmpl.ExecuteTemplate(os.Stdout, "ascii", c)
+	err = t.ExecuteTemplate(os.Stdout, "ascii", c)
 	return err
+}
+
+func ellipse(s string) string {
+	return mangle.Ellipsis(s, 65)
 }
 
 func main() {
 	//	wordPtr := flag.String("word", "foo", "a string")
 	klog.InitFlags(nil)
+	flag.Set("logtostderr", "false")
+	flag.Set("alsologtostderr", "false")
 	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 	pflag.Parse()
 

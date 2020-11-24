@@ -17,13 +17,15 @@ import (
 )
 
 var (
-	sccRoot      = "https://" + "gooutsideandplay" + ".org"
-	metaSccRoot  = "/u/us/ca/santa_clara/"
+	metaSccRoot = "/u/us/ca/santa_clara/"
+
+	// sccCenterLat is the center of Santa Clara County, used for approximate location filtering
 	sccCenterLat = 37.1908873
+	// sccCenterLon is the center of Santa Clara County, used for approximate location filtering
 	sccCenterLon = -122.4130398
 )
 
-// SantaClaraCounty handles Santa Clara County Parks queries
+// SantaClaraCounty handles SantaClaraCounty queries
 type SantaClaraCounty struct {
 	store cache.Store
 	jar   *cookiejar.Jar
@@ -31,53 +33,36 @@ type SantaClaraCounty struct {
 
 // Name is a human readable name
 func (b *SantaClaraCounty) Name() string {
-	return "Santa Clara County"
+	return "Santa Clara County Parks"
 }
 
 // List lists available sites
 func (b *SantaClaraCounty) List(q campwiz.Query) ([]campwiz.Result, error) {
-	return nil, nil
-}
-
-// searchSCC searches San Mateo County Parks for a single date
-func searchSCC(q campwiz.Query, date time.Time, cs cache.Store) ([]campwiz.Result, error) {
-	dist := geo.MilesApart(q.Lat, q.Lon, sccCenterLat, sccCenterLon)
-	klog.Infof("searchSCC, distance to center from %f / %f is %.1f miles", q.Lat, q.Lon, dist)
-	if dist > float64(q.MaxDistance) {
-		klog.Warningf("skipping scc search -- further than %d miles", q.MaxDistance)
-		return nil, nil
-	}
-
-	sr, err := cache.Fetch(sccStartPage(), cs)
+	klog.Infof("SantaClaraCounty.List: %+v", q)
+	_, err := cache.Fetch(b.startPage(), b.store)
 	if err != nil {
 		return nil, fmt.Errorf("fetch start: %w", err)
 	}
 
-	cookies := sr.Cookies
-	klog.Infof("start page cached: %v cookies: %+v", sr.Cached, sr.Cookies)
-
-	req := sccSiteRequest(q, date)
-	req.Cookies = cookies
-
-	resp, err := cache.Fetch(req, cs)
-	if err != nil {
-		return nil, fmt.Errorf("fetch: %w", err)
+	var res []campwiz.Result
+	for _, d := range q.Dates {
+		rs, err := b.avail(q, d)
+		if err != nil {
+			return res, fmt.Errorf("avail: %w", err)
+		}
+		res = append(res, rs...)
 	}
 
-	results, err := parseSCCSearchPage(resp.Body, date, q)
-	return results, err
+	return mergeDates(res), nil
 }
 
-// sccStartPage returns a request for the search page
-func sccStartPage() cache.Request {
-	return cache.Request{
-		Method: "GET",
-		URL:    sccRoot + "/index.asp",
-		MaxAge: searchPageExpiry,
-	}
+// url is the root URL to use for requests
+func (b *SantaClaraCounty) url(s string) string {
+	return "https://" + "gooutsideandplay" + ".org"
 }
 
-func sccSiteRequest(q campwiz.Query, date time.Time) cache.Request {
+// req generates a search request
+func (b *SantaClaraCounty) req(q campwiz.Query, arrival time.Time) cache.Request {
 	firstBook := time.Now().Add(24 * time.Hour)
 	lastBook := time.Now().Add(6 * 30 * 24 * time.Hour)
 	v := url.Values{
@@ -88,7 +73,7 @@ func sccSiteRequest(q campwiz.Query, date time.Time) cache.Request {
 		"CalendarLastBookableDate":  {lastBook.Format("01/02/2006")},
 		"use_type":                  {""},
 		"res_length":                {strconv.Itoa(q.StayLength)},
-		"arrive_date":               {date.Format("01/02/2006")},
+		"arrive_date":               {arrival.Format("01/02/2006")},
 		"c_park_idno":               {"0"},
 		"d_park_idno":               {"0"},
 		"b_park_idno":               {"1"},
@@ -100,15 +85,20 @@ func sccSiteRequest(q campwiz.Query, date time.Time) cache.Request {
 
 	r := cache.Request{
 		Method:   "GET",
-		URL:      sccRoot + "/index.asp",
-		Referrer: sccRoot,
+		URL:      b.url("/index.asp"),
+		Referrer: b.url("/"),
 		Form:     v,
-		MaxAge:   searchPageExpiry,
 	}
 	return r
 }
 
-func parseSCCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
+// searchReq generates an initial page request
+func (b *SantaClaraCounty) startPage() cache.Request {
+	return cache.Request{URL: b.url("/index.asp"), Referrer: b.url("/"), Jar: b.jar}
+}
+
+// parse parses the search response
+func (b *SantaClaraCounty) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
 	var results []campwiz.Result
 
 	// Load the HTML document
@@ -147,7 +137,7 @@ func parseSCCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.R
 		a := campwiz.Availability{
 			SiteType: stype,
 			Date:     date,
-			URL:      sccRoot + s.Find(".FilterElement a").AttrOr("href", ""),
+			URL:      b.url(s.Find(".FilterElement a").AttrOr("href", "")),
 		}
 
 		r := campwiz.Result{
@@ -161,4 +151,32 @@ func parseSCCSearchPage(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.R
 	})
 
 	return results, nil
+}
+
+// avail lists sites available on a single date
+func (b *SantaClaraCounty) avail(q campwiz.Query, d time.Time) ([]campwiz.Result, error) {
+	dist := geo.MilesApart(q.Lat, q.Lon, sccCenterLat, sccCenterLon)
+	klog.Infof("searchSCC, distance to center from %f / %f is %.1f miles", q.Lat, q.Lon, dist)
+	if dist > float64(q.MaxDistance) {
+		klog.Warningf("skipping scc search -- further than %d miles", q.MaxDistance)
+		return nil, nil
+	}
+
+	_, err := cache.Fetch(b.startPage(), b.store)
+	if err != nil {
+		return nil, fmt.Errorf("fetch start: %w", err)
+	}
+
+	req := b.req(q, d)
+	resp, err := cache.Fetch(req, b.store)
+	if err != nil {
+		return nil, fmt.Errorf("fetch: %w", err)
+	}
+
+	prs, err := b.parse(resp.Body, d, q)
+	if err != nil {
+		return nil, fmt.Errorf("parse: %w", err)
+	}
+
+	return prs, err
 }

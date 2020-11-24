@@ -12,7 +12,7 @@
 {{- range .Refs }}
  > {{ .Source.Name }}: [{{ .Rating }}/{{ .Source.RatingMax }} {{ .Source.RatingDesc }}]
  >
- >  {{.Desc}}
+ >  {{.Desc | Ellipsis }}
 {{- end }}
 {{ end }}
 

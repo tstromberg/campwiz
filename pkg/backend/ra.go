@@ -34,9 +34,9 @@ func (b *RAmerica) List(q campwiz.Query) ([]campwiz.Result, error) {
 
 	var res []campwiz.Result
 	for _, d := range q.Dates {
-		rs, err := b.onDate(q, d)
+		rs, err := b.avail(q, d)
 		if err != nil {
-			return res, fmt.Errorf("onDate: %w", err)
+			return res, fmt.Errorf("avail: %w", err)
 		}
 		res = append(res, rs...)
 	}
@@ -49,8 +49,8 @@ func (b *RAmerica) url(s string) string {
 	return "https" + "://" + "www." + "reserve" + "america.com" + s
 }
 
-// searchReq generates a search request
-func (b *RAmerica) searchReq(c campwiz.Query, arrival time.Time, num int) cache.Request {
+// req generates a search request
+func (b *RAmerica) req(c campwiz.Query, arrival time.Time, num int) cache.Request {
 	return cache.Request{
 		URL:      b.url("/jaxrs-json/search"),
 		Referrer: b.url("/"),
@@ -71,7 +71,7 @@ func (b *RAmerica) searchReq(c campwiz.Query, arrival time.Time, num int) cache.
 	}
 }
 
-// searchReq generates an initial page request
+// startPage generates an initial page request
 func (b *RAmerica) startPage() cache.Request {
 	return cache.Request{URL: b.url("/explore/search-results"), Referrer: b.url("/"), Jar: b.jar}
 }
@@ -107,8 +107,8 @@ type raResponse struct {
 	Records      []raRecord
 }
 
-// parseResp parses the search response
-func (b *RAmerica) parseResp(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, int, int, error) {
+// parse parses the search response
+func (b *RAmerica) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, int, int, error) {
 	klog.V(1).Infof("parsing %d bytes", len(bs))
 	var jr raResponse
 	err := json.Unmarshal(bs, &jr)
@@ -148,18 +148,18 @@ func (b *RAmerica) parseResp(bs []byte, date time.Time, q campwiz.Query) ([]camp
 	return results, jr.Control.CurrentPage, jr.TotalPages, nil
 }
 
-// onDate lists sites available on a single date
-func (b *RAmerica) onDate(q campwiz.Query, d time.Time) ([]campwiz.Result, error) {
+// avail lists sites available on a single date
+func (b *RAmerica) avail(q campwiz.Query, d time.Time) ([]campwiz.Result, error) {
 	var results []campwiz.Result
 
 	for i := 0; i < maxPages; i++ {
-		req := b.searchReq(q, d, i)
+		req := b.req(q, d, i)
 		resp, err := cache.Fetch(req, b.store)
 		if err != nil {
 			return nil, fmt.Errorf("fetch: %w", err)
 		}
 
-		prs, currentPage, totalPages, err := b.parseResp(resp.Body, d, q)
+		prs, currentPage, totalPages, err := b.parse(resp.Body, d, q)
 		if err != nil {
 			return nil, fmt.Errorf("parse: %w", err)
 		}

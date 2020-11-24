@@ -141,3 +141,12 @@ func Title(s string) string {
 	}
 	return strings.Join(new, " ")
 }
+
+// Ellipsis sets a cap on the number of words to show
+func Ellipsis(s string, max int) string {
+	words := strings.Split(s, " ")
+	if len(words) < max {
+		return s
+	}
+	return strings.Join(words[0:max], " ") + " ..."
+}

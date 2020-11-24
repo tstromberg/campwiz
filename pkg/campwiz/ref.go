@@ -8,11 +8,11 @@ type Ref struct {
 	Related []string `yaml:"related,omitempty"`
 	URLs    []string `yaml:"urls,omitempty"`
 
-	Rating     float64  `yaml:"rating,omitempty"`
-	Tags       []string `yaml:"tags,omitempty"`
-	Facilities []string `yaml:"facilities,omitempty"`
-	Desc       string   `yaml:"desc,omitempty"`
-	Owner      string   `yaml:"owner,omitempty"`
+	Rating   float64  `yaml:"rating,omitempty"`
+	Tags     []string `yaml:"tags,omitempty"`
+	Features []string `yaml:"features,omitempty"`
+	Desc     string   `yaml:"desc,omitempty"`
+	Owner    string   `yaml:"owner,omitempty"`
 
 	Locale string  `yaml:"locale,omitempty"`
 	Lat    float64 `yaml:"lat,omitempty"`

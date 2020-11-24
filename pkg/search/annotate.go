@@ -1,4 +1,4 @@
-package mix
+package search
 
 import (
 	"strings"
@@ -136,23 +136,49 @@ func fuzzyMatch(name string, xrefs map[string]campwiz.Ref) []campwiz.Ref {
 	return nil
 }
 
-func ellipsis(s string) string {
-	words := strings.Split(s, " ")
-	if len(words) < wordMax {
-		return s
-	}
-	return strings.Join(words[0:wordMax], " ") + " ..."
-}
-
-// Combine combines results with cross-references
-func Combine(results []campwiz.Result, xrefs map[string]campwiz.Ref) []campwiz.AnnotatedResult {
+// annotate combines results with cross-references
+func annotate(results []campwiz.Result, xrefs map[string]campwiz.Ref) []campwiz.AnnotatedResult {
 	ms := []campwiz.AnnotatedResult{}
+
 	for _, r := range results {
 		refs := FindRefs(r, xrefs)
-		for i := range refs {
-			refs[i].Desc = ellipsis(refs[i].Desc)
+
+		a := campwiz.AnnotatedResult{
+			Result:   r,
+			Refs:     refs,
+			Name:     r.Name,
+			Desc:     r.Desc,
+			Distance: r.Distance,
+			Features: r.Features,
 		}
-		ms = append(ms, campwiz.AnnotatedResult{Result: r, Refs: refs, Desc: r.Description})
+
+		seenFeature := map[string]bool{}
+		for _, f := range a.Features {
+			seenFeature[strings.ToLower(f)] = true
+		}
+
+		for _, x := range refs {
+			if a.Name == "" && x.Name != "" {
+				a.Name = x.Name
+			}
+
+			if a.Desc == "" && x.Desc != "" {
+				a.Desc = x.Desc
+			}
+
+			if a.Locale == "" && x.Locale != "" {
+				a.Locale = x.Locale
+			}
+
+			for _, f := range x.Features {
+				if !seenFeature[strings.ToLower(f)] {
+					a.Features = append(a.Features, f)
+					seenFeature[strings.ToLower(f)] = true
+				}
+			}
+			// TODO: Support populating the Distance field for results without distance
+		}
+		ms = append(ms, a)
 	}
 
 	return ms

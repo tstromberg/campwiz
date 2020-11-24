@@ -139,7 +139,7 @@ func (b *RCalifornia) parse(bs []byte, date time.Time, q campwiz.Query) ([]campw
 		rr := campwiz.Result{
 			ID:           fmt.Sprintf("/rc/%d", r.PlaceID),
 			Name:         r.Name,
-			Description:  r.Description,
+			Desc:         r.Description,
 			Features:     strings.Split(strings.TrimSuffix(r.AllHighlights, "<br>"), "<br>"),
 			Distance:     float64(r.MilesFromSelected),
 			Availability: []campwiz.Availability{a},

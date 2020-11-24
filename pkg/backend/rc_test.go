@@ -74,7 +74,7 @@ func TestRCaliforniaParse(t *testing.T) {
 			ID:       "/rc/682",
 			Name:     "Mount Tamalpais SP",
 			Distance: 17,
-			Description: strings.Join([]string{
+			Desc: strings.Join([]string{
 				"Just north of San Francisco's Golden Gate is Mount Tamalpais, 6,",
 				"300 acres of redwood groves and oak woodlands with a spectacular",
 				" view from the 2,571-foot peak. On a clear day, visitors can see",
@@ -112,7 +112,7 @@ func TestRCaliforniaParse(t *testing.T) {
 			ID:       "/rc/683",
 			Name:     "Mount Diablo SP",
 			Distance: 26,
-			Description: strings.Join([]string{
+			Desc: strings.Join([]string{
 				"On a clear day, from the summit of Mount Diablo State Park visit",
 				"ors can see 35 of California's 58 counties. It is said that the ",
 				"view is surpassed only by that of 19,000-foot Mount Kilimanjaro ",

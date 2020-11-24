@@ -18,10 +18,8 @@ type Result struct {
 	Name     string
 	Distance float64
 
-	Description string
-	URL         string
-
-	States []string
+	Desc string
+	URL  string
 
 	Availability []Availability
 	Features     []string
@@ -29,10 +27,14 @@ type Result struct {
 
 // AnnotatedResult is a result with associated cross-reference data
 type AnnotatedResult struct {
-	Result Result
+	// A mix of the best available data
+	Name     string
+	Distance float64
+	Desc     string
+	Features []string
+	Locale   string
 
-	Desc       string
-	Locale     string
-	Ammenities []string
-	Refs       []Ref
+	// Original data
+	Result Result
+	Refs   []Ref
 }
