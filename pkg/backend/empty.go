@@ -71,7 +71,7 @@ func (b *Empty) startPage() cache.Request {
 // parse parses the search response
 func (b *Empty) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
 	rr := campwiz.Result{
-		ID:       "EMPTY_1",
+		ResID:    "EMPTY_1",
 		Name:     "Empty Site",
 		Distance: float64(q.MaxDistance) - 1,
 		Availability: []campwiz.Availability{

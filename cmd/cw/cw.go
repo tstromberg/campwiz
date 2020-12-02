@@ -21,9 +21,9 @@ import (
 )
 
 var datesFlag *[]string = pflag.StringSlice("dates", []string{"2021-03-05"}, "dates to search for")
-var milesFlag *int = pflag.Int("miles", 100, "distance to search within")
+var milesFlag *int = pflag.Int("max_distance", 100, "distance to search within")
 var nightsFlag *int = pflag.Int("nights", 2, "number of nights to stay")
-var sceneryRatingFlag *int = pflag.Int("min_scenery_rating", 6, "minimum scenery rating for inclusion")
+var minRatingFlag *float64 = pflag.Float64("min_rating", 6.0, "minimum scenery rating for inclusion")
 var keywordsFlag *[]string = pflag.StringSlice("keywords", nil, "keywords to search for")
 var latFlag *float64 = pflag.Float64("lat", 37.4092297, "latitude to search from")
 var lonFlag *float64 = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
@@ -32,9 +32,9 @@ var providersFlag *[]string = pflag.StringSlice("providers", search.DefaultProvi
 const dateFormat = "2006-01-02"
 
 type templateContext struct {
-	Query     campwiz.Query
-	Annotated []campwiz.AnnotatedResult
-	Errors    []error
+	Query   campwiz.Query
+	Results []campwiz.Result
+	Errors  []error
 }
 
 func processFlags() error {
@@ -44,12 +44,12 @@ func processFlags() error {
 	}
 
 	q := campwiz.Query{
-		Lon:              *lonFlag,
-		Lat:              *latFlag,
-		StayLength:       *nightsFlag,
-		MaxDistance:      *milesFlag,
-		MinSceneryRating: *sceneryRatingFlag,
-		Keywords:         *keywordsFlag,
+		Lon:         *lonFlag,
+		Lat:         *latFlag,
+		StayLength:  *nightsFlag,
+		MaxDistance: *milesFlag,
+		MinRating:   *minRatingFlag,
+		Keywords:    *keywordsFlag,
 	}
 
 	for _, ds := range *datesFlag {
@@ -60,12 +60,12 @@ func processFlags() error {
 		q.Dates = append(q.Dates, t)
 	}
 
-	xrefs, err := metadata.Load()
+	props, err := metadata.Load()
 	if err != nil {
 		return fmt.Errorf("loadcc failed: %w", err)
 	}
 
-	ms, errs := search.Run(*providersFlag, q, cs, xrefs)
+	ms, errs := search.Run(*providersFlag, q, cs, props)
 
 	bs, err := ioutil.ReadFile(relpath.Find("templates/ascii.tmpl"))
 	if err != nil {
@@ -79,9 +79,9 @@ func processFlags() error {
 	t := template.Must(template.New("ascii").Funcs(fmap).Parse(string(bs)))
 
 	c := templateContext{
-		Query:     q,
-		Annotated: ms,
-		Errors:    errs,
+		Query:   q,
+		Results: ms,
+		Errors:  errs,
 	}
 
 	err = t.ExecuteTemplate(os.Stdout, "ascii", c)

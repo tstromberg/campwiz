@@ -1,35 +1,49 @@
 package campwiz
 
+type Property struct {
+	ID          string        `yaml:"id"` // Must be unique, suggested form: /<state>/<area>/<name>
+	URL         string        `yaml:"url,omitempty"`
+	Name        string        `yaml:"name"`
+	ManagedBy   string        `yaml:"managed_by,omitempty"`
+	Campgrounds []*Campground `yaml:"campgrounds"`
+}
+
+type Campground struct {
+	ID   string `yaml:"id"`
+	Name string `yaml:"name"`
+	URL  string `yaml:"url,omitempty"`
+
+	ResURL string `yaml:"res_url,omitempty"`
+	ResID  string `yaml:"res_id,omitempty"`
+
+	Refs map[string]*Ref
+
+	PropertyID string `yaml:"__property_id__,omitempty"` // internal reference back
+}
+
 // Ref is a cross-reference entry
 type Ref struct {
-	ID   string `yaml:"id"`
-	Name string `yaml:"name,omitempty"`
+	URL string `yaml:"url,omitempty"`
 
-	Related []string `yaml:"related,omitempty"`
-	URLs    []string `yaml:"urls,omitempty"`
+	Name    string `yaml:"name,omitempty"`
+	Desc    string `yaml:"desc,omitempty"`
+	Contact string `yaml:"contact,omitempty"`
 
+	Lat      float64  `yaml:"lat,omitempty"`
+	Lon      float64  `yaml:"lon,omitempty"`
 	Rating   float64  `yaml:"rating,omitempty"`
-	Tags     []string `yaml:"tags,omitempty"`
 	Features []string `yaml:"features,omitempty"`
-	Desc     string   `yaml:"desc,omitempty"`
-	Owner    string   `yaml:"owner,omitempty"`
-
-	Locale string  `yaml:"locale,omitempty"`
-	Lat    float64 `yaml:"lat,omitempty"`
-	Lon    float64 `yaml:"lon,omitempty"`
-
-	// Synthetic part of the data
-	Source RefSource `yaml:"__src,omitempty"`
+	Locale   string   `yaml:"locale,omitempty"`
 }
 
-type RefSource struct {
-	Name       string
-	RatingDesc string  `yaml:"rating_desc"`
-	RatingMax  float64 `yaml:"rating_max"`
+type Source struct {
+	ID        string
+	Name      string
+	URL       string
+	RatingMax float64 `yaml:"rating_max"`
 }
 
-// RefData is cross-reference data loaded from YAML
-type RefData struct {
-	Source  RefSource
-	Entries []Ref
+type RefFile struct {
+	Sources    map[string]Source `yaml:"sources,omitempty"`
+	Properties []*Property
 }

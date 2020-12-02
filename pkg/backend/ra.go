@@ -135,7 +135,8 @@ func (b *RAmerica) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.
 		}
 
 		rr := campwiz.Result{
-			ID:           r.NamingID,
+			ResURL:       b.url("/"),
+			ResID:        r.NamingID,
 			Name:         r.Name,
 			Distance:     r.Proximity,
 			Availability: []campwiz.Availability{a},

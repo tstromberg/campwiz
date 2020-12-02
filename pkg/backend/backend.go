@@ -64,7 +64,7 @@ func mergeDates(res []campwiz.Result) []campwiz.Result {
 	klog.V(1).Infof("Merging %d results ...", len(res))
 	m := make(map[string]campwiz.Result)
 	for _, r := range res {
-		key := r.ID // Merge campwiz.Availability metadata.
+		key := r.ResURL + r.ResID // Merge campwiz.Availability metadata.
 		if val, exists := m[key]; exists {
 			klog.V(1).Infof("%s: Appending Availability: %+v (previous: %+v)", key, r.Availability, val.Availability)
 			val.Availability = append(val.Availability, r.Availability...)

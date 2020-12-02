@@ -14,9 +14,9 @@ var (
 )
 
 // Run is a one-stop query shop: talks to backends, annotates, provides filtering
-func Run(providers []string, q campwiz.Query, cs cache.Store, refs map[string]campwiz.Ref) ([]campwiz.AnnotatedResult, []error) {
+func Run(providers []string, q campwiz.Query, cs cache.Store, refs map[string]*campwiz.Property) ([]campwiz.Result, []error) {
 	rs, errs := unfiltered(providers, q, cs)
-	return annotate(rs, refs), errs
+	return rs, errs
 }
 
 // unfiltered searches for results across providers, without filters

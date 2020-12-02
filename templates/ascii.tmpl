@@ -1,15 +1,15 @@
-{{ range .Annotated}}
+{{ range .Results}}
 --------------------------------------------------------------------------------
-{{ .Result.Name }} ({{ printf "%.0f" .Result.Distance }}mi)
+{{ .Name }} ({{ printf "%.0f" .Distance }}mi)
 {{ with .Locale }}{{ . }}{{ end }}
-{{- range .Result.Availability}}
+{{- range .Availability}}
   * {{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}
     {{.URL}}
 {{- end }}
 
 {{ with .Desc }}{{ . }}{{ end }}
 
-{{- range .Refs }}
+{{- range .KnownCampground.Refs }}
  > {{ .Source.Name }}: [{{ .Rating }}/{{ .Source.RatingMax }} {{ .Source.RatingDesc }}]
  >
  >  {{.Desc | Ellipsis }}

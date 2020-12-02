@@ -162,7 +162,9 @@ func parseSMCSearchPage(code string, bs []byte, date time.Time, q campwiz.Query)
 		}
 
 		r := &campwiz.Result{
-			ID:           "parks.smcgov.org/" + code,
+
+			ResID: code,
+			ResURL: smcSiteURL("/"),
 			Name:         codeToTitle(code),
 			Distance:     geo.MilesApart(q.Lat, q.Lon, smcCenterLat, smcCenterLon),
 			Availability: []campwiz.Availability{a},

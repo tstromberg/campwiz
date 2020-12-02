@@ -13,7 +13,7 @@ func TestFilter(t *testing.T) {
 				Name:     "pretty close",
 				Distance: 30.45,
 			},
-			Refs: []campwiz.Ref{
+			Refs: []campwiz.Campground{
 				{
 					Source: campwiz.RefSource{
 						RatingDesc: "Scenery",
@@ -28,7 +28,7 @@ func TestFilter(t *testing.T) {
 				Name:     "ugly far",
 				Distance: 90.45,
 			},
-			Refs: []campwiz.Ref{
+			Refs: []campwiz.Campground{
 				{
 					Source: campwiz.RefSource{
 						RatingDesc: "Scenery",

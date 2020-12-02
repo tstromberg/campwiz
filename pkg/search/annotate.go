@@ -1,20 +1,15 @@
 package search
 
-import (
-	"strings"
-
-	"github.com/tstromberg/campwiz/pkg/campwiz"
-	"github.com/tstromberg/campwiz/pkg/mangle"
-	"k8s.io/klog/v2"
-)
-
 var wordMax = 65
 
-func FindRefs(r campwiz.Result, xrefs map[string]campwiz.Ref) []campwiz.Ref {
-	var matching []campwiz.Ref
+/*
+func FindRefs(r campwiz.Result, props map[string]*campwiz.Property) []*campwiz.Campground {
+	var matching []*campwiz.Campground
 
-	for _, xref := range xrefs {
-		for _, sid := range xref.Related {
+	for _, prop := range props {
+		for _, cg := range prop.Campgrounds {
+			if r.ResID
+		for _, sid := range xref. {
 			if sid == r.ID {
 				matching = append(matching, xref)
 				continue
@@ -54,7 +49,7 @@ func FindRefs(r campwiz.Result, xrefs map[string]campwiz.Ref) []campwiz.Ref {
 }
 
 // fuzzyMatch finds the most likely matching cross-references for a site by name
-func fuzzyMatch(name string, xrefs map[string]campwiz.Ref) []campwiz.Ref {
+func fuzzyMatch(name string, xrefs map[string]campwiz.Ref) []campwiz.Campground {
 	if name == "" {
 		klog.Warningf("fuzzyMatch called with empty name")
 		return nil
@@ -64,12 +59,12 @@ func fuzzyMatch(name string, xrefs map[string]campwiz.Ref) []campwiz.Ref {
 	klog.V(1).Infof("fuzzyMatch(%s) ...", keyName)
 
 	// Three levels of matches.
-	var exact []campwiz.Ref
-	var prefix []campwiz.Ref
-	var contains []campwiz.Ref
-	var allWords []campwiz.Ref
-	var someWords []campwiz.Ref
-	var singleWord []campwiz.Ref
+	var exact []campwiz.Campground
+	var prefix []campwiz.Campground
+	var contains []campwiz.Campground
+	var allWords []campwiz.Campground
+	var someWords []campwiz.Campground
+	var singleWord []campwiz.Campground
 
 	keywords := strings.Split(keyName, " ")
 
@@ -136,50 +131,4 @@ func fuzzyMatch(name string, xrefs map[string]campwiz.Ref) []campwiz.Ref {
 	return nil
 }
 
-// annotate combines results with cross-references
-func annotate(results []campwiz.Result, xrefs map[string]campwiz.Ref) []campwiz.AnnotatedResult {
-	ms := []campwiz.AnnotatedResult{}
-
-	for _, r := range results {
-		refs := FindRefs(r, xrefs)
-
-		a := campwiz.AnnotatedResult{
-			Result:   r,
-			Refs:     refs,
-			Name:     r.Name,
-			Desc:     r.Desc,
-			Distance: r.Distance,
-			Features: r.Features,
-		}
-
-		seenFeature := map[string]bool{}
-		for _, f := range a.Features {
-			seenFeature[strings.ToLower(f)] = true
-		}
-
-		for _, x := range refs {
-			if a.Name == "" && x.Name != "" {
-				a.Name = x.Name
-			}
-
-			if a.Desc == "" && x.Desc != "" {
-				a.Desc = x.Desc
-			}
-
-			if a.Locale == "" && x.Locale != "" {
-				a.Locale = x.Locale
-			}
-
-			for _, f := range x.Features {
-				if !seenFeature[strings.ToLower(f)] {
-					a.Features = append(a.Features, f)
-					seenFeature[strings.ToLower(f)] = true
-				}
-			}
-			// TODO: Support populating the Distance field for results without distance
-		}
-		ms = append(ms, a)
-	}
-
-	return ms
-}
+*/

@@ -141,7 +141,8 @@ func (b *SantaClaraCounty) parse(bs []byte, date time.Time, q campwiz.Query) ([]
 		}
 
 		r := campwiz.Result{
-			ID:           metaSccRoot + strings.ToLower(strings.Replace(name, " ", "_", -1)),
+			ResURL:       b.url("/"),
+			ResID:        strings.ToLower(strings.Replace(name, " ", "_", -1)),
 			Name:         name,
 			Distance:     geo.MilesApart(q.Lat, q.Lon, sccCenterLat, sccCenterLon),
 			Availability: []campwiz.Availability{a},

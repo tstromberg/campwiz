@@ -16,6 +16,7 @@ var (
 		"SP":  "STATE PARK",
 		"CP":  "COUNTY PARK",
 		"NP":  "NATIONAL PARK",
+		"NF":  "NATIONAL FOREST",
 	}
 
 	// ExtraWords are common words that can be thrown out for matching
@@ -127,9 +128,29 @@ func Locale(s string) string {
 	return strings.Join(new, " ")
 }
 
+func LocaleProperty(s string) string {
+	words := strings.Split(s, " ")
+	for i, w := range words {
+		switch w {
+		case "/", "in":
+			if words[i+1] == "the" {
+				return strings.Join(words[i+2:], " ")
+			}
+			return strings.Join(words[i+1:], " ")
+		}
+	}
+	return ""
+}
+
 // Locale returns an even shorter locale
 func ShortLocale(s string) string {
 	s = Locale(s)
+
+	in := strings.Index(s, " / ")
+	if in > 0 {
+		s = s[in+3:]
+	}
+
 	new := []string{}
 	for _, w := range strings.Split(s, " ") {
 		lw := strings.ToLower(w)
