@@ -2,6 +2,7 @@ package metasrc
 
 import (
 	"bufio"
+	"fmt"
 	"html"
 	"io"
 	"regexp"
@@ -14,7 +15,7 @@ import (
 )
 
 var (
-	ccTitleRe      = regexp.MustCompile(`^<h3 class="h3_1".*<strong>(.*?)</strong></a></h3>`)
+	ccTitleRe      = regexp.MustCompile(`^<h3 class="h3_1".*#(.*?)"><strong>(.*?)</strong></a></h3>`)
 	ccRatingRe     = regexp.MustCompile(`Scenic rating: (\d+)`)
 	ccDescRe       = regexp.MustCompile(`<p class="noindent">(.*?)</p>`)
 	ccLocaleRe     = regexp.MustCompile(`^<p class="noindentt_1">(.*?)</p>`)
@@ -23,7 +24,13 @@ var (
 	ccReserveRe    = regexp.MustCompile(`<p class="noindent"><strong>Reservations, fees:</strong> (.*?)</p>`)
 	ccContactRe    = regexp.MustCompile(`^<p class="noindent"><strong>Contact:</strong> (.*?)</p>`)
 	hrefRe         = regexp.MustCompile(`href="(.*?)">`)
-	nonWordRe      = regexp.MustCompile(`\W+`)
+
+	nonWordRe    = regexp.MustCompile(`\W+`)
+	listHeaderRe = regexp.MustCompile(`<h5.*<span class="moon">B</span> <strong>(.*?)</strong></a></h5>`)
+	listEntryRe  = regexp.MustCompile(`<p class="noindent_3"><a id=".*?"></a><strong>(\d+). .*?,</strong>.*href=".*?#(ch.*?)">`)
+
+	// TODO: Make not a global
+	topLists = map[string][]campwiz.RefList{}
 )
 
 // ccPropertyKey returns a "unique" string for a property.
@@ -101,14 +108,38 @@ func CC(r io.Reader, props map[string]*campwiz.Property) error {
 
 	var prop *campwiz.Property
 	var ref *campwiz.Ref
+	listTitle := "UNKNOWN"
 
 	for scanner.Scan() {
 		line := scanner.Text()
 		klog.V(1).Infof("Line: %s", line)
 
-		m := ccTitleRe.FindStringSubmatch(line)
-		if len(m) > 0 {
-			klog.V(1).Infof("Title: %s", m[1])
+		m := listHeaderRe.FindStringSubmatch(line)
+		if m != nil {
+			listTitle = htmlText(m[1])
+		}
+
+		m = listEntryRe.FindStringSubmatch(line)
+		if m != nil {
+			anchor := m[2]
+			place, err := strconv.Atoi(m[1])
+			if err != nil {
+				return fmt.Errorf("atoi: %v", err)
+			}
+
+			topLists[anchor] = append(topLists[anchor], campwiz.RefList{
+				Title: "Best " + listTitle,
+				Place: place,
+			})
+
+			klog.Errorf("Added %s to %q", anchor, listTitle)
+		}
+
+		m = ccTitleRe.FindStringSubmatch(line)
+		if m != nil {
+			anchor := strings.Replace(m[1], "_", "", -1) // The inputs are inconsistent?
+			name := mangle.Title(htmlText(m[2]))
+			klog.Errorf("Name: %s at %s", name, anchor)
 			if prop != nil {
 				final := finalizeProp(prop, ref)
 				found, ok := props[final.ID]
@@ -123,8 +154,7 @@ func CC(r io.Reader, props map[string]*campwiz.Property) error {
 				ref = nil
 			}
 
-			name := mangle.Title(htmlText(m[1]))
-			ref = &campwiz.Ref{Name: name}
+			ref = &campwiz.Ref{Name: name, Lists: topLists[anchor]}
 			prop = &campwiz.Property{Name: ref.Name, Campgrounds: []*campwiz.Campground{{ID: "default"}}}
 			continue
 		}

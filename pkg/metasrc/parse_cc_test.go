@@ -120,3 +120,43 @@ func TestCC(t *testing.T) {
 		t.Errorf("CC() mismatch (-want +got):\n%s\nRAW: %+v", diff, got)
 	}
 }
+
+func TestBestCC(t *testing.T) {
+	f, err := os.Open("testdata/best_cc.html")
+	if err != nil {
+		t.Fatalf("readfile: %v", err)
+	}
+
+	got := map[string]*campwiz.Property{}
+
+	if err := CC(f, got); err != nil {
+		t.Errorf("unexpected error: %v", err)
+	}
+
+	want := map[string]*campwiz.Property{
+		"/ca/patalinx_planet/smal_harbor": {
+			ID:   "/ca/patalinx_planet/smal_harbor",
+			Name: "Smal Harbor",
+			Campgrounds: []*campwiz.Campground{{
+				ID:   "default",
+				Name: "Smal Harbor",
+				Refs: map[string]*campwiz.Ref{
+					"cc": {
+						Name:   "Smal Harbor",
+						Desc:   "There is plenty to do here!",
+						Locale: "on Patalinx Planet",
+						Rating: 10,
+						Lists: []campwiz.RefList{{
+							Title: "Best Planet Retreats",
+							Place: 8,
+						}},
+					},
+				},
+			},
+			},
+		}}
+
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("CC() mismatch (-want +got):\n%s\nRAW: %+v", diff, got)
+	}
+}

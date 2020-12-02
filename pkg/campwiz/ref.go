@@ -34,6 +34,15 @@ type Ref struct {
 	Rating   float64  `yaml:"rating,omitempty"`
 	Features []string `yaml:"features,omitempty"`
 	Locale   string   `yaml:"locale,omitempty"`
+
+	Lists []RefList `yaml:"lists,omitempty"`
+}
+
+// RefList is basically an award referenced by this site
+type RefList struct {
+	URL   string `yaml:"url,omitempty"`
+	Title string `yaml:title,omitempty"`
+	Place int    `yaml:place,omitempty"`
 }
 
 type Source struct {

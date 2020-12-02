@@ -14,6 +14,13 @@ properties:
                 contact: Angel Island State Park, 415/435-5390, www.parks.ca.gov; Marin District 707/769-5665; bike rentals and tram tours, www.angelisland.com.
                 rating: 10
                 locale: on Angel Island
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 9
+                    - title: Best for Hikes with Views
+                      place: 5
+                    - title: Best Island Retreats
+                      place: 5
     - id: /ca/angeles
       url: http://www.fs.usda.gov/angeles
       name: Angeles National Forest
@@ -89,6 +96,9 @@ properties:
                 contact: Parks Management Company, 805/434-1996; Angeles National Forest/Acton Work Center, 661/269-2808, www.fs.usda.gov/angeles.
                 rating: 4
                 locale: near Pyramid Lake in Angeles National Forest
+                lists:
+                    - title: Best for Waterskiing
+                      place: 9
     - id: /ca/anza/anza
       url: http://www.anzarvresort.com
       name: Anza RV Resort
@@ -791,6 +801,9 @@ properties:
                 contact: Emerald Cove Marina, 530/692-3200; Tahoe National Forest, Yuba River Ranger District, North, 530/288-3231, www.bullardsbar.com, www.fs.usda.gov/tahoe.
                 rating: 8
                 locale: on Bullards Bar Reservoir
+                lists:
+                    - title: Best Boat-In Campgrounds
+                      place: 5
     - id: /ca/bullards_bar_reservoir/schoolhouse
       url: http://www.bullardsbar.com
       name: Schoolhouse
@@ -906,6 +919,9 @@ properties:
                 contact: Camanche Lake North, 866/763-5121 ext. 3 or 209/763-5121, www.lakecamancheresort.com.
                 rating: 7
                 locale: on Camanche Lake
+                lists:
+                    - title: Best for Fishing
+                      place: 4
     - id: /ca/camanche_lake/camanche_lake_south_equestrian
       url: http://www.lakecamancheresort.com
       name: Camanche Lake South And Equestrian
@@ -1052,6 +1068,9 @@ properties:
                 contact: 'For ferry information, camp reservations, or general information: Avalon, 877/778-8322; Two Harbors Visitor Services, 310/510-4205; Catalina Island Conservancy, 877/778-1487 or 310/510-8368 (reservations); www.visitcatalinaisland.com or www.campingcatalinaisland.com.'
                 rating: 10
                 locale: on Catalina Island
+                lists:
+                    - title: Best Island Retreats
+                      place: 1
     - id: /ca/catalina_island/little_harbor
       url: http://www.visitcatalinaisland.com
       name: Little Harbor
@@ -1067,6 +1086,9 @@ properties:
                 contact: 'For ferry information, camp reservations, or general information: Avalon, 877/778-8322; Two Harbors Visitor Services, 310/510-4205; Catalina Island Conservancy, 877/778-1487 or 310/510-8368 (reservations); Wet Spot Rentals, 310/510-2229; www.visitcatalinaisland.com or www.visittwoharbors.com.'
                 rating: 10
                 locale: on Catalina Island
+                lists:
+                    - title: Best Island Retreats
+                      place: 8
     - id: /ca/catalina_island/parsons_landing
       url: http://www.visitcatalinaisland.com
       name: Parsons Landing
@@ -1082,6 +1104,9 @@ properties:
                 contact: 'For ferry information, camp reservations, or general information: Two Harbors Visitor Services, 310/510-4205; Catalina Island Conservancy, 877/778-1487 or 310/510-8368 (reservations), www.visitcatalinaisland.com or www.visittwoharbors.com.'
                 rating: 10
                 locale: on Catalina Island
+                lists:
+                    - title: Best Island Retreats
+                      place: 9
     - id: /ca/catalina_island/two_harbors
       url: http://www.visitcatalinaisland.com
       name: Two Harbors
@@ -1097,6 +1122,9 @@ properties:
                 contact: 'For ferry information, camp reservations, or general information: Avalon, 877/778-8322; Two Harbors Visitor Services, 310/510-4205; Catalina Island Conservancy, 877/778-1487 or 310/510-8368 (reservations), www.visitcatalinaisland.com or www.visittwoharbors.com.'
                 rating: 10
                 locale: on Catalina Island
+                lists:
+                    - title: Best Island Retreats
+                      place: 3
     - id: /ca/cathedral_city
       url: http://www.rvonthego.com
       name: Cathedral City
@@ -1140,6 +1168,9 @@ properties:
                 contact: Sequoia and Kings Canyon National Parks, 559/565-3341; Cedar Grove Visitor Center, 559/565-3793, www.nps.gov/seki.
                 rating: 8
                 locale: in the Cedar Grove area of Kings Canyon National Park
+                lists:
+                    - title: Best for Hikes with Views
+                      place: 2
     - id: /ca/channel_islands
       url: http://www.nps.gov/chis
       name: Channel Islands National Park
@@ -1155,6 +1186,9 @@ properties:
                 contact: Channel Islands National Park Visitor Center, 805/658-5730, www.nps.gov/chis.
                 rating: 10
                 locale: in Channel Islands National Park
+                lists:
+                    - title: Best Island Retreats
+                      place: 7
         - id: santa_rosa_island
           name: Santa Rosa Island
           res_url: http://www.recreation.gov
@@ -1165,6 +1199,11 @@ properties:
                 contact: Channel Islands National Park Visitor Center, 805/658-5730, www.nps.gov/chis.
                 rating: 10
                 locale: in Channel Islands National Park
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 10
+                    - title: Best Island Retreats
+                      place: 4
         - id: santa_cruz_island
           name: Santa Cruz Island
           res_url: http://www.reserveamerica.com
@@ -1175,6 +1214,9 @@ properties:
                 contact: Channel Islands National Park Visitor Center, 805/658-5730, www.nps.gov/chis.
                 rating: 10
                 locale: in Channel Islands National Park
+                lists:
+                    - title: Best Island Retreats
+                      place: 2
         - id: anacapa_island
           name: Anacapa Island
           res_url: http://www.recreation.gov
@@ -1185,6 +1227,9 @@ properties:
                 contact: Channel Islands National Park Visitor Center, 805/658-5730, www.nps.gov/chis.
                 rating: 10
                 locale: in Channel Islands National Park
+                lists:
+                    - title: Best Island Retreats
+                      place: 6
         - id: santa_barbara_island
           name: Santa Barbara Island
           res_url: http://www.recreation.gov
@@ -1404,6 +1449,9 @@ properties:
                 contact: Camp Lotus, 530/622-8672, www.camplotus.com.
                 rating: 7
                 locale: on the American River near Coloma
+                lists:
+                    - title: Best for White-Water Rafting
+                      place: 2
     - id: /ca/colorado_river/black_meadow_landing
       url: http://www.blackmeadowlanding.com
       name: Black Meadow Landing
@@ -1517,6 +1565,9 @@ properties:
                 contact: Rainbo Beach Resort, 3520 Needles Highway, 760/326-3101, www.rainbobeachresort.com.
                 rating: 6
                 locale: on the Colorado River
+                lists:
+                    - title: Best for Waterskiing
+                      place: 2
     - id: /ca/columbia/49er_ranch
       url: http://www.49errvpark.com
       name: 49er RV Ranch
@@ -1699,6 +1750,9 @@ properties:
                 contact: Doheny State Beach, 949/496-6171; Orange Coast District, San Clemente Sector, 949/492-0802, www.parks.ca.gov.
                 rating: 10
                 locale: on Dana Point Harbor
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 3
     - id: /ca/death_valley
       url: http://www.escapetodeathvalley.com
       name: Death Valley National Park
@@ -1949,6 +2003,9 @@ properties:
                 contact: Eldorado National Forest, Pacific Ranger District, 530/644-2349, www.fs.usda.gov/eldorado.
                 rating: 6
                 locale: on Loon Lake in Eldorado National Forest
+                lists:
+                    - title: Best Boat-In Campgrounds
+                      place: 2
         - id: wolf_creek_and_wolf_creek_group
           name: Wolf Creek And Wolf Creek Group
           res_url: http://www.recreation.gov
@@ -2538,6 +2595,9 @@ properties:
                 contact: El Capitan Canyon, 805/685-3887, www.elcapitancanyon.com.
                 rating: 8
                 locale: near Goleta
+                lists:
+                    - title: Best for Families
+                      place: 7
     - id: /ca/goleta/ocean_mesa
       url: http://www.oceanmesa.com
       name: Ocean Mesa
@@ -2766,6 +2826,9 @@ properties:
                 contact: U.S. Army Corps of Engineers, Lake Sonoma Visitor Center, 707/431-4533; Lake Sonoma Marina, 707/433-2200.
                 rating: 8
                 locale: near Healdsburg
+                lists:
+                    - title: Best Boat-In Campgrounds
+                      place: 9
     - id: /ca/hearst_san_simeon
       url: http://www.parks.ca.gov
       name: Hearst San Simeon State Park
@@ -3235,6 +3298,9 @@ properties:
                 contact: Inyo National Forest, Mammoth Lakes Visitor Center, 760/924-5500, www.fs.usda.gov/inyo; Convict Lake Resort and Cabins, 800/992-2260, www.convictlake.com.
                 rating: 7
                 locale: in Inyo National Forest
+                lists:
+                    - title: Best for Fishing
+                      place: 2
         - id: mcgee_creek
           name: Mcgee Creek
           res_url: http://www.recreation.gov
@@ -3365,6 +3431,9 @@ properties:
                 contact: Inyo National Forest, Mount Whitney Ranger District, 760/876-6200, www.fs.usda.gov/inyo; Interagency Visitor Center, 760/876-6222.
                 rating: 8
                 locale: in Inyo National Forest
+                lists:
+                    - title: Best Trailhead Camps
+                      place: 4
         - id: upper_and_lower_gray’s_meadow
           name: Upper And Lower Gray’s Meadow
           res_url: http://www.recreation.gov
@@ -3718,6 +3787,9 @@ properties:
                 contact: Klamath National Forest, Happy Camp and Oak Knoll Ranger Districts, 530/493-2243, www.fs.usda.gov/klamath.
                 rating: 7
                 locale: in Klamath National Forest
+                lists:
+                    - title: Best for White-Water Rafting
+                      place: 6
         - id: carter_meadows_group_horse_camp
           name: Carter Meadows Group Horse Camp
           res_url: http://www.recreation.gov
@@ -4011,6 +4083,9 @@ properties:
                 contact: Havasu Landing Resort and Casino, 760/858-4592, www.havasulanding.com; Lake Havasu Tourism Bureau, 928/453-3444 or 800/242-8278, www.golakehavasu.com; Lake Havasu Area Chamber of Commerce, 928/855-4115, www.havasuchamber.com.
                 rating: 7
                 locale: on the western shore of Lake Havasu
+                lists:
+                    - title: Best for Waterskiing
+                      place: 1
     - id: /ca/lake_hemet/hurkey_creek
       url: http://www.rivcoparks.org
       name: Hurkey Creek Park
@@ -4231,6 +4306,9 @@ properties:
                 contact: Lake Perris State Recreation Area, 951/940-5600, 951/940-5603; Lake Perris Marina, 951/657-2179, www.parks.ca.gov.
                 rating: 7
                 locale: on Lake Perris
+                lists:
+                    - title: Best for Waterskiing
+                      place: 6
     - id: /ca/lake_piru/lake_piru
       url: http://www.camplakepiru.com
       name: Lake Piru Recreation Area
@@ -4245,6 +4323,9 @@ properties:
                 contact: Lake Piru Recreation Area, 805/521-1500, www.camplakepiru.com.
                 rating: 7
                 locale: on Lake Piru
+                lists:
+                    - title: Best for Waterskiing
+                      place: 7
     - id: /ca/lake_san_antonio/north_shore_san_antonio
       url: http://www.co.monterey.ca.us/parks
       name: North Shore San Antonio
@@ -4342,6 +4423,9 @@ properties:
                 contact: D. L. Bliss State Park, 530/525-7277; Sierra District, 530/525-7232, www.parks.ca.gov.
                 rating: 10
                 locale: on Lake Tahoe
+                lists:
+                    - title: Best for Hikes with Views
+                      place: 7
     - id: /ca/lake_tahoe/ed_zberg_sugar_pine_point
       url: http://www.parks.ca.gov
       name: Ed Z’berg Sugar Pine Point State Park
@@ -4372,6 +4456,11 @@ properties:
                 contact: Emerald Bay State Park, 530/525-7232 or 530/541-3030 (summer); D. L. Bliss State Park, 530/525-7277, www.parks.ca.gov.
                 rating: 10
                 locale: on Lake Tahoe
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 1
+                    - title: Best Boat-In Campgrounds
+                      place: 1
     - id: /ca/lake_tahoe/historic_richardson
       url: http://www.camprichardson.com
       name: Historic Camp Richardson Resort
@@ -4386,6 +4475,11 @@ properties:
                 contact: Historic Camp Richardson Resort, 530/541-1801, www.camprichardson.com.
                 rating: 7
                 locale: on Lake Tahoe
+                lists:
+                    - title: Best for Families
+                      place: 2
+                    - title: Best for Waterskiing
+                      place: 4
     - id: /ca/lake_tahoe/kaspian
       url: http://www.fs.usda.gov/ltmbu
       name: Kaspian
@@ -4669,6 +4763,9 @@ properties:
                 contact: Lassen Volcanic National Park, 530/595-4480, www.nps.gov/lavo.
                 rating: 9
                 locale: in Lassen Volcanic National Park
+                lists:
+                    - title: Best for Hikes with Views
+                      place: 10
     - id: /ca/lassen_volcanic/mount_lassenshingletown_koa
       url: http://www.koa.com
       name: Mount Lassen/Shingletown Koa
@@ -5423,6 +5520,9 @@ properties:
                 contact: Campland on the Bay, 858/581-4260, administration office (858/581-4200), www.campland.com.
                 rating: 8
                 locale: on Mission Bay
+                lists:
+                    - title: Best for Fishing
+                      place: 8
     - id: /ca/modesto
       url: http://www.stancounty.com
       name: Frank Raines Regional Park near Modesto
@@ -5654,6 +5754,9 @@ properties:
                 contact: Mount San Jacinto State Park, 951/659-2607, www.parks.ca.gov; Inland Empire District, 951/443-2423; Palm Springs Aerial Tramway, 888/515-8726, www.pstramway.com.
                 rating: 10
                 locale: in Mount San Jacinto State Park
+                lists:
+                    - title: Best for Hikes with Views
+                      place: 3
         - id: stone_creek
           name: Stone Creek
           res_url: http://www.reservecalifornia.com
@@ -5688,6 +5791,9 @@ properties:
                 contact: Lake Siskiyou Resort & Camp, 530/926-2610 or 888/926-2618, www.lakesiskiyouresort.com.
                 rating: 9
                 locale: near Mount Shasta
+                lists:
+                    - title: Best for Families
+                      place: 1
     - id: /ca/mount_shasta_city
       url: http://koa.com/campgrounds/mount-shasta
       name: Mount Shasta City
@@ -5717,6 +5823,9 @@ properties:
                 contact: Mount Tamalpais State Park, 415/388-2070; Marin Sector, 415/898-4362, www.parks.ca.gov.
                 rating: 10
                 locale: in Mount Tamalpais State Park
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 2
         - id: pantoll_walk-in,_alice_eastwood,_and_frank_valley
           name: Pantoll Walk-In, Alice Eastwood, And Frank Valley
           res_url: http://www.reservecalifornia.com
@@ -5727,6 +5836,9 @@ properties:
                 contact: Mount Tamalpais State Park, 415/388-2070; Marin Sector, 415/898-4362, www.parks.ca.gov.
                 rating: 10
                 locale: in Mount Tamalpais State Park
+                lists:
+                    - title: Best Trailhead Camps
+                      place: 8
     - id: /ca/mountain_home
       url: http://www.tularecountytreasures.org
       name: Mountain Home Demonstration State Forest
@@ -6152,6 +6264,9 @@ properties:
                 contact: Rocky Mountain Recreation Co., 800/416-6992 or 209/772-1472, www.rockymountainrec.com.
                 rating: 7
                 locale: on Pardee Reservoir
+                lists:
+                    - title: Best for Fishing
+                      place: 3
     - id: /ca/parker_dam/riverland
       url: http://www.riverlandresort.net
       name: Riverland Resort
@@ -6632,6 +6747,9 @@ properties:
                 contact: Point Reyes National Seashore, 415/464-5100, www.nps.gov/pore.
                 rating: 10
                 locale: in Point Reyes National Seashore
+                lists:
+                    - title: Best Boat-In Campgrounds
+                      place: 8
         - id: coast_camp_hike-in
           name: Coast Camp Hike-In
           res_url: http://www.recreation.gov
@@ -6672,6 +6790,9 @@ properties:
                 contact: Point Reyes National Seashore, 415/464-5100, www.nps.gov/pore.
                 rating: 10
                 locale: in Point Reyes National Seashore
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 6
     - id: /ca/pomona
       url: http://www.koa.com
       name: Pomona
@@ -6711,6 +6832,9 @@ properties:
                 contact: Redwood National and State Parks, 707/465-7335 or 707/464-6101, www.nps.gov/redw; Prairie Creek Redwoods State Park, 707/488-2039 or Visitors Center, 707/465-7335, www.parks.ca.gov.
                 rating: 9
                 locale: in Prairie Creek Redwoods State Park
+                lists:
+                    - title: Best for Families
+                      place: 10
     - id: /ca/prosser_reservoir/prosser_ranch
       url: http://www.fs.usda.gov/tahoe
       name: Prosser Ranch Campground
@@ -6851,6 +6975,11 @@ properties:
                 contact: Snug Harbor Resort, 916/775-1455, www.snugharbor.net.
                 rating: 7
                 locale: near Rio Vista
+                lists:
+                    - title: Best for Fishing
+                      place: 6
+                    - title: Best for Waterskiing
+                      place: 10
     - id: /ca/riverside/rancho_jurupa
       url: http://www.rivcoparks.org
       name: Rancho Jurupa Regional Park
@@ -6979,6 +7108,9 @@ properties:
                 contact: Rocky Mountain Recreation Co., 800/416-6992 or 661/702-1420, www.rockymountainrec.com; campground, 209/748-2318.
                 rating: 6
                 locale: near Sacramento
+                lists:
+                    - title: Best for Families
+                      place: 8
     - id: /ca/sacramento_river/brannan_island
       url: http://www.parks.ca.gov
       name: Brannan Island State Recreation Area
@@ -6994,6 +7126,9 @@ properties:
                 contact: Brannan Island State Recreation Area, 916/777-6671, www.parks.ca.gov; American Land and Leisure, 800/342-2267, www.americanll.com.
                 rating: 7
                 locale: on the Sacramento River
+                lists:
+                    - title: Best Island Retreats
+                      place: 10
     - id: /ca/sacramento_river/castle_crags
       url: http://www.parks.ca.gov
       name: Castle Crags State Park
@@ -7263,6 +7398,9 @@ properties:
                 contact: San Bernardino National Forest, Mountaintop Ranger District, Big Bear Ranger Station/Discovery Center, 909/382-2790, www.fs.usda.gov/sbnf; Serrano Campground, 909/866-8021 (reservations).
                 rating: 8
                 locale: on Big Bear Lake in San Bernardino National Forest
+                lists:
+                    - title: Best for Families
+                      place: 5
         - id: tanglewood_group_camp
           name: Tanglewood Group Camp
           res_url: http://www.recreation.gov
@@ -7577,6 +7715,9 @@ properties:
                 contact: Eddo’s Harbor and RV Park, 925/757-5314, www.eddosharbor.com.
                 rating: 6
                 locale: on the San Joaquin River Delta
+                lists:
+                    - title: Best for Waterskiing
+                      place: 3
     - id: /ca/san_jose/joseph_d_grant
       url: http://www.sccgov.org
       name: Joseph D. Grant County Park
@@ -7915,6 +8056,9 @@ properties:
                 contact: Seacliff State Beach, 831/685-6500; California State Parks, Santa Cruz District, 831/335-6318, www.parks.ca.gov; visitors center, 831/685-6444.
                 rating: 10
                 locale: near Santa Cruz
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 4
     - id: /ca/santa_margarita_lake/santa_margarita_koa
       url: http://www.koa.com
       name: Santa Margarita Koa
@@ -8072,6 +8216,9 @@ properties:
                 contact: Sequoia and Kings Canyon National Parks, 559/565-3341; Lodgepole Visitor Center, 559/565-4436, www.nps.gov/seki.
                 rating: 7
                 locale: on Dorst Creek in Sequoia National Park
+                lists:
+                    - title: Best for Families
+                      place: 9
         - id: lodgepole
           name: Lodgepole
           res_url: http://www.recreation.gov
@@ -8102,6 +8249,9 @@ properties:
                 contact: Sequoia National Forest, Kern River Ranger District, Kernville Office, 760/376-3781, www.fs.usda.gov/sequoia.
                 rating: 4
                 locale: on the Kern River in Sequoia National Forest
+                lists:
+                    - title: Best for White-Water Rafting
+                      place: 8
         - id: goldledge
           name: Goldledge
           res_url: http://www.recreation.gov
@@ -8214,6 +8364,9 @@ properties:
                 contact: Holiday Harbor Resort & Marina, 20061 Shasta Caverns Road, Shasta Lake, 530/238-2383 or 800/776-2628, www.lakeshasta.com.
                 rating: 7
                 locale: on Shasta Lake
+                lists:
+                    - title: Best for Waterskiing
+                      place: 5
     - id: /ca/shasta_lake/lakeshore_inn
       url: http://www.shastacamping.com
       name: Lakeshore Inn & RV
@@ -8457,6 +8610,9 @@ properties:
                 contact: Shasta-Trinity National Forest, Shasta Lake Ranger District, 530/275-1587, www.fs.usda.gov/stnf; Shasta Lake Visitor Center, 530/275-1589; Shasta Recreation Company, 530/275-8113.
                 rating: 8
                 locale: on Shasta Lake in Shasta-Trinity National Forest
+                lists:
+                    - title: Best for Fishing
+                      place: 9
     - id: /ca/shaver_lake/edison
       url: http://www.sce.com/campedison
       name: Camp Edison
@@ -8806,6 +8962,9 @@ properties:
                 contact: Silverwood Lake State Recreation Area, 760/389-2303 or 760/389-2281; Silverwood Lake Marina, 760/389-2299, www.parks.ca.gov.
                 rating: 8
                 locale: on Silverwood Lake in Silverwood Lake State Recreation Area
+                lists:
+                    - title: Best for Waterskiing
+                      place: 8
         - id: west_fork_group_camps
           name: West Fork Group Camps
           res_url: http://www.reservecalifornia.com
@@ -8858,6 +9017,9 @@ properties:
                 contact: Smith River Recreation Area, Six Rivers National Forest, 707/457-3131, www.fs.usda.gov/srnf.
                 rating: 8
                 locale: on the Smith River in Six Rivers National Forest
+                lists:
+                    - title: Best for Fishing
+                      place: 10
         - id: grassy_flat
           name: Grassy Flat
           res_url: http://www.recreation.gov
@@ -8888,6 +9050,9 @@ properties:
                 contact: Six Rivers National Forest, Orleans Ranger District, 530/627-3291, www.fs.usda.gov/srnf.
                 rating: 7
                 locale: on the Klamath River in Six Rivers National Forest
+                lists:
+                    - title: Best for White-Water Rafting
+                      place: 9
         - id: oak_bottom
           name: Oak Bottom
           res_url: http://www.recreation.gov
@@ -10547,6 +10712,11 @@ properties:
                 contact: Yosemite National Park, 209/372-0200, www.nps.gov/yose.
                 rating: 8
                 locale: in Yosemite National Park
+                lists:
+                    - title: Best for Hikes with Views
+                      place: 9
+                    - title: Best Trailhead Camps
+                      place: 1
         - id: lower_pines
           name: Lower Pines
           res_url: http://www.recreation.gov
@@ -10567,6 +10737,11 @@ properties:
                 contact: Yosemite National Park, 209/372-0200, www.nps.gov/yose.
                 rating: 9
                 locale: in Yosemite Valley in Yosemite National Park
+                lists:
+                    - title: Best Scenic Campgrounds
+                      place: 5
+                    - title: Best for Families
+                      place: 3
         - id: north_pines
           name: North Pines
           res_url: http://www.recreation.gov
