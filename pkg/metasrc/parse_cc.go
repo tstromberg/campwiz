@@ -91,6 +91,7 @@ func finalizeProp(p *campwiz.Property, ref *campwiz.Ref) *campwiz.Property {
 	p.Campgrounds[0].Refs = map[string]*campwiz.Ref{"cc": ref}
 	fields := strings.Split(ref.Contact, ",")
 	p.ManagedBy = strings.TrimSpace(fields[0])
+
 	p.ID = ccPropertyKey(ref.Name, ref.Locale)
 	p.Campgrounds[0].ID = campKey(ref.Name, p.ID)
 	p.Campgrounds[0].Name = ref.Name
@@ -99,6 +100,13 @@ func finalizeProp(p *campwiz.Property, ref *campwiz.Ref) *campwiz.Property {
 		p.Name = propertyName
 	}
 
+	// Omit useless info
+	if p.ManagedBy == p.Name {
+		p.ManagedBy = ""
+	}
+
+	// no longer required
+	ref.Contact = ""
 	return p
 }
 
