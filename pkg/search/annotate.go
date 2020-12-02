@@ -1,134 +1,144 @@
 package search
 
-var wordMax = 65
+import (
+	"fmt"
+	"sort"
+	"strings"
 
-/*
-func FindRefs(r campwiz.Result, props map[string]*campwiz.Property) []*campwiz.Campground {
-	var matching []*campwiz.Campground
+	"github.com/tstromberg/campwiz/pkg/campwiz"
+	"github.com/tstromberg/campwiz/pkg/mangle"
+	"k8s.io/klog"
+)
+
+const (
+	NoMatch = iota
+	DoubleMangledSubMatch
+	MangledSubMatch
+	SubNameMatch
+	DoubleMangledNameMatch
+	MangledNameMatch
+	NameMatch
+	SiteID
+)
+
+var (
+	scoreNames = map[int]string{
+		NoMatch:                "NoMatch",
+		DoubleMangledSubMatch:  "DoubleMangledSubMatch",
+		MangledSubMatch:        "MangledSubMatch",
+		SubNameMatch:           "SubNameMatch",
+		DoubleMangledNameMatch: "DoubleMangledNameMatch",
+		MangledNameMatch:       "MangledNameMatch",
+		NameMatch:              "NameMatch",
+		SiteID:                 "SiteID",
+	}
+)
+
+type Match struct {
+	Score      int
+	Detail     string
+	Campground *campwiz.Campground
+}
+
+func annotate(r campwiz.Result, props map[string]*campwiz.Property) campwiz.Result {
+	cg := findBestMatch(r, props)
+	if cg.Score == 0 {
+		klog.Errorf("No site matche for %+v", r)
+		return r
+	}
+	r.KnownCampground = cg.Campground
+
+	for _, ref := range cg.Campground.Refs {
+		if r.Locale == "" && ref.Locale != "" {
+			r.Locale = ref.Locale
+		}
+	}
+	return r
+}
+
+func findBestMatch(r campwiz.Result, props map[string]*campwiz.Property) Match {
+	matches := findMatches(r, props)
+
+	if len(matches) == 0 {
+		return Match{Score: NoMatch}
+	}
+
+	sort.Slice(matches, func(i, j int) bool { return matches[i].Score > matches[j].Score })
+	return matches[0]
+}
+
+func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {
+	var matches []Match
+	resName := strings.TrimSpace(strings.ToLower(r.Name))
 
 	for _, prop := range props {
 		for _, cg := range prop.Campgrounds {
-			if r.ResID
-		for _, sid := range xref. {
-			if sid == r.ID {
-				matching = append(matching, xref)
+			knownName := strings.ToLower(cg.Name)
+
+			if resName == knownName {
+				matches = append(matches, Match{NameMatch, fmt.Sprintf("result %q = known %q", knownName, resName), cg})
 				continue
 			}
-		}
-	}
 
-	variations := []string{
-		r.Name,
-		strings.Join(strings.Split(mangle.Shortest(mangle.Expand(r.Name)), " "), ""),
-		mangle.Shortest(r.Name),
-		mangle.Expand(r.Name),
-		mangle.Shortest(mangle.Expand(r.Name)),
-	}
+			if strings.Contains(resName, knownName) {
+				matches = append(matches, Match{SubNameMatch, fmt.Sprintf("known %q in result %q", knownName, resName), cg})
+			}
 
-	klog.V(2).Infof("Merge Variations: %v", strings.Join(variations, "|"))
+			if strings.Contains(knownName, resName) {
+				matches = append(matches, Match{SubNameMatch, fmt.Sprintf("result %q in known %q", resName, knownName), cg})
+			}
 
-	for _, name := range variations {
-		mm := fuzzyMatch(name, xrefs)
-		if len(mm) == 0 {
-			continue
-		}
+			// Mangle the result to see if it roughly matches a known site
+			resVariations := []string{
+				strings.Join(strings.Split(mangle.Shortest(mangle.Expand(resName)), " "), ""),
+				mangle.Shortest(resName),
+				mangle.Expand(resName),
+				mangle.Shortest(mangle.Expand(resName)),
+			}
 
-		if len(mm) == 1 {
-			return mm
-		}
+			// Mangle the result to see if it roughly matches a known site
+			knownVariations := []string{
+				strings.Join(strings.Split(mangle.Shortest(mangle.Expand(knownName)), " "), ""),
+				mangle.Shortest(knownName),
+				mangle.Expand(knownName),
+				mangle.Shortest(mangle.Expand(knownName)),
+			}
 
-		if len(mm) > 1 {
-			// So, we have multiple matches. Perhaps the locale will help? We no longer have it :(
-			// BETTER IDEA: Fuzzy coordinates match?
-			klog.V(2).Infof("No unique for %s: %+v - returning all", name, mm)
-			return mm
-		}
-	}
+			for i, rv := range resVariations {
+				rv = strings.ToLower(rv)
+				klog.Errorf("rv %q vs known %q", rv, knownName)
+				if rv == knownName {
+					matches = append(matches, Match{MangledNameMatch, fmt.Sprintf("variation %d: %q = %q", i, rv, knownName), cg})
+					continue
+				}
+				if strings.Contains(knownName, rv) {
+					matches = append(matches, Match{MangledSubMatch, fmt.Sprintf("variation %d: result %q in known %q", i, rv, knownName), cg})
+					continue
+				}
+				if strings.Contains(rv, knownName) {
+					matches = append(matches, Match{MangledSubMatch, fmt.Sprintf("variation %d: result %q in known %q", i, knownName, rv), cg})
+					continue
+				}
 
-	return matching
-}
-
-// fuzzyMatch finds the most likely matching cross-references for a site by name
-func fuzzyMatch(name string, xrefs map[string]campwiz.Ref) []campwiz.Campground {
-	if name == "" {
-		klog.Warningf("fuzzyMatch called with empty name")
-		return nil
-	}
-
-	keyName := strings.ToUpper(name)
-	klog.V(1).Infof("fuzzyMatch(%s) ...", keyName)
-
-	// Three levels of matches.
-	var exact []campwiz.Campground
-	var prefix []campwiz.Campground
-	var contains []campwiz.Campground
-	var allWords []campwiz.Campground
-	var someWords []campwiz.Campground
-	var singleWord []campwiz.Campground
-
-	keywords := strings.Split(keyName, " ")
-
-	for _, xref := range xrefs {
-		k := xref.Name
-		i := strings.Index(strings.ToLower(k), strings.ToLower(keyName))
-		klog.V(4).Infof("Testing: keyName=%s == k=%s (index=%d)", keyName, k, i)
-		// The whole key does not exist.
-		if i == -1 {
-			var wordMatches []string
-			kwords := strings.Split(k, " ")
-			for _, kw := range kwords {
-				for _, keyword := range keywords {
-					if keyword == kw {
-						wordMatches = append(wordMatches, kw)
+				for x, kv := range knownVariations {
+					kv = strings.ToLower(kv)
+					klog.Errorf("rv %q vs kv %q", rv, kv)
+					if rv == kv {
+						matches = append(matches, Match{DoubleMangledNameMatch, fmt.Sprintf("variation %d/%d: %q = %q", i, x, rv, knownName), cg})
+						continue
+					}
+					if strings.Contains(kv, rv) {
+						matches = append(matches, Match{DoubleMangledSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, rv, kv), cg})
+						continue
+					}
+					if strings.Contains(rv, kv) {
+						matches = append(matches, Match{DoubleMangledSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, kv, rv), cg})
+						continue
 					}
 				}
 			}
-			if len(wordMatches) == len(keywords) {
-				klog.V(2).Infof("All words match for %s: %s", keyName, k)
-				allWords = append(allWords, xref)
-			} else if len(wordMatches) > 1 {
-				klog.V(2).Infof("Partial match for %s: %s (matches=%v)", keyName, k, wordMatches)
-				someWords = append(someWords, xref)
-			} else if len(wordMatches) == 1 {
-				klog.V(3).Infof("Found single word match for %s: %s (matches=%v)", keyName, k, wordMatches)
-				singleWord = append(singleWord, xref)
-			}
-			continue
-		}
-		if i == 0 {
-			if strings.HasPrefix(k, keyName+" - ") {
-				exact = append(exact, xref)
-				klog.V(2).Infof("Found exact match for %s: %s", keyName, k)
-				continue
-			}
-			klog.V(2).Infof("Found prefix match for %s: %s", keyName, k)
-			prefix = append(prefix, xref)
-			continue
-		} else if i > 0 {
-			klog.V(2).Infof("Found substring match for %s: %s", keyName, k)
-			contains = append(contains, xref)
 		}
 	}
 
-	if len(exact) > 0 {
-		return exact
-	}
-	if len(prefix) > 0 {
-		return prefix
-	}
-	if len(contains) > 0 {
-		return contains
-	}
-	if len(allWords) > 0 {
-		return allWords
-	}
-	if len(someWords) > 0 {
-		return someWords
-	}
-	if len(singleWord) == 1 {
-		return singleWord
-	}
-	return nil
+	return matches
 }
-
-*/

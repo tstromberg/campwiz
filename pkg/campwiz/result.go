@@ -28,5 +28,5 @@ type Result struct {
 	Features     []string
 	Locale       string
 
-	KnownCampground Campground
+	KnownCampground *Campground
 }

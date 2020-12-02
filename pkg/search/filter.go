@@ -11,12 +11,12 @@ func filter(q campwiz.Query, rs []campwiz.Result) []campwiz.Result {
 
 	for _, r := range rs {
 		if q.MaxDistance > 0 && r.Distance > float64(q.MaxDistance) {
-			klog.Infof("filtering %q -- too far (%d miles)", r.Name, r.Distance)
+			klog.Infof("filtering %q -- too far (%.0f miles)", r.Name, r.Distance)
 			continue
 		}
 
 		if q.MinRating > r.Rating {
-			klog.Infof("filtering %q -- too low of a rating", r.Name, r.Rating)
+			klog.Infof("filtering %q -- too low of a rating: %.1f", r.Name, r.Rating)
 			continue
 		}
 
