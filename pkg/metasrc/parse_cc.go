@@ -75,7 +75,7 @@ func ccPropertyKey(name string, locale string) string {
 }
 
 func campKey(name string, propertyKey string) string {
-	key := strings.ToLower(strings.Replace(name, " ", "_", -1))
+	key := strings.ToLower(nonWordRe.ReplaceAllString(strings.Replace(name, " ", "_", -1), ""))
 	if strings.HasSuffix(propertyKey, key) {
 		return "default"
 	}

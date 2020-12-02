@@ -4,7 +4,7 @@ properties:
       name: Angel Island State Park Walk-In/Boat-In
       managed_by: Angel Island State Park
       campgrounds:
-        - id: angel_island_state_park_walk-in/boat-in
+        - id: angel_island_state_park_walkinboatin
           name: Angel Island State Park Walk-In/Boat-In
           res_url: http://www.reservecalifornia.com
           refs:
@@ -51,7 +51,7 @@ properties:
                 desc: zyyQwWrzQAyEX2UewAnhv/zntudCCSF3eVf2CnYls5Id/PbFca9iNDPfPIo4JmpSdyRqy9xt1QxKyVqzTMGO0aIgWMNBmnF/+hWPwuhGGZUpi84QhTgIC22cES+7VFJGslVjf0sHMPmRQymxu4yVMe4g3bFxkVT5tFWmPu74lBk/oux4iktYxxdrcB9gymhSGW5rlAGJFEu3TTKj0XK2FJ2sNwoxhenZNZlmOS5/AAcwuPJ2ysTxf/h3u2Fijis+0G2dy/k6Wcdka7+8CnO95C4bo8vs7wEctgZsOh3VehRQNZ0RhfGgA/X7WIJEcZc88/U3AAD//y637ZZ5AQAA
                 rating: 6
                 locale: in Angeles National Forest
-        - id: jackson_flat_group_walk-in
+        - id: jackson_flat_group_walkin
           name: Jackson Flat Group Walk-In
           res_url: http://www.recreation.gov
           refs:
@@ -243,7 +243,7 @@ properties:
       name: Auburn State Recreation Area near Auburn
       managed_by: Auburn State Recreation Area
       campgrounds:
-        - id: lake_clementine_boat-in
+        - id: lake_clementine_boatin
           name: Lake Clementine Boat-In
           res_url: http://www.reservecalifornia.com
           refs:
@@ -362,7 +362,7 @@ properties:
       name: Holloway’s Marina And RV Park
       managed_by: Holloway’s Marina and RV Park
       campgrounds:
-        - id: holloway’s_marina_and_rv_park
+        - id: holloways_marina_and_rv_park
           name: Holloway’s Marina And RV Park
           refs:
             cc:
@@ -490,7 +490,7 @@ properties:
       url: http://www.brownscampgrounds.com
       name: Brown’s Millpond Campground
       campgrounds:
-        - id: brown’s_millpond_campground
+        - id: browns_millpond_campground
           name: Brown’s Millpond Campground
           refs:
             cc:
@@ -502,7 +502,7 @@ properties:
       url: http://www.brownscampgrounds.com
       name: Brown’s Town
       campgrounds:
-        - id: brown’s_town
+        - id: default
           name: Brown’s Town
           refs:
             cc:
@@ -589,7 +589,7 @@ properties:
                 desc: z0yQUW7CQAxErzIHgPxUvQBSpfJXtVL/J1mHrFhstDak3L7aBGg/dz0ev5mdJTkQO97w+Y0P1iOyw1RgI2ISWEni0YZn1qMj6/LtwZANqKk9q4BVMMoMtRrTdhljMHqwoDlkZWRTRy8RUhETFX/XO7z9DFKKaMCFo1lCFQ9eKjV8tc9XwSnrJcTBmbf1vtvpSds31iRy3roQY/Yp66El4pW5sC8Cu0RT/wv+dbYad22HvYIp5Qa7uWdr+zhUYeCaZX5WMwgVDKiw9reH5bswIWyRzOLRYR+rxcvrdsXHzHLEWO20qFqzj41eOEzdbwAAAP//FNbGBJcBAAA
                 rating: 8
                 locale: in Bodega Bay
-        - id: porto_bodega_marina_&_rv_park
+        - id: porto_bodega_marina__rv_park
           name: Porto Bodega Marina & RV Park
           refs:
             cc:
@@ -696,7 +696,7 @@ properties:
       name: Dark Day Walk-In
       managed_by: Emerald Cove Marina
       campgrounds:
-        - id: dark_day_walk-in
+        - id: dark_day_walkin
           name: Dark Day Walk-In
           refs:
             cc:
@@ -709,7 +709,7 @@ properties:
       name: Garden Point Boat-In
       managed_by: Emerald Cove Marina
       campgrounds:
-        - id: garden_point_boat-in
+        - id: default
           name: Garden Point Boat-In
           refs:
             cc:
@@ -722,7 +722,7 @@ properties:
       name: Madrone Cove Boat-In
       managed_by: Emerald Cove Marina
       campgrounds:
-        - id: madrone_cove_boat-in
+        - id: default
           name: Madrone Cove Boat-In
           refs:
             cc:
@@ -751,7 +751,7 @@ properties:
       name: Shoreline Camp Boat-In
       managed_by: Emerald Cove Marina
       campgrounds:
-        - id: shoreline_camp_boat-in
+        - id: shoreline_camp_boatin
           name: Shoreline Camp Boat-In
           refs:
             cc:
@@ -816,7 +816,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Bothe-Napa Valley State Park
       campgrounds:
-        - id: bothe-napa_valley_state_park
+        - id: bothenapa_valley_state_park
           name: Bothe-Napa Valley State Park
           res_url: http://www.reservecalifornia.com
           refs:
@@ -951,7 +951,7 @@ properties:
       name: Black Jack Hike-In
       managed_by: 'For ferry information and reservations: Avalon'
       campgrounds:
-        - id: black_jack_hike-in
+        - id: default
           name: Black Jack Hike-In
           res_url: http://www.reserveamerica.com
           refs:
@@ -965,7 +965,7 @@ properties:
       name: Catalina Island Boat-In
       managed_by: For ferry information
       campgrounds:
-        - id: catalina_island_boat-in
+        - id: default
           name: Catalina Island Boat-In
           res_url: http://www.reserveamerica.com
           refs:
@@ -1291,7 +1291,7 @@ properties:
       name: O’neill Regional Park And Equestrian Camp
       managed_by: O’Neill Regional Park
       campgrounds:
-        - id: o’neill_regional_park_and_equestrian_camp
+        - id: oneill_regional_park_and_equestrian_camp
           name: O’neill Regional Park And Equestrian Camp
           res_url: http://www.ocparks.com
           refs:
@@ -1458,7 +1458,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Colusa-Sacramento River State Recreation Area
       campgrounds:
-        - id: colusa-sacramento_river_state_recreation_area
+        - id: colusasacramento_river_state_recreation_area
           name: Colusa-Sacramento River State Recreation Area
           res_url: http://www.reservecalifornia.com
           refs:
@@ -1598,7 +1598,7 @@ properties:
       name: Death Valley National Park
       managed_by: Stovepipe Wells Village
       campgrounds:
-        - id: stovepipe_wells_campground_&_village
+        - id: stovepipe_wells_campground__village
           name: Stovepipe Wells Campground & Village
           res_url: http://www.escapetodeathvalley.com
           refs:
@@ -1621,7 +1621,7 @@ properties:
       name: Walker Pass Walk-In
       managed_by: Bureau of Land Management
       campgrounds:
-        - id: walker_pass_walk-in
+        - id: walker_pass_walkin
           name: Walker Pass Walk-In
           refs:
             cc:
@@ -1958,7 +1958,7 @@ properties:
     - id: /ca/eureka
       name: Eureka
       campgrounds:
-        - id: redwood_coast_cabin_&_rv_resort
+        - id: redwood_coast_cabin__rv_resort
           name: Redwood Coast Cabin & RV Resort
           refs:
             cc:
@@ -1971,7 +1971,7 @@ properties:
       name: Clio’s Rivers Edge RV Park
       managed_by: Clio’s River’s Edge
       campgrounds:
-        - id: clio’s_rivers_edge_rv_park
+        - id: clios_rivers_edge_rv_park
           name: Clio’s Rivers Edge RV Park
           refs:
             cc:
@@ -2015,7 +2015,7 @@ properties:
                 desc: z1SQQYrdQAxEr1IHML7DbD4EQhYhkLVs67uFu1s9knrMv31oO38xSxVVKl79SeIQh1aGPhGJsciOlUpzUOCh2bXgJx08YekBiWGn7IqixjAuGoxIVK+0RmK78xOMP7uY1B2EVWztEtodm8kXz/gRd/OVa1yles/0FqpaJCYPeFLjCSZ7CpyJjS/Dr2HAQ+3AR2GTlSp+yxcbyMobJtPB4Bpsft2FpN4iGdOMD1QmW15YlAJGpU0oZFJpAtXtv8w1KDvKyMVYjLAbU+BkPrhu8KYx4yGeBuxTDQu5Xx/CtN+gz+CKzy7B2FU3SIW3e526gcnyC95LYbu77ym98SrskLrmvjFWiqd4uhyNbU0z/tLgO+T96qSDFyXbLsEYTVvPZKNxjJA0vhVRzjjHj8Fh4VeGctaTt/lfAAAA//9mL7ThIgIAAA
                 rating: 6
                 locale: in Folsom Lake State Recreation Area
-        - id: beal’s_point
+        - id: beals_point
           name: Beal’s Point
           res_url: http://www.reservecalifornia.com
           refs:
@@ -2097,7 +2097,7 @@ properties:
       url: http://www.redwoodfamilycamp.org
       name: Richardson Grove Campground & RV Park
       campgrounds:
-        - id: richardson_grove_campground_&_rv_park
+        - id: richardson_grove_campground__rv_park
           name: Richardson Grove Campground & RV Park
           refs:
             cc:
@@ -2143,7 +2143,7 @@ properties:
       name: Jackson Demonstration State Forest, Camp 1
       managed_by: Jackson Demonstration State Forest
       campgrounds:
-        - id: jackson_demonstration_state_forest,_camp_1
+        - id: jackson_demonstration_state_forest_camp_1
           name: Jackson Demonstration State Forest, Camp 1
           refs:
             cc:
@@ -2330,7 +2330,7 @@ properties:
       url: http://www.coepark.org
       name: Henry W. Coe State Park
       campgrounds:
-        - id: henry_w._coe_state_park
+        - id: henry_w_coe_state_park
           name: Henry W. Coe State Park
           res_url: http://www.reservecalifornia.com
           refs:
@@ -2373,7 +2373,7 @@ properties:
       name: Graeagle
       managed_by: Movin’ West RV Park
       campgrounds:
-        - id: movin’_west_rv_park
+        - id: movin_west_rv_park
           name: Movin’ West RV Park
           refs:
             cc:
@@ -2449,7 +2449,7 @@ properties:
       name: Guerneville
       managed_by: Johnson’s Beach & Resort
       campgrounds:
-        - id: johnson’s_beach_&_resort
+        - id: johnsons_beach__resort
           name: Johnson’s Beach & Resort
           refs:
             cc:
@@ -2461,7 +2461,7 @@ properties:
       url: http://www.burkescanoetrips.com
       name: Burke’s Canoe Trips
       campgrounds:
-        - id: burke’s_canoe_trips
+        - id: default
           name: Burke’s Canoe Trips
           refs:
             cc:
@@ -2645,7 +2645,7 @@ properties:
       name: E-Z Landing RV Park And Marina
       managed_by: E-Z Landing RV Park and Marina
       campgrounds:
-        - id: e-z_landing_rv_park_and_marina
+        - id: ez_landing_rv_park_and_marina
           name: E-Z Landing RV Park And Marina
           refs:
             cc:
@@ -2657,7 +2657,7 @@ properties:
       name: Johnny’s Marina And RV Park
       managed_by: Johnny’s Marina and RV Park
       campgrounds:
-        - id: johnny’s_marina_and_rv_park
+        - id: johnnys_marina_and_rv_park
           name: Johnny’s Marina And RV Park
           refs:
             cc:
@@ -2744,7 +2744,7 @@ properties:
                 desc: z0SPwUrEUAxFf+UuFaR05wcI4mJW2h+I9XZemDYZkmDx7+W9zaxDzjl3aZrQhBuhBkEylAnfsMpxTxgl8OnfaumGtyBvEPvBqdXUsO6eRIhd2X+WUw0XuTEnLI3gzl8pdYMUqnFAu+/1ZZ5nbGRNePoix/HiJ+PBGJ4PN/4d7ob3XQq7Zqlds8dWb1+b3IuBzQOHR1+xeRxDOj3/BwAA//9z2eoM3wAAAA
                 rating: 8
                 locale: near Twin Lakes in Humboldt-Toiyabe National Forest
-        - id: robinson_creek:_north_&_south
+        - id: robinson_creek_north__south
           name: 'Robinson Creek: North & South'
           res_url: http://www.recreation.gov
           refs:
@@ -2865,7 +2865,7 @@ properties:
                 desc: z1SSQW+cQAyF/8o7JhJZbXtppZ6i3KKoqppKORswzIjBpvbMEv59NbCJulew53t+773GdGHDC03cgDK+NV/PZwzMGZz4QjmqNIgOEnw/P1BnjEQTIwpyYDwX4X0bL6oL1pgDnshcBb+YJiTVOcr4Md5SN42mRfoTfjJZu6FVyjCWTMkbDNFDnR/UkE1LrqLqZjoUomUqOQ4lXX97NqYZd7+LBzwZ83QP4feMrPteR/PSgKQHQQ5iNoopMPU7ZY2pZxN2R4hTZdfhoOZc1cJiXz/eXSWCLhQTtYnvQcY7I8QxpDiG7Cf8uTKrZ4ls5LSB3xd17veHLyUJW92vCtcovTf7IyppQ6+rsJ3wFnOIgpXSrqiPnkk6/jjKteRQCbfxpZU2B2ExznmDV0kN2BfuIqW0YQ0soCGziaocdHRUnD89hhcb6ED5QjYlPo46fi7MPVKcY674L2fMSzjhdY3zEbNDtMbZ6Tyz9Nyj5QOgw84w7aYNHtQ4ReETnotnUGfqfh2owZjOn/Ht9cNoXKtwk12deBTnhMeeZsfbZ5bNUUVCXvUhaLEabr2SMroU59brgVejHkfh9WixXtiS6u76bb9b8ig/QP8XZmG7OmH8t0TjQ1Z9RKr5KM6nfwEAAP//zyg9pWMDAAA
                 rating: 9
                 locale: in Inyo National Forest
-        - id: oh!_ridge
+        - id: oh_ridge
           name: Oh! Ridge
           res_url: http://www.recreation.gov
           refs:
@@ -3104,7 +3104,7 @@ properties:
                 lists:
                     - title: Best Trailhead Camps
                       place: 4
-        - id: upper_and_lower_gray’s_meadow
+        - id: upper_and_lower_grays_meadow
           name: Upper And Lower Gray’s Meadow
           res_url: http://www.recreation.gov
           refs:
@@ -3178,7 +3178,7 @@ properties:
       name: Lake Isabella/Kern River Koa
       managed_by: Lake Isabella/Kern River KOA
       campgrounds:
-        - id: lake_isabella/kern_river_koa
+        - id: default
           name: Lake Isabella/Kern River Koa
           refs:
             cc:
@@ -3491,7 +3491,7 @@ properties:
       name: Klamath’s Camper Corral RV Park And Campground
       managed_by: Klamath’s Camper Corral
       campgrounds:
-        - id: klamath’s_camper_corral_rv_park_and_campground
+        - id: klamaths_camper_corral_rv_park_and_campground
           name: Klamath’s Camper Corral RV Park And Campground
           refs:
             cc:
@@ -3862,7 +3862,7 @@ properties:
       name: Lake Oroville Boat-In And Floating Camps
       managed_by: Lake Oroville State Recreation Area
       campgrounds:
-        - id: lake_oroville_boat-in_and_floating_camps
+        - id: lake_oroville_boatin_and_floating_camps
           name: Lake Oroville Boat-In And Floating Camps
           res_url: http://www.reservecalifornia.com
           refs:
@@ -3876,7 +3876,7 @@ properties:
       name: Loafer Creek Family, Group, And Equestrian Camps
       managed_by: Lake Oroville State Recreation Area
       campgrounds:
-        - id: loafer_creek_family,_group,_and_equestrian_camps
+        - id: loafer_creek_family_group_and_equestrian_camps
           name: Loafer Creek Family, Group, And Equestrian Camps
           res_url: http://www.reserveamerica.com
           refs:
@@ -3995,7 +3995,7 @@ properties:
       url: http://www.parks.ca.gov
       name: D. L. Bliss State Park
       campgrounds:
-        - id: d._l._bliss_state_park
+        - id: d_l_bliss_state_park
           name: D. L. Bliss State Park
           res_url: http://www.reservecalifornia.com
           refs:
@@ -4011,7 +4011,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Ed Z’berg Sugar Pine Point State Park
       campgrounds:
-        - id: ed_z’berg_sugar_pine_point_state_park
+        - id: ed_zberg_sugar_pine_point_state_park
           name: Ed Z’berg Sugar Pine Point State Park
           res_url: http://www.reservecalifornia.com
           refs:
@@ -4025,7 +4025,7 @@ properties:
       name: Emerald Bay State Park And Boat-In
       managed_by: Emerald Bay State Park
       campgrounds:
-        - id: emerald_bay_state_park_and_boat-in
+        - id: emerald_bay_state_park_and_boatin
           name: Emerald Bay State Park And Boat-In
           res_url: http://www.reserveamerica.com
           refs:
@@ -4241,7 +4241,7 @@ properties:
                 desc: z0yOUU7DQAxErzIHiKLywREAIcEXvYC7mWZXbOzKdlpxe5T96vfMvDfn2gItYErYFVmJLr4ycsJmkVh4Z7cbF7ybMxI/9HsrRJHttrrtugSajiU1mxPFds2/GZ95kKWbriMO27PSFVHNh+5N1k58yS8hidfp5XTClcwZ50ooZRgvJokuu5Y6gIkP6V2yKb7Fm8qER6XzkDhH5el2PNqGC6XU+T8AAP//omh0Mu0AAAA
                 rating: 8
                 locale: on Eagle Lake in Lassen National Forest
-        - id: aspen_grove_walk-in
+        - id: aspen_grove_walkin
           name: Aspen Grove Walk-In
           res_url: http://www.recreation.gov
           refs:
@@ -4302,7 +4302,7 @@ properties:
                 desc: z1xSS27cMAy9yjvANEiyKAp01WbbZS5A2882MTJpSJQH2fUavV5PUkhOpkVXBij68f2+1wjih1yJUbZ9yV5tghYUjSrBCWoQg++0Cw5Po5iOKIxQW3DTWCEoe1a7pjbxGcmnhbsnYldjecDrSoxukaVEW4iVd6gCWUStRJ9yY5Y0Ycmkfaymxk4LBkoNnWuC2ISNm2cZEr/2pRe1iRkvbsRrFk0YxbBnP3RiU8CDhoERzEju15NWtNWV0jUbJXewwSWQpNq4QjLl0i9q/P75qzS5kWnVa8GqjZodno4mXjAm3YZG/MvjI2Yy4AdP0NFrLuyibo5NEwvC+1P4/iH2Hx0nw9m9W60FPgetkS/EwFHqCXdPZecwpGb4t9PNrNsFb15PK8gMtdLs+O/QBVJwY0rtOxCZN8kTpzPebv+hvJXugiC5LZ8mLSE2tpcS8oDX7DUwa1nfye7uGRL427B+RqLbnN4gKd3j7fNY22+Sr5e7uuioqxyEeWBordiTWCvm7BlvlPxeMCYeEurWjn++PL37f0Z3r9HY4ih4fnqGjJnl4U8AAAD//8isGN4BAwAA
                 rating: 9
                 locale: in Lassen Volcanic National Park
-        - id: summit_lake:_north,_south,_and_stock_corral
+        - id: summit_lake_north_south_and_stock_corral
           name: 'Summit Lake: North, South, And Stock Corral'
           res_url: http://www.recreation.gov
           refs:
@@ -4319,7 +4319,7 @@ properties:
       name: Mount Lassen/Shingletown Koa
       managed_by: Mount Lassen/Shingletown KOA
       campgrounds:
-        - id: mount_lassen/shingletown_koa
+        - id: default
           name: Mount Lassen/Shingletown Koa
           refs:
             cc:
@@ -4479,7 +4479,7 @@ properties:
                 desc: zySRQcrbQAyFr/KWLbhuKRS6DSlpF20otBdQYjkjMpbMSK7JztcI9L+cT/Iz829mQDN6+t7TkabZcMhhmJjUsW//f8gtoT50+/YC0gEPW/btmTNG0QFrYq0l/BOXQCSqB0NpYowS3uNvYlxpmiGOVOXefe0+f/mEkTnewxRHLsVwtmLswR9/2aKBw4UzRPHTHL9pKOw4U4gpZZyssEePb6b79gx4shXLjEhSPB4dyCtE4X17OtQwFNG76A0rBZceh4stgUR5BGGSzBiLTW+UrbGyEqKQ5MQ0VMrqym2JxOQBl4FhY6sWo6HHqSrU3q7lcSVFkjsjVmsjHGH4XmxxRrNIojXQDu22Ord97FCYrgmFJwvumsoHUfxJzHPbRf8aAAD//06yQjOqAQAA
                 rating: 6
                 locale: in Los Padres National Forest
-        - id: mount_piños
+        - id: mount_pios
           name: Mount Piños
           res_url: http://www.recreation.gov
           refs:
@@ -4514,7 +4514,7 @@ properties:
                 desc: z3SSQY7UQAxFr/KXM1Km1ZwAtUCsoBfNCNbuxEk8XbEj2+kmrLgG1+MkqDKAhsUs60l2vf+rjuIECRBm50mWCU/LNIsOD9b3iNkSvTnO1F5mai/s0SA4QYk3zX6/R8+c4MJXSjEFFdMBn0i/kxLeOfOlgSlyZJzNO3ZYv50+k+JEPXHBVykdu3LEDgfMLhP5its/inSSMjJ1m+qVpNC5cIOKRAcwRUI07fXNyNFtGUZ8tEh8oVJ4bf7ofpAY/7qSdkj7PwHuKj3zatrd16ECUTwtkQj5hkkKR4Ob5AhCsAtHTTnKhR9E0dI0v9AGxaa5hQJrsj+DF4GlUjHf4dE6Wn/9+BkYJdJ8ReEI07d4HCW23bhRwFwGUSplBSmOpwPujtuTUMGJW7uyrzi0ef880i1ei6vXvufZOUJMa6Ha8kaVJkb9HbvfAQAA//++WDMQIwIAAA
                 rating: 8
                 locale: on Manzana Creek in Los Padres National Forest
-        - id: mt._figueroa
+        - id: mt_figueroa
           name: Mt. Figueroa
           res_url: http://www.recreation.gov
           refs:
@@ -4718,7 +4718,7 @@ properties:
       name: Marin Headlands
       managed_by: Marin Headlands Visitor Center
       campgrounds:
-        - id: haypress_hike-in
+        - id: haypress_hikein
           name: Haypress Hike-In
           refs:
             cc:
@@ -4731,7 +4731,7 @@ properties:
       name: Bicentennial Walk-In
       managed_by: Marin Headlands Visitor Center
       campgrounds:
-        - id: bicentennial_walk-in
+        - id: bicentennial_walkin
           name: Bicentennial Walk-In
           res_url: http://www.regreation.gov
           refs:
@@ -4745,7 +4745,7 @@ properties:
       name: Hawk Camp Hike-In
       managed_by: Marin Headlands Visitor Center
       campgrounds:
-        - id: hawk_camp_hike-in
+        - id: hawk_camp_hikein
           name: Hawk Camp Hike-In
           refs:
             cc:
@@ -4836,7 +4836,7 @@ properties:
       name: Friday’s RV Retreat & Mccloud Fly Fishing Ranch
       managed_by: Friday’s RV Retreat & McCloud Fly Fishing Ranch
       campgrounds:
-        - id: friday’s_rv_retreat_&_mccloud_fly_fishing_ranch
+        - id: fridays_rv_retreat__mccloud_fly_fishing_ranch
           name: Friday’s RV Retreat & Mccloud Fly Fishing Ranch
           refs:
             cc:
@@ -5027,7 +5027,7 @@ properties:
       name: Modesto Reservoir Regional Park And Boat-In
       managed_by: Modesto Reservoir Regional Park
       campgrounds:
-        - id: modesto_reservoir_regional_park_and_boat-in
+        - id: modesto_reservoir_regional_park_and_boatin
           name: Modesto Reservoir Regional Park And Boat-In
           res_url: http://www.reserveamerica.com
           refs:
@@ -5049,7 +5049,7 @@ properties:
                 desc: zzRRzY7bPAx8lTl+H2AEW6Ddnjc9Fdj01BegJTpmI5MuScdIn76Qs71qRpy/d7pxSGUUWtaQ5EBu5cYVtNMDoiimMrEHFroxcpY4uCDsosp+woWrFFFGPzaAEq+fX0DFOQbsFJjMF679WM6M4pTssAmksFZxt1ZIDaQVEojN3TatXDE+0KxeebXGWLtE50ziSGeOE37OjNZ99X9ph/FdcoaT6Gj7wR/d7IZ02/Kfh9iWhX3AlTPwe5NklG7lA56oteGp5cx/OGB39o7uotkzv7WG/cgRq3kGyBkr+yKZXE+4kD5wFJsu6wdsETI2HiBa2lZFr1AmHx84b60FP575zo20zM8643j5Xhjf6M6B/0bLGSFX7RNphU3TYZlK4Qi4Uf3/AN7pTjhzDfygFFNquJhuC2vi1xaJT1+wSOOAmud8wlvidfj68oKJOQckLys75ebcF1dUt7VX8Ozu0DiqZArTY4DZPE9/AwAA//9gP4AzUgIAAA
                 rating: 7
                 locale: on Medicine Lake in Modoc National Forest
-        - id: a._h._hogue
+        - id: a_h_hogue
           name: A. H. Hogue
           res_url: http://www.recreation.gov
           refs:
@@ -5167,7 +5167,7 @@ properties:
       name: Montaña De Oro State Park
       managed_by: Montaña de Oro State Park
       campgrounds:
-        - id: montaña_de_oro_state_park
+        - id: montaa_de_oro_state_park
           name: Montaña De Oro State Park
           res_url: http://www.reservecalifornia.com
           refs:
@@ -5193,7 +5193,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Mount San Jacinto State Park
       campgrounds:
-        - id: wilderness_walk-in
+        - id: wilderness_walkin
           name: Wilderness Walk-In
           refs:
             cc:
@@ -5267,7 +5267,7 @@ properties:
                 lists:
                     - title: Best Scenic Campgrounds
                       place: 2
-        - id: pantoll_walk-in,_alice_eastwood,_and_frank_valley
+        - id: pantoll_walkin_alice_eastwood_and_frank_valley
           name: Pantoll Walk-In, Alice Eastwood, And Frank Valley
           res_url: http://www.reservecalifornia.com
           refs:
@@ -5295,7 +5295,7 @@ properties:
       url: http://giantredwoodsrv.com
       name: Giant Redwoods RV & Camp
       campgrounds:
-        - id: giant_redwoods_rv_&_camp
+        - id: giant_redwoods_rv__camp
           name: Giant Redwoods RV & Camp
           refs:
             cc:
@@ -5400,7 +5400,7 @@ properties:
       name: George J. Hatfield State Recreation Area Walk-In
       managed_by: George J. Hatfield State Recreation Area
       campgrounds:
-        - id: george_j._hatfield_state_recreation_area_walk-in
+        - id: george_j_hatfield_state_recreation_area_walkin
           name: George J. Hatfield State Recreation Area Walk-In
           res_url: http://www.reservecalifornia.com
           refs:
@@ -5503,7 +5503,7 @@ properties:
       name: Olema
       managed_by: Olema RV Resort & Campground
       campgrounds:
-        - id: olema_rv_resort_&_campground
+        - id: olema_rv_resort__campground
           name: Olema RV Resort & Campground
           res_url: http://www.olemacampground.net
           refs:
@@ -5528,7 +5528,7 @@ properties:
       url: http://www.brownscampgrounds.com
       name: Brown’s Owens River Campground
       campgrounds:
-        - id: brown’s_owens_river_campground
+        - id: browns_owens_river_campground
           name: Brown’s Owens River Campground
           refs:
             cc:
@@ -5607,7 +5607,7 @@ properties:
       url: http://www.samsfamilyspa.com
       name: Sam’s Family Spa
       campgrounds:
-        - id: sam’s_family_spa
+        - id: sams_family_spa
           name: Sam’s Family Spa
           refs:
             cc:
@@ -5700,7 +5700,7 @@ properties:
       name: San Francisco North/Petaluma Koa
       managed_by: San Francisco North/Petaluma KOA
       campgrounds:
-        - id: san_francisco_north/petaluma_koa
+        - id: default
           name: San Francisco North/Petaluma Koa
           refs:
             cc:
@@ -6057,7 +6057,7 @@ properties:
       name: Manchester Beach/Mendocino Coast Koa
       managed_by: Manchester Beach/Mendocino Coast KOA
       campgrounds:
-        - id: manchester_beach/mendocino_coast_koa
+        - id: default
           name: Manchester Beach/Mendocino Coast Koa
           refs:
             cc:
@@ -6092,7 +6092,7 @@ properties:
       url: http://www.nps.gov/pore
       name: Point Reyes National Seashore
       campgrounds:
-        - id: tomales_bay_boat-in
+        - id: tomales_bay_boatin
           name: Tomales Bay Boat-In
           res_url: http://www.recreation.gov
           refs:
@@ -6104,7 +6104,7 @@ properties:
                 lists:
                     - title: Best Boat-In Campgrounds
                       place: 8
-        - id: coast_camp_hike-in
+        - id: coast_camp_hikein
           name: Coast Camp Hike-In
           res_url: http://www.recreation.gov
           refs:
@@ -6113,7 +6113,7 @@ properties:
                 desc: z1SSsY4TQQyGX+UvQdpb6SQKKO8OIVGAEImEKJ1ZJztk1l5sT6J0vAavx5OgmQ0F1RbW/J//z7ufs2POZ37IgkTLiuxwDqiABLqyQBOT4FDq8TjgR/UAHfTC2JEE4RNZJjwzpbk9ipnxRbMEvvKNHZ8psgoV7Jh8VuMRH6NBCI/j24clF+58hOLE0T7RdhK1mNlkUY9tsXv4i5IH9ka5jHi1nxlJl7Vw/De6E95tgLC8gmSCCkOPPefAHp3syFvyM93wZEzja3wwXe5xL7SsA25akUiQVCJLZbjWmAdcZzbur6Nj21yr+TYHFZXThmv6/G5u4zdjRzU8jm/Q1vRWfpdqWaMaT5vTEd+1/vn1uxQcs0wgOFtmbzV0mnBiLXrKqSUt3bUPyJJKnbKckOjCPiCqCBcfugRnggels494woHSOWmVsBtWtiX36xj/rNl46vjenIrrdqm69gLfVKcr2XQX3po4i/+79yXztW/53qhJbnYbnZKpe0/oP9b4NwAA////P9RZgwIAAA
                 rating: 7
                 locale: in Point Reyes National Seashore
-        - id: sky_camp_hike-in
+        - id: sky_camp_hikein
           name: Sky Camp Hike-In
           res_url: http://www.recreation.gov
           refs:
@@ -6122,7 +6122,7 @@ properties:
                 desc: z0SRQa7UQAxEr1IHiCI+ggsAQnyJBfp/JNaetDNtjdOObE9Cbo86I8SmF1b1q3L5/X7gKy0rJGANWRk7R7I3zErtDpvx2jb2xhF4k3JjUOJl+PDxM2bmBCtvlGJtwC5ZsVIzp0UmbMJ7dMA3pzsHvtAx4JdJS7zxwTGAWjktv5OTqjW8hlIrMeKHJCThcqt5yiSxi2r3VKjcGYTZLKtpgTyTx/0YcTE401TPyUTLOiCSPHvsPuobX5xEn29lKrB5xk9ZqKU9HG9GZcSlMmr3OX8HrgcmleUq7QZCsG8yMdyoDJ3bwC3Z44zlHIk08ML+LOx/zw0v4ycsohwj3m1hhCQHyBnBkz4Kl47A6rLRdAzYqyjDsp54Z9gj/61sK7cRv0XLrLaz46pmy1PGfyZe+2VIuzxWl3Yb/wYAAP//6IRwW/IBAAA
                 rating: 7
                 locale: in Point Reyes National Seashore
-        - id: glen_camp_hike-in
+        - id: glen_camp_hikein
           name: Glen Camp Hike-In
           res_url: http://www.recreation.gov
           refs:
@@ -6131,7 +6131,7 @@ properties:
                 desc: z1SR4Y4TMQyEX2UeoLfSIeABOKTjJEAIqvvvbtyL1Wy8OE6rfXvktJW4f5tNPJ5v5rlwxRMtK77JiR9eKqShsUMqPDNmpeZUcFT1LKU06BG/VKrjN2/c8JNctFLBH6aW1RhU0xDpZtpr4oTDhqMaN5+wz4wsJ4YrxNGczBvIx7IvTIZXKoU3vEoTV8MTV2fb4ZLZGJt2zFShByepcTQcaD7N2qvbhpVtkRCsKdZIfYPUo9oyXO7u3ky7c4JWrLr2QvZu9d5Iyg6EiySGKSUslBjaPehnXVbj1jjBdD5NePHQfJw+Y5HCLdC+yjlmfzAlvexwEc8gLJq4OT48fnqIPDEXWQ67QK+gqp7Z/pfJpv0tv7PmitHYsDhh362i8NEDZVx8V12vt/cMGI/Tx6vkzUhE7ePJoueIqJCzUSlbtB5jN1K/aKS9aR1QxjRfp2da1jt347n0aDkG/3Zhn/DMHri0jp90q2UcDhYb+cy2eY7PqLQyp+lfAAAA//+UjysoiwIAAA
                 rating: 10
                 locale: in Point Reyes National Seashore
-        - id: wildcat_camp_hike-in
+        - id: wildcat_camp_hikein
           name: Wildcat Camp Hike-In
           res_url: http://www.recreation.gov
           refs:
@@ -6148,7 +6148,7 @@ properties:
       name: Pomona
       managed_by: Los Angeles/Pomona/Fairplex KOA
       campgrounds:
-        - id: los_angeles/pomona/fairplex_koa
+        - id: los_angelespomonafairplex_koa
           name: Los Angeles/Pomona/Fairplex Koa
           refs:
             cc:
@@ -6278,7 +6278,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Richardson Grove State Park
       campgrounds:
-        - id: madrone,_huckleberry,_and_dawn_redwood
+        - id: madrone_huckleberry_and_dawn_redwood
           name: Madrone, Huckleberry, And Dawn Redwood
           res_url: http://www.reservecalifornia.com
           refs:
@@ -6394,7 +6394,7 @@ properties:
       name: Cloverdale/Healdsburg Koa
       managed_by: Cloverdale KOA
       campgrounds:
-        - id: cloverdale/healdsburg_koa
+        - id: default
           name: Cloverdale/Healdsburg Koa
           refs:
             cc:
@@ -6407,7 +6407,7 @@ properties:
       name: West Sacramento
       managed_by: SacWestRV Park & Campground
       campgrounds:
-        - id: sacwest_rv_park_&_campground
+        - id: sacwest_rv_park__campground
           name: Sacwest RV Park & Campground
           refs:
             cc:
@@ -6516,7 +6516,7 @@ properties:
       name: Salinas/Monterey Koa
       managed_by: Salinas/Monterey KOA
       campgrounds:
-        - id: salinas/monterey_koa
+        - id: default
           name: Salinas/Monterey Koa
           refs:
             cc:
@@ -6643,7 +6643,7 @@ properties:
                 desc: zzSQwW7UQBBEf6WOiZRdRQRxR0FBXCIE/ECvp+zpeHZ66Wnb8t+jcci1NfXqTb3Y4qctk+WUXFdisO1ie4PUhKQep4vOBGvkpam0aLAxWHGVmYisDYKLNGKQ6+0Bc7WtQvq1hUxaJ4hTMJrDxvGUdcqb7FiZdShsuJucrGihw0yH8++iznR/xo/AQU9cWezGhBdztsBv+qrDeyMaAxI4GmZoRWTCTVK/fnn49PiIkQywcJVQq2d8xZClFNZD7428/Q/UhKuF+bAPhQgXLciU1LD1Xq1h+NafPzs541nq3nmvFn0KCfxhDfzkhO9uy+1dUBveltYNs5QRV+1oOzQPqtWPf/3qEk+vT59xl3XubodC6wtCVtEilx7OdN6f/wUAAP//2h8ozLoBAAA
                 rating: 4
                 locale: near Crab Creek in San Bernardino National Forest
-        - id: fisherman’s_hike-in
+        - id: fishermans_hikein
           name: Fisherman’s Hike-In
           res_url: http://www.recreation.gov
           refs:
@@ -6661,7 +6661,7 @@ properties:
                 desc: z1SPMY7cMAxFr/IPMBhMlyJlgiwCbLlIT9vfFmFadCR6DHe5Rq6XkwTSVNsJIN7Xex9JK0bZdlSNCjHPC94KmfFLzHjhWyFXSEAyaHxKqGf4jC+3x+OBmYw73jXC+Bl8l5XQCsGmRoQjEnGyxldotMte9ClBu+Bn5nTDcAT2YzAdIePIWjtv5ienO37Gvz9/K34fymYzQXPoJsFmFy3EZOWtn1a5ZK39WfwcXKJlZgxEYY4295HYgfZHDR9XTjg1EqL4ERiu7vudu5TYmKM1/9Ca+uibbHw5xMuxOgSL+4S6e/Tati2Y7dK8wCh7BwaaXZjNd5yJGacEC4xPWoUUIumSwOzHku7/AwAA//8lvz+fnwEAAA
                 rating: 4
                 locale: near Green Valley Lake in San Bernardino National Forest
-        - id: shady_cove_group_and_walk-in
+        - id: shady_cove_group_and_walkin
           name: Shady Cove Group And Walk-In
           res_url: http://www.recreation.gov
           refs:
@@ -6908,7 +6908,7 @@ properties:
       name: Presidio in San Francisco
       managed_by: The Presidio Trust
       campgrounds:
-        - id: rob_hill_group_walk-in
+        - id: rob_hill_group_walkin
           name: Rob Hill Group Walk-In
           res_url: http://www.presidio.gov/places/rob-hill-campground
           refs:
@@ -6941,7 +6941,7 @@ properties:
     - id: /ca/san_joaquin_river/fishermans_bend_river
       name: Fisherman’s Bend River Campground
       campgrounds:
-        - id: fisherman’s_bend_river_campground
+        - id: fishermans_bend_river_campground
           name: Fisherman’s Bend River Campground
           refs:
             cc:
@@ -6967,7 +6967,7 @@ properties:
       name: Eddo’s Harbor And RV Park
       managed_by: Eddo’s Harbor and RV Park
       campgrounds:
-        - id: eddo’s_harbor_and_rv_park
+        - id: eddos_harbor_and_rv_park
           name: Eddo’s Harbor And RV Park
           refs:
             cc:
@@ -6982,7 +6982,7 @@ properties:
       url: http://www.sccgov.org
       name: Joseph D. Grant County Park
       campgrounds:
-        - id: joseph_d._grant_county_park
+        - id: joseph_d_grant_county_park
           name: Joseph D. Grant County Park
           res_url: http://www.parkhere.org
           refs:
@@ -7124,7 +7124,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Samuel P. Taylor State Park
       campgrounds:
-        - id: samuel_p._taylor_state_park
+        - id: samuel_p_taylor_state_park
           name: Samuel P. Taylor State Park
           res_url: http://www.reservecalifornia.com
           refs:
@@ -7189,7 +7189,7 @@ properties:
       url: http://www.parks.ca.gov
       name: El Capitán State Beach
       campgrounds:
-        - id: el_capitán_state_beach
+        - id: el_capitn_state_beach
           name: El Capitán State Beach
           res_url: http://www.reservecalifornia.com
           refs:
@@ -7255,7 +7255,7 @@ properties:
       name: Manresa Uplands State Beach Walk-In
       managed_by: Manresa Uplands State Beach
       campgrounds:
-        - id: manresa_uplands_state_beach_walk-in
+        - id: manresa_uplands_state_beach_walkin
           name: Manresa Uplands State Beach Walk-In
           res_url: http://www.reservecalifornia.com
           refs:
@@ -7519,7 +7519,7 @@ properties:
       url: http://www.antlersrvpark.com
       name: Antlers RV Park & Campground
       campgrounds:
-        - id: antlers_rv_park_&_campground
+        - id: antlers_rv_park__campground
           name: Antlers RV Park & Campground
           refs:
             cc:
@@ -7543,7 +7543,7 @@ properties:
       url: http://www.lakeshasta.com
       name: Holiday Harbor Resort & Marina
       campgrounds:
-        - id: holiday_harbor_resort_&_marina
+        - id: holiday_harbor_resort__marina
           name: Holiday Harbor Resort & Marina
           refs:
             cc:
@@ -7558,7 +7558,7 @@ properties:
       url: http://www.shastacamping.com
       name: Lakeshore Inn & RV
       campgrounds:
-        - id: lakeshore_inn_&_rv
+        - id: lakeshore_inn__rv
           name: Lakeshore Inn & RV
           refs:
             cc:
@@ -8078,7 +8078,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Silverwood Lake State Recreation Area
       campgrounds:
-        - id: mesa—silverwood_lake
+        - id: mesasilverwood_lake
           name: Mesa—silverwood Lake
           res_url: http://www.reservecalifornia.com
           refs:
@@ -8278,7 +8278,7 @@ properties:
       name: Xaa-Wan’-K’wvt Village And Resort
       managed_by: Salmon Harbor RV Resort
       campgrounds:
-        - id: xaa-wan’-k’wvt_village_and_resort
+        - id: xaawankwvt_village_and_resort
           name: Xaa-Wan’-K’wvt Village And Resort
           refs:
             cc:
@@ -8433,7 +8433,7 @@ properties:
                 desc: zyTPQUoEMRAF0Kv8pULTzEa8gSAoCK5cxsxPdzGZVEhVppmd1/B6nkTSvSuq4L/6rwl37X8/v41YVMoCV3xIYWw0x1u4EJv4ioDPqN3hTbVO8FUMYvCVsKo+waREQnxsjY5eYZVRksSQ8x1JG5amvdqML+1Y6Phm6C6pZ8RGXhDKGXmQN+Fm0yEPIoZr3VODIxQw8xZctEATnqbn0wmJ9BkPL9rQxvPHWUrSdt3nCUbuYe8MZ90GgSzmo7SUo1FcQ3W2+fE/AAD//y/7FFkYAQAA
                 rating: 8
                 locale: near Pinecrest Lake in Stanislaus National Forest
-        - id: cherry_valley_and_boat-in
+        - id: cherry_valley_and_boatin
           name: Cherry Valley And Boat-In
           res_url: http://www.recreation.gov
           refs:
@@ -8442,7 +8442,7 @@ properties:
                 desc: z0xSS47UQAy9yjtA05oFEgtWIz4SAiEECMTSSZyO6Uo5uFzdym6uMdebkyBXOqPZJVXl9/N7N7HZii90ZkgBYdaanSQjxVGpZlrzwAO6FZlcNFPCqMbFQY7Xhzd3dxiZHZz40h4c8LcWh1YvMjB8Yly5OFtGF2BkK3TEHy08izO+7rDfyM5HfPJQMtd+QiI7scEnypi1OBbWJTEou/SykMfngMX0IgPfhjp2jyHT6hilTJJPGwTl1duf5Gf2I35OjJ7mJVg1N7lFq0+hGWVS41AbxxHJAdQFMGGWxLDmUNt1p+RIVHM/7UAbRry5Qdzy/kUp8Yr3NB9xj05zLUHvEzkGKQtbiciV/JXkpq7JLqCU9MrDjh+Knh4eC5huREfcp4QrRQRlUfMCMt7nDljZ0XFPtTDE4XTmWHuvOaaNusQYTC7NlTH10wvrq1ZcNT89PEayeUBmsrRuVoOynKWlbTSO0oNKdER9YoPxadtyQJUjfjeJiS+cCnrKGFPtvdK+knSrZKc2sPGwp9ycdis+S9cJ47sMJ357a9wWysbXUg/rzz2LerW+tLZ/SExZLfKPfEcxxsI2S6uf8b8qwTqazg3149b5H2wX6fn4PwAA//96CG4SOQMAAA
                 rating: 7
                 locale: on Cherry Lake in Stanislaus National Forest
-        - id: dimond_“o”
+        - id: dimond_o
           name: Dimond “o”
           res_url: http://www.recreation.gov
           refs:
@@ -8637,7 +8637,7 @@ properties:
                 desc: z0yOMW6FQAxErzIH4COq5AzpkJImpQHDWixeZK/h+hGrSEk3U8x785XEMdNxQhwmW6qgiu+YCCO5P4UUnPmiKkVRVrx178OAlbn2+FDUxLhFK1vXsodZCV1EN5AxPWDCp5bXSLZ3uJPMCZtc7JBGDw0Pysil7BCFx3Gw9f9eNMRZzshkmMSW1011Tn8K/VW34U8AAAD//4yu0VfUAAAA
                 rating: 6
                 locale: in Tahoe National Forest
-        - id: carlton/cal-ida
+        - id: carltoncalida
           name: Carlton/Cal-Ida
           res_url: http://www.recreation.gov
           refs:
@@ -8886,7 +8886,7 @@ properties:
                 desc: zzyQQcrUQBCFr/KWCvMPoyi4diOCOKKD4LKSvKSL6XQN1ZXE2XkIT+hJpDP6b3pTXd/76l2SVvQy36AVkq1MSFrDXHt8USuk4+Ki+YAtaZ+QpCIWLxygJQxWCBsRiQi7YbalhGh56vRKuC3BCi37/JvSXfCZqwzy59dvSr1DyoBRahxxaYgW1d6edd/ZCf8DRvUa2GSyAjcZYDc2ke4Ozjq5lKg7cLI8oJJX+p7+6t3b0xEfox3ZsQbqosEBo/mzMTq9apkO2DQSBNmi5bY7vCKkDXcLK3za5I7BtpI0Z7gOxIvHWgF/hgt68Z0uqGmJyNx/vcToNuM9xfFdcuYdYfjUOvzgsvJRwnnmJDiv9Gx2bc4tNumUsk4p/hkOLrOE9liVW22qrQANos86jo8i2uKPpRN81ZX+wDNzlVArjfzm8Pp0wkjG8W8AAAD//5mxiFELAgAA
                 rating: 5
                 locale: in Tahoe National Forest
-        - id: skillman_family,_equestrian,_and_group_camp
+        - id: skillman_family_equestrian_and_group_camp
           name: Skillman Family, Equestrian, And Group Camp
           res_url: http://www.recreation.gov
           refs:
@@ -8958,7 +8958,7 @@ properties:
                 desc: zyyPUU7DQAxErzKfIFW5RKXmF0Ev4CaTrpWNvfI6IG6PWPizJfvNm3vRjkWOBu0wSiALUTWzEkuQO7JIYiPXDrX0cWAeWUBb4Rs+zqcE3tSId3bGp2tMuBfi4ZKIf7rUOn6/5BsSfto61u5nFnRd+csa6bLz8idz83iw4zpE5vCz4SpHm/By80BwCUqqG9Q2j2PMF3RygGYVS8zSULWn2hNqyNG4SEvG9PoTAAD//1gjwnYAAQAA
                 rating: 7
                 locale: on Sugar Pine Reservoir in Tahoe National Forest
-        - id: big_reservoir/morning_star_lake
+        - id: big_reservoirmorning_star_lake
           name: Big Reservoir/Morning Star Lake
           refs:
             cc:
@@ -9104,7 +9104,7 @@ properties:
       url: http://www.parks.ca.gov
       name: Patrick’s Point State Park
       campgrounds:
-        - id: patrick’s_point_state_park
+        - id: patricks_point_state_park
           name: Patrick’s Point State Park
           res_url: http://www.reservecalifornia.com
           refs:
@@ -9232,7 +9232,7 @@ properties:
       url: http://www.westernm.com
       name: Sun & Fun RV Park
       campgrounds:
-        - id: sun_&_fun_rv_park
+        - id: sun__fun_rv_park
           name: Sun & Fun RV Park
           refs:
             cc:
@@ -9294,7 +9294,7 @@ properties:
       name: Owens Valley on U.S. 395
       managed_by: Keough’s Hot Springs
       campgrounds:
-        - id: keough’s_hot_springs
+        - id: keoughs_hot_springs
           name: Keough’s Hot Springs
           refs:
             cc:
@@ -9427,7 +9427,7 @@ properties:
       name: Visalia/Sequoia South Koa
       managed_by: Visalia-Sequoia KOA
       campgrounds:
-        - id: visalia/sequoia_south_koa
+        - id: default
           name: Visalia/Sequoia South Koa
           refs:
             cc:
