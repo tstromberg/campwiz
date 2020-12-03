@@ -29,7 +29,6 @@ func TestEmptyParse(t *testing.T) {
 
 	want := []campwiz.Result{
 		{
-			ID:       "EMPTY_1",
 			Name:     "Empty Site",
 			Distance: 99,
 			Availability: []campwiz.Availability{

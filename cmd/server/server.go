@@ -32,7 +32,8 @@ type formValues struct {
 
 type templateContext struct {
 	Query   campwiz.Query
-	Results []campwiz.AnnotatedResult
+	Results []campwiz.Result
+	Sources map[string]campwiz.Source
 	Form    formValues
 }
 
@@ -41,12 +42,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	klog.Infof("Incoming request: %+v", r)
 	q := campwiz.Query{}
 
-	xrefs, err := metadata.Load()
+	srcs, props, err := metadata.LoadAll()
 	if err != nil {
-		klog.Errorf("loadcc failed: %w", err)
+		klog.Errorf("loadall failed: %w", err)
 	}
 
-	rs, errs := search.Run(search.DefaultProviders, q, cs, xrefs)
+	rs, errs := search.Run(search.DefaultProviders, q, cs, props)
 	if errs != nil {
 		klog.Errorf("search: %v", errs)
 	}
@@ -59,6 +60,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.New("http").Parse(string(outTmpl)))
 	ctx := templateContext{
 		Query:   q,
+		Sources: srcs,
 		Results: rs,
 		Form: formValues{
 			Dates: "2018-09-20",

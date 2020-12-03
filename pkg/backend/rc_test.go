@@ -71,7 +71,7 @@ func TestRCaliforniaParse(t *testing.T) {
 
 	want := []campwiz.Result{
 		{
-			ID:       "/rc/682",
+			ResID:    "/rc/682",
 			Name:     "Mount Tamalpais SP",
 			Distance: 17,
 			Desc: strings.Join([]string{
@@ -109,7 +109,7 @@ func TestRCaliforniaParse(t *testing.T) {
 			},
 		},
 		{
-			ID:       "/rc/683",
+			ResID:    "/rc/683",
 			Name:     "Mount Diablo SP",
 			Distance: 26,
 			Desc: strings.Join([]string{

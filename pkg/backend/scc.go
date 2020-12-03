@@ -17,8 +17,6 @@ import (
 )
 
 var (
-	metaSccRoot = "/u/us/ca/santa_clara/"
-
 	// sccCenterLat is the center of Santa Clara County, used for approximate location filtering
 	sccCenterLat = 37.1908873
 	// sccCenterLon is the center of Santa Clara County, used for approximate location filtering

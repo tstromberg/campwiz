@@ -138,7 +138,7 @@ func (b *RCalifornia) parse(bs []byte, date time.Time, q campwiz.Query) ([]campw
 
 		rr := campwiz.Result{
 			ResURL:       b.url("/"),
-			ResID:        string(r.PlaceID),
+			ResID:        fmt.Sprintf("%2d", r.PlaceID),
 			Name:         r.Name,
 			Desc:         r.Description,
 			Features:     strings.Split(strings.TrimSuffix(r.AllHighlights, "<br>"), "<br>"),

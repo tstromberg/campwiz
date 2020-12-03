@@ -29,7 +29,7 @@ func TestSantaClaraCountyParse(t *testing.T) {
 
 	want := []campwiz.Result{
 		{
-			ID:       "STAN_1040013",
+			ResID:    "STAN_1040013",
 			Name:     "FRANK RAINES REGIONAL PARK",
 			Distance: 62.91,
 			Availability: []campwiz.Availability{
@@ -37,7 +37,7 @@ func TestSantaClaraCountyParse(t *testing.T) {
 			},
 		},
 		{
-			ID:       "PRCG_1060800",
+			ResID:    "PRCG_1060800",
 			Name:     "Clear Lake Campground",
 			Distance: 81.47,
 			Availability: []campwiz.Availability{
@@ -45,7 +45,7 @@ func TestSantaClaraCountyParse(t *testing.T) {
 			},
 		},
 		{
-			ID:       "STAN_1040012",
+			ResID:    "STAN_1040012",
 			Name:     "WOODWARD RESERVOIR REGIONAL PARK",
 			Distance: 85.81,
 			Availability: []campwiz.Availability{
@@ -53,7 +53,7 @@ func TestSantaClaraCountyParse(t *testing.T) {
 			},
 		},
 		{
-			ID:       "STAN_1040011",
+			ResID:    "STAN_1040011",
 			Name:     "MODESTO RESERVOIR REGIONAL PARK",
 			Distance: 98.04,
 			Availability: []campwiz.Availability{
