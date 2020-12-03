@@ -7,6 +7,8 @@ Command-line interface that lists Bay Area campsites that are available on a par
 * Reserve America
 * Reserve California
 
+![screenshot](campwiz.png)
+
 Requirements:
 =============
 * go v1.14+
