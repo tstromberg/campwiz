@@ -7,16 +7,23 @@ Command-line interface that lists Bay Area campsites that are available on a par
 * Reserve America
 * Reserve California
 
-Building:
+Requirements:
+=============
+* go v1.14+
+* macOS, Windows, or any UNIX flavor
+
+Downloading:
 =========
 
 ```shell
-go get -u github.com/tstromberg/campwiz/pkg/cw
+git clone https://github.com/tstromberg/campwiz.git
 ```
 
 Usage:
 ======
 
+To search campsites near San Francisco with a minimum rating for a particular set of dates:
+
 ```shell
-cw --dates 2021-02-05 --nights 1
+ go run cmd/cw/cw.go --dates 2021-01-15,2021-01-29 --min_rating 7 --nights 2 --max_distance 150
 ```
