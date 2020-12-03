@@ -31,6 +31,7 @@ func TestLocaleProperty(t *testing.T) {
 		{"in Shasta-Trinity Park", "Shasta-Trinity Park"},
 		{"in the Shasta Wilderness Area", "Shasta Wilderness Area"},
 		{"on the Yellow River / Shasta-Trinity Park", "Shasta-Trinity Park"},
+		{"in Zonk Regional Park near Modesto", "Zonk Regional Park"},
 	}
 
 	for _, tt := range tests {

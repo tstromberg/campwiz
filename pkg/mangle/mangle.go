@@ -129,7 +129,14 @@ func Locale(s string) string {
 }
 
 func LocaleProperty(s string) string {
+
 	words := strings.Split(s, " ")
+	for i, w := range words {
+		if w == "near" {
+			words = words[0:i]
+		}
+	}
+
 	for i, w := range words {
 		switch w {
 		case "/", "in":

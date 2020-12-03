@@ -140,22 +140,19 @@ func CC(r io.Reader, props map[string]*campwiz.Property) error {
 				Place: place,
 			})
 
-			klog.Errorf("Added %s to %q", anchor, listTitle)
 		}
 
 		m = ccTitleRe.FindStringSubmatch(line)
 		if m != nil {
 			anchor := strings.Replace(m[1], "_", "", -1) // The inputs are inconsistent?
 			name := mangle.Title(htmlText(m[2]))
-			klog.Errorf("Name: %s at %s", name, anchor)
+			klog.Infof("Name: %s at %s", name, anchor)
 			if prop != nil {
 				final := finalizeProp(prop, ref)
 				found, ok := props[final.ID]
 				if !ok {
 					props[final.ID] = final
-					klog.Errorf("added %q: %v", final.ID, []byte(final.ID))
 				} else {
-					klog.Errorf("adding to %q / %s: %+v", final.ID, []byte(final.ID), final.Campgrounds)
 					found.Campgrounds = append(found.Campgrounds, final.Campgrounds...)
 				}
 				prop = nil
@@ -244,7 +241,6 @@ func CC(r io.Reader, props map[string]*campwiz.Property) error {
 		if found == nil {
 			props[final.ID] = final
 		} else {
-			klog.Errorf("adding to %q: %v", final.ID, final.Campgrounds)
 			found.Campgrounds = append(found.Campgrounds, final.Campgrounds...)
 		}
 	}

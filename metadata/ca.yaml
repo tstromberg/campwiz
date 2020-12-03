@@ -24,24 +24,6 @@ properties:
       url: http://www.fs.usda.gov/angeles
       name: Angeles National Forest
       campgrounds:
-        - id: bandido_group_camp
-          name: Bandido Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Bandido Group Camp
-                desc: z1TRwc7TMBAE4FeZB6gihEDi+lMOHDhUVV5gcSbx0tQbdjeNeHvkXOA/WhqNv7HHqgENSAN/74x0lYafEkSR54bZHIvbvgU25yaubUEaqj4Ic7hOhLY0ZCVid7e9TT106DrRGyMGvCFddIXtCZvP6NleKVOAEglpU++hB0sGDs165m5SdNaCqzMS41kjWDVzJexFRx6Gp64MyCF/IImxOombacu4QBC6tF4iLXG7jvi1t5JqbcBXzuY8Hd3cfS8NTfPAc49EqSwPaDt9zkUj6f90Lm2hR7+0H39Y4K0t7Ji7dtz9DOCb9pctff2shZf/0EffZfM7NKzhuy617/k4YKwEV76ko/tvfb58+fQBM5nD3wAAAP//IKvTu8EBAAA
-                rating: 6
-                locale: near the Pacific Crest Trail in Angeles National Forest
-        - id: coulter_group_camp
-          name: Coulter Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Coulter Group Camp
-                desc: zzyQ3WrDMAyFX+VcblBCofQBSq52MSgsL6A6Si3m2J6k5PmHUuitfX6+oymLQQyE3vpWSPHUtnUkWjuMHZVJ8WieQdjFxJsaEldnBdUZBFeSkplmLE3hmXGnJIskjMrmmOJ/wC0lNoO3l2ScovYyXLFKYUNtGh2OKSsz7k2qGz6ub4EsyPIr9Xn4f6TsrPhuKZFJfZV8ng6kTnroYtZOUuhReMCt4jbvXH3TILRjtvLfJspzYIUtACL+vckGTJnBhXdyaTVM19PlfMbC7AO+PF5SacaRMWYp1DDS2uOOdR7+AwAA//9ezkdSYQEAAA
-                rating: 6
-                locale: near the San Gabriel Wilderness in Angeles National Forest
         - id: table_mountain
           name: Table Mountain
           res_url: http://www.recreation.gov
@@ -51,24 +33,6 @@ properties:
                 desc: zyyQwWrzQAyEX2UewAnhv/zntudCCSF3eVf2CnYls5Id/PbFca9iNDPfPIo4JmpSdyRqy9xt1QxKyVqzTMGO0aIgWMNBmnF/+hWPwuhGGZUpi84QhTgIC22cES+7VFJGslVjf0sHMPmRQymxu4yVMe4g3bFxkVT5tFWmPu74lBk/oux4iktYxxdrcB9gymhSGW5rlAGJFEu3TTKj0XK2FJ2sNwoxhenZNZlmOS5/AAcwuPJ2ysTxf/h3u2Fijis+0G2dy/k6Wcdka7+8CnO95C4bo8vs7wEctgZsOh3VehRQNZ0RhfGgA/X7WIJEcZc88/U3AAD//y637ZZ5AQAA
                 rating: 6
                 locale: in Angeles National Forest
-        - id: jackson_flat_group_walkin
-          name: Jackson Flat Group Walk-In
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Jackson Flat Group Walk-In
-                desc: zzyQQQobMQxFr/IPkIRQKF2XQqGb0kUuoNiasTuONEiahNy+yIHubCR93vu31h3dQVhVK3zXwKKWf9NjRyj0ySZ9bXECubM7ovHDeTzZTyCpWDnQZVF7UHQV3HlRYzSm2mWFHjkOzTv4YaaHzMGrjzpIql9wa4xCjz1ZuszN77LyYMfvGUoDP9XYA62vDUUPCXuDAt9OX69XLMwBHvyc2ycIk80YlgpdQPCmFvD9MJhSveBXIGjjlP9yvZ7fZBUvGltKG1NpiGwnsdbJjMX0MUN3si0NyJgmvHG+ES+FUBz5NOrDZz8k0LuzfdhQuWxQOXsP/pj/odKXXvBjCt7yEvssG38PD4hatLSYFWVkoaz5g8kV9/d/waIiXCLpRpftw3H5FwAA//9udttq6AEAAA
-                rating: 4
-                locale: near the Pacific Crest Trail in Angeles National Forest
-        - id: mountain_oak
-          name: Mountain Oak
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Mountain Oak
-                desc: zySOMU7EQBAEv9IPsE4nAnKIECK44D4wHO3bkdczZmdsi9+jteOuVtW9aEADboSPGH1teMi8BHbNogbBrPXYqmZW4lMeU7jhSybCDe/6xE2NgQ99ll3+LrgXwrOwBaTxIAfcKJsaB4j94G1ZKrORHdY4lD1Dvn1NCH5Xacl2us1blp2RvSILUWXiaWHlJqlu/fw6vFyvGMm8/AcAAP//1J4Y49cAAAA
-                rating: 4
-                locale: near Jackson Lake in Angeles National Forest
         - id: lake_campground
           name: Lake Campground
           res_url: http://www.recreation.gov
@@ -78,7 +42,54 @@ properties:
                 desc: zzSOQU5CQRBEr1IHIAQ3HsIY3XCBBmqYDv2nyXQh4faGj67r5b3ady94wXCdlB4oSj7OyAF1ovKmTiuhek4iG8KlID7seKkc+LQLt/huK97yNnG05Vq4u7oPGBYPbqC/0JPKEQ/kIKafu3Bg+YnrEqvsK3FI08uBJZWzYJOwiLzz9H/uRe87weCPyXM8E++bt90OjdT2NwAA//+xtiri3wAAAA
                 rating: 8
                 locale: on Jackson Lake in Angeles National Forest
-        - id: los_alamos
+    - id: /ca/angeles/bandido
+      url: http://www.fs.usda.gov/angeles
+      name: Bandido Group Camp
+      managed_by: Angeles National Forest
+      campgrounds:
+        - id: bandido_group_camp
+          name: Bandido Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Bandido Group Camp
+                desc: z1TRwc7TMBAE4FeZB6gihEDi+lMOHDhUVV5gcSbx0tQbdjeNeHvkXOA/WhqNv7HHqgENSAN/74x0lYafEkSR54bZHIvbvgU25yaubUEaqj4Ic7hOhLY0ZCVid7e9TT106DrRGyMGvCFddIXtCZvP6NleKVOAEglpU++hB0sGDs165m5SdNaCqzMS41kjWDVzJexFRx6Gp64MyCF/IImxOombacu4QBC6tF4iLXG7jvi1t5JqbcBXzuY8Hd3cfS8NTfPAc49EqSwPaDt9zkUj6f90Lm2hR7+0H39Y4K0t7Ji7dtz9DOCb9pctff2shZf/0EffZfM7NKzhuy617/k4YKwEV76ko/tvfb58+fQBM5nD3wAAAP//IKvTu8EBAAA
+                rating: 6
+                locale: near the Pacific Crest Trail in Angeles National Forest
+    - id: /ca/angeles/coulter
+      url: http://www.fs.usda.gov/angeles
+      name: Coulter Group Camp
+      managed_by: Angeles National Forest
+      campgrounds:
+        - id: coulter_group_camp
+          name: Coulter Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Coulter Group Camp
+                desc: zzyQ3WrDMAyFX+VcblBCofQBSq52MSgsL6A6Si3m2J6k5PmHUuitfX6+oymLQQyE3vpWSPHUtnUkWjuMHZVJ8WieQdjFxJsaEldnBdUZBFeSkplmLE3hmXGnJIskjMrmmOJ/wC0lNoO3l2ScovYyXLFKYUNtGh2OKSsz7k2qGz6ub4EsyPIr9Xn4f6TsrPhuKZFJfZV8ng6kTnroYtZOUuhReMCt4jbvXH3TILRjtvLfJspzYIUtACL+vckGTJnBhXdyaTVM19PlfMbC7AO+PF5SacaRMWYp1DDS2uOOdR7+AwAA//9ezkdSYQEAAA
+                rating: 6
+                locale: near the San Gabriel Wilderness in Angeles National Forest
+    - id: /ca/angeles/jackson_flat
+      url: http://www.fs.usda.gov/angeles
+      name: Jackson Flat Group Walk-In
+      managed_by: Angeles National Forest
+      campgrounds:
+        - id: jackson_flat_group_walkin
+          name: Jackson Flat Group Walk-In
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Jackson Flat Group Walk-In
+                desc: zzyQQQobMQxFr/IPkIRQKF2XQqGb0kUuoNiasTuONEiahNy+yIHubCR93vu31h3dQVhVK3zXwKKWf9NjRyj0ySZ9bXECubM7ovHDeTzZTyCpWDnQZVF7UHQV3HlRYzSm2mWFHjkOzTv4YaaHzMGrjzpIql9wa4xCjz1ZuszN77LyYMfvGUoDP9XYA62vDUUPCXuDAt9OX69XLMwBHvyc2ycIk80YlgpdQPCmFvD9MJhSveBXIGjjlP9yvZ7fZBUvGltKG1NpiGwnsdbJjMX0MUN3si0NyJgmvHG+ES+FUBz5NOrDZz8k0LuzfdhQuWxQOXsP/pj/odKXXvBjCt7yEvssG38PD4hatLSYFWVkoaz5g8kV9/d/waIiXCLpRpftw3H5FwAA//9udttq6AEAAA
+                rating: 4
+                locale: near the Pacific Crest Trail in Angeles National Forest
+    - id: /ca/angeles/los_alamos
+      url: http://www.fs.usda.gov/angeles
+      name: Los Alamos
+      managed_by: Parks Management Company
+      campgrounds:
+        - id: default
           name: Los Alamos
           res_url: http://www.recreation.gov
           refs:
@@ -90,6 +101,20 @@ properties:
                 lists:
                     - title: Best for Waterskiing
                       place: 9
+    - id: /ca/angeles/mountain_oak
+      url: http://www.fs.usda.gov/angeles
+      name: Mountain Oak
+      managed_by: Angeles National Forest
+      campgrounds:
+        - id: default
+          name: Mountain Oak
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Mountain Oak
+                desc: zySOMU7EQBAEv9IPsE4nAnKIECK44D4wHO3bkdczZmdsi9+jteOuVtW9aEADboSPGH1teMi8BHbNogbBrPXYqmZW4lMeU7jhSybCDe/6xE2NgQ99ll3+LrgXwrOwBaTxIAfcKJsaB4j94G1ZKrORHdY4lD1Dvn1NCH5Xacl2us1blp2RvSILUWXiaWHlJqlu/fw6vFyvGMm8/AcAAP//1J4Y49cAAAA
+                rating: 4
+                locale: near Jackson Lake in Angeles National Forest
     - id: /ca/anza/anza
       url: http://www.anzarvresort.com
       name: Anza RV Resort
@@ -106,15 +131,6 @@ properties:
       url: http://www.parks.ca.gov
       name: Anza-Borrego Desert State Park
       campgrounds:
-        - id: culp_valley_primitive_camp_area
-          name: Culp Valley Primitive Camp Area
-          res_url: http://www.reservecalifornia.com
-          refs:
-            cc:
-                name: Culp Valley Primitive Camp Area
-                desc: zyzOQUrEQBCF4au8A4whoLjXbFwKgvvCvEk3qVSF6k6GPpZn8GLSw6zfx+OfDt3xLapsyAVGCXzy71fwtUe2pVxwS/kn9XHzIPwKwXbMyZWoSQyCcqcD3vA6jk9NYkbKK1FlZUHzA9UhBj8Z6r72kw+q3j8mseYGsbkTSqkMw5l566wm4t0juPgjc8Ak276EHzaDylNqdut9z5eXccSVrMN/AAAA//+J1l9d1wAAAA
-                rating: 4
-                locale: near Peña Springs in Anza-Borrego Desert State Park
         - id: borrego_palm_canyon
           name: Borrego Palm Canyon
           res_url: http://www.reservecalifornia.com
@@ -174,6 +190,20 @@ properties:
                 desc: z0ySzW3cMBCFW3kFbITdGD44N+fHgIEcgsQNjKUnkRHFEcjRCsppi8glQNKDa3ApW0lA7Q981Azf997M6Mn5DJ8hGHWcgiSMknr4iNlHY6rwaHCSYS6RiGJTkhAWtGwwqob8AfcIkjpCJ2tUE8wxDRLWdmH3HA1i8JYvANxtX18eNpDYQCJ8XIUXgaMYG5hit33/+vKwPtPJWm+lPntz+EnLFb7smRZzPnarTg2OiRWeHDFTSpJzY1Nioda2Ja+lwi3lWez6sMJ9bOC4FIXY8fAnY3ZiOB7+SjcJagme0Xg8/MNAifl4+F2cV8gGUQY2kLYQCztS0vOyZstj8rHLxeGXvPuoKbFTfGZmMvwwMeLbuv0MCVnP0gqPLRadMOsUGgTfs6wmk8g6lJlCczH/Kj3xaVpkkFrW8a4f3yXWTt/aSCLkWSfDzS0GH5ghsyyn7TFwL+Y1ljS7zc3tFi1pp+b6j9S6Z8q4220hdWI+3SVzz3LgE09bON+X81gSH3L1PwAA//9tr54fcAIAAA
                 rating: 3
                 locale: near Anza-Borrego Desert State Park
+    - id: /ca/anzaborrego_desert/culp_valley_primitive
+      url: http://www.parks.ca.gov
+      name: Culp Valley Primitive Camp Area
+      managed_by: Anza-Borrego Desert State Park
+      campgrounds:
+        - id: culp_valley_primitive_camp_area
+          name: Culp Valley Primitive Camp Area
+          res_url: http://www.reservecalifornia.com
+          refs:
+            cc:
+                name: Culp Valley Primitive Camp Area
+                desc: zyzOQUrEQBCF4au8A4whoLjXbFwKgvvCvEk3qVSF6k6GPpZn8GLSw6zfx+OfDt3xLapsyAVGCXzy71fwtUe2pVxwS/kn9XHzIPwKwXbMyZWoSQyCcqcD3vA6jk9NYkbKK1FlZUHzA9UhBj8Z6r72kw+q3j8mseYGsbkTSqkMw5l566wm4t0juPgjc8Ak276EHzaDylNqdut9z5eXccSVrMN/AAAA//+J1l9d1wAAAA
+                rating: 4
+                locale: near Peña Springs in Anza-Borrego Desert State Park
     - id: /ca/anzaborrego_desert/vallecito
       url: http://www.sdparks.org
       name: Vallecito County Park
@@ -240,8 +270,7 @@ properties:
                 locale: near Arroyo Grande
     - id: /ca/auburn_auburn
       url: http://www.parks.ca.gov
-      name: Auburn State Recreation Area near Auburn
-      managed_by: Auburn State Recreation Area
+      name: Auburn State Recreation Area
       campgrounds:
         - id: lake_clementine_boatin
           name: Lake Clementine Boat-In
@@ -254,8 +283,7 @@ properties:
                 locale: in Auburn State Recreation Area near Auburn
     - id: /ca/auburn_colfax
       url: http://www.parks.ca.gov
-      name: Auburn State Recreation Area near Colfax
-      managed_by: Auburn State Recreation Area
+      name: Auburn State Recreation Area
       campgrounds:
         - id: mineral_bar
           name: Mineral Bar
@@ -624,9 +652,9 @@ properties:
                 desc: zzyQMXLrMAxEr7Ll/zOJLpDKLtOkiC8AkzDJiCI0ABjFt89QsVWwWbx5BPaSiyHQsiaV3iKKQRo8MzY2h2VRhtxwlsiJcKb7hI+2RwNKyuQDvAo5KvUWMh+KIGQ+lBS/KHBzuOyDlXR+Qibd8wtWle8SS0ugENhsoKuWhXErlke+kbPahE+qi7QjLgb+CVzr8N9UFiwlvr73xvCs0lPGqadu/oaQOcwIXXVnHwLl1Ct5kWYTTrCFat33cQ7OEVemkPFvy6yMucTRV0MsCeVxAbWI8TaK/H+/1/cBt/gsSoWG6S4t/lVzVD7hMhxOzo+vGpNe78hkyGUeK7pSqTb9BgAA///uIcEWrQEAAA
                 rating: 7
                 locale: on Bodega Bay
-    - id: /ca/bonita
+    - id: /ca/bonita/sweetwater_summit
       url: http://www.sdparks.org
-      name: Bonita
+      name: Sweetwater Summit Regional Park
       managed_by: San Diego County Parks Department
       campgrounds:
         - id: sweetwater_summit_regional_park
@@ -855,7 +883,7 @@ properties:
                 locale: on Camanche Lake
     - id: /ca/campo
       url: http://www.sdparks.org
-      name: Lake Morena County Park near Campo
+      name: Lake Morena County Park
       managed_by: San Diego County Parks Department
       campgrounds:
         - id: lake_morena_county_park
@@ -1196,60 +1224,6 @@ properties:
                 desc: z0SNQWrDUAxErzIHMCGQE4RAF6VdNZsuJ/5yvogjubJ+Q29fvlvITmjmvTkmaJBZvpnqBp9wGA77PSaRHPDCeXSDrjBhIKsggzpXYVkx+d/rg4bXRgOt4FT1q2k6zr24DnhUHSsunhWzsEAtfcMuHG+jN8v42ch/VRJHI957QrV1h3OVEDAEWUME1/C2YOR96ZeVPqJdr3dNKVgYN7UrmHhri5ps+k9G+AOnJ7b7DQAA//8l6hAR/gAAAA
                 rating: 4
                 locale: in the Santa Ana Mountains in Cleveland National Forest
-        - id: dripping_springs
-          name: Dripping Springs
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Dripping Springs
-                desc: z0yPQU7DQAxFr/IPEFVFQlQskRArWLWCtZNxErcTT2R7cn40w4a93/P7t1Uc4ijKKDNiZezGm9QNH8XYA1e2QybGRNvuoIMk05h5gHPgXj0g6pK4s0ohRSlj/oPHYokNymT4Jsn4pAeDNIHSnSbWQJROvi2VcJNRCD+SE5uy+wnvJvsuuuC6m+jiuFnTiMNKDU7wUmNFqdHyW+MAD7JoDAWehpfzGTNzgDMfPa//n7JsYzvqbX0306NJ/pV8lapBokNTPQ+Xy2tXnX4DAAD//w2RSzs2AQAA
-                rating: 7
-                locale: near the Agua Tibia Wilderness in Cleveland National Forest
-        - id: oak_grove
-          name: Oak Grove
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Oak Grove
-                desc: z0zQsW7jMBAE0F+ZD/AJxjV3Vx6CJC6COEV+YCStTMIUV1guJfjvA0opUg6wg3nklXe8mq6CgfNyM615RCzQDA+CrOZBWFwsY7KYbwKd8JRklcQ84p0eNTPhRU2Kg47fp7/nMyYRhyRZ94MOzywPcBikFEymMy7xFjY+8OcfZt6lwEMsIBZdaqLtng6fQfDBpDMN176IrXS1RyNOcRXMMUlBXXbtrDU7Y4brnjcpfkJfvSWTVsqKMZoMjrbtChMOAdEPVGv9+Ij2wugYmLM6esEaZZPxuD2Ab7wLLpJL4NYG2Gt1EIFp+hW0GkZr0G9S0eqhw3/0SodxXvaRI0l2pgKagCtjYp/koHdfAQAA//+zf268qAEAAA
-                rating: 4
-                locale: near Temecula Creek in Cleveland National Forest
-        - id: fry_creek
-          name: Fry Creek
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Fry Creek
-                desc: z0SQQYoVUQxFt3KHCs+ibHABjSAKSjtocJx6nf9f7FdJkeR9/DO34fZciVQ1357fm3Nu7hEr9V4QTGFKHZHOtBZ88is+OvNzgQ8NKJMjmwQqrRso8aHczTNOzAnufKEU0wkPCkLte1rl3LLgagOVFMGMkzlf2HFyW/Gduq3k+GZDk0QnfJVkp96vEx4b5d/ffwILVxrByMb/Gw9LsF8oza8FP0ckCNHME08SSVr5hXD47sxIfjrEC5qN4MD9yi6VDkQnP3MkkjtHtY0n/JBsB/Junt+J1obP1BmPt0SBJCSwWYQs/ViGqMKaEhlIO/a+n2cs0ruY4kydfgnHhC9H1TbWPbeNpUtF2nDRM97UxvX5uFeHO2vuyh5vC5aRt2+q5d6oL5Kv4v8CAAD//+moIfbRAQAA
-                rating: 6
-                locale: near the Palomar Observatory in Cleveland National Forest
-        - id: observatory
-          name: Observatory
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Observatory
-                desc: z2RTMY7cSAz8SoV3wOxggwvuNjsHzgwv4IFzSuJMN7ZFNkhKgrJ9iP25fYnRrR1gDYcSyapisfqSsuOzGnvgG9uaR8ZIc0V2EKrWpZDBqwauar3E5liz58hyQySGMNmw45mKzmT4OjjbSqG2n7ClPCYkXZy9NxeyWyMLLuyjVkYW/D+z5ZHOuCQGF14pskrT8M/p38dHXJmjF41BxrjqYtBIfCjyhtHA8zzzlCl61ztcGOWSmKa+wAdxuLQKPMjCQYFoXjS8JxBi04fUaFJ+YYR2fP0wveVIUGF4UosTPJgrxpLn4YSUb6nkWwqeMOygZlgQJh5fjkGCb8y1Wbhm3qBXfGGZWBKVgu9UCu8nkEyNV6CykU13GaH1KB2fDaABtZ3bv5FibAy3kufq3LD71N3xMy66mHcnaaVcaCh8wrDE733I4Vyu7QyiAa0sd8q6DCWPZzyTxR2/OXczXWRCIsfALBhVVrbmQpZQkODt9Qd5mIrO+8PVMstU9rfXn2BZs6nMLPGET9bMQ7fQ8VchCTbxvvWWcvB76e++RFNX2eYcjYmuwYb/6nxPhahFAsv0p9IjIh+Vq4djVolU9p4NVLLI7C3LLX+7LhhJjlfS9Hjl40yQLvp+js6kPushuzCZ9DMN+u50g/fzrwAAAP//nPu6dIMDAAA
-                rating: 6
-                locale: near the Palomar Observatory in Cleveland National Forest
-        - id: crestline_group_camp
-          name: Crestline Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Crestline Group Camp
-                desc: zxzOMWrEUAxF0a28MoHBTJEiK5guEBhvQNjPtsi39JFkk+w+eNpbXM64aeLhwSw8GadOxCR7hyZmpq7GGfztwcz2h8UDTWIl1vCj54C3hwdkPml1BKG2eOxS6nZDkqiN+JbmuwS+/LASNTxL6srxg6ZZaivUUJdl2qQXY3jHuBFsPF+zy/Nx+7zfsZA1/AcAAP//nrv7ybcAAAA
-                rating: 6
-                locale: near the Palomar Observatory in Cleveland National Forest
-        - id: laguna
-          name: Laguna
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Laguna
-                desc: z1SRMY7bQBRDr8IDCEIaH2CTJoWLANkm5d8RZX14NCP8+bKgztcIkFzOJwm+HOxiWw3JR36d5bIWgTY0OmrBWd0z8f/7Wa7sUAtRR/hEjNyQ5coGLXiZaZoE20QjHvc/T/Pj/jcCFzEPm3pDHUdNKhlFZvZ4ncQf998Nb0yyNmKshp1iDbzR9rc67JC8yd5gHGnGAV6hDmkfoE8tgyplCE2kznyH9vjFpYM+kRL+/F40xkByhull8g4CYxbXG9EWpmt3hMb0Q5mkoKYkTWuRnHcMtmNdYlI8zkssr+UYTWlOK2g6EOKQAmbexLWWOMypO52+YCS9xwvcRPNEGY5jBPCHJB014ZuxOV7jPdIFs2aiVPMpUCH9uRbTRnzXy7TJ3uOrXj7/w23SNB325OvRXLAY3Xe0OfbnQ3a055Pg9cje2Lz/FwAA//+yje7JKAIAAA
-                rating: 6
-                locale: near Little Laguna Lake in Cleveland National Forest
         - id: el_prado_group_camp
           name: El Prado Group Camp
           res_url: http://www.recreation.gov
@@ -1259,6 +1233,67 @@ properties:
                 desc: z0yPUUrEQBBEr1IHkLA/e4JF3Q8/BL1AJVOzOzr2DJ1OILeXUQR/+z26qh4rXp2p4dnb1nHhV0dZkYpriXqA6YOLLBANL7xtRtDSUGhgDbkxyq7BTfT5wLX5KlzFXfbv7YSn4a3qdIZw+yFrCa2gC9xZKueqCRd5sNg48xdm2aKElvMI6t5CS+DOuQQDuTniLsgS7SZX+uv69ll6l2PeIuS5HhPeh1i1M0qzMeT8cD6dkKWYvgMAAP//xsSUoQ4BAAA
                 rating: 3
                 locale: in Cleveland National Forest
+    - id: /ca/cleveland/burnt_rancheria
+      url: http://www.fs.usda.gov/cleveland
+      name: Burnt Rancheria
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: default
+          name: Burnt Rancheria
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Burnt Rancheria
+                desc: zzyOzWrrQAxGX+V7AGOyuvvblP5AW0IJ7Vp4ZI9gLE01stO8fZkUutbROd/d5hp4J50yuxCkIcuSYYrIjFascoPNeLVNAy+0bEoQxbHwzoU04Y1CTKngwZxbDKAAKbjwfrv073/D4XDAzBwjnqNXvjbhziVUl52CcZHIKOQLD3Cz9YomwW3EOTNONMksE449gbOTlG6hWt2+ZaXgcoUpY5XCmN1WTLTWEffc2AMfwhecZFKZ8N+ZBtAvquaRB1S3XRI3EBazhCaJES51xKdZ4oQnKQWPblu9mRe3TVPf8FelC13HnwAAAP///5Zqa1EBAAA
+                rating: 6
+                locale: near the Pacific Crest Trail in Cleveland National Forest
+    - id: /ca/cleveland/crestline
+      url: http://www.fs.usda.gov/cleveland
+      name: Crestline Group Camp
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: crestline_group_camp
+          name: Crestline Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Crestline Group Camp
+                desc: zxzOMWrEUAxF0a28MoHBTJEiK5guEBhvQNjPtsi39JFkk+w+eNpbXM64aeLhwSw8GadOxCR7hyZmpq7GGfztwcz2h8UDTWIl1vCj54C3hwdkPml1BKG2eOxS6nZDkqiN+JbmuwS+/LASNTxL6srxg6ZZaivUUJdl2qQXY3jHuBFsPF+zy/Nx+7zfsZA1/AcAAP//nrv7ybcAAAA
+                rating: 6
+                locale: near the Palomar Observatory in Cleveland National Forest
+    - id: /ca/cleveland/dripping_springs
+      url: http://www.fs.usda.gov/cleveland
+      name: Dripping Springs
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: default
+          name: Dripping Springs
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Dripping Springs
+                desc: z0yPQU7DQAxFr/IPEFVFQlQskRArWLWCtZNxErcTT2R7cn40w4a93/P7t1Uc4ijKKDNiZezGm9QNH8XYA1e2QybGRNvuoIMk05h5gHPgXj0g6pK4s0ohRSlj/oPHYokNymT4Jsn4pAeDNIHSnSbWQJROvi2VcJNRCD+SE5uy+wnvJvsuuuC6m+jiuFnTiMNKDU7wUmNFqdHyW+MAD7JoDAWehpfzGTNzgDMfPa//n7JsYzvqbX0306NJ/pV8lapBokNTPQ+Xy2tXnX4DAAD//w2RSzs2AQAA
+                rating: 7
+                locale: near the Agua Tibia Wilderness in Cleveland National Forest
+    - id: /ca/cleveland/fry_creek
+      url: http://www.fs.usda.gov/cleveland
+      name: Fry Creek
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: default
+          name: Fry Creek
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Fry Creek
+                desc: z0SQQYoVUQxFt3KHCs+ibHABjSAKSjtocJx6nf9f7FdJkeR9/DO34fZciVQ1357fm3Nu7hEr9V4QTGFKHZHOtBZ88is+OvNzgQ8NKJMjmwQqrRso8aHczTNOzAnufKEU0wkPCkLte1rl3LLgagOVFMGMkzlf2HFyW/Gduq3k+GZDk0QnfJVkp96vEx4b5d/ffwILVxrByMb/Gw9LsF8oza8FP0ckCNHME08SSVr5hXD47sxIfjrEC5qN4MD9yi6VDkQnP3MkkjtHtY0n/JBsB/Junt+J1obP1BmPt0SBJCSwWYQs/ViGqMKaEhlIO/a+n2cs0ruY4kydfgnHhC9H1TbWPbeNpUtF2nDRM97UxvX5uFeHO2vuyh5vC5aRt2+q5d6oL5Kv4v8CAAD//+moIfbRAQAA
+                rating: 6
+                locale: near the Palomar Observatory in Cleveland National Forest
+    - id: /ca/cleveland/horse_heaven
+      url: http://www.fs.usda.gov/cleveland
+      name: Horse Heaven Group Camp
+      managed_by: Cleveland National Forest
+      campgrounds:
         - id: horse_heaven_group_camp
           name: Horse Heaven Group Camp
           res_url: http://www.recreation.gov
@@ -1268,24 +1303,48 @@ properties:
                 desc: z0yQTW7bQAyFr/IO4ArZ5ACF+5OFWxht0D2tebaIjoZTklLQ2xdSGiNLAvze35N5EE+UlQ0asIaciGaeEyWS3nAxL3TYFcfKlVVawXdJtSYVX8wZCUk8Hh4fHnAlE6xc94cDGsXxzZaWOMltaQJ9tfh//eDo3H/x0SkDnifiLKNedcRx13520YouEYxXvY0fZe7Dm8oW6XPF2aUYvrotHUeZO7rbqoU7dfkL65tRDPiphR/StaNbhF60aioD2sa6FGLV0NR2w0kz6z3sSX4Tabu/zjOLShIv+wCt4BODnvilfMFZx6bj3umNCFty2pZ6P8ewUV2T0Aw0mXm417u5La1gkkAz8M/CSFdpCE3G8C8AAP//SZm03LwBAAA
                 rating: 3
                 locale: near the Pacific Crest Trail in Cleveland National Forest
-        - id: wooded_hill_group
-          name: Wooded Hill Group
+    - id: /ca/cleveland/laguna
+      url: http://www.fs.usda.gov/cleveland
+      name: Laguna
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: default
+          name: Laguna
           res_url: http://www.recreation.gov
           refs:
             cc:
-                name: Wooded Hill Group
-                desc: zyTNQW6FMAwE0KvMARBi1QOUbStVFRewgkOsH2zkOJ/rfwG7WczMW4o0JNoPSIMpojCa9SjsilxJX7CMX+sa+KGtK41YCuOPkmRJmJ1bYHGSej2cEkUUpoxdKl/b7+4a+CdNhV0IM+3H5tZ1HUBPqx+360Yrwu6s5lFObvFwXPlNIaYX8jVM04TMHOMnAAD//8wKrTW/AAAA
-                rating: 5
-                locale: near the Pacific Crest Trail in Cleveland National Forest
-        - id: burnt_rancheria
-          name: Burnt Rancheria
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Burnt Rancheria
-                desc: zzyOzWrrQAxGX+V7AGOyuvvblP5AW0IJ7Vp4ZI9gLE01stO8fZkUutbROd/d5hp4J50yuxCkIcuSYYrIjFascoPNeLVNAy+0bEoQxbHwzoU04Y1CTKngwZxbDKAAKbjwfrv073/D4XDAzBwjnqNXvjbhziVUl52CcZHIKOQLD3Cz9YomwW3EOTNONMksE449gbOTlG6hWt2+ZaXgcoUpY5XCmN1WTLTWEffc2AMfwhecZFKZ8N+ZBtAvquaRB1S3XRI3EBazhCaJES51xKdZ4oQnKQWPblu9mRe3TVPf8FelC13HnwAAAP///5Zqa1EBAAA
+                name: Laguna
+                desc: z1SRMY7bQBRDr8IDCEIaH2CTJoWLANkm5d8RZX14NCP8+bKgztcIkFzOJwm+HOxiWw3JR36d5bIWgTY0OmrBWd0z8f/7Wa7sUAtRR/hEjNyQ5coGLXiZaZoE20QjHvc/T/Pj/jcCFzEPm3pDHUdNKhlFZvZ4ncQf998Nb0yyNmKshp1iDbzR9rc67JC8yd5gHGnGAV6hDmkfoE8tgyplCE2kznyH9vjFpYM+kRL+/F40xkByhull8g4CYxbXG9EWpmt3hMb0Q5mkoKYkTWuRnHcMtmNdYlI8zkssr+UYTWlOK2g6EOKQAmbexLWWOMypO52+YCS9xwvcRPNEGY5jBPCHJB014ZuxOV7jPdIFs2aiVPMpUCH9uRbTRnzXy7TJ3uOrXj7/w23SNB325OvRXLAY3Xe0OfbnQ3a055Pg9cje2Lz/FwAA//+yje7JKAIAAA
                 rating: 6
-                locale: near the Pacific Crest Trail in Cleveland National Forest
+                locale: near Little Laguna Lake in Cleveland National Forest
+    - id: /ca/cleveland/oak_grove
+      url: http://www.fs.usda.gov/cleveland
+      name: Oak Grove
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: default
+          name: Oak Grove
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Oak Grove
+                desc: z0zQsW7jMBAE0F+ZD/AJxjV3Vx6CJC6COEV+YCStTMIUV1guJfjvA0opUg6wg3nklXe8mq6CgfNyM615RCzQDA+CrOZBWFwsY7KYbwKd8JRklcQ84p0eNTPhRU2Kg47fp7/nMyYRhyRZ94MOzywPcBikFEymMy7xFjY+8OcfZt6lwEMsIBZdaqLtng6fQfDBpDMN176IrXS1RyNOcRXMMUlBXXbtrDU7Y4brnjcpfkJfvSWTVsqKMZoMjrbtChMOAdEPVGv9+Ij2wugYmLM6esEaZZPxuD2Ab7wLLpJL4NYG2Gt1EIFp+hW0GkZr0G9S0eqhw3/0SodxXvaRI0l2pgKagCtjYp/koHdfAQAA//+zf268qAEAAA
+                rating: 4
+                locale: near Temecula Creek in Cleveland National Forest
+    - id: /ca/cleveland/observatory
+      url: http://www.fs.usda.gov/cleveland
+      name: Observatory
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: default
+          name: Observatory
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Observatory
+                desc: z2RTMY7cSAz8SoV3wOxggwvuNjsHzgwv4IFzSuJMN7ZFNkhKgrJ9iP25fYnRrR1gDYcSyapisfqSsuOzGnvgG9uaR8ZIc0V2EKrWpZDBqwauar3E5liz58hyQySGMNmw45mKzmT4OjjbSqG2n7ClPCYkXZy9NxeyWyMLLuyjVkYW/D+z5ZHOuCQGF14pskrT8M/p38dHXJmjF41BxrjqYtBIfCjyhtHA8zzzlCl61ztcGOWSmKa+wAdxuLQKPMjCQYFoXjS8JxBi04fUaFJ+YYR2fP0wveVIUGF4UosTPJgrxpLn4YSUb6nkWwqeMOygZlgQJh5fjkGCb8y1Wbhm3qBXfGGZWBKVgu9UCu8nkEyNV6CykU13GaH1KB2fDaABtZ3bv5FibAy3kufq3LD71N3xMy66mHcnaaVcaCh8wrDE733I4Vyu7QyiAa0sd8q6DCWPZzyTxR2/OXczXWRCIsfALBhVVrbmQpZQkODt9Qd5mIrO+8PVMstU9rfXn2BZs6nMLPGET9bMQ7fQ8VchCTbxvvWWcvB76e++RFNX2eYcjYmuwYb/6nxPhahFAsv0p9IjIh+Vq4djVolU9p4NVLLI7C3LLX+7LhhJjlfS9Hjl40yQLvp+js6kPushuzCZ9DMN+u50g/fzrwAAAP//nPu6dIMDAAA
+                rating: 6
+                locale: near the Palomar Observatory in Cleveland National Forest
     - id: /ca/cleveland/oneill_equestrian
       url: http://www.ocparks.com
       name: O’neill Regional Park And Equestrian Camp
@@ -1300,6 +1359,20 @@ properties:
                 desc: z3yRTW7dMAyErzIHcA33J+i6CFAgmxZIH7rnk/hsJTLpkpID376gk6C77mxwNEPOd1mK46eRzIx77dIObGTPKI6n7g03MrBonxfo7Ya2MFYqgmw0oylmbliLO2dcD6zqDfoqe/yNZL04m0MFDx/uRjy0MBYmw8Xo2pPinuRQGUD5iRJLC9P7yjtXkowf1IoKVXxXYz+H4c3kbcS3q/aGrxM2tvPpW3KidfPS2EHG6JLZQEgkuh2h8SPRqsaIBKXnIT4GFMHMwkZ1OG3ee1iY9lIPvKhmziMu77Okexz3ZbibJlCyCJSMG1Pr8fPpM9ZS2c+9jEr1CEm15yIz2qLOoJTYvVwrR3/8p7M3KyQ+4hfvsQxMKb+V1oLWmV2Z8tlG+C4ciiL/q27EY0AOGCmRn6N6YAtia4APqrWo4IVMiswOav8CX8/myvtpG718HKZpwo25jX8DAAD//3cj+edGAgAA
                 rating: 6
                 locale: near Cleveland National Forest
+    - id: /ca/cleveland/wooded_hill
+      url: http://www.fs.usda.gov/cleveland
+      name: Wooded Hill Group
+      managed_by: Cleveland National Forest
+      campgrounds:
+        - id: wooded_hill_group
+          name: Wooded Hill Group
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Wooded Hill Group
+                desc: zyTNQW6FMAwE0KvMARBi1QOUbStVFRewgkOsH2zkOJ/rfwG7WczMW4o0JNoPSIMpojCa9SjsilxJX7CMX+sa+KGtK41YCuOPkmRJmJ1bYHGSej2cEkUUpoxdKl/b7+4a+CdNhV0IM+3H5tZ1HUBPqx+360Yrwu6s5lFObvFwXPlNIaYX8jVM04TMHOMnAAD//8wKrTW/AAAA
+                rating: 5
+                locale: near the Pacific Crest Trail in Cleveland National Forest
     - id: /ca/colfax_bear_river/bear_river
       url: http://www.placer.ca.gov
       name: Bear River Campground
@@ -1755,15 +1828,6 @@ properties:
                 desc: z2yQQW4iMRBFr/KXg4S4BNKIxcwmIgco2p+2g6lC5epu9Y5rcD1OEhklUhbZWS79V6/+MZeG0W26YZDrDaVhKZGLwkVHws5onOlSIWmmxuRsOxwNkQml+GkFpUVPHlgrDlaJNzb6bMXxZ7XpeX/UCiUTBCeTQBiSoQS8jDk2W4im/vkDquaRO/WvU4eM/5RkS/sVnbzMxK1rdEKSK0xfz0VWFN3s8K5n85hUgnXd9pkTpenz/ggIModLP1ZQ7Vuve/Z6XsVYTyCyKBaJIX/Rg45ztQWnta+U9CEDNfDPdMRedDXF3snL7jMAAP//1XNYIGoBAAA
                 rating: 7
                 locale: on Long Canyon Creek in Eldorado National Forest
-        - id: ponderosa_cove
-          name: Ponderosa Cove
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Ponderosa Cove
-                desc: zxzMy6nEMAxG4Vb+AkLIImXcu8o0IGL5wWDJSDLDdD842wPnu1pEkwIKnNt5HMjMsSFqcxTTOXBTH2iOsMkIRQuHUOcNmSmmrbvOwiBJyEbFSAJDJbGpE0YT9h2vyg+1UEkLZPKAZkRlJOqwVmqAblP3J5rSErXjitnHF/9MST+OP3rz/gsAAP//gWDJPLoAAAA
-                rating: 8
-                locale: near Stumpy Meadows Lake in Eldorado National Forest
         - id: stumpy_meadows
           name: Stumpy Meadows
           res_url: http://www.recreation.gov
@@ -1773,15 +1837,6 @@ properties:
                 desc: z0yRQasUQQyE/0odFZZl0XfzKHpSEXx4z3bXbIft6QzpzAz776Vn3wOvoarypfJatEM7ohBJ5gU2IRXTREzm2LRrmHeE4U+s8/LAT0q2veOH3HnG33fBpN4DzWJYR1pZb8RiLdOtCxZtRDjZT0PFfORHoTqy9tCWQjeeMFsXTVXvxFX8fsZrIarcOTAl8HJ6uVwwkQFWbhJqDdrwrWZzyYZfx0gqvpuzB6RlJNvoHZ8/XSDJ2bFrFOwSHAwSIztZzU9xpfgXxFs11jhaGTctzggdoQOo42ErkjQ4JRVYwyIbZ7YYQMPgvKm1/24o0nG1KHDRdrX9WHh12xvCbY3TMXhzT1IrFrdNMztuZhmT9qLtdpR31dvT2vEhCh+YbSPWBdrCnj+g5Hf2sf6ERnHshU781mqBr07ewRb0/vH8LwAA//+gaZS7DwIAAA
                 rating: 9
                 locale: on Stumpy Meadows Lake in Eldorado National Forest
-        - id: black_oak_group_camp
-          name: Black Oak Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Black Oak Group Camp
-                desc: z1yOMW4DMQwEv7JlAhgHF/5BktKV/QFG4lm0T6RAUQn8+0CXzvXuzs61SMfNbTQkqg3SkcU5xfYE5Tsl1kAYLjFqe+LMlO2344NqmyvNC94uzIjCr51NeojeIIqYL6lQC3as5qjmDNHVvFKI6fKOa2F8GwV8eszSZG704Cl1Hz3QbUSBrXtyJn/gK3dTfFI9QJn+J02SSgI507JTeeOf/WWCTofT8YiVOZa/AAAA//8crnl2/AAAAA
-                rating: 8
-                locale: near Stumpy Meadows Lake in Eldorado National Forest
         - id: gerle_creek
           name: Gerle Creek
           res_url: http://www.recreation.gov
@@ -1857,15 +1912,6 @@ properties:
                 desc: zwTAwQmAMAwF0FX+BKLedAhPLhDLlwZiU5KC6/ddPnjirpoo8nX8aoaHKOZJvB4IdtFIaMOoxL5uB5KS3pYZAAD//28xDBw9AAAA
                 rating: 8
                 locale: on Union Valley Reservoir in Eldorado National Forest
-        - id: silver_creek_group
-          name: Silver Creek Group
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Silver Creek Group
-                desc: z0yPwUrEUAxFf+V+wFAGwY1bEXTjYsTZR3vrhEmTkpe29O+lo4Lbm3Pg5E1tYeIxySu0QTAlqza0KQpSuD/cHY8YyAKNi5SGd3j5JJ5jbtydcNtQa2BUY4NH1uUA8R7vruE4ixk3nNiYS2juzhBz/uc7PGldmPhI9S9s+zlWR5/q131ZpZiIP0B+h0Gt8haFaR4nDJFolZTxB+jwGsUHnM7tVlQpaswGScL3F81iZd99BwAA///xhX97CQEAAA
-                rating: 5
-                locale: near Ice House Reservoir in Eldorado National Forest
         - id: ice_house_upper_and_lower
           name: Ice House Upper And Lower
           res_url: http://www.recreation.gov
@@ -1929,6 +1975,48 @@ properties:
                 desc: z1RSS44TQQy9yjtAJxohjRBLQCyQWE24gNPl7jKpLrdsdwKs5hCz4XpzElTVCp+lS37P71MfmAxPcmXDEzvbVcUgDgo8Du8eHjAxx4BbljFjYaoOCZx51IUdMvJhMmYwWRE2SEVkhq8mdUZkqpBwbGuWUlBZ5nxWc4T2PSaPAScp7f4XujCoJnyktbD3+YjP0eVgVk0Hl5+cUOjCr88vb988gkZjf31+abBRS+r4xLwOCNUj3peCGwUbfFULBxmDStEbp849cziSbufChzOZceGEMN0CHjpefIDxyHJtfibxjMl02U0GxS74z5OubBRq0KnPu9JfjoVMKvXlomnmI75mcYy0rLPpVlMzqfV/kOsWma3CsxoP+LZ59Mju9ImWIz59X4saW2OrSCZX3pGY1DC1cZGWZyhOVAKnXo7/7fteb6YWdBhJyUx7livZpVknY7oLrGqR4ZL4HyH9GmE2pkCiH8jS6iza/8Hu6vg7AAD//6FIAzZuAgAA
                 rating: 7
                 locale: on Bear River Reservoir in Eldorado National Forest
+    - id: /ca/eldorado/black_oak
+      url: http://www.fs.usda.gov/eldorado
+      name: Black Oak Group Camp
+      managed_by: Eldorado National Forest
+      campgrounds:
+        - id: black_oak_group_camp
+          name: Black Oak Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Black Oak Group Camp
+                desc: z1yOMW4DMQwEv7JlAhgHF/5BktKV/QFG4lm0T6RAUQn8+0CXzvXuzs61SMfNbTQkqg3SkcU5xfYE5Tsl1kAYLjFqe+LMlO2344NqmyvNC94uzIjCr51NeojeIIqYL6lQC3as5qjmDNHVvFKI6fKOa2F8GwV8eszSZG704Cl1Hz3QbUSBrXtyJn/gK3dTfFI9QJn+J02SSgI507JTeeOf/WWCTofT8YiVOZa/AAAA//8crnl2/AAAAA
+                rating: 8
+                locale: near Stumpy Meadows Lake in Eldorado National Forest
+    - id: /ca/eldorado/ponderosa_cove
+      url: http://www.fs.usda.gov/eldorado
+      name: Ponderosa Cove
+      managed_by: Eldorado National Forest
+      campgrounds:
+        - id: default
+          name: Ponderosa Cove
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Ponderosa Cove
+                desc: zxzMy6nEMAxG4Vb+AkLIImXcu8o0IGL5wWDJSDLDdD842wPnu1pEkwIKnNt5HMjMsSFqcxTTOXBTH2iOsMkIRQuHUOcNmSmmrbvOwiBJyEbFSAJDJbGpE0YT9h2vyg+1UEkLZPKAZkRlJOqwVmqAblP3J5rSErXjitnHF/9MST+OP3rz/gsAAP//gWDJPLoAAAA
+                rating: 8
+                locale: near Stumpy Meadows Lake in Eldorado National Forest
+    - id: /ca/eldorado/silver_creek
+      url: http://www.fs.usda.gov/eldorado
+      name: Silver Creek Group
+      managed_by: Eldorado National Forest
+      campgrounds:
+        - id: silver_creek_group
+          name: Silver Creek Group
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Silver Creek Group
+                desc: z0yPwUrEUAxFf+V+wFAGwY1bEXTjYsTZR3vrhEmTkpe29O+lo4Lbm3Pg5E1tYeIxySu0QTAlqza0KQpSuD/cHY8YyAKNi5SGd3j5JJ5jbtydcNtQa2BUY4NH1uUA8R7vruE4ixk3nNiYS2juzhBz/uc7PGldmPhI9S9s+zlWR5/q131ZpZiIP0B+h0Gt8haFaR4nDJFolZTxB+jwGsUHnM7tVlQpaswGScL3F81iZd99BwAA///xhX97CQEAAA
+                rating: 5
+                locale: near Ice House Reservoir in Eldorado National Forest
     - id: /ca/emigrant_gap/lake_spaulding
       url: http://www.pge.com/recreation
       name: Lake Spaulding
@@ -2213,15 +2301,6 @@ properties:
                 desc: z1yQza7TMBCFX+UsQYqqu2DBHsGFRRGifYFpPI2HODNhPGnUt0c2BAmWto/Pz3fNjJGWdXLbNIECH2u2BR+ceYZU/NhqIHbDIoUrbIsqiRGZcWtfyKVd33Hhn5sJ4SuFmFLBN/L5hC/RXHYuBVlSYgW1HIymzcjpVhhJapCOjLvb0r1Htz3Vrq0y5agQ7Q8r+QzRYBfzw75ygIrp9E97CpCCCz96pVby3fD+5QV35jjhTPrs29nr/8OzzIwaTi27xVkP12NbazFgl8ggNFnJTB3fd067WcKFUiqMN52f6F9ovf8fcs+3WN0ekkQnENy2YISh8m/t4XW2TYNE8er24AGfqBRWvFoRijzgM3ng6sxDB9aPZ6Zke6NGqKz1aF7M1j7v9CsAAP//MqwMpfsBAAA
                 rating: 7
                 locale: on Eshom Creek in Giant Sequoia National Monument
-        - id: fir_group_campground
-          name: Fir Group Campground
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Fir Group Campground
-                desc: zwTAAQ2EMAyFYSu/gjNxEsBAQx7bAqxLV0Jwz7fWNmkT78J38nFOiyJK+D3Y7BqT1skqlvT+8g/pwEL2+wIAAP//1NlP7T0AAAA
-                rating: 6
-                locale: near Stony Creek in Giant Sequoia National Monument
         - id: stony_creek
           name: Stony Creek
           res_url: http://www.recreation.gov
@@ -2231,15 +2310,6 @@ properties:
                 desc: zzTNQcrCMBCG4at8B/gpXfx4ga5EEKEnGJuvdWg6E5NYyO2list387xjdWsYMrlikC0hZd81sECwuAd4quoGnVEfhMlREpEkr5hkSwWSiVljZOhwrtCC6eCKBkIqTn//fY+ZrGDk/gE6jHy+XAViARe1pWAQa264/g43yesXN0q+t+4dAAD///AleZ6rAAAA
                 rating: 6
                 locale: in Giant Sequoia National Monument
-        - id: cove_group_camp
-          name: Cove Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Cove Group Camp
-                desc: zxTK0QmAIBQF0FXuACH+1AKNkAtY3fSRqegraPvo/7goHcm3QIRW7orNXxXSsbLLTixa8ou5kaeBiwQTH69S8o+mYbQWB6nmCwAA//+EovUJSQAAAA
-                rating: 6
-                locale: near Stony Creek in Giant Sequoia National Monument
         - id: wishon
           name: Wishon
           res_url: http://www.recreation.gov
@@ -2285,15 +2355,6 @@ properties:
                 desc: z3TQQWorMRAE0KvU8n8YjBchFzAkWSRgMidorBpbWFYP3a0ZfPtgxc4mZKtC9Yp+08IrPihJV2SHMyCB5+Fpu8VEBli4SGSt0Io4ESs9aBVedKZDp/46ZprJgEoxfDKtqglSE961Hu/ABnuxMw17cb9pgksuROhP8dD/5AlXbUiWFz7YFzV6YKQt+UCYSoIutB7O4j7goDVybYRri9OtDv8mbdYVx2R6wUEu8/+buNOSMM6W69ExSkqF33icWBHNKigef/A+N+sbBuTAmktByJl9dqx6F0Mxhtj9fjsjzw/id/BqunDzFQAA////7DfOkQEAAA
                 rating: 7
                 locale: on Double Bunk Creek in Giant Sequoia National Monument
-        - id: redwood_meadow
-          name: Redwood Meadow
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Redwood Meadow
-                desc: zzSOUW7bQAxErzIHcAW5QHsBF2h+HBiIL0CvxiLh1a5CruzrB6sgv8Q8vndVQm3WbLM2KJ2wQFPiOPz5tVgmri6WUe/79W0rk3PCf5PS4oCXWlKsEsGOed1mhWD2+mRn5r5D8HOrJgEpU/8vKTHCbpm4V8dLyZxUzKH2oMeAq1r8lIQ19o0TF2fYxNJwylZaLVi9piy2cNq3exc+vn14l2a1SMa5lm3pmBX8HsexC4gky9olheK4iD/oOFOm+sLJyQek4e/hOI64kw3MfO4PB/xjrL3KWsC51MbCiANaz1YJ3JjqQgjWum5ZHGuWxOErAAD//6k9MJdvAQAA
-                rating: 7
-                locale: near Parker Meadow Creek in Giant Sequoia National Monument
         - id: long_meadow_group_camp
           name: Long Meadow Group Camp
           res_url: http://www.recreation.gov
@@ -2312,6 +2373,48 @@ properties:
                 desc: z2TOQUr0QBDF8au8A8wX8oEXGOLCtQiuS/OSLqa7KlTXJMzOa3g9TyKIguD2weP/ey6axKPuDGhHZ0ISd6dxHLGQCVbukup2ghuyEL8vRgkchUFUzazEvcQFk9jNDVOQF9CS0aE54IwM0YolvOFV2obFa/WjY/bDegalQarb+qeU/jUd7InFA1mCRNPKfsIcvm1qK9TScW7sePBKiM2YfOc3aMBTIYKrun28vXcUT/Qt1NYOCUJe/JoQ/B//NbVrEnPoTsghtx+BeWQZPgMAAP//IYakuDgBAAA
                 rating: 7
                 locale: in Giant Sequoia National Monument
+    - id: /ca/giant_sequoia/cove
+      url: http://www.fs.usda.gov/sequoia
+      name: Cove Group Camp
+      managed_by: Sequoia National Forest
+      campgrounds:
+        - id: cove_group_camp
+          name: Cove Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Cove Group Camp
+                desc: zxTK0QmAIBQF0FXuACH+1AKNkAtY3fSRqegraPvo/7goHcm3QIRW7orNXxXSsbLLTixa8ou5kaeBiwQTH69S8o+mYbQWB6nmCwAA//+EovUJSQAAAA
+                rating: 6
+                locale: near Stony Creek in Giant Sequoia National Monument
+    - id: /ca/giant_sequoia/fir
+      url: http://www.fs.usda.gov/sequoia
+      name: Fir Group Campground
+      managed_by: Sequoia National Forest
+      campgrounds:
+        - id: fir_group_campground
+          name: Fir Group Campground
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Fir Group Campground
+                desc: zwTAAQ2EMAyFYSu/gjNxEsBAQx7bAqxLV0Jwz7fWNmkT78J38nFOiyJK+D3Y7BqT1skqlvT+8g/pwEL2+wIAAP//1NlP7T0AAAA
+                rating: 6
+                locale: near Stony Creek in Giant Sequoia National Monument
+    - id: /ca/giant_sequoia/redwood_meadow
+      url: http://www.fs.usda.gov/sequoia
+      name: Redwood Meadow
+      managed_by: Sequoia National Forest and Giant Sequoia National Monument
+      campgrounds:
+        - id: default
+          name: Redwood Meadow
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Redwood Meadow
+                desc: zzSOUW7bQAxErzIHcAW5QHsBF2h+HBiIL0CvxiLh1a5CruzrB6sgv8Q8vndVQm3WbLM2KJ2wQFPiOPz5tVgmri6WUe/79W0rk3PCf5PS4oCXWlKsEsGOed1mhWD2+mRn5r5D8HOrJgEpU/8vKTHCbpm4V8dLyZxUzKH2oMeAq1r8lIQ19o0TF2fYxNJwylZaLVi9piy2cNq3exc+vn14l2a1SMa5lm3pmBX8HsexC4gky9olheK4iD/oOFOm+sLJyQek4e/hOI64kw3MfO4PB/xjrL3KWsC51MbCiANaz1YJ3JjqQgjWum5ZHGuWxOErAAD//6k9MJdvAQAA
+                rating: 7
+                locale: near Parker Meadow Creek in Giant Sequoia National Monument
     - id: /ca/gilroy/coyote_lake_harvey_bear_parks
       url: http://www.sccgov.org
       name: Coyote Lake And Harvey Bear County Parks
@@ -2709,14 +2812,6 @@ properties:
       url: http://www.fs.usda/htnf
       name: Humboldt-Toiyabe National Forest
       campgrounds:
-        - id: hope_valley
-          name: Hope Valley
-          refs:
-            cc:
-                name: Hope Valley
-                desc: z1SQwY7TQBBEf6U+wFiLOCBxg5UQSDmskAXnjl32NPHMRD09Cb7xG/weX4LGyWqXc1VXv6ohED9YHJ+znZBneCAexUpO+KYXGqymAtMlODxYrkvAl3wmvsu6cusgOBvdN7jl6ihulIireoBgDFlHttw5V7uLRSdilHheLNc0lR7D/TSPpwIxIspEJIrtPK+8mKppWlBqjLQew38yxF/DQQt+1uKgFG8Q92JPUkrXvO+7dw8PmEkHV17ENacOmiC40LbnZmKUHh/hJroGyoQ538ieZNRZRzxa23BoenvqwUhEXVlQcvXwvOwL6g39bBrFtr3qccPE4pp2jBbzaa3EQU5stMc2keDtw5uoqToxmV4IucrW42tqo9rf338KUnZ+wEHdV2KQKCbjaY/pbmscueU07TxeLeV53vsc8pX28rNrBPw1cl2ZfHeUq8aoaen/BQAA//8h+1rXNgIAAA
-                rating: 7
-                locale: near the Carson River in Humboldt-Toiyabe National Forest
         - id: silver_creek
           name: Silver Creek
           res_url: http://www.recreation.gov
@@ -2735,24 +2830,6 @@ properties:
                 desc: z1yQQa7bQAxDr8IDBEF2PUA3LVB00eYCsk17hIylX0mOkZ6+sINu/m6GDyIl3psmRlk/MDB1In75oJZu+BrkA1L4crndbpjJAjufUuqG1EqooRpRIZZ6yn/diIG1k2/2Wxkh+MmnTIIQW4jyE+3Mgth0fpouDROTUf85JeuK7wXN4/069KCMDf72lnFkJsJlOth9V8MPeTAvcOsvVAsSq3YmZolqjCvujejy4OE6y+pbYvaAj6OkuklH2xZiCN8NFb7VFd9855NxOVNnzaa2HM186koT0tPhc9HwZ9MiFvfpmBN75LFkl1gI29aBkfD5HYGPLlaccJ73osT1XwAAAP//ly0B4JkBAAA
                 rating: 8
                 locale: on Robinson Creek in Humboldt-Toiyabe National Forest
-        - id: paha
-          name: Paha
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Paha
-                desc: z0SPwUrEUAxFf+UuFaR05wcI4mJW2h+I9XZemDYZkmDx7+W9zaxDzjl3aZrQhBuhBkEylAnfsMpxTxgl8OnfaumGtyBvEPvBqdXUsO6eRIhd2X+WUw0XuTEnLI3gzl8pdYMUqnFAu+/1ZZ5nbGRNePoix/HiJ+PBGJ4PN/4d7ob3XQq7Zqlds8dWb1+b3IuBzQOHR1+xeRxDOj3/BwAA//9z2eoM3wAAAA
-                rating: 8
-                locale: near Twin Lakes in Humboldt-Toiyabe National Forest
-        - id: robinson_creek_north__south
-          name: 'Robinson Creek: North & South'
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: 'Robinson Creek: North & South'
-                desc: z0zQQWrzUAwE4KvM8v/hYbzrAQqhi9BF6wu8xuM8EVsykhLT2xebQLvSSvo0MzQJXOqyXt3uOhaYEjahIujCgCiyEdVZCyQQTNTES+n7HhOZ4MxHTTGFKT7sSzRM8erkrUAtMVXH5LZg2ERxrjdGh6Hxj7tfHuUhI0eIpiE3O8woeDfPhqojPu2ercO/kzmcF+eTXfcRBUEez55to/9qx+6bKb8XM8VprolZIkWvz3x7B62uSe/+/wQAAP//D9nwthIBAAA
-                rating: 9
-                locale: near Twin Lakes in Humboldt-Toiyabe National Forest
         - id: crags_campground
           name: Crags Campground
           res_url: http://www.recreation.gov
@@ -2780,6 +2857,47 @@ properties:
                 desc: z2SRQW7WTAyGr/Iu/18KH92wYAkLBFJVIVqBWDqJk5jO2JXtaZQd1+B6nARN2gUqu5HH7/NY9t0mAQkQNlm3V9WaJoliovqA/94Ob66usDDn/6BEboyVknc6kAbCyNRSllZwK+xOGClEL7iWzMK481bHVgqu6Z67pQMW8UiUXjE9K2qeG0Jmhi34Kr6KCp2hwBejecAuub38USYfjwFUTNenjk77aPbIjm9SZnblCJDOoGnqzzRU0gOWGzuiUinnKIHxQDpJueDd0wMPFMGBHy3yeURb8L40Pv3Dic2NFZIoTHNg58iu+OC2Pjfdtlol/0qMfJjOED0X6FwtGeRMnf7dgqsk44ZSTKngM/n9BZ8WHNYwm/7++Suxk54et7ZukBww0SgaA0ajhLMmlXjydUckNe8ZcgY9khQaC/eLvlw2h3lecGNYKVAtzWNA7FKr6DrAHDsl++vR5gOTadKU/bIP7FUyef6XevkTAAD//7SH/+5kAgAA
                 rating: 8
                 locale: in Humboldt-Toiyabe National Forest
+    - id: /ca/humboldttoiyabe/hope_valley
+      url: http://www.fs.usda/htnf
+      name: Hope Valley
+      managed_by: Humboldt-Toiyabe National Forest
+      campgrounds:
+        - id: default
+          name: Hope Valley
+          refs:
+            cc:
+                name: Hope Valley
+                desc: z1SQwY7TQBBEf6U+wFiLOCBxg5UQSDmskAXnjl32NPHMRD09Cb7xG/weX4LGyWqXc1VXv6ohED9YHJ+znZBneCAexUpO+KYXGqymAtMlODxYrkvAl3wmvsu6cusgOBvdN7jl6ihulIireoBgDFlHttw5V7uLRSdilHheLNc0lR7D/TSPpwIxIspEJIrtPK+8mKppWlBqjLQew38yxF/DQQt+1uKgFG8Q92JPUkrXvO+7dw8PmEkHV17ENacOmiC40LbnZmKUHh/hJroGyoQ538ieZNRZRzxa23BoenvqwUhEXVlQcvXwvOwL6g39bBrFtr3qccPE4pp2jBbzaa3EQU5stMc2keDtw5uoqToxmV4IucrW42tqo9rf338KUnZ+wEHdV2KQKCbjaY/pbmscueU07TxeLeV53vsc8pX28rNrBPw1cl2ZfHeUq8aoaen/BQAA//8h+1rXNgIAAA
+                rating: 7
+                locale: near the Carson River in Humboldt-Toiyabe National Forest
+    - id: /ca/humboldttoiyabe/paha
+      url: http://www.fs.usda.gov/htnf
+      name: Paha
+      managed_by: Humboldt-Toiyabe National Forest
+      campgrounds:
+        - id: default
+          name: Paha
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Paha
+                desc: z0SPwUrEUAxFf+UuFaR05wcI4mJW2h+I9XZemDYZkmDx7+W9zaxDzjl3aZrQhBuhBkEylAnfsMpxTxgl8OnfaumGtyBvEPvBqdXUsO6eRIhd2X+WUw0XuTEnLI3gzl8pdYMUqnFAu+/1ZZ5nbGRNePoix/HiJ+PBGJ4PN/4d7ob3XQq7Zqlds8dWb1+b3IuBzQOHR1+xeRxDOj3/BwAA//9z2eoM3wAAAA
+                rating: 8
+                locale: near Twin Lakes in Humboldt-Toiyabe National Forest
+    - id: /ca/humboldttoiyabe/robinson_creek_north_south
+      url: http://www.fs.usda.gov/htnf
+      name: 'Robinson Creek: North & South'
+      managed_by: Humboldt-Toiyabe National Forest
+      campgrounds:
+        - id: robinson_creek_north__south
+          name: 'Robinson Creek: North & South'
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: 'Robinson Creek: North & South'
+                desc: z0zQQWrzUAwE4KvM8v/hYbzrAQqhi9BF6wu8xuM8EVsykhLT2xebQLvSSvo0MzQJXOqyXt3uOhaYEjahIujCgCiyEdVZCyQQTNTES+n7HhOZ4MxHTTGFKT7sSzRM8erkrUAtMVXH5LZg2ERxrjdGh6Hxj7tfHuUhI0eIpiE3O8woeDfPhqojPu2ercO/kzmcF+eTXfcRBUEez55to/9qx+6bKb8XM8VprolZIkWvz3x7B62uSe/+/wQAAP//D9nwthIBAAA
+                rating: 9
+                locale: near Twin Lakes in Humboldt-Toiyabe National Forest
     - id: /ca/huntington_beach
       url: http://www.sunsetvistacamping.huntingtonbeachca.gov
       name: Huntington Beach
@@ -2993,33 +3111,6 @@ properties:
                 desc: z0zOQWrrQAzG8at8BzAhq/cOUEihkFUDXYuZzx4145HRaBJ6+2K3i26F9NP/VrRDOwQXc/bAO/2hiUiybpCANLDyIaHWYDP+T//OZ8xkTOgMSLW2oGpEJa7plcSLk/cJgsUso1r6OZ7NMWsv2hZIyyh617accCt0QpyY+UQ42Y8hejhl3et6WLoz46lREG4jpoMQhIvWQsn72ufogbEhCuEm+YSL24rD/7KBJG3/yt/osW30v82HqS3sEN6sNFyHOj60Znpj76fvAAAA//84RskuMAEAAA
                 rating: 7
                 locale: in Inyo National Forest
-        - id: tuff
-          name: Tuff
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Tuff
-                desc: zyzPQUozQRAF4Ku8A+QfAj8iupPgTkRiPEBNz+t0Mz1dY1eNYXZew+t5EpmQVRUFxfves9gKCYFm0Bjx0b13+P9wh0lGGjxlQ5BphuCSa2XbwZMu54TsyIaqjkppZYUY5kb36+ZJjVhmHDWMODRyxFFlgCs8EReaQyNOOv1+/xjeigR2OCUiSnB4EseqC4JUnOnIFVIH6HJ9S2zE55LDWNYbdfMMlIKo7UpmM8xFas31jJgtbdNbnm1DbOh+xaHppXDFi4y3eBZ+iWetW7373X6/RyS9w6s6H/FUCnoVN0yLOXoisHmOmcN2MZZ/sZHoGbURRZYatuTuLwAA//+Wl1wjagEAAA
-                rating: 5
-                locale: near Crowley Lake in Inyo National Forest
-        - id: french_camp
-          name: French Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: French Camp
-                desc: z0yQQU7sQAxEr1IHyI/mC40Q65FYsUCT4QAmcdImnXbL7Z4oO67B9TgJStiws6zn51I9G6c+4EJLhhR81OIglKDmCJoxmi54a7sWD09nUBpw0+X786vgNVLPDUym4FgDG8MDI8gU0AmbEbxaKpDk+rvOkZypotea3LYWnQz8z00yNGc1r0lceD/pYx0Y70ouaTr+jlLCPmvCJJQcF9M18oYXmnknGrgeEVYuvmNX7WdcjHnGVWlocJcihy+Ke+S/wCH5f8IikQtopa3FLTA48p1cNO3tPDbn0wkjs7c/AQAA///r3GhnOAEAAA
-                rating: 5
-                locale: on Rock Creek near Crowley Lake in Inyo National Forest
-        - id: aspen_group_camp
-          name: Aspen Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Aspen Group Camp
-                desc: z0zNwQnDMAyF4VXeBF0i155KF1AS1TG2JSM5Dd6+KKfefh4fvPeRHd6oViTTs2Oj1qNkhwpeuhUsxlyQHd1yI8t1grCS843xUQNJqmwOkv0eow+mPUvCUAiTrROL6VV54kmFoYYvyzgtzMU+Av79BXr8AgAA//+eEpqGnwAAAA
-                rating: 7
-                locale: near Crowley Lake in Inyo National Forest
         - id: palisade_group
           name: Palisade Group
           res_url: http://www.recreation.gov
@@ -3047,15 +3138,6 @@ properties:
                 desc: z1yTTa7lNBCFt3IWkHv1WqifBLMWEhKIZtAgMa7Ylbg6jsu4Ki+6M7bBElgHO2ElyA7vqWF0pZv6+c455Z93yhnz4ZiZDpflyPikYcO3jXnDj7TxBHJQAWd+IRct0AVfT89PT1iYfcLC5EdjQ1DNE0JmajjJuU2wMd+bHj6BSgRhbUwObyQ5MUUs2kAhsBlc4YlB8TMFLo4fNBV8PKThV8mRW2GzCad4wvsnqCduyLSxjf+kgOCn3pIeDUk2vuOXxDB2l7JCDLFpvcW+9U3uhMQl8FicZE1oNKo7lgUuEq7axzRsKuq9titIjEB7NXE2UBuLELIaw3XlTjfBJDLmx/idMBArvXBEpbb1PdSYOqcYnr+6UWg8JCGRgfD+ttcEq8wRWXbxYaKdsu//SqKc9eR4SR2dYjDXsHG8rPqQKzf7MgRP/BjEn1UKx87XuBMWx9z0LFdxx+0q3z3dejTvnm9VjxIRMpnd8cHhsrNNYKschHJ+gBbnVlSL9e5MzrDapKw9txINfa4uY+7J5ghUMDOC5jjYKtv2uOP7XiI2HF7bWCuG5ch5Gr2Fqc0PfFT77RBXfJfJcVLeblK+bKpNXyT2gAq09vO946e3DP/bfll+2awLtDCKrOnyvF8Pm6zdr1FnTutrgONazrcbxUxhqxRGwN6kvl6td4c7Xf+gJXehpRvf/v79D4NL/eb/z8/wiU3bRbfr4Wk8rT4g6c47RUYVBr2QZJozv6YWaPnrz/s/AQAA//99axp14QMAAA
                 rating: 9
                 locale: in Inyo National Forest
-        - id: four_jeffrey
-          name: Four Jeffrey
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Four Jeffrey
-                desc: z1SRUYrcQAxEr1IHcIbNRyDkM4GFhZCPzF5A05anhdstI8kzmduHbjth9rNpSfWq6j0zEi0rxKEVkRln3SLjVW2GTvgunnXFD2OeQYGvw+eXF0zMAS58oxCtA+iiW2DSzbBIYcdkuhyXftLMJ7xNeOiGRBVkRvXKIITJCtllJyplwEIzwzfjPn0Tl0Bk8Q55wvsxiKRFzUHG8JVTUNoK2YC7RO7nyFeuCGN28J+16Cj12rQeXIreHVRHaAfxE96iBUDFtS8X8thj0frkAr+VRoTiwkhFnceP8O1kZN2uGVWuOXa+pGUcIF3hzqXgrnZANv/NlHj7vDwwkR0AdmWPVkB7vqq115ntJmkvzP9J3yRJlXj0cIy7ZGTjdmTm/2NkTN/wq0s3L8Pu6EwXk0o7+3NfT67F4aFp5vGI11rZbSGTg/Dl07LmVgOPKLJInP4GAAD//wELabtWAgAA
-                rating: 8
-                locale: near South Lake in Inyo National Forest
         - id: table_mountain_group
           name: Table Mountain Group
           res_url: http://www.recreation.gov
@@ -3113,6 +3195,53 @@ properties:
                 desc: z1yQQU4jMRBFr/IPELWiGc1Io9nNoERIIBYQ9kW7ul3EXWXZlbR6xzW4HidBTgMLdqVfrv/9377Q8vbyWnHLFGxGLnaWwBU+Gyg8U8/q6GnKFZRMR1xr4MwaWHvG/8J87HDImQu+vKSCHKTgxGdyMYUN+L35sd1iYPa/uLH528HnDumyCjYrPDJ60sW0w0ObW1p7XN36IwfM4hF1opTgxU6Op+VydMWZik/t6zZgJzWCNGBPE69OUcaYZIwOWWNkmjgIOYMKU8toqheSFJlC69ME1tAc21hsle+09XuklHi5gOqws4JDd9/h559f6MtJKpeKZHYUHTFYAaFm8w08yooLubD7AkrORcnlzHD7INDgi+Kf1Gi5ew8AAP//kwrgP7MBAAA
                 rating: 6
                 locale: on Independence Creek in Inyo National Forest
+    - id: /ca/inyo/aspen
+      url: http://www.fs.usda.gov/inyo
+      name: Aspen Group Camp
+      managed_by: Inyo National Forest
+      campgrounds:
+        - id: aspen_group_camp
+          name: Aspen Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Aspen Group Camp
+                desc: z0zNwQnDMAyF4VXeBF0i155KF1AS1TG2JSM5Dd6+KKfefh4fvPeRHd6oViTTs2Oj1qNkhwpeuhUsxlyQHd1yI8t1grCS843xUQNJqmwOkv0eow+mPUvCUAiTrROL6VV54kmFoYYvyzgtzMU+Av79BXr8AgAA//+eEpqGnwAAAA
+                rating: 7
+                locale: near Crowley Lake in Inyo National Forest
+    - id: /ca/inyo/four_jeffrey
+      url: http://www.fs.usda.gov/inyo
+      name: Four Jeffrey
+      managed_by: Inyo National Forest
+      campgrounds:
+        - id: default
+          name: Four Jeffrey
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Four Jeffrey
+                desc: z1SRUYrcQAxEr1IHcIbNRyDkM4GFhZCPzF5A05anhdstI8kzmduHbjth9rNpSfWq6j0zEi0rxKEVkRln3SLjVW2GTvgunnXFD2OeQYGvw+eXF0zMAS58oxCtA+iiW2DSzbBIYcdkuhyXftLMJ7xNeOiGRBVkRvXKIITJCtllJyplwEIzwzfjPn0Tl0Bk8Q55wvsxiKRFzUHG8JVTUNoK2YC7RO7nyFeuCGN28J+16Cj12rQeXIreHVRHaAfxE96iBUDFtS8X8thj0frkAr+VRoTiwkhFnceP8O1kZN2uGVWuOXa+pGUcIF3hzqXgrnZANv/NlHj7vDwwkR0AdmWPVkB7vqq115ntJmkvzP9J3yRJlXj0cIy7ZGTjdmTm/2NkTN/wq0s3L8Pu6EwXk0o7+3NfT67F4aFp5vGI11rZbSGTg/Dl07LmVgOPKLJInP4GAAD//wELabtWAgAA
+                rating: 8
+                locale: near South Lake in Inyo National Forest
+    - id: /ca/inyo/french
+      url: http://www.fs.usda.gov/inyo
+      name: French Camp
+      managed_by: Inyo National Forest
+      campgrounds:
+        - id: french_camp
+          name: French Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: French Camp
+                desc: z0yQQU7sQAxEr1IHyI/mC40Q65FYsUCT4QAmcdImnXbL7Z4oO67B9TgJStiws6zn51I9G6c+4EJLhhR81OIglKDmCJoxmi54a7sWD09nUBpw0+X786vgNVLPDUym4FgDG8MDI8gU0AmbEbxaKpDk+rvOkZypotea3LYWnQz8z00yNGc1r0lceD/pYx0Y70ouaTr+jlLCPmvCJJQcF9M18oYXmnknGrgeEVYuvmNX7WdcjHnGVWlocJcihy+Ke+S/wCH5f8IikQtopa3FLTA48p1cNO3tPDbn0wkjs7c/AQAA///r3GhnOAEAAA
+                rating: 5
+                locale: on Rock Creek near Crowley Lake in Inyo National Forest
+    - id: /ca/inyo/lone_pine_lone_pine
+      url: http://www.fs.usda.gov/inyo
+      name: Lone Pine And Lone Pine Group
+      managed_by: Inyo National Forest
+      campgrounds:
         - id: lone_pine_and_lone_pine_group
           name: Lone Pine And Lone Pine Group
           res_url: http://www.recreation.gov
@@ -3122,6 +3251,23 @@ properties:
                 desc: z1SQwYoUUQxFf+UuFWqaxoUfoCvFgVk0uM5U35qKnX4pkrxq5+/ltTgyi0BI4NyTnFZNaEIaxIrRpHQnFg/Mct0YiS24SWh7QTlWvRCP3lvh56rV+AoPZEkUaiW++9rw2DVwClE74Fvd8YXP0/F4xEIWaNyl1NuET/+nzzS/vVGfPEoMHwZ01cuI/9Wvm7aXB18W5Ob1ccIWvut5LAXmN8bDGxvm899mHDO8I8cFMs+mVykO32vSdt7nI0istPqZB5xW3h8w5JMFb/jhjXjSRnwN8jLhprXizJmtsGiud412Rm6cS+ZuEtiVt4Qv7392wBfO0pNjo5Xg782zB/+JULKm0QUhoywdz5ReunRD9haazAkcYSpmr9CGRcwOfwIAAP//QP/UZtMBAAA
                 rating: 8
                 locale: near Mount Whitney in Inyo National Forest
+    - id: /ca/inyo/tuff
+      url: http://www.fs.usda.gov/inyo
+      name: Tuff
+      managed_by: Inyo National Forest
+      campgrounds:
+        - id: default
+          name: Tuff
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Tuff
+                desc: zyzPQUozQRAF4Ku8A+QfAj8iupPgTkRiPEBNz+t0Mz1dY1eNYXZew+t5EpmQVRUFxfves9gKCYFm0Bjx0b13+P9wh0lGGjxlQ5BphuCSa2XbwZMu54TsyIaqjkppZYUY5kb36+ZJjVhmHDWMODRyxFFlgCs8EReaQyNOOv1+/xjeigR2OCUiSnB4EseqC4JUnOnIFVIH6HJ9S2zE55LDWNYbdfMMlIKo7UpmM8xFas31jJgtbdNbnm1DbOh+xaHppXDFi4y3eBZ+iWetW7373X6/RyS9w6s6H/FUCnoVN0yLOXoisHmOmcN2MZZ/sZHoGbURRZYatuTuLwAA//+Wl1wjagEAAA
+                rating: 5
+                locale: near Crowley Lake in Inyo National Forest
+    - id: /ca/inyo/whitney_portal
+      name: Whitney Portal And Group
+      campgrounds:
         - id: whitney_portal_and_group
           name: Whitney Portal And Group
           res_url: http://www.recreation.gov
@@ -4137,23 +4283,6 @@ properties:
       name: Lake Tahoe Basin
       managed_by: Lake Tahoe Basin Management Unit
       campgrounds:
-        - id: william_kent
-          name: William Kent
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: William Kent
-                desc: z0yRz87TOhDFX+U8QG7VKyQES1iBQKw+ibVrn9ajOp4wniTK2yO7fFV3kfPT+Te/pRQJM36wOmKYF0hDQBH3Qiwa73ToFQtDJCqDwTNxWdsBt3C9Suy/v8kt7+HAp8/QOoidzWkVLasRUc0kqZ3w3bvDC4QmiV2jP+SHzoSZoUq9YZMmrtaQw0a4Ipq29sr2xxsdJdw5pEKMbO2Et0ywcAsuWrvpx+nD+Ywr6RNCTUPkvfKumpiwi2csJnMwKQeKphsX7UtI5T/NZLIRmcax1c6mM6EGnaXq2iYkLqypx9eKrDsOXVFU7wgO8elh0+034d67S43GJJdC/Ax34i1kHXU7xNB8Gl+exdJ/iVz6cJeyctSGVPxS84wvM01ieNb7/+z5yb+jY3m1kk74uvoIp1dnfWwcUHSc3GUeEV6DN6mRz8NbMJYDs25s+LNKvJfj9DcAAP//IcEW5VICAAA
-                rating: 8
-                locale: near Lake Tahoe in the Lake Tahoe Basin
-        - id: camp_shelly
-          name: Camp Shelly
-          refs:
-            cc:
-                name: Camp Shelly
-                desc: z1yQYWocMQyFr/IOkO4B+q+FFAohFLIX0Iw1Y7EeaZHkLHP7Yi+lkF82etL3pHetEljpuO9uXQskoEyOD+tZ8UY3xpWqMR6SVRRrs2A46c6wDaSwnpGkRXTHIuu5NkY6SbvgWnmyBzU4IYqsjIdZiZdJnPImzri77U5HgD5JGi2NYYoPyu6FTqjsdQKiHwf7Be9MvpxIeyI5criMf3H55CH81riLU4op/phogrTMFtHVucgwaWY36zmOeT3YqRX8pPMFFHhwa+MdE3fy27iQnAmb+SxGNU9UuU27V9ob4xe1Fl/XY4oco1NlxRvT9gz330Yx8x7Amev/4C94t+Tv+NEaFqMMHD0SC2NlT9mEy6gEt2+bM2PhbTAadV2r6H75GwAA//8tJSTq4gEAAA
-                rating: 7
-                locale: near Lake Tahoe in the Lake Tahoe Basin
         - id: fallen_leaf_campground
           name: Fallen Leaf Campground
           res_url: http://www.recreation.gov
@@ -4163,6 +4292,32 @@ properties:
                 desc: z2SSTW7cSgyEr1JLGxgLD/BD/nZOACMLIwvDF6BapWliWk2lSdmZnQ/hE/okQWuy86oBgl2sr8inrA51CIq0I5FkWVEpDZGJai0yPFsjbMa9lMKKB8qMBznxAAl8OtzefsZMBlj4LKFWBzxlosiJXXvUI64iNxKLFjqK1eP1Ab83DWIiV1z9f/vfRUMCGr5X6YHVtMb1AVInSFnMA+IYy8b+dqPjefeCJ8nGAXdIVhPd1apo972ySdB3oI53bLbVacAjU+NuVwpsXa3FVjWUDq2pbBMxmgQaa0jx7qxLLNK0ym4oW3OOkk43TSetx97yowf4qClLm9wqHunWYsC9eu4tPY8OpnVXm6UUzNZwspNUEt4p64DvTLI5P2TeBZK2VDhhPPev9Hh/fVu2lPuONLA2fZYg1tbZ4/z++na2DS9aCio5QS5gYZjVM6yBf9bSlxz/1tZzfFbXsOZIrMHWB1/uwea974Oz2Fq1eYZV/NRjfpEzvnwd8MuC33BXyj7VsWweGInEFjorp15xlpu5X8jIjoQiW009sOFvAAAA///mJPz6ogIAAA
                 rating: 7
                 locale: in the Lake Tahoe Basin
+    - id: /ca/lake_tahoe_basin/shelly
+      url: http://www.larpd.dst.ca.us
+      name: Camp Shelly
+      campgrounds:
+        - id: camp_shelly
+          name: Camp Shelly
+          refs:
+            cc:
+                name: Camp Shelly
+                desc: z1yQYWocMQyFr/IOkO4B+q+FFAohFLIX0Iw1Y7EeaZHkLHP7Yi+lkF82etL3pHetEljpuO9uXQskoEyOD+tZ8UY3xpWqMR6SVRRrs2A46c6wDaSwnpGkRXTHIuu5NkY6SbvgWnmyBzU4IYqsjIdZiZdJnPImzri77U5HgD5JGi2NYYoPyu6FTqjsdQKiHwf7Be9MvpxIeyI5criMf3H55CH81riLU4op/phogrTMFtHVucgwaWY36zmOeT3YqRX8pPMFFHhwa+MdE3fy27iQnAmb+SxGNU9UuU27V9ob4xe1Fl/XY4oco1NlxRvT9gz330Yx8x7Amev/4C94t+Tv+NEaFqMMHD0SC2NlT9mEy6gEt2+bM2PhbTAadV2r6H75GwAA//8tJSTq4gEAAA
+                rating: 7
+                locale: near Lake Tahoe in the Lake Tahoe Basin
+    - id: /ca/lake_tahoe_basin/william_kent
+      url: http://www.fs.usda.gov/ltmbu
+      name: William Kent
+      managed_by: Lake Tahoe Basin Management Unit
+      campgrounds:
+        - id: default
+          name: William Kent
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: William Kent
+                desc: z0yRz87TOhDFX+U8QG7VKyQES1iBQKw+ibVrn9ajOp4wniTK2yO7fFV3kfPT+Te/pRQJM36wOmKYF0hDQBH3Qiwa73ToFQtDJCqDwTNxWdsBt3C9Suy/v8kt7+HAp8/QOoidzWkVLasRUc0kqZ3w3bvDC4QmiV2jP+SHzoSZoUq9YZMmrtaQw0a4Ipq29sr2xxsdJdw5pEKMbO2Et0ywcAsuWrvpx+nD+Ywr6RNCTUPkvfKumpiwi2csJnMwKQeKphsX7UtI5T/NZLIRmcax1c6mM6EGnaXq2iYkLqypx9eKrDsOXVFU7wgO8elh0+034d67S43GJJdC/Ax34i1kHXU7xNB8Gl+exdJ/iVz6cJeyctSGVPxS84wvM01ieNb7/+z5yb+jY3m1kk74uvoIp1dnfWwcUHSc3GUeEV6DN6mRz8NbMJYDs25s+LNKvJfj9DcAAP//IcEW5VICAAA
+                rating: 8
+                locale: near Lake Tahoe in the Lake Tahoe Basin
     - id: /ca/lake_tulloch/lake_tulloch_marina
       url: http://www.laketullochcampground.com
       name: Lake Tulloch RV Campground And Marina
@@ -4488,14 +4643,6 @@ properties:
                 desc: z2SSQW4UTQyFr/KW/y8NowBCZBtFAoSUKAvE3l3tnrJSXW7ZrmkNK67BMTgDN+EkqCpBCLF12Z/fe+VPWRyJ1g3icA5Q4O3h+uoKC3OAC58pROsBWhm6ILIxjwmHVkRmMHmwVSyF6mPvudNWAw/y47s6/rs+XL9+OXD/HzH2if+hMRbesRVKPIBMFhl7ZmNI9NZN3WUqjFA4M5ZykXrCLRVZ1KoQktZZzQ8DV8hO7IFJbIZU3GsH3qxskuiIew1GZAoQtCZ+senWChlmk/PY0SGh2z9GFjVMTC1kaQVUZ/jOvHUtZ+F92Kq6IxV1nkFLcB/o78ZJT1W+9LKDcJvbSp6RtVzgEtyDYeOfX785KCV2/63kLwne1lUCYSQFr45vsEphB+106dndScGDhrEpPsgp9zLFwNzmVgifxYOwkT12VWRMR7wzXXvLyPtJwKQtELs+45+VPC0/YM+ScjdLmNnlVCl4xqRBVRKVZ+zHVi4jpJt2ah5o3qj0kvGgTf2PVq2Rn5LdpcxL0Z0Ns/hW6OJH3KX3Ugo207PM3Sgqk02XcX/DQumXRyFnPv4KAAD//+PZgETLAgAA
                 rating: 7
                 locale: in Los Padres National Forest
-        - id: mcgill
-          name: Mcgill
-          refs:
-            cc:
-                name: Mcgill
-                desc: z0zOQUrEQBAF0Kv8A4QwC8H1bAVRGHFfSSrpwk5VW10dybE8gxeTiQ7Mrij+4/+3xBhpLZCKygEKPHYPpxNm5gBn3ijEtAMN1gKzNccqmStmtxWRGGEFNkOZfNjxbE0Dr/LzbbXHOUeytqQj6EbTtWfMVnlC2D2/dx20rezWKpJ8iC4gnTD8neEkuUL00ORMKG6bTIxaeAwaWybHJvxVe7woxszkmGiv3ZX4gbCRBi2MYqJRb2OSLAkXYXc6wriQ4snos4ninXLmvTvGnDU4W+H/Z/8bAAD//+5WONlIAQAA
-                rating: 6
-                locale: near Mount Piños in Los Padres National Forest
         - id: davy_brown
           name: Davy Brown
           res_url: http://www.recreation.gov
@@ -4549,42 +4696,6 @@ properties:
                 desc: z1SQwW7bMBBEf2WOLeAKPhW99gMSGE5+YCWNxI0pkliuZOjvA9KnnDn7HmfuPFlxozygFYJiuqnrQUyyFVQ6xPH38u96xUI6GHmIa04DPoORqCGbI+iDFZrggdBt46zixKGTJvUTkTLDM9xEY2fXBiCmmCurN/tieYO8IqHlv/bq/SgQzxbKSz+94Bl0CiiWD51ZIQmUel4QJC5/No3sH0LK5qER7lLLSLMTH8U0rfglGGV6THlPbuerbBvgEI0yRjan8feA/yi57FEMUfY0BYhRsGRDkLRijTrT6mu8Zke39yoNOuCdYuOJmybirelEU39aLe9p/lFCotOS9P2bosU0rcN3AAAA//8wQtFxpgEAAA
                 rating: 6
                 locale: in Los Padres National Forest
-        - id: fremont
-          name: Fremont
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Fremont
-                desc: zzSPwUoDUQxFf+V+QCnduhShqyJi3biMM3ec6EwiSWakfr28B10n51zOY+LmGypk54JfZqEclKwDzsHVraCJmolJIwtqECRDmfAJZ4/GXBm7DsQg689n+GZjwijRwatYCd6Nf3jVnXHE26wJNzb119atqSP790ejJW7NfvHEi4zBxLOUuslyX5TCw+mEiSxw4d7PB5gaserC7BFN8iTDvK2Ci3yzxbWRFnr8DwAA//+R4Yia/AAAAA
-                rating: 7
-                locale: near the Santa Ynez River in Los Padres National Forest
-        - id: los_prietos
-          name: Los Prietos
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Los Prietos
-                desc: z0yQsW7jQAxEf2XKO8Bn+OrrXV0R2AGMlPRqJG28WiokJcP5+kBSDKQdgO8N5786Xiwz1JEdkkzd0ZoOiJ44Sw3BW+UnTnmmQQJSwcJZImuFtvi7OxwOaMnY4X3ywDR6GGXYMJVi1weOxkFrIMkwdqZTbRC6Ou702OO1pxFihHOmSUHNiejzLdcOYZKLf7P+rWdXesBDLLZ8DX++c5La0XCOtekOPaVZWK5T9GjVEHfFkAt9qXJhKb1OThylFMevjgEfmXKbE5psTAvHIbWBYJBxGWOR2ibyTfR7/5wqJfq26iy5yLUQgo9JLGirF3KXx5Ny6XMQJ003NPL4sxQRo+y/AgAA//8101s0ogEAAA
-                rating: 7
-                locale: near the Santa Ynez River in Los Padres National Forest
-        - id: upper_oso_family_and_equestrian_camp
-          name: Upper Oso Family And Equestrian Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Upper Oso Family And Equestrian Camp
-                desc: z2SSXWrdQAyFt3IWYC4JtNDXECgp9I8kUPooj+VYyVhyNfK9OE/dRrfXlZQZc3sLfR5J5zvnzOMkBVJgyrARMTHem3MJPLAfJTESzcuT26pDgWibeCANwnflV9xzcqYQU9w40wEfop4rHHX4SzHckm6moMB1d311hZE5wJmPbatryrNkxug2/3dejuwHnCkJi8vMKIsFRnPwj5VLuJCWDieJCZN5YSRzp1xAR5JMfeaqT8MzJdZolooElwM+WzBiqq+BSZ4mnCjYEVXxYh2JFD0nmxmilBKXIn3mA252eDWPqSZYdyrqxcitr694dJI8MQ0NmzDJC2Nd/k1of6jXurpdo3besyl1NAx3tCwb7ixnO3UgHdDzZjrsDsJAiCq0UzyvJXCqXdqIjxKRGV9FGZ9s1SDR7tID3nRvr961cqqn+IsrGnY2g3saiTO+SR7YlUsrRZm833Yc08Sw/Ze0Gx02W3///JUzRtEBM+nWSpSQI6O1cP5WPaWXVNF8O/wJAAD//5QlRoiYAgAA
-                rating: 7
-                locale: near the Santa Ynez River in Los Padres National Forest
-        - id: paradise
-          name: Paradise
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Paradise
-                desc: zzyQUU7DQAxErzIHQLkDqgT9QEKC8sGnm502Szfrle0thNOjhMKfrRnNPHtPI7JjYUCqxkSDtshaIbPWM2IiRpmbQ8rf/io1BO+V33jJV9qAe8eiHcnylaB4IMcau7qdo9a0hWymUWci9A4f3QNyChoejLPWGHAw7QExonuXUha0IjWY0NsabtDTP9PZtNeE1C3fyLyt44DDRBzpgSlfNs0kl4mSHJVix2WrkMBbazQ8u2K38klNtwvPxD6XgkfT3jbxt23ATsapz4InuWyv8/yFORc6Pukx/AQAAP//yIYwDFIBAAA
-                rating: 7
-                locale: near the Santa Ynez River in Los Padres National Forest
         - id: sage_hill_group_and_equestrian_camp
           name: Sage Hill Group And Equestrian Camp
           res_url: http://www.recreation.gov
@@ -4621,6 +4732,75 @@ properties:
                 desc: z1xR0Y7TQAz8lXkEKa0qHU+8Ip100nFCgHh3k0liutmNbKelf492y0G5t7U93hnPfJ8Jn4sFLpJOiIKvxYkfkhKveJSUvIPg4XDYjaVUVNBGSQkxS2C1ctaBDsEs63qFb7aaOjsscqIjZnX0sqyQOiMumjMNmpEkWhk0SB7gq2me9qiSXsVEe79SquPn5tHI0rhbNBFWtjzswnTd46UEb7piphFiRFwKzsqLo4zQ+AhBKnnaDeohuWcb1lmlYg61O8auCbv9h6M4IX/xTUntp3KhIZSGd63WhR4lE71tyzHRQXFN1w5ecCR6MY5bQqYYEoeJ/n6Pp6j31bU/Yrxn1h6zTnPSaQ6vpjU/nX1oyRX4XBxfZDA6XqQ2JeGxGD1uRjbr1esND92HwwEjGWDiuaGR+Svepv7JyFMHOZYtmn/VaMdoZcE3+sobYo+n8V++UwuiUo1bNe6WQGXOpb7vQB0+6zAk4llL7u4YjryWPPynpW7tfwcAAP//jDAB6aUCAAA
                 rating: 8
                 locale: in Los Padres National Forest
+    - id: /ca/los_padres/fremont
+      url: http://www.fs.usda.gov/lpnf
+      name: Fremont
+      managed_by: Los Padres National Forest
+      campgrounds:
+        - id: default
+          name: Fremont
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Fremont
+                desc: zzSPwUoDUQxFf+V+QCnduhShqyJi3biMM3ec6EwiSWakfr28B10n51zOY+LmGypk54JfZqEclKwDzsHVraCJmolJIwtqECRDmfAJZ4/GXBm7DsQg689n+GZjwijRwatYCd6Nf3jVnXHE26wJNzb119atqSP790ejJW7NfvHEi4zBxLOUuslyX5TCw+mEiSxw4d7PB5gaserC7BFN8iTDvK2Ci3yzxbWRFnr8DwAA//+R4Yia/AAAAA
+                rating: 7
+                locale: near the Santa Ynez River in Los Padres National Forest
+    - id: /ca/los_padres/los_prietos
+      url: http://www.fs.usda.gov/lpnf
+      name: Los Prietos
+      managed_by: Los Padres National Forest
+      campgrounds:
+        - id: default
+          name: Los Prietos
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Los Prietos
+                desc: z0yQsW7jQAxEf2XKO8Bn+OrrXV0R2AGMlPRqJG28WiokJcP5+kBSDKQdgO8N5786Xiwz1JEdkkzd0ZoOiJ44Sw3BW+UnTnmmQQJSwcJZImuFtvi7OxwOaMnY4X3ywDR6GGXYMJVi1weOxkFrIMkwdqZTbRC6Ou702OO1pxFihHOmSUHNiejzLdcOYZKLf7P+rWdXesBDLLZ8DX++c5La0XCOtekOPaVZWK5T9GjVEHfFkAt9qXJhKb1OThylFMevjgEfmXKbE5psTAvHIbWBYJBxGWOR2ibyTfR7/5wqJfq26iy5yLUQgo9JLGirF3KXx5Ny6XMQJ003NPL4sxQRo+y/AgAA//8101s0ogEAAA
+                rating: 7
+                locale: near the Santa Ynez River in Los Padres National Forest
+    - id: /ca/los_padres/mcgill
+      url: http://www.fs.usda.gov/lpnf
+      name: Mcgill
+      managed_by: Los Padres National Forest
+      campgrounds:
+        - id: default
+          name: Mcgill
+          refs:
+            cc:
+                name: Mcgill
+                desc: z0zOQUrEQBAF0Kv8A4QwC8H1bAVRGHFfSSrpwk5VW10dybE8gxeTiQ7Mrij+4/+3xBhpLZCKygEKPHYPpxNm5gBn3ijEtAMN1gKzNccqmStmtxWRGGEFNkOZfNjxbE0Dr/LzbbXHOUeytqQj6EbTtWfMVnlC2D2/dx20rezWKpJ8iC4gnTD8neEkuUL00ORMKG6bTIxaeAwaWybHJvxVe7woxszkmGiv3ZX4gbCRBi2MYqJRb2OSLAkXYXc6wriQ4snos4ninXLmvTvGnDU4W+H/Z/8bAAD//+5WONlIAQAA
+                rating: 6
+                locale: near Mount Piños in Los Padres National Forest
+    - id: /ca/los_padres/paradise
+      url: http://www.fs.usda.gov/lpnf
+      name: Paradise
+      managed_by: Los Padres National Forest
+      campgrounds:
+        - id: default
+          name: Paradise
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Paradise
+                desc: zzyQUU7DQAxErzIHQLkDqgT9QEKC8sGnm502Szfrle0thNOjhMKfrRnNPHtPI7JjYUCqxkSDtshaIbPWM2IiRpmbQ8rf/io1BO+V33jJV9qAe8eiHcnylaB4IMcau7qdo9a0hWymUWci9A4f3QNyChoejLPWGHAw7QExonuXUha0IjWY0NsabtDTP9PZtNeE1C3fyLyt44DDRBzpgSlfNs0kl4mSHJVix2WrkMBbazQ8u2K38klNtwvPxD6XgkfT3jbxt23ATsapz4InuWyv8/yFORc6Pukx/AQAAP//yIYwDFIBAAA
+                rating: 7
+                locale: near the Santa Ynez River in Los Padres National Forest
+    - id: /ca/los_padres/upper_oso_equestrian
+      url: http://www.fs.usda.gov/lpnf
+      name: Upper Oso Family And Equestrian Camp
+      managed_by: Los Padres National Forest
+      campgrounds:
+        - id: upper_oso_family_and_equestrian_camp
+          name: Upper Oso Family And Equestrian Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Upper Oso Family And Equestrian Camp
+                desc: z2SSXWrdQAyFt3IWYC4JtNDXECgp9I8kUPooj+VYyVhyNfK9OE/dRrfXlZQZc3sLfR5J5zvnzOMkBVJgyrARMTHem3MJPLAfJTESzcuT26pDgWibeCANwnflV9xzcqYQU9w40wEfop4rHHX4SzHckm6moMB1d311hZE5wJmPbatryrNkxug2/3dejuwHnCkJi8vMKIsFRnPwj5VLuJCWDieJCZN5YSRzp1xAR5JMfeaqT8MzJdZolooElwM+WzBiqq+BSZ4mnCjYEVXxYh2JFD0nmxmilBKXIn3mA252eDWPqSZYdyrqxcitr694dJI8MQ0NmzDJC2Nd/k1of6jXurpdo3besyl1NAx3tCwb7ixnO3UgHdDzZjrsDsJAiCq0UzyvJXCqXdqIjxKRGV9FGZ9s1SDR7tID3nRvr961cqqn+IsrGnY2g3saiTO+SR7YlUsrRZm833Yc08Sw/Ze0Gx02W3///JUzRtEBM+nWSpSQI6O1cP5WPaWXVNF8O/wJAAD//5QlRoiYAgAA
+                rating: 7
+                locale: near the Santa Ynez River in Los Padres National Forest
     - id: /ca/maccumber_reservoir/maccumber_reservoir
       url: http://recreation.pge.com
       name: Maccumber Reservoir
@@ -4845,18 +5025,10 @@ properties:
                 rating: 7
                 locale: near McCloud
     - id: /ca/mendocino
-      url: http://www.fs.usda.gov/mendocino
+      url: http://www.lprandm.com
       name: Mendocino National Forest
+      managed_by: Lake Pillsbury Resort
       campgrounds:
-        - id: masterson_group_camp
-          name: Masterson Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Masterson Group Camp
-                desc: zzyQQY7VMAyGr/IfoHp6Kw4wCyQkGFjMBfwSd2KaxJXtUHp7lFZiGTv2/33+KOIQB+HTdOxI1HZor+cD32I2fg8PEArVFU0qgw46sZo2RGH8quQbR+A7bewL4lB4o1pRZwG6Iooxg3rGqsNAydjhHKDAl+X5fGLl+eoZPsx09MwZrxOEJn85I2mXlQ2rGns88K5oGmoOMsbO1iSC89zHEoXtyl7ujYe0Jv1zqnQNGCdtje8ITjScIZdoG2k7r5mDOf/3p/xHnF6VEQp9BUmfYLRPtR/csybpincK0U4VXy/IBUeRVJA5SKqjM9nrhIcxNV/u49yERbbJFzY/PvCz8wS9E2dtQsxLv1VKG95GBONjNh7/AgAA//94tmkmvAEAAA
-                rating: 5
-                locale: near Plaskett Lakes in Mendocino National Forest
         - id: lake_pillsbury_resort
           name: Lake Pillsbury Resort
           refs:
@@ -4886,6 +5058,20 @@ properties:
                 desc: z1yOQW7DMAwEv7IPSPKIHnprT/kALdEWYYk0KDqCf1/E7qHobYkFd+ZZpGNzeVFwPWAbOwVnbOQrCnXYtpnHrhLCHbM5JqZUkrVJdLlhpYPWM83SyxloomrKIM3oaZ8IWV5XoxmLWUY1W22Pa3AUqnwfFOn9/8Cz8MWXDkpuvSMKw40yZrd2XpaY9EJY41EoMMwy5xuGRAGhN6r1hoPJ7267ZiRnXuG7quiCiYtohsQ/4mR7oEkedGDiGMyKT/PAh9OynMgv1mxJ1H5hf+pZXowmlTvCTlM1j/LAtwUj3p5vYdh8ll2CO8gZs9TK+dqrpss92BucNdj74ycAAP//4A9YZagBAAA
                 rating: 8
                 locale: near Mendocino
+    - id: /ca/mendocino/masterson
+      url: http://www.fs.usda.gov/mendocino
+      name: Masterson Group Camp
+      managed_by: Mendocino National Forest
+      campgrounds:
+        - id: masterson_group_camp
+          name: Masterson Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Masterson Group Camp
+                desc: zzyQQY7VMAyGr/IfoHp6Kw4wCyQkGFjMBfwSd2KaxJXtUHp7lFZiGTv2/33+KOIQB+HTdOxI1HZor+cD32I2fg8PEArVFU0qgw46sZo2RGH8quQbR+A7bewL4lB4o1pRZwG6Iooxg3rGqsNAydjhHKDAl+X5fGLl+eoZPsx09MwZrxOEJn85I2mXlQ2rGns88K5oGmoOMsbO1iSC89zHEoXtyl7ujYe0Jv1zqnQNGCdtje8ITjScIZdoG2k7r5mDOf/3p/xHnF6VEQp9BUmfYLRPtR/csybpincK0U4VXy/IBUeRVJA5SKqjM9nrhIcxNV/u49yERbbJFzY/PvCz8wS9E2dtQsxLv1VKG95GBONjNh7/AgAA//94tmkmvAEAAA
+                rating: 5
+                locale: near Plaskett Lakes in Mendocino National Forest
     - id: /ca/mendocino/van_damme
       url: http://www.parks.ca.gov
       name: Van Damme State Park
@@ -4998,8 +5184,7 @@ properties:
                       place: 8
     - id: /ca/modesto
       url: http://www.stancounty.com
-      name: Frank Raines Regional Park near Modesto
-      managed_by: Frank Raines Regional Park
+      name: Frank Raines Regional Park
       campgrounds:
         - id: deer_creek_campground
           name: Deer Creek Campground
@@ -5109,7 +5294,7 @@ properties:
                 locale: near Monterey Bay
     - id: /ca/moorpark
       url: http://www.countyofventura.org
-      name: Simi Valley near Moorpark
+      name: Simi Valley
       managed_by: Oak Park
       campgrounds:
         - id: oak_park
@@ -5551,7 +5736,7 @@ properties:
                 locale: near Pacheco Pass
     - id: /ca/pacific_ocean
       url: http://www.campone.com
-      name: Los Padres National Forest near the Pacific Ocean
+      name: Los Padres National Forest
       managed_by: Parks Management Company
       campgrounds:
         - id: kirk_creek
@@ -5870,24 +6055,6 @@ properties:
                 desc: z0zPsW3DUAwE0FVuAEU7GAFSqUiRBSiL0if8TQr8JyvpskbWyySB7CJuj8Q93BC+4D3MCWsQrKnkF85yXRF+BOrmbasCFiH0k+pTw661wpyBk1NrrIpBLtphlrP5giEa8Ro37fFRFFUu+vv90zCGEHm0Hxz//zocQqq+XK0qprSbQjI2n8Ci8EgWlUa0Eqk93qyVQ7KGmKmOJWLCHIkxWJBiPsYO8Qljxu5gxsbuHrBo6mOwC7dUMMVqjxOWjG29718euDXsxmIOFmtPl/4vAAD//8UDS9o8AQAA
                 rating: 7
                 locale: at Antelope Lake in Plumas National Forest
-        - id: hutchins_group_camp
-          name: Hutchins Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Hutchins Group Camp
-                desc: z0yQwUoDQQyGX+U/KixLEXwAPYhCbxXvsf27E3Z2smQyXfbtpSOCx3zwfSH5TFqhFYLVdSHqaoGrOQSns7WAtdAywfyXlh0WiY4sPhGTW1sRSQKbtXxB1pk9xoi910a8FMiyJo1ECXpfdxPN8p054iM6CDwPT4cDrmSAmTcJtYJCcby281wh5YKjbfybjzKzjnh4M8diTmi5mi/dG1BJRCJOrVy4Df/Noafepc5aKr4kZ+7IWu+HVmhB3J9yTrIGfXz8CQAA//9p0WYyIwEAAA
-                rating: 6
-                locale: near Bucks Lake in Plumas National Forest
-        - id: whitehorse
-          name: Whitehorse
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Whitehorse
-                desc: z2zOwQ3CMAxG4VX+AVBVIbEAXDl2ATd1E6uNXWIH1keVODLA+/SmIo5E9cjNui6g3TTj3tPmeDTmDeKg2XogPoYqOzvWZhVRGLNRoFE9HKQL3HoUeLHGSKaJ3cXUQfETn7TxgKkwop3kKl5EMxIpZsarSzCy2fIv4Z3fFGJ6Lt0u13HEyhzDNwAA///CeVa8wwAAAA
-                rating: 7
-                locale: near Bucks Lake in Plumas National Forest
         - id: lightning_tree
           name: Lightning Tree
           res_url: http://www.recreation.gov
@@ -5942,15 +6109,6 @@ properties:
                 desc: z1SRYbKXMAzEr7IHYBhHxwOoN9B3gQABOrQJkwSR2zsB/ev71u622982b2txjNR2FIcKYmW4HrEyeYBlgs63WGnjDufKxrk3Bt0rY4amcKcspodM3qHIWI+pyAJCivvzCMkEwqAUMGp7j7eVMbAHwvQIzMXXvFQc5YEZ9SdDmOzZ/XvjzkotTkWRyuEdVBhUVZbbOTPYV03YbJJm3M7K9K7ZA7Kb/iqtxIVQfGfRDKwXPn1GK5UddNLVYWPeHQu1od6sD+hA4/Y3spUE1BmN5ALJUtm8x1ce6XBO46Rgw8SN8uSkp3gYU+teSNA5WDCZ7g4vi5S5jCRRLwzXferPdPxoja3HF4RRqZhN22uk+as84UP/8emQzfLuj92S/Zsxb//9av87AAD///5RjHsQAgAA
                 rating: 7
                 locale: on Frenchman Lake in Plumas National Forest
-        - id: cottonwood
-          name: Cottonwood
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Cottonwood
-                desc: z0SOUUrEQBBEr1IHCGF/BL8NCIJ/eoF2rcwMmXQPPZ2Evb1kwd3fouq9mizC9DD7xVfzoqkPYOUuUUzxMrxeLpjJGFA6qnhivUEUttPnageusjZI4N2p17yK4lMWjviIcxGZMK23R+0MqizEUSJDkNy2hl6CI74zsZoTzdpWxZ/MAW8lYbKdA0T/r2JycrmjO8QJqabprui2Rab0QM8n0eanWSkOwY9JwGVt418AAAD//4QuNGUEAQAA
-                rating: 7
-                locale: near Frenchman Lake in Plumas National Forest
         - id: chilcoot
           name: Chilcoot
           res_url: http://www.recreation.gov
@@ -6014,6 +6172,48 @@ properties:
                 desc: z0ySUY7UTAyEr1IHyIz2l34tzyAxCGl5QXsBp9uZtHDakdu9Qzg9cs+w8Bh1+StXOa9raUi07SgNhKsxOUQTedGKRQ2EmRrfNa7gn7uoMXxltG6mveZSr3ihH9zwiVqp+M4pOEH4aExnXEw3VCabD3xRyUMNNXyWG4vgRfOVp2Aag4yxUT3QVjXHWgLsiraRCHYrzUtlSBie8boy3KjIypRDlqRsM75pr/4HH9GkKcjH2hFlAtX8MBzJ/5oFZGbqXpYeqz3CnfG1gsnkQOvbxjaBsPXmp6xwK6PBwDO14x10MfpV2HAhkTZBqxwxVoQxqjuNyUjHj053Tk6pCxn++/B8WlQdN3K2hUSiI+3XdUhH7HBNprfMGblbnCLetpKzMHQZX5mOf5oKO4+7v2MDstMb59FKvKzMklYqdqKUuLUyC98R40dg4bf7gUvD8/T/0xMWZj//DgAA//+PoBDPTwIAAA
                 rating: 8
                 locale: in Plumas National Forest
+    - id: /ca/plumas/cottonwood
+      url: http://www.fs.usda.gov/plumas
+      name: Cottonwood
+      managed_by: Plumas National Forest
+      campgrounds:
+        - id: default
+          name: Cottonwood
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Cottonwood
+                desc: z0SOUUrEQBBEr1IHCGF/BL8NCIJ/eoF2rcwMmXQPPZ2Evb1kwd3fouq9mizC9DD7xVfzoqkPYOUuUUzxMrxeLpjJGFA6qnhivUEUttPnageusjZI4N2p17yK4lMWjviIcxGZMK23R+0MqizEUSJDkNy2hl6CI74zsZoTzdpWxZ/MAW8lYbKdA0T/r2JycrmjO8QJqabprui2Rab0QM8n0eanWSkOwY9JwGVt418AAAD//4QuNGUEAQAA
+                rating: 7
+                locale: near Frenchman Lake in Plumas National Forest
+    - id: /ca/plumas/hutchins
+      url: http://www.fs.usda.gov/plumas
+      name: Hutchins Group Camp
+      managed_by: Plumas National Forest
+      campgrounds:
+        - id: hutchins_group_camp
+          name: Hutchins Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Hutchins Group Camp
+                desc: z0yQwUoDQQyGX+U/KixLEXwAPYhCbxXvsf27E3Z2smQyXfbtpSOCx3zwfSH5TFqhFYLVdSHqaoGrOQSns7WAtdAywfyXlh0WiY4sPhGTW1sRSQKbtXxB1pk9xoi910a8FMiyJo1ECXpfdxPN8p054iM6CDwPT4cDrmSAmTcJtYJCcby281wh5YKjbfybjzKzjnh4M8diTmi5mi/dG1BJRCJOrVy4Df/Noafepc5aKr4kZ+7IWu+HVmhB3J9yTrIGfXz8CQAA//9p0WYyIwEAAA
+                rating: 6
+                locale: near Bucks Lake in Plumas National Forest
+    - id: /ca/plumas/whitehorse
+      url: http://www.fs.usda.gov/plumas
+      name: Whitehorse
+      managed_by: Plumas National Forest
+      campgrounds:
+        - id: default
+          name: Whitehorse
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Whitehorse
+                desc: z2zOwQ3CMAxG4VX+AVBVIbEAXDl2ATd1E6uNXWIH1keVODLA+/SmIo5E9cjNui6g3TTj3tPmeDTmDeKg2XogPoYqOzvWZhVRGLNRoFE9HKQL3HoUeLHGSKaJ3cXUQfETn7TxgKkwop3kKl5EMxIpZsarSzCy2fIv4Z3fFGJ6Lt0u13HEyhzDNwAA///CeVa8wwAAAA
+                rating: 7
+                locale: near Bucks Lake in Plumas National Forest
     - id: /ca/plumaseureka
       url: http://www.parks.ca.gov
       name: Plumas-Eureka State Park
@@ -6365,8 +6565,7 @@ properties:
                 locale: near Rumsey
     - id: /ca/russian_river
       url: http://www.parks.ca.gov
-      name: Austin Creek State Recreation Area near the Russian River
-      managed_by: Austin Creek State Recreation Area
+      name: Austin Creek State Recreation Area
       campgrounds:
         - id: bullfrog_pond
           name: Bullfrog Pond
@@ -6607,15 +6806,6 @@ properties:
                 desc: zzTO0UoEMQyF4Vc5DyDDiqLXKgxe6aKD99npGRvpNtqkK769bMXbHPLzLVkdqxw/oQ5JH7KyBsIQmbjXd+y1EnORcMzaiNeQUKuQms4v3Zlw+AG/Oj2aSvUxPT++oWli8wl3iCZaMiVhszbSe1l10xUPjR5YzvsQHKwH4ttw1EL/h7j1yBQP2DYOQ3xSwWwj8GKScPV0eT1hyQQLT39Mddxc3O522MiYfgMAAP///afIDO4AAAA
                 rating: 3
                 locale: in San Bernardino National Forest
-        - id: dogwood
-          name: Dogwood
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Dogwood
-                desc: z1SOMU7EMBBFr/IPEEVLsbRoJUoqlgtM4r9xIPEEzwSTbg9Bw/X2JCgWBXSW3/t//lnRT2pssNFhiovk2/XLo/jt+m3wSCySJegnOnohE57kjTjlrCVSAiQFPOpQVEOLl0hMOx8Nr6s5BPM4EVJka9CtvjfmipNiWbtp7CF9T7P/4TymgQHdhkGcAZ51iRuizvw1OfFDfNS068fm/nDAhfQWp7ThfaXtzB6qmyUNzAap9/+Mf64AZ69NDaTT1XHXHutsQ9CSaiSrBLjWN8W8QS8Jkqww759z+xMAAP//VMSzbUsBAAA
-                rating: 6
-                locale: near Lake Arrowhead in San Bernardino National Forest
         - id: north_shore
           name: North Shore
           res_url: http://www.recreation.gov
@@ -6625,24 +6815,6 @@ properties:
                 desc: zzSQza7UMAxGX+VbgjR3dCXEihU/QkJClwW8gKf9OonGtYvjmdK3R2nvXSbKic/xrwlZiFwdg8xLgyR+yo34HOFroYwnZKkNbkRtWIITQy7KM35kv5HEx9OH52dMZILKh2R1g1Fi/9s8slBaMgyteBB+TFW58YS11KFgCX/UkQ0jB1oiw++JqbZS7YpqO9CW6CexEZTQDe0+zwxM4TMEF5c848WTyCJ5iHdFLFEfkm8TO5+FsReZv0rJMLC1M/74oU2Jy3bYn/CNXPA1yFt3+S2GLwyTGKs5XvZiUXz3YNu3slIVa2fBf4t69/4EQak3QtTtegRlUGak76WYPNBmUX3NfzdIDuVJbHwKKqURbrq9R39HQnC3+vdONGZf6sGukoxJVPf4Uq9FNwQHn2fayPH8PwAA//8moTmf9QEAAA
                 rating: 8
                 locale: on Lake Arrowhead in San Bernardino National Forest
-        - id: tent_peg_group
-          name: Tent Peg Group
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Tent Peg Group
-                desc: z1SPPa4TQRCEr1IhSF7rBZCQ8SOEMwJfoL1T3mncO72a6fXKGdfgepwEjVeAXtqtqu+rc9aGUeYFm6+WcCEE5gFKU1aEo1LGjE0jQ5BpOvoS/ZWlQHBn1tF4xKc1+i1+//zVsOUHziyB75ygDYKNZoP5nWnnXb1XEFdu2LLj4n6Dxgec9gbBUnXW0Dv/B6bq69IggfeHdy8vuJIBGu8S6uWA0efFGNx1o4papqQjPqL6OmX8IBdUl4R+b/A14NcdEP4U2tgCUhKSbwVawvGlpz5X8nbEqUBS0p0XmZX7vn+wp6ggciWHWY3IeuPe1vtHKQ8vf2nN127q+Kots85Snuu/6Y3DqTzF+uiSDmgMiHmZXvmcMxG175BKtFnMcFkDm5ppmfBmlBjzICUNlUZphBd7vD3+CQAA///K1/m2+wEAAA
-                rating: 5
-                locale: near the Pacific Crest Trail in San Bernardino National Forest
-        - id: crab_flats
-          name: Crab Flats
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Crab Flats
-                desc: zzSQwW7UQBBEf6WOiZRdRQRxR0FBXCIE/ECvp+zpeHZ66Wnb8t+jcci1NfXqTb3Y4qctk+WUXFdisO1ie4PUhKQep4vOBGvkpam0aLAxWHGVmYisDYKLNGKQ6+0Bc7WtQvq1hUxaJ4hTMJrDxvGUdcqb7FiZdShsuJucrGihw0yH8++iznR/xo/AQU9cWezGhBdztsBv+qrDeyMaAxI4GmZoRWTCTVK/fnn49PiIkQywcJVQq2d8xZClFNZD7428/Q/UhKuF+bAPhQgXLciU1LD1Xq1h+NafPzs541nq3nmvFn0KCfxhDfzkhO9uy+1dUBveltYNs5QRV+1oOzQPqtWPf/3qEk+vT59xl3XubodC6wtCVtEilx7OdN6f/wUAAP//2h8ozLoBAAA
-                rating: 4
-                locale: near Crab Creek in San Bernardino National Forest
         - id: fishermans_hikein
           name: Fisherman’s Hike-In
           res_url: http://www.recreation.gov
@@ -6652,33 +6824,6 @@ properties:
                 desc: z0ySwW7UQBBEf6WOIG2sHMgHQFAgF4QSJM69nrKn8Xh66WnvKjd+g9/jS9B4I8S1NdNVr7o+MZDphNSEF9vww7QiMnGHr/SRNXBftuOAB22Zvkr98+t3w2ddePNYoQ2CxrFsiemAi1liwijraXbbakIiT9CKZ6n4QK/iSavhi4RalYIHc7aABO4O725vMZEBFp73BwM+9v/3Ti4HCBKbzlWCCd+1pN3188iqI570TD/At9ogxercNPGAk9tZk9YZLZyyIty2wKQt92FfIDhSttBpK2iM0DoPeIyd82Ieec+jC+uko9QAp8k84Py5qTMhDPNrkAPe17nQWxdaT1cr1wVX/bMKBCfXVUPPRLfD/56NnRVvLlnHjGK2NKzmRNGFewJ0hIsWRJYKQdalk+yztwO+Zb4yihNtlVJw3AIXloLRink/VOfuapN6C4zSAlrD9lmmJNjUXZoV2BSscLatROunlI6iCwc8ceV67LFr9CqMEmO+kZpunIXS+C9nq+UFe7N6Y5wy/A0AAP//h+kb1HoCAAA
                 rating: 8
                 locale: on Deep Creek in San Bernardino National Forest
-        - id: green_valley
-          name: Green Valley
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Green Valley
-                desc: z1SPMY7cMAxFr/IPMBhMlyJlgiwCbLlIT9vfFmFadCR6DHe5Rq6XkwTSVNsJIN7Xex9JK0bZdlSNCjHPC94KmfFLzHjhWyFXSEAyaHxKqGf4jC+3x+OBmYw73jXC+Bl8l5XQCsGmRoQjEnGyxldotMte9ClBu+Bn5nTDcAT2YzAdIePIWjtv5ienO37Gvz9/K34fymYzQXPoJsFmFy3EZOWtn1a5ZK39WfwcXKJlZgxEYY4295HYgfZHDR9XTjg1EqL4ERiu7vudu5TYmKM1/9Ca+uibbHw5xMuxOgSL+4S6e/Tati2Y7dK8wCh7BwaaXZjNd5yJGacEC4xPWoUUIumSwOzHku7/AwAA//8lvz+fnwEAAA
-                rating: 4
-                locale: near Green Valley Lake in San Bernardino National Forest
-        - id: shady_cove_group_and_walkin
-          name: Shady Cove Group And Walk-In
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Shady Cove Group And Walk-In
-                desc: zzTMwU3GMAzF8VXeAKgKB8QdJBgAFjCJWwdMXDku0BtrsB6ToJR+xyf93+9ZGFIX0bpIQNgZtSOEQeWVMrdAF/OAmq1cEE5VEeK2LXJ091K1OLff75+OB3PuMWGwmd7XgfFXZtUhzea4sx1P2bYAtYLH6nrOcLO1/18/Sd8QdvgXhl5GdZ0SdvJyhqz8QVGtjeL26iYlzMwx/QUAAP//gbs7udcAAAA
-                rating: 7
-                locale: near the Children’s Forest in San Bernardino National Forest
-        - id: hanna_flat
-          name: Hanna Flat
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Hanna Flat
-                desc: z1SRwY7UQAxEf6WOIEWj0XLgzC5acUACafcHPEklMdOxI7czy/49Ss+MgGPLVa7q5x8XBnIm3ilRO3wTM8FzkcQsFSfS4Eb42FRFYmLNDifWxCJqKWocOogNWLwmVl+3InF3PHvs0hfGRXuil2WtUGuzR53wSAl8lzPxVWuG9okPL4wQczzJsk7hmw3Q2hz/Jnw84HW+btzHkvjcHY9HjGSChRdJ9b19c9biK+v9ZR45o+rQfvZfjw6/tprYbGhkgsSihRVj+HKDcObhr2nPxomypY5bweJbg9Jk6P3CUJuweBA5i+FTayl9sHZ405zx8HCL8BF19mBRYyPqY9LA3z1LoSUyfEuMWud95654k2TUs6pNB3xBhmiZKQNGvx72p/Q6ao+ndofXfX6tvEfi9I5wGW5AbjfbkR7+BAAA//+lJ3OSGgIAAA
-                rating: 8
-                locale: near Big Bear Lake in San Bernardino National Forest
         - id: serrano
           name: Serrano
           refs:
@@ -6699,42 +6844,6 @@ properties:
                 desc: z0SPQUoDQRREr1IHMGECivtkJbhwkQv8TP+e/jgzf/hdnZCdh/CEnkRakGzrUfWoc7GKLWwx2lUxhbcNoywbrMJzhqzwOaFuLRAuCTdjAYuCITYXlYTs8Zd8yGjZRpxCK3Hu/Ofru5NukLij2FRmmwr3eGNXVCWEeH16HgZkVUJnvQrNV9gKQZ6FuDTi5p40QUIFqweLSiU842gTjiqBd/nU/125eCMEh2EHOg4vu8XWRkWK/jOHL4/iyXjf/wYAAP//dTMu/AoBAAA
                 rating: 4
                 locale: on the Pacific Crest Trail in San Bernardino National Forest
-        - id: bluff_mesa_group_camp
-          name: Bluff Mesa Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Bluff Mesa Group Camp
-                desc: zzyQwcrbMBCEX2WOLfgPTigt9NYE2ksChfYFNvbKWrKWxK7s4Lf/sQg5aj4tw3xnXULAjZ3wx/JScKG5QBw5MXKA88pGioHm4vC81LjHZ5lwZjJc6cEH/EKUKapMse63NTKqkWhkGvHFZUo8IqcGaBjYHZbpHT1pg6SvCNnaO5KGj1l0J/pAzS29RJqL5IRrHicuWRl/JXHXoJJN7BX6ZkUSQ14F2XT8iW99j43JHFnHDsfjCYG5opJqh6fUCMIgNixzYOM0NAWnvv064EZpw+9se88/tlUGbjMcZAxaSZTuykhMdt/aGmcNH0Up7QJcxt2LFD/gf2Sw8kp1XySOH933/lX0GQAA///eWTkglAEAAA
-                rating: 7
-                locale: near Big Bear Lake in San Bernardino National Forest
-        - id: boulder_group_camp
-          name: Boulder Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Boulder Group Camp
-                desc: z2SQsW7zMAyEX+UewH+Q5Uf3ZG23LB1Z62SxscWAomP47Qs53bqRBL+7w92KNmiD4OG6aOiTGGV5QAJvw//zGZkMcOZTQq0O+F5bIIuD1dapQDbZkd0WNFt4yBAS4TJ2oCEMi9yJ3VZs2soxjLbOCYs9iSi/lmEQtFmnEvOOpDnTWQPtYXHCrRCFkjYJeoNlfDBGmTOuTt4hThRNiRVaD9Fszhaw12ZR6Gia2Nl+cZM0ILTuuDKJ473H7GV82RoQFJnzv0VnInkvpppHGSA14aITLvzDxGboQHv9nvBpKybG4aeJcvoJAAD//ya71w5xAQAA
-                rating: 6
-                locale: near Big Bear Lake in San Bernardino National Forest
-        - id: pineknot
-          name: Pineknot
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Pineknot
-                desc: zzyPsWrDQBBEf2XKBIRwl95FIBBIEZN+bY+sjVba43ZP/v1wmLidGZj3TrMGipdmUgdcudO88Ip3r4zEN+uuF+Iia4EGflskKJHwCUe94Uip+JSF+FEzuREvviFnIrzlzLohZq/s+56aLHyFnL0l8u5Y1RiYqq/PesRH9i/550IUT0xesXrbUnTDWRfdbgPumjOCO6sY9EoxVG/JgOyiJmfjiK/HdXcISD65B2S313jU5tGV0xGtFFPGiNNM0LhLqm99+TYcDgdMZI5/AQAA//+s0tGTOwEAAA
-                rating: 6
-                locale: near Big Bear Lake in San Bernardino National Forest
-        - id: buttercup_group_camp
-          name: Buttercup Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Buttercup Group Camp
-                desc: zxzNMW7sMAyE4avMARaGu1e/7QKk816AiUYyY0k0RGpz/cDuBt8U/2tXhzoE2QY9mPAt7USia+lMF6PKKEQZNk9HNTu0l/sQJL5Z7WSCaxCdMvDUguc1PuXggo+4A182A9nmQNNKRx7WEDvhNmOneMA1EZZvrXLwgZ/pAZtxPxdv3X6xzdY0sB2K/4Oy4LUTrHxLqPWr9u+xrisyGctfAAAA///81uL14gAAAA
-                rating: 5
-                locale: near the town of Big Bear Lake in San Bernardino National Forest
         - id: juniper_spring_group_camp
           name: Juniper Spring Group Camp
           res_url: http://www.recreation.gov
@@ -6744,42 +6853,6 @@ properties:
                 desc: z0yPsYrjMBiEX2UeIGdyVcpAmuPg4IpdWLYcyxNbG1ky+n8n5O0XKc2WGo3m+/S+REM0ECm6J/265fLImGvZNwSu2wEmBx2nw+l4xFVyKOlOjyUjZhCTTNVTvAmsIjiW3fH7iDUmGURzlCsuccZFrPjHmwb89cZ9UfGijgrcTfBFtW8hF29qpQ9U0Uo2eOlmaK0Bn2VHlqYWj0Koose7Bvzpb99C5TgmYeaqMz6YvTUf9LA0EL72HDdVa39+nPG/YuVz1I/GVfS9yppDOyfmCWFhnoVQUqkGWr+Z+MRGM9m5e83ynsdJHL4DAAD//2Eqz/trAQAA
                 rating: 3
                 locale: in San Bernardino National Forest
-        - id: council_group_camp
-          name: Council Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Council Group Camp
-                desc: zzSPwWrrQAxFf+Uu34OS3yiU7hro+jZznRk8low0qcnfF0/pUkLniHOtLdESxD38sePGbUczEHtojCcO96IChgiisi/YWheW8A29jdGFN9maeOcq/BtVoV+jtZteIOYTB/sKhj+sYFShc9V/0AqIRcdUJsxjVPgyT+agMHx5FMXf+oOGV4+7W3N8tl4UpswLrvMxQ0h9K9jhJz+L8kw66TPj8hMAAP//35gaZfQAAAA
-                rating: 5
-                locale: near Jenks Lake and the San Gorgonio Wilderness in San Bernardino National Forest
-        - id: barton_flats
-          name: Barton Flats
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Barton Flats
-                desc: z2SR0YoUQQxFf+V+QDMsiOLzCiqiIjsLPme6Ml1hqpMxSfcwfy/Vrfuw+1qk7s05ea4SkIApw87IypjNGYVXbnblgs/mHIkj+yojY6T5GhDFkRSP7EpeRA0/KcWU2r/5A57rPjyAEh+G9w8PODMnuPG6zQ69l062JPJmmKVx4Ow24xvrJfCdLjyAEDO1NuDqnHlHowvjJlkxmRVUuYhOIC0gXGVUGUHOdMAjeZrikzNfXmIQ6UzzAF80oEx+ug+gltWWqUISM91xYtwo2RvHhtooGbHMM/vO1dm/mE+mYvgtrbArRwybxg6CtM1l2JJ1Bx1HjpBTY6xCr626UYn/n24vgRsK0klaZSoH/GKfJbd3OP9ZxLngbA5b2VWmmpvzrqQ7En0deLJFC7lw7M6cQStJo74Y5Zu9SCd2RG4Xi05vwSgua+8QhSm+ylRvdMe7j4hqSyuItGtP6+U/pLX9Cnja0457Wv/9xKWRljj8DQAA//9YgyxriAIAAA
-                rating: 7
-                locale: near Jenks Lake in San Bernardino National Forest
-        - id: san_gorgonio
-          name: San Gorgonio
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: San Gorgonio
-                desc: zxTOQUoDUQwG4Kv8SwUZilJx7aKKuBsvEKf/vBf6JilJrHh7mRN83yyGN4/mpg5NuBFqECRDmfAVJw9mYWbcdCEW2a4JGW4N79r6r/zh6QViZ8i3/xQepyM2HUys4Rs+aJfEp1w44W4mUZ14lSg3nIZUYmiWWtvd6ppYulyLgdUDZ5boyOkeX53g4E1K3fbq88PxcMBK1vQfAAD//80oH/TGAAAA
-                rating: 7
-                locale: near the San Gorgonio Wilderness in San Bernardino National Forest
-        - id: oso_and_lobo_group
-          name: Oso And Lobo Group
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Oso And Lobo Group
-                desc: zzzPwWrzQAwE4FeZB8hvcsr9p4dAMRTaQs+yPe5uYq9SSRuTty8bTI86zDejN1dImdDroDib1hteZL05xIgpG8dYHpDpIiNLIBSUMUEj0SCB0+F0PGImA1x4l8haOnwmYvxjZNAaiGTkv58qFjSHzhCseSFm0xWRiA8pIfhfBO/5TuvQ54iFeGW5Onq5EtkRmz5zDtnk0Ra17EaPw/OTdhW1NrBgUJtorWwvwFntW0tWfOVlohW6N/VSPSCYue347rrWSN1vAAAA//8kTUt7JgEAAA
-                rating: 6
-                locale: near the San Gorgonio Wilderness in San Bernardino National Forest
         - id: heart_bar_family_and_skyline_group_camps
           name: Heart Bar Family And Skyline Group Camps
           res_url: http://www.recreation.gov
@@ -6807,24 +6880,6 @@ properties:
                 desc: z3yQQWrzQAxGr/IdwAn5s/qhuwa6DKXkArKsqae2R0bSBLLLQdrL5STFTqBddf/pvYeeiYeZeBBzMI0jos+O6AW36+dBteBgIgM+6jRvNKXb9QutMFUX5EB2aFnnr8Q5ZV7mHjgZ5REU+N/sdzskkYCMcqbIWkClw2x6zp04aDH9xic1EMJk+IO9xakXME3zo+GntUFbY73jNV1TSIHV4ujsgvYCr9MktsVRQxA9BfJdpCltXMgfXmIWd5hS1+BFV/ubUod/x92+AVNBK3inkO5pbVm+OFUP9HkQqIFN3TestYRd4ENG6D2Npnn7HQAA//8W+L5KfQEAAA
                 rating: 4
                 locale: on the Pacific Crest Trail in San Bernardino National Forest
-        - id: black_mountain_group_camp
-          name: Black Mountain Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Black Mountain Group Camp
-                desc: z4SQwU4rMQxFf+V+wLyqm6e3b6W3QIAqWgmxdDOexkxqV47Tir9HmcKCFbtEufE9x4csFVJBODK1kKkV1MQqCeRMAy7kIakV8vKBMERmqHlkmC4XHk8Mm5bznhQPlETD8CplZFeuFaTj91emGj39ZE3jR34fFIwd+bzCITMSnS8DKPBv+LteY2IOcOErhZgOnfkmkUVBOEtZEAjhJCUzjZjMl8IdJZkkYetcA4f+vsKbNSRSRHNFtRZ54eqcWWYGFdMT/rdS2PEi3bDPI7XI7Pe+L6Gj+cj+u9KzBSMyBTaF0nxPkygezWZr0YXeW4dA3OzPUjG6XHlAKlaXvo21vlNsqIpiS+fL6jMAAP//n4zH6MABAAA
-                rating: 6
-                locale: near Mount San Jacinto in San Bernardino National Forest
-        - id: boulder_basin
-          name: Boulder Basin
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Boulder Basin
-                desc: z1yQva4TMRCFX+WU90qrKEBBREcKCgQSEpGoB3uyHtaZWTyzWYWnR+skze38Mz7+zncq4kh0mSEOU0RhhM2wc1+u1mrG2dq2c8ZMLfwTPg4f9nucmQNc+UohpgMo/6HEGgjrj4+V0oTvtmiQKL5IY3wzm2wJrBIFY2MKXIVXhyioVmRpnLY4B2lGkbFUGUtwxu8bTlT+LhL/8INpwsthOLw/dIxXvNvjIpX9+bnbEoXJY4ejLTVzw5FcdOtJ1Q3K1FvhJym+UhINwy/ZJpXd8fIIUmv3oNdOdKGJHYTRLCMaSS1M+a5w81Rk4uY7fL5fwoNaiI6geCvk6aIyZcfKHgNys3nexj2Y53pDxyIk0ptpJ+j0j+PMLqPSpscTqyRQY9r9DwAA//8ieBDw1gEAAA
-                rating: 8
-                locale: near the San Jacinto Wilderness in San Bernardino National Forest
         - id: marion_mountain
           name: Marion Mountain
           res_url: http://www.recreation.gov
@@ -6834,7 +6889,138 @@ properties:
                 desc: z0SQQU4zMQxGr/IdoP+oi18cgB1IRUhlw9JNPjqmwR7FnpG4PUpHiG1enLznd19xZeLqXtHcb75mQKxCULmx+cKKIl/Ltfs6jhM5ayAWzwkvlH75xmOTcsPJV0tRgwZkfzG0Etl1Qc6SUCttrRy4dt34Lx1RaFp+/8biajnhySC1aqrbATmzE9KJ4MYuDdlF20ypAbXBB5UJbzNxYSTciEjpGTBK351Hxr1tn1yX+2SMxkA6TtLV7a9jXKXE8E6H1E8ptNw5zmJ4lnJH55QkXqXfdgU2bjLcxyoeDv+PR3yQOf0EAAD//1tbs3NuAQAA
                 rating: 7
                 locale: in San Bernardino National Forest
-        - id: fern_basin
+    - id: /ca/san_bernardino/barton_flats
+      url: http://www.fs.usda.gov/sbnf
+      name: Barton Flats
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: Barton Flats
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Barton Flats
+                desc: z2SR0YoUQQxFf+V+QDMsiOLzCiqiIjsLPme6Ml1hqpMxSfcwfy/Vrfuw+1qk7s05ea4SkIApw87IypjNGYVXbnblgs/mHIkj+yojY6T5GhDFkRSP7EpeRA0/KcWU2r/5A57rPjyAEh+G9w8PODMnuPG6zQ69l062JPJmmKVx4Ow24xvrJfCdLjyAEDO1NuDqnHlHowvjJlkxmRVUuYhOIC0gXGVUGUHOdMAjeZrikzNfXmIQ6UzzAF80oEx+ug+gltWWqUISM91xYtwo2RvHhtooGbHMM/vO1dm/mE+mYvgtrbArRwybxg6CtM1l2JJ1Bx1HjpBTY6xCr626UYn/n24vgRsK0klaZSoH/GKfJbd3OP9ZxLngbA5b2VWmmpvzrqQ7En0deLJFC7lw7M6cQStJo74Y5Zu9SCd2RG4Xi05vwSgua+8QhSm+ylRvdMe7j4hqSyuItGtP6+U/pLX9Cnja0457Wv/9xKWRljj8DQAA//9YgyxriAIAAA
+                rating: 7
+                locale: near Jenks Lake in San Bernardino National Forest
+    - id: /ca/san_bernardino/black_mountain
+      url: http://www.fs.usda.gov/sbnf
+      name: Black Mountain Group Camp
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: black_mountain_group_camp
+          name: Black Mountain Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Black Mountain Group Camp
+                desc: z4SQwU4rMQxFf+V+wLyqm6e3b6W3QIAqWgmxdDOexkxqV47Tir9HmcKCFbtEufE9x4csFVJBODK1kKkV1MQqCeRMAy7kIakV8vKBMERmqHlkmC4XHk8Mm5bznhQPlETD8CplZFeuFaTj91emGj39ZE3jR34fFIwd+bzCITMSnS8DKPBv+LteY2IOcOErhZgOnfkmkUVBOEtZEAjhJCUzjZjMl8IdJZkkYetcA4f+vsKbNSRSRHNFtRZ54eqcWWYGFdMT/rdS2PEi3bDPI7XI7Pe+L6Gj+cj+u9KzBSMyBTaF0nxPkygezWZr0YXeW4dA3OzPUjG6XHlAKlaXvo21vlNsqIpiS+fL6jMAAP//n4zH6MABAAA
+                rating: 6
+                locale: near Mount San Jacinto in San Bernardino National Forest
+    - id: /ca/san_bernardino/bluff_mesa
+      url: http://www.fs.usda.gov/sbnf
+      name: Bluff Mesa Group Camp
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: bluff_mesa_group_camp
+          name: Bluff Mesa Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Bluff Mesa Group Camp
+                desc: zzyQwcrbMBCEX2WOLfgPTigt9NYE2ksChfYFNvbKWrKWxK7s4Lf/sQg5aj4tw3xnXULAjZ3wx/JScKG5QBw5MXKA88pGioHm4vC81LjHZ5lwZjJc6cEH/EKUKapMse63NTKqkWhkGvHFZUo8IqcGaBjYHZbpHT1pg6SvCNnaO5KGj1l0J/pAzS29RJqL5IRrHicuWRl/JXHXoJJN7BX6ZkUSQ14F2XT8iW99j43JHFnHDsfjCYG5opJqh6fUCMIgNixzYOM0NAWnvv064EZpw+9se88/tlUGbjMcZAxaSZTuykhMdt/aGmcNH0Up7QJcxt2LFD/gf2Sw8kp1XySOH933/lX0GQAA///eWTkglAEAAA
+                rating: 7
+                locale: near Big Bear Lake in San Bernardino National Forest
+    - id: /ca/san_bernardino/boulder
+      url: http://www.fs.usda.gov/sbnf
+      name: Boulder Group Camp
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: boulder_group_camp
+          name: Boulder Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Boulder Group Camp
+                desc: z2SQsW7zMAyEX+UewH+Q5Uf3ZG23LB1Z62SxscWAomP47Qs53bqRBL+7w92KNmiD4OG6aOiTGGV5QAJvw//zGZkMcOZTQq0O+F5bIIuD1dapQDbZkd0WNFt4yBAS4TJ2oCEMi9yJ3VZs2soxjLbOCYs9iSi/lmEQtFmnEvOOpDnTWQPtYXHCrRCFkjYJeoNlfDBGmTOuTt4hThRNiRVaD9Fszhaw12ZR6Gia2Nl+cZM0ILTuuDKJ473H7GV82RoQFJnzv0VnInkvpppHGSA14aITLvzDxGboQHv9nvBpKybG4aeJcvoJAAD//ya71w5xAQAA
+                rating: 6
+                locale: near Big Bear Lake in San Bernardino National Forest
+    - id: /ca/san_bernardino/boulder_basin
+      url: http://www.fs.usda.gov/sbnf
+      name: Boulder Basin
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: Boulder Basin
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Boulder Basin
+                desc: z1yQva4TMRCFX+WU90qrKEBBREcKCgQSEpGoB3uyHtaZWTyzWYWnR+skze38Mz7+zncq4kh0mSEOU0RhhM2wc1+u1mrG2dq2c8ZMLfwTPg4f9nucmQNc+UohpgMo/6HEGgjrj4+V0oTvtmiQKL5IY3wzm2wJrBIFY2MKXIVXhyioVmRpnLY4B2lGkbFUGUtwxu8bTlT+LhL/8INpwsthOLw/dIxXvNvjIpX9+bnbEoXJY4ejLTVzw5FcdOtJ1Q3K1FvhJym+UhINwy/ZJpXd8fIIUmv3oNdOdKGJHYTRLCMaSS1M+a5w81Rk4uY7fL5fwoNaiI6geCvk6aIyZcfKHgNys3nexj2Y53pDxyIk0ptpJ+j0j+PMLqPSpscTqyRQY9r9DwAA//8ieBDw1gEAAA
+                rating: 8
+                locale: near the San Jacinto Wilderness in San Bernardino National Forest
+    - id: /ca/san_bernardino/buttercup
+      url: http://www.fs.usda.gov/sbnf
+      name: Buttercup Group Camp
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: buttercup_group_camp
+          name: Buttercup Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Buttercup Group Camp
+                desc: zxzNMW7sMAyE4avMARaGu1e/7QKk816AiUYyY0k0RGpz/cDuBt8U/2tXhzoE2QY9mPAt7USia+lMF6PKKEQZNk9HNTu0l/sQJL5Z7WSCaxCdMvDUguc1PuXggo+4A182A9nmQNNKRx7WEDvhNmOneMA1EZZvrXLwgZ/pAZtxPxdv3X6xzdY0sB2K/4Oy4LUTrHxLqPWr9u+xrisyGctfAAAA///81uL14gAAAA
+                rating: 5
+                locale: near the town of Big Bear Lake in San Bernardino National Forest
+    - id: /ca/san_bernardino/council
+      url: http://www.fs.usda.gov/sbnf
+      name: Council Group Camp
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: council_group_camp
+          name: Council Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Council Group Camp
+                desc: zzSPwWrrQAxFf+Uu34OS3yiU7hro+jZznRk8low0qcnfF0/pUkLniHOtLdESxD38sePGbUczEHtojCcO96IChgiisi/YWheW8A29jdGFN9maeOcq/BtVoV+jtZteIOYTB/sKhj+sYFShc9V/0AqIRcdUJsxjVPgyT+agMHx5FMXf+oOGV4+7W3N8tl4UpswLrvMxQ0h9K9jhJz+L8kw66TPj8hMAAP//35gaZfQAAAA
+                rating: 5
+                locale: near Jenks Lake and the San Gorgonio Wilderness in San Bernardino National Forest
+    - id: /ca/san_bernardino/crab_flats
+      url: http://www.fs.usda.gov/sbnf
+      name: Crab Flats
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: Crab Flats
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Crab Flats
+                desc: zzSQwW7UQBBEf6WOiZRdRQRxR0FBXCIE/ECvp+zpeHZ66Wnb8t+jcci1NfXqTb3Y4qctk+WUXFdisO1ie4PUhKQep4vOBGvkpam0aLAxWHGVmYisDYKLNGKQ6+0Bc7WtQvq1hUxaJ4hTMJrDxvGUdcqb7FiZdShsuJucrGihw0yH8++iznR/xo/AQU9cWezGhBdztsBv+qrDeyMaAxI4GmZoRWTCTVK/fnn49PiIkQywcJVQq2d8xZClFNZD7428/Q/UhKuF+bAPhQgXLciU1LD1Xq1h+NafPzs541nq3nmvFn0KCfxhDfzkhO9uy+1dUBveltYNs5QRV+1oOzQPqtWPf/3qEk+vT59xl3XubodC6wtCVtEilx7OdN6f/wUAAP//2h8ozLoBAAA
+                rating: 4
+                locale: near Crab Creek in San Bernardino National Forest
+    - id: /ca/san_bernardino/dogwood
+      url: http://www.fs.usda.gov/sbnf
+      name: Dogwood
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: Dogwood
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Dogwood
+                desc: z1SOMU7EMBBFr/IPEEVLsbRoJUoqlgtM4r9xIPEEzwSTbg9Bw/X2JCgWBXSW3/t//lnRT2pssNFhiovk2/XLo/jt+m3wSCySJegnOnohE57kjTjlrCVSAiQFPOpQVEOLl0hMOx8Nr6s5BPM4EVJka9CtvjfmipNiWbtp7CF9T7P/4TymgQHdhkGcAZ51iRuizvw1OfFDfNS068fm/nDAhfQWp7ThfaXtzB6qmyUNzAap9/+Mf64AZ69NDaTT1XHXHutsQ9CSaiSrBLjWN8W8QS8Jkqww759z+xMAAP//VMSzbUsBAAA
+                rating: 6
+                locale: near Lake Arrowhead in San Bernardino National Forest
+    - id: /ca/san_bernardino/fern_basin
+      url: http://www.fs.usda.gov/sbnf
+      name: Fern Basin
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
           name: Fern Basin
           res_url: http://www.recreation.gov
           refs:
@@ -6843,6 +7029,34 @@ properties:
                 desc: zxzOQU4CQRCF4au8JW6IMd4A446NcIE30wVdoaki1TVMeuc1vJ4nMc7+5f3fuWqHdhAmjGmALSWMqU9BOk7pJjiEyA274cvv909reLB3aMINWQUrB9ReQCv4YNxwoA037GieVQJZQwR3bdL/h3scGeqGoy+WVMM5qK0Ky2aZZ+ldpyZYNasaKtsF3A7gl6058/64hi9WMA2U0KfaFcK+qT49pCe+nAXvp9e3/V8AAAD//5f0sjroAAAA
                 rating: 7
                 locale: near Mount San Jacinto State Park in San Bernardino National Forest
+    - id: /ca/san_bernardino/green_valley
+      url: http://www.fs.usda.gov/sbnf
+      name: Green Valley
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: Green Valley
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Green Valley
+                desc: z1SPMY7cMAxFr/IPMBhMlyJlgiwCbLlIT9vfFmFadCR6DHe5Rq6XkwTSVNsJIN7Xex9JK0bZdlSNCjHPC94KmfFLzHjhWyFXSEAyaHxKqGf4jC+3x+OBmYw73jXC+Bl8l5XQCsGmRoQjEnGyxldotMte9ClBu+Bn5nTDcAT2YzAdIePIWjtv5ienO37Gvz9/K34fymYzQXPoJsFmFy3EZOWtn1a5ZK39WfwcXKJlZgxEYY4295HYgfZHDR9XTjg1EqL4ERiu7vudu5TYmKM1/9Ca+uibbHw5xMuxOgSL+4S6e/Tati2Y7dK8wCh7BwaaXZjNd5yJGacEC4xPWoUUIumSwOzHku7/AwAA//8lvz+fnwEAAA
+                rating: 4
+                locale: near Green Valley Lake in San Bernardino National Forest
+    - id: /ca/san_bernardino/hanna_flat
+      url: http://www.fs.usda.gov/sbnf
+      name: Hanna Flat
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: Hanna Flat
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Hanna Flat
+                desc: z1SRwY7UQAxEf6WOIEWj0XLgzC5acUACafcHPEklMdOxI7czy/49Ss+MgGPLVa7q5x8XBnIm3ilRO3wTM8FzkcQsFSfS4Eb42FRFYmLNDifWxCJqKWocOogNWLwmVl+3InF3PHvs0hfGRXuil2WtUGuzR53wSAl8lzPxVWuG9okPL4wQczzJsk7hmw3Q2hz/Jnw84HW+btzHkvjcHY9HjGSChRdJ9b19c9biK+v9ZR45o+rQfvZfjw6/tprYbGhkgsSihRVj+HKDcObhr2nPxomypY5bweJbg9Jk6P3CUJuweBA5i+FTayl9sHZ405zx8HCL8BF19mBRYyPqY9LA3z1LoSUyfEuMWud95654k2TUs6pNB3xBhmiZKQNGvx72p/Q6ao+ndofXfX6tvEfi9I5wGW5AbjfbkR7+BAAA//+lJ3OSGgIAAA
+                rating: 8
+                locale: near Big Bear Lake in San Bernardino National Forest
     - id: /ca/san_bernardino/idyllwild
       url: http://www.rivcoparks.org
       name: Idyllwild County Park
@@ -6855,10 +7069,79 @@ properties:
                 desc: z2ySQWvcQAyF/8o7JjBdNklTcm6hh0JL6AZ6lm3tWng8ciXZZv99mdlTSo7WvHlP7/O8jeL4LRuby8D4pmuJKxayCb3WKR6Pj6De2BOcAxR4Tk/HI87MAc68UYgWUBngq5muZeAB3RU/qxdOVPCDeimhOAUF45VsSu/mfyQPbIXdU/OJkdv5V7ZCNkhR/GoplPFdjT2QqQx+wNtIgcV0k4EdS+a6vZ6hS5U7zmrYxCXUmppv1UZy8N+VPUyoIIwke4umAinBthiHbHw7ut0MXTDKxJDSNjS+1OLi7YvmTkJ0dfRZ5g7r0sY7e7AVeNaFHaFtWq30/AGhu4djenn63ODeJxCCzaTLjH6knLlcuF4kdGvEp0n6iQ3xDoKWJqkxs3qAPOo/kXLBJrx7XZ9yboJK8YC72q6rVE3X4IRRd97YUu2ma1S7V8ozTotJuXhC0FT9Wm82oVw5zTtdE/ZR+hG75IwLB6661tIv6fnhy/9PpuOzGjdJ41qjbmA9Dvf/AgAA//+cTA/1mgIAAA
                 rating: 6
                 locale: near San Bernardino National Forest
+    - id: /ca/san_bernardino/oso_lobo
+      url: http://www.fs.usda.gov/sbnf
+      name: Oso And Lobo Group
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: oso_and_lobo_group
+          name: Oso And Lobo Group
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Oso And Lobo Group
+                desc: zzzPwWrzQAwE4FeZB8hvcsr9p4dAMRTaQs+yPe5uYq9SSRuTty8bTI86zDejN1dImdDroDib1hteZL05xIgpG8dYHpDpIiNLIBSUMUEj0SCB0+F0PGImA1x4l8haOnwmYvxjZNAaiGTkv58qFjSHzhCseSFm0xWRiA8pIfhfBO/5TuvQ54iFeGW5Onq5EtkRmz5zDtnk0Ra17EaPw/OTdhW1NrBgUJtorWwvwFntW0tWfOVlohW6N/VSPSCYue347rrWSN1vAAAA//8kTUt7JgEAAA
+                rating: 6
+                locale: near the San Gorgonio Wilderness in San Bernardino National Forest
+    - id: /ca/san_bernardino/pineknot
+      url: http://www.fs.usda.gov/sbnf
+      name: Pineknot
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: Pineknot
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Pineknot
+                desc: zzyPsWrDQBBEf2XKBIRwl95FIBBIEZN+bY+sjVba43ZP/v1wmLidGZj3TrMGipdmUgdcudO88Ip3r4zEN+uuF+Iia4EGflskKJHwCUe94Uip+JSF+FEzuREvviFnIrzlzLohZq/s+56aLHyFnL0l8u5Y1RiYqq/PesRH9i/550IUT0xesXrbUnTDWRfdbgPumjOCO6sY9EoxVG/JgOyiJmfjiK/HdXcISD65B2S313jU5tGV0xGtFFPGiNNM0LhLqm99+TYcDgdMZI5/AQAA//+s0tGTOwEAAA
+                rating: 6
+                locale: near Big Bear Lake in San Bernardino National Forest
+    - id: /ca/san_bernardino/san_gorgonio
+      url: http://www.fs.usda.gov/sbnf
+      name: San Gorgonio
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: default
+          name: San Gorgonio
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: San Gorgonio
+                desc: zxTOQUoDUQwG4Kv8SwUZilJx7aKKuBsvEKf/vBf6JilJrHh7mRN83yyGN4/mpg5NuBFqECRDmfAVJw9mYWbcdCEW2a4JGW4N79r6r/zh6QViZ8i3/xQepyM2HUys4Rs+aJfEp1w44W4mUZ14lSg3nIZUYmiWWtvd6ppYulyLgdUDZ5boyOkeX53g4E1K3fbq88PxcMBK1vQfAAD//80oH/TGAAAA
+                rating: 7
+                locale: near the San Gorgonio Wilderness in San Bernardino National Forest
+    - id: /ca/san_bernardino/shady_cove
+      url: http://www.fs.usda.gov/sbnf
+      name: Shady Cove Group And Walk-In
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: shady_cove_group_and_walkin
+          name: Shady Cove Group And Walk-In
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Shady Cove Group And Walk-In
+                desc: zzTMwU3GMAzF8VXeAKgKB8QdJBgAFjCJWwdMXDku0BtrsB6ToJR+xyf93+9ZGFIX0bpIQNgZtSOEQeWVMrdAF/OAmq1cEE5VEeK2LXJ091K1OLff75+OB3PuMWGwmd7XgfFXZtUhzea4sx1P2bYAtYLH6nrOcLO1/18/Sd8QdvgXhl5GdZ0SdvJyhqz8QVGtjeL26iYlzMwx/QUAAP//gbs7udcAAAA
+                rating: 7
+                locale: near the Children’s Forest in San Bernardino National Forest
+    - id: /ca/san_bernardino/tent_peg
+      url: http://www.fs.usda.gov/sbnf
+      name: Tent Peg Group
+      managed_by: San Bernardino National Forest
+      campgrounds:
+        - id: tent_peg_group
+          name: Tent Peg Group
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Tent Peg Group
+                desc: z1SPPa4TQRCEr1IhSF7rBZCQ8SOEMwJfoL1T3mncO72a6fXKGdfgepwEjVeAXtqtqu+rc9aGUeYFm6+WcCEE5gFKU1aEo1LGjE0jQ5BpOvoS/ZWlQHBn1tF4xKc1+i1+//zVsOUHziyB75ygDYKNZoP5nWnnXb1XEFdu2LLj4n6Dxgec9gbBUnXW0Dv/B6bq69IggfeHdy8vuJIBGu8S6uWA0efFGNx1o4papqQjPqL6OmX8IBdUl4R+b/A14NcdEP4U2tgCUhKSbwVawvGlpz5X8nbEqUBS0p0XmZX7vn+wp6ggciWHWY3IeuPe1vtHKQ8vf2nN127q+Kots85Snuu/6Y3DqTzF+uiSDmgMiHmZXvmcMxG175BKtFnMcFkDm5ppmfBmlBjzICUNlUZphBd7vD3+CQAA///K1/m2+wEAAA
+                rating: 5
+                locale: near the Pacific Crest Trail in San Bernardino National Forest
     - id: /ca/san_clemente
       url: http://www.parks.ca.gov
-      name: San Onofre State Beach near San Clemente
-      managed_by: San Onofre State Beach
+      name: San Onofre State Beach
       campgrounds:
         - id: san_onofre_bluff_campground
           name: San Onofre Bluff Campground
@@ -7401,15 +7684,6 @@ properties:
                 desc: zzyQX4rXQBCEr1IHyIZF+IH4JoIIigh6gd5JJWkzf0J3x5jby0Tdx5nuqfrm+9gMlWdqheYDPh2F+CIboQ6BH7abOt9BsBsjLmTZOODUWLEYJeBHKTQkKbtjboYgqyw0H/FBaqPWBVInbHLJdh+M4O/EnFljuGfeemGsRFg7ArP6qnUZQN+ZVHK+UCl2r0xSRnw/tZSe1kFzbienEe/xeCr7Ct/JCVmLRp9rBeeZKdAqYlXH28eTJOO/33SCVvMFZqYwTSgtmvlNutOKRtzxtcVKe9Xyn1mmn5JYA8asi7bDbx3od7QRP1be9C8XJCW6Ixo+a128G7paxVcJbVUyvoltkGnq9l9aPfzva2b+uld65WN48/yMmYzxTwAAAP//m3hloL8BAAA
                 rating: 8
                 locale: in Sequoia National Forest
-        - id: aspen_hollow_group_camp
-          name: Aspen Hollow Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Aspen Hollow Group Camp
-                desc: zzyNUYqDQBAFr/IOICILewJZWNgl5MMLtOapgzM90tMT8PZBA/ktqqhhDQVRbCEWy3XHJGlHKBDHd/PVdZhJByOf4iErZMzVIUghEiVXX5Fn/NZE/MtGKMUgZ/WgwTMG6uX2Rm4NfCWCRjqKGyWdyqdu8aNuohPLyf+CLgW96JEVt+svEXexDWLv1Xi0rwAAAP//mTTMbcMAAAA
-                rating: 6
-                locale: near Hume Lake in Sequoia National Forest
         - id: dorst_creek
           name: Dorst Creek
           res_url: http://www.recreation.gov
@@ -7422,15 +7696,6 @@ properties:
                 lists:
                     - title: Best for Families
                       place: 9
-        - id: lodgepole
-          name: Lodgepole
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Lodgepole
-                desc: zzTPS27jMBCE4avUAQTDq5kbzCzyQBAb2bfJstgQzVbIlhzdPqCcbEnw51fnpA2jSvEBc6X7hiC3GVbgiXiResnEP6sT7LofPcmdkvCuKyu0wbdZg+S8IVS7R0Z4kjI1uEG9IVhZWZTFkS2IqxUUSt1jcmNRV7Zef7Y4crZMfGjOMvKAcyKulcSJn4up4JQW98we7+//d3nnsTma29ygD3lfMVZbShzQZNUyYrNlv4pVVw6QEiEF/ArMufO8iuZEiciU2Es/v1wkTMGW4nXrzl/L6z5GMt6kTg8rM9fHRG34M/w9HnEl/fAdAAD//wbo8FZnAQAA
-                rating: 8
-                locale: near Lodgepole Village in Sequoia National Park
         - id: limestone
           name: Limestone
           res_url: http://www.recreation.gov
@@ -7488,15 +7753,6 @@ properties:
                 desc: z1TOwWrDMAzG8Vf5HqCUstOuuxTGxg7rYGc1lWNhxwqSkpC3H05Pu/pvfp/eHLsuyEwPNLXISKYT3p3uXCvhkwpDG27CZoRf2k+ILA5xRGYkMQ9IA8HZhB2acFVjD9zYVhkYA03zaLq0hz/1LcuQEYro+q6LYZahnEC1wjlAVdt4+F/HTVe10uH+8sHW8C0r2xk//38cSRz3vl6abg1JDZoSm7QRs8nEfT0YGwXbkY1S9ErtgUI7FWnjk+bKK4Xogb6cXi8XJOY4/wUAAP//dEDVwjUBAAA
                 rating: 8
                 locale: on the North Fork of the Kern River in Sequoia National Forest
-        - id: hungry_gulch
-          name: Hungry Gulch
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Hungry Gulch
-                desc: z1yOS07EQAxEr1JLkKIcggUfCaFZcAEnXTOx6LQj2w3K7dFk2DBLS+X33mtvF9/x0uu8QAPWkAvxw0h6Q2gh7Iy3kIm1Ct7li5h6Qma3iGPsJgVnt/W4YjHniA+KTzuerNdC/xPMsm4DijrnrPs9Y7gGSIPUq1tSvznic6ET4kQzTCYJl3UL6C1U15VFJY+JjHh4NkdhitaATNbzf/uAII/Pk1ojHSfTlqgaqe1yw2pgXmRL+vj4GwAA///kSPhpIQEAAA
-                rating: 9
-                locale: near Isabella Lake in Sequoia National Forest
         - id: pioneer_point
           name: Pioneer Point
           res_url: http://www.recreation.gov
@@ -7515,6 +7771,48 @@ properties:
                 desc: zzyPwXHrMAxEW9kC9NXAv2eSuxuARMjEmCQ0AGiNbykiFaaSjGgnR86+XeJdsjhWqjvEoTs3TiAHNeidbSt6vNIN77roSW1SCqcZH3G+aNEeIFQpjM20Du4vRdHjX3ceK1fT3tKEQyKjsDs8U2JEpjZq/+FaGS7BDjJ+5un780sjs/mEg0uZ0HTn3y+6c8JuUsmkPMbxWJQChXpb8zlD2NRwowfd2E65BKMt2HzGm3iWdh1iJDbIlWITzxMWcp9evLRFD4RpjxmXzDC5s509D11vnJ5aA4A0RGZ4r5Vt/gkAAP//y7YrUGUBAAA
                 rating: 6
                 locale: on the Kern River in Sequoia National Forest
+    - id: /ca/sequoia/aspen_hollow
+      url: http://www.fs.usda.gov/sequoia
+      name: Aspen Hollow Group Camp
+      managed_by: Sequoia National Forest
+      campgrounds:
+        - id: aspen_hollow_group_camp
+          name: Aspen Hollow Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Aspen Hollow Group Camp
+                desc: zzyNUYqDQBAFr/IOICILewJZWNgl5MMLtOapgzM90tMT8PZBA/ktqqhhDQVRbCEWy3XHJGlHKBDHd/PVdZhJByOf4iErZMzVIUghEiVXX5Fn/NZE/MtGKMUgZ/WgwTMG6uX2Rm4NfCWCRjqKGyWdyqdu8aNuohPLyf+CLgW96JEVt+svEXexDWLv1Xi0rwAAAP//mTTMbcMAAAA
+                rating: 6
+                locale: near Hume Lake in Sequoia National Forest
+    - id: /ca/sequoia/hungry_gulch
+      url: http://www.fs.usda.gov/sequoia
+      name: Hungry Gulch
+      managed_by: Sequoia National Forest
+      campgrounds:
+        - id: default
+          name: Hungry Gulch
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Hungry Gulch
+                desc: z1yOS07EQAxEr1JLkKIcggUfCaFZcAEnXTOx6LQj2w3K7dFk2DBLS+X33mtvF9/x0uu8QAPWkAvxw0h6Q2gh7Iy3kIm1Ct7li5h6Qma3iGPsJgVnt/W4YjHniA+KTzuerNdC/xPMsm4DijrnrPs9Y7gGSIPUq1tSvznic6ET4kQzTCYJl3UL6C1U15VFJY+JjHh4NkdhitaATNbzf/uAII/Pk1ojHSfTlqgaqe1yw2pgXmRL+vj4GwAA///kSPhpIQEAAA
+                rating: 9
+                locale: near Isabella Lake in Sequoia National Forest
+    - id: /ca/sequoia/lodgepole
+      url: http://www.nps.gov/seki
+      name: Lodgepole
+      managed_by: Sequoia and Kings Canyon National Parks
+      campgrounds:
+        - id: default
+          name: Lodgepole
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Lodgepole
+                desc: zzTPS27jMBCE4avUAQTDq5kbzCzyQBAb2bfJstgQzVbIlhzdPqCcbEnw51fnpA2jSvEBc6X7hiC3GVbgiXiResnEP6sT7LofPcmdkvCuKyu0wbdZg+S8IVS7R0Z4kjI1uEG9IVhZWZTFkS2IqxUUSt1jcmNRV7Zef7Y4crZMfGjOMvKAcyKulcSJn4up4JQW98we7+//d3nnsTma29ygD3lfMVZbShzQZNUyYrNlv4pVVw6QEiEF/ArMufO8iuZEiciU2Es/v1wkTMGW4nXrzl/L6z5GMt6kTg8rM9fHRG34M/w9HnEl/fAdAAD//wbo8FZnAQAA
+                rating: 8
+                locale: near Lodgepole Village in Sequoia National Park
     - id: /ca/shasta_lake/antlers
       url: http://www.antlersrvpark.com
       name: Antlers RV Park & Campground
@@ -7655,15 +7953,6 @@ properties:
                 desc: z1TNwanDMBCE4VamAGPMg1dEIEc3sMQjS0TZNau1jboPOuY2zH/4HgndTtyigdWLluh4ypuQWhE2ojfWNMGUuKWPczOUQGlj7wwIdrfzQNjOyHSIbohMhbPRLyJyaXjJ54BSfDS0bE5Y+mFnrJlg5SVRTIfxN/0vCxIZ8zcAAP//wFAYda0AAAA
                 rating: 7
                 locale: on Trinity Lake in Shasta-Trinity National Forest
-        - id: bushytail
-          name: Bushytail
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Bushytail
-                desc: zxzOsZHrMAyE4Va2AI+LeMGLnJ0bgCnQwIgkNABojbJr49q7Sm6kdIPv34cVSl7QOAIpNEDo2hjVrePpOjQPPGjlG/7NkCNJGzRgg2EVKYzKO/6bcyS+2D9aGKHJgV1TwI1LuhbQWLBTskPM1rnFtYTYzo5KRZumctzxFEannM5I7S/2szdONg3NbAXlDa+ZV130LXg5jSIcWGz8fv8krFZ29FkEm+uHynG6GidFeJst10dUc0Sn1vB2m1vc/wIAAP//mDYF1REBAAA
-                rating: 7
-                locale: near Trinity Lake in Shasta-Trinity National Forest
         - id: minersville
           name: Minersville
           res_url: http://www.recreation.gov
@@ -7774,6 +8063,20 @@ properties:
                 lists:
                     - title: Best for Fishing
                       place: 9
+    - id: /ca/shastatrinity/bushytail
+      url: http://www.fs.usda.gov/stnf
+      name: Bushytail
+      managed_by: Shasta-Trinity National Forest
+      campgrounds:
+        - id: default
+          name: Bushytail
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Bushytail
+                desc: zxzOsZHrMAyE4Va2AI+LeMGLnJ0bgCnQwIgkNABojbJr49q7Sm6kdIPv34cVSl7QOAIpNEDo2hjVrePpOjQPPGjlG/7NkCNJGzRgg2EVKYzKO/6bcyS+2D9aGKHJgV1TwI1LuhbQWLBTskPM1rnFtYTYzo5KRZumctzxFEannM5I7S/2szdONg3NbAXlDa+ZV130LXg5jSIcWGz8fv8krFZ29FkEm+uHynG6GidFeJst10dUc0Sn1vB2m1vc/wIAAP//mDYF1REBAAA
+                rating: 7
+                locale: near Trinity Lake in Shasta-Trinity National Forest
     - id: /ca/shaver_lake/edison
       url: http://www.sce.com/campedison
       name: Camp Edison
@@ -7895,33 +8198,6 @@ properties:
                 desc: zxzMQQrCQBBE0avUAUII6Alcu3ARcN1ohWmc6QlWI+T2ktn+D28tLrys7eiBp6v0wKN7JFzIQqhZrVROsHijWRyQHWPtX2b6eH0b5YQES9xMwt0+nLEWgpU/S+9xqpfpuizYyJz/AQAA//8eROzzfgAAAA
                 rating: 9
                 locale: on Bass Lake in Sierra National Forest
-        - id: chilkoot
-          name: Chilkoot
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Chilkoot
-                desc: z0SQMW4CMRBFr/IPgBBFlD6hipQyFxiy33hYr8eyx7tKxzW4HieJDAXtt/T83nwgmcMCCq0kIspKREqdxvgpreFbZu5w6g7L6Q8eiSDqMfSEOdsGOVl3HKOm2cxxrOS8x08Uv19vDVtkJTxqw68sBdqeNH0+X3pz+GZYNLEhVFte/+7x5SjVVp3YIChVF3VdCSuuluGG3giqR1ZIg2TYyhrSEKsUBKsvHqw+hmBpHmaGyfL9enNskn3QznRcZFk4QbMbLHNcYlS/KKPjXK3nqcHy8LLSk1Rs5Mw8jXqCias8LLXhbfd+OCCQvv8PAAD//0qypgh0AQAA
-                rating: 7
-                locale: near Bass Lake in Sierra National Forest
-        - id: sweetwater
-          name: Sweetwater
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Sweetwater
-                desc: zxzNwU0DMRCF4VZeAatVJC7cc+KAhIAGBvatPGTsMfbYaT9yCvi//+tOxl2CDdrRs5hByoHaNGvo5IafEdATkYhfyRUSeJecPRI+3A2f7GzT9SmcasYDo26ItMTqgdp86sEOKRALtiKL3vEWq/GCa9L/oeG4NvK24W/0gCCrEWfz/Lyb3LjjOxE0Tgn1svKX7fVywUnG/ggAAP//K8gNIM4AAAA
-                rating: 6
-                locale: near Mammoth Pool Reservoir on Chiquito Creek in Sierra National Forest
-        - id: mammoth_pool
-          name: Mammoth Pool
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Mammoth Pool
-                desc: zxTFsQ0DIQwF0FX+BAyQNn2qLGDBD1gCGxmIokx/uuq9fPOBd9OFLGPW8GMFusDfZCgtq1W4Vb9t8pco2EEiOPwrPeEpvePjgTOLbK50BQAA//9tSW/uVAAAAA
-                rating: 7
-                locale: near Mammoth Pool Reservoir in Sierra National Forest
         - id: vermillion
           name: Vermillion
           res_url: http://www.recreation.gov
@@ -7940,15 +8216,6 @@ properties:
                 desc: z1xTS27cSAy9ylvagKZhAx4MMFkFCIIgiL2wfQGqxG7RXSoqJKVO3ypnyMmCKnUSOytBpVd8Hz49j+JINM0H06UMkIIYGU/CZgQK/Nfd3dxgzxzgzCuFaAFlLYcNSAWflb4uUvAoKxtcwjGIcYp8Bg0vlLgEQhv+XovikwaeZpNycDyyq8UOzyNj1IBfzskYcZ4lUc5n3N7c/fj+scNJYsS89FkSZtXsuOKV7dzrcMaJyRx+kmmScoAvEn6Nl8UD1OvKTYA1kVqgheEyMKgM7ctsslIwrCnClWk6IlEvxUErSaY+8/UmoXr8he8pRq8T6xCNkW2H9/CJckbSsnIRLonhobax8bfEOddUjD1oMSrRDP+mqcnXcVmHA+9wT+WMvVyEvo5pZttzig79EtirwXXajJ4o2CCOUK1XdnhQzKZ95uldQ/Ts8SeuTEf+a/0PvNJAHT6omTi+0JG7OpFw++8/k5QlKk0+YiZ/o/dyoVYrM1nXHqVr5otGk5Q0D3Cpych2Io49D+jPrx22ZtRorHFlf7O76ni/FLws0+yQEoqBed7Mb6Wq2EFPhe3/9j7UBjSjWyNfl99Ri93Bs542tSPnTEl08Uv5prqKPtddJLXCVmlRyExPcE71//DdzwAAAP//JDgmUVcDAAA
                 rating: 8
                 locale: on the San Joaquin River in Sierra National Forest
-        - id: mono_creek
-          name: Mono Creek
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Mono Creek
-                desc: z2SRQc7UMAyFr/KWIJXqXyCxRgg0C9gAF3CnbmtNEhfbadUd1+B6nASlBWkklrGS9758vrHx75+/HISBqYZMNcFXDUhBLIxJjT1QmAxftCg+GPMDsVAg04O93QAV6MY2Jd1xp7zOprWM2Be+UtrMQXFF3DTwbTUps4PKiM/0YHwcxbWAjDFJSjx2ULsSDq3YqQQIP6pwsHXIagzjrMEnb4/vf3sgZ9O77u3LCybmACfeKKSlD1oDsRgzsqRGb5qfATpsQiDELh7HiTfUvB4wpbH/R7mQY1YdwRsXKTPCWvAkvrRTe0XwTCmh6aNqVKLHJzW4jIwwWb071fxn5Cu7WrRfPHPSTgdeedK9w73adnRPbKPJJmV+fc1iYeNTZKmZTasjjCT5ucXhgJTQs3ug++OutYQdPd5f9hb1s1zLG5fg/k8AAAD//0Y9AnMiAgAA
-                rating: 7
-                locale: near Lake Edison in Sierra National Forest
         - id: rock_creek
           name: Rock Creek
           res_url: http://www.recreation.gov
@@ -8030,14 +8297,6 @@ properties:
                 desc: z2zNMU4rUQyF4a2cBUSj6FWvhwIEFYpE7cw9ybXmxh5sDxK7Rxkoaf1/8jl1TcxyW6EJwdW9Ychmc1e7YpWGiwfOMi+rzAsjJzzXbgv/D/+OR1zIAgc/pdQNMtyueBObO0MFD0EuE06dqBAdGJR2/+1bwS+ozp/9TmkJtfL99iKaDLzraAxjJn6DeVSHWMOj2sIvvMrC/AOmb9UnPHkkExLEyrhpFdsB563uKLgHc/BjY1aoGORG01Lm9B0AAP//T1Cejh4BAAA
                 rating: 7
                 locale: on Rancheria Creek in Sierra National Forest
-        - id: midge_creek_group
-          name: Midge Creek Group
-          refs:
-            cc:
-                name: Midge Creek Group
-                desc: zySQwW3sMAxEW5kCFm7iX36ABAGSNEBbY4lYLWWI1C58SxtpL5UE9l5JzHuY+SrqUIcgt5bgWwtEw0zoir0NPMTOi9ybJkQhlt4eySEBo/R5x4fYUthVMI+Ah9Z6AI4v/g8LtRzN8CpXTnjvmtWk1h3OwNgOeGnDiVU7V80l2P3yVMltA++0GGdi5iI3QrCx38RogVUWrRr7hJf4/f7xk6oGQZWeeUHbaJBOgRdJTJj3w4TopE/4pHgzqXjTlIl/nbwegzy7TX8BAAD//9gV7YAgAQAA
-                rating: 7
-                locale: near Huntington Lake in Sierra National Forest
         - id: badger_flat_group_and_horse_camp
           name: Badger Flat Group And Horse Camp
           res_url: http://www.recreation.gov
@@ -8074,6 +8333,75 @@ properties:
                 desc: zySQQZITMQxFr/IPkJkaqKJYs2GRYjbMcAC1/TsWcVuNrE6THdfgepyEcmfn+t/Sf/pnSVfpHa+UbDu0Q7A6I+7oqwUk/5TEFgjD12rOlohvcuUJjeKIQvxYVzrepOFs8mvThu96oz/jvdAJceJilpGkGbVdTnCZ43hIy5irSTzFNmm7YLXeddKqoewnSK0oeilPb0p3QY975WOs77osY2Qw12o785GIySTQVzKj6qIxPnz4hGUtD5+VNwm1NozPp48vL5jJeJhVrhy6c7HgEZSkYSKckgozrNU7ZA46BNXGFUk9bRq2dWTXG2ENgibutsNNMnaNgkXaHVPVlhGbt/6MLwgXrYWSIXGUeQDYPNM7JCX2Pqofzq4109tQBtaQzlYaXjd1vI89Y2HRK73/+/MXuwzGkN96VHQTrTJVPv8PAAD//zmycgHzAQAA
                 rating: 7
                 locale: on Florence Lake in Sierra National Forest
+    - id: /ca/sierra/chilkoot
+      url: http://www.fs.usda.gov/sierra
+      name: Chilkoot
+      managed_by: Sierra National Forest
+      campgrounds:
+        - id: default
+          name: Chilkoot
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Chilkoot
+                desc: z0SQMW4CMRBFr/IPgBBFlD6hipQyFxiy33hYr8eyx7tKxzW4HieJDAXtt/T83nwgmcMCCq0kIspKREqdxvgpreFbZu5w6g7L6Q8eiSDqMfSEOdsGOVl3HKOm2cxxrOS8x08Uv19vDVtkJTxqw68sBdqeNH0+X3pz+GZYNLEhVFte/+7x5SjVVp3YIChVF3VdCSuuluGG3giqR1ZIg2TYyhrSEKsUBKsvHqw+hmBpHmaGyfL9enNskn3QznRcZFk4QbMbLHNcYlS/KKPjXK3nqcHy8LLSk1Rs5Mw8jXqCias8LLXhbfd+OCCQvv8PAAD//0qypgh0AQAA
+                rating: 7
+                locale: near Bass Lake in Sierra National Forest
+    - id: /ca/sierra/mammoth_pool
+      url: http://www.fs.usda.gov/sierra
+      name: Mammoth Pool
+      managed_by: Sierra National Forest
+      campgrounds:
+        - id: default
+          name: Mammoth Pool
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Mammoth Pool
+                desc: zxTFsQ0DIQwF0FX+BAyQNn2qLGDBD1gCGxmIokx/uuq9fPOBd9OFLGPW8GMFusDfZCgtq1W4Vb9t8pco2EEiOPwrPeEpvePjgTOLbK50BQAA//9tSW/uVAAAAA
+                rating: 7
+                locale: near Mammoth Pool Reservoir in Sierra National Forest
+    - id: /ca/sierra/midge_creek
+      url: http://www.fs.usda.gov/sierra
+      name: Midge Creek Group
+      managed_by: Sierra National Forest
+      campgrounds:
+        - id: midge_creek_group
+          name: Midge Creek Group
+          refs:
+            cc:
+                name: Midge Creek Group
+                desc: zySQwW3sMAxEW5kCFm7iX36ABAGSNEBbY4lYLWWI1C58SxtpL5UE9l5JzHuY+SrqUIcgt5bgWwtEw0zoir0NPMTOi9ybJkQhlt4eySEBo/R5x4fYUthVMI+Ah9Z6AI4v/g8LtRzN8CpXTnjvmtWk1h3OwNgOeGnDiVU7V80l2P3yVMltA++0GGdi5iI3QrCx38RogVUWrRr7hJf4/f7xk6oGQZWeeUHbaJBOgRdJTJj3w4TopE/4pHgzqXjTlIl/nbwegzy7TX8BAAD//9gV7YAgAQAA
+                rating: 7
+                locale: near Huntington Lake in Sierra National Forest
+    - id: /ca/sierra/mono_creek
+      url: http://www.fs.usda.gov/sierra
+      name: Mono Creek
+      managed_by: Sierra National Forest
+      campgrounds:
+        - id: default
+          name: Mono Creek
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Mono Creek
+                desc: z2SRQc7UMAyFr/KWIJXqXyCxRgg0C9gAF3CnbmtNEhfbadUd1+B6nASlBWkklrGS9758vrHx75+/HISBqYZMNcFXDUhBLIxJjT1QmAxftCg+GPMDsVAg04O93QAV6MY2Jd1xp7zOprWM2Be+UtrMQXFF3DTwbTUps4PKiM/0YHwcxbWAjDFJSjx2ULsSDq3YqQQIP6pwsHXIagzjrMEnb4/vf3sgZ9O77u3LCybmACfeKKSlD1oDsRgzsqRGb5qfATpsQiDELh7HiTfUvB4wpbH/R7mQY1YdwRsXKTPCWvAkvrRTe0XwTCmh6aNqVKLHJzW4jIwwWb071fxn5Cu7WrRfPHPSTgdeedK9w73adnRPbKPJJmV+fc1iYeNTZKmZTasjjCT5ucXhgJTQs3ug++OutYQdPd5f9hb1s1zLG5fg/k8AAAD//0Y9AnMiAgAA
+                rating: 7
+                locale: near Lake Edison in Sierra National Forest
+    - id: /ca/sierra/sweetwater
+      url: http://www.fs.usda.gov/sierra
+      name: Sweetwater
+      managed_by: Sierra National Forest
+      campgrounds:
+        - id: default
+          name: Sweetwater
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Sweetwater
+                desc: zxzNwU0DMRCF4VZeAatVJC7cc+KAhIAGBvatPGTsMfbYaT9yCvi//+tOxl2CDdrRs5hByoHaNGvo5IafEdATkYhfyRUSeJecPRI+3A2f7GzT9SmcasYDo26ItMTqgdp86sEOKRALtiKL3vEWq/GCa9L/oeG4NvK24W/0gCCrEWfz/Lyb3LjjOxE0Tgn1svKX7fVywUnG/ggAAP//K8gNIM4AAAA
+                rating: 6
+                locale: near Mammoth Pool Reservoir on Chiquito Creek in Sierra National Forest
     - id: /ca/silverwood_lake
       url: http://www.parks.ca.gov
       name: Silverwood Lake State Recreation Area
@@ -8379,15 +8707,6 @@ properties:
                 desc: z3SSwWrcXAxGX+Vb/j84Qwtp9i0ldNFmMdPQtcaW56q5IxlJtpldHiJPmCcp19MSKHRnhHw4OvYnOeEb02BrB668UIop7rrbu3cYmbNDSAZMkYWxciS7IqpNHLBxmx6E3QkPvNBAO+y5d75yKNOpb48BZfLjBaJ9nQfeXnwwz4J78yccklSi0hzYy8KOXA1nqRxI25bD5iwQBUE3OlWM5hyJ/4KvwAPpgPtKiXub/eZHYa747LIwqkSKnhogiwT6QlOy/99hlSygvucI0EJS6VgZo9sZhLFx1sa5GTaOGw34OUeCKbIl6Ok8wbw1OkzSs2PPwb6YOPZt+03v7yP/JbXDV3pifKyTKHcgTM6ZF9Q2nWyaK3k7Huk2J0aJInrqIAEV5d/hroKKL3IqK11wu8P34sw426xJovA/ovH6/HKV7/CY0lOHlvJRxfT1+YWcQbVuqbYv8P7DzVl0TsZWZYe3/6hJUA0D4WQ24EjB10ZNuMzaLt79CgAA//917JDceAIAAA
                 rating: 5
                 locale: in Stanislaus National Forest
-        - id: lodgepole_group_lake_alpine
-          name: Lodgepole Group Lake Alpine
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Lodgepole Group Lake Alpine
-                desc: z1SPsUpEMRBFf+V+wGMRG7ESKxs7C+vZfTcv485mQjLxsX8vL4JgdwjkzLmfWQLhWB17ZoGYITJxkVvdmo+ydkjgXa7Eq1UthDQiDbMXvElkNoRvnHD30ZCacv4qK5Lc1O4TM2U9DkXWjsNc0TWIr9EDsTtuauzY2QOeZoPJlSd8MKAFUjDKym+aV66oJsdj4Gl5fH5AImP5C4d2mLSNC5JJLDPAK8uC8wjsGvnfou64mHdOQ/tdWI0l7keK1+otRtFQdiRvyHrVsi1I2vOEw392CS3b6ScAAP//3y3hwVIBAAA
-                rating: 6
-                locale: near Lake Alpine in Stanislaus National Forest
         - id: silver_valley
           name: Silver Valley
           res_url: http://www.recreation.gov
@@ -8397,15 +8716,6 @@ properties:
                 desc: zyzPQUvEQAzF8a/yjgpr2YPgWQRBUBAUPWenrzvB2UxJYqXfXlq9Bv6/8N6rBjTQjegTpv7tKHKZA5J4li/ivs1qHPCmbaHjQ1rj+pcgK2Hds1IiQRs3Yzu2rZTE3eH2eMREJti4SGq3A340KwTpoq1SRhjFTyuySmL2vujIgJTCCGTfxQfx6HbzVHiin/GpbaQbIwZcPXaHszh3H2pT98v/ryD3/lWNeBFPGppGqp2h2wINlCpz0ofr3wAAAP//rS4RwA4BAAA
                 rating: 8
                 locale: on Lake Alpine in Stanislaus National Forest
-        - id: lost_claim
-          name: Lost Claim
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Lost Claim
-                desc: zzSQsU4DMRBEf2U+AKJLUlLRICqEojSUm7u5eBWfHe3aF+7vkR3Resbznn0O6lBHToQmCJymdOQZFN9eZRzpjlGWezuc8anX8JAN+8OAEqTgbnnVicgrbY75ATGK4xGYIDGiBMK10FuAIjemRvrJzkUL8SVFc5KIb7EbSu4XKF52OAd28tVyTRNiE9PUC4dhf8RJF3yoEZdqiVMnv+EeKU7wlzaqt4XaCE+joDdNV+TUyygmGn2Hd8zkRIMXoyz/GueaY10ScdKVBqvJcdl61Lyehoxc+xvaPx5f9sPQxsruLwAA//8YWKLjWwEAAA
-                rating: 4
-                locale: near the Tuolumne River in Stanislaus National Forest
         - id: the_pines_and_pines_group
           name: the Pines And Pines Group
           res_url: http://www.recreation.gov
@@ -8415,24 +8725,6 @@ properties:
                 desc: z0SQT0szMRDGv8pzfF9YSrFIvQqiIKLFLd6nu5Pu0GxmTSZZ+u0lUfE2hPyef8eJcZDACQPNCySBDLvuZruFYzaw50ImGqABNjFWTsYxgMczQx16oyDJU054bR/J41EjJ+ugwV+x3dxiFs9wUecm8RS1sKcw4kGSRRkMb87JwKhvdNJscFK4YemPO2b1eQ6MdykcN7j/MULPsVQ8Ko21QtRsPCJptqlmbNWcRtiq36IdBi/zScIZpuhnsQkHpgteVC/V/9+uu9vv2wb/W6wlapGxAmllXupRhNdU+d9dqle9ewp4VvrMEvBB3vMVTtUm8T5tvgIAAP//UYhPw3IBAAA
                 rating: 4
                 locale: in Stanislaus National Forest
-        - id: pinecrest
-          name: Pinecrest
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Pinecrest
-                desc: z1yQUYsTQRCE/0o9KiQhCPp+KAeCguCJz70ztbfNzU6H7k5C/PUye0Hhnrvmq5rvadHAaj2Svg/9w4pHc0biJ/2ihSiynqCBTnH80M6ynb/JCw94QJNzLwv8npKLaJOpcQfpFYIPx/16WhAnsqLpqjli7LN5YYV15EK0Oy1dtKGol8b4d3lFtTBMLr0sDNg8I20bNd3wWXLWWO6jvnZQvN0Q53Wl7wbHOWqfzSpGUvszZnNEWnlhhYv2ya5It3Me8LQQbLxIqvXx8OPu0/GImcwDfmtP+uZlYManW7Mr66uiMfq/pi9y2/8K4sEpB7x7NEdliraATHbON0Z3CHJDfKdUu16UVzSN3JqGKw2URU5JP7z/GwAA//8udiKvvQEAAA
-                rating: 7
-                locale: near Pinecrest Lake in Stanislaus National Forest
-        - id: pioneer_trail_group_camp
-          name: Pioneer Trail Group Camp
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Pioneer Trail Group Camp
-                desc: zyTPQUoEMRAF0Kv8pULTzEa8gSAoCK5cxsxPdzGZVEhVppmd1/B6nkTSvSuq4L/6rwl37X8/v41YVMoCV3xIYWw0x1u4EJv4ioDPqN3hTbVO8FUMYvCVsKo+waREQnxsjY5eYZVRksSQ8x1JG5amvdqML+1Y6Phm6C6pZ8RGXhDKGXmQN+Fm0yEPIoZr3VODIxQw8xZctEATnqbn0wmJ9BkPL9rQxvPHWUrSdt3nCUbuYe8MZ90GgSzmo7SUo1FcQ3W2+fE/AAD//y/7FFkYAQAA
-                rating: 8
-                locale: near Pinecrest Lake in Stanislaus National Forest
         - id: cherry_valley_and_boatin
           name: Cherry Valley And Boat-In
           res_url: http://www.recreation.gov
@@ -8451,6 +8743,62 @@ properties:
                 desc: z0zPTU5CUQzF8a2cBRCCyhKUoRp14rBwD9zK/TBtn09mLMKhbo6VmIcxOm9+Pf9rrb0lnI6fd6fjF9QhgeVsuVhgSwZY+CahvaE3RCYoHrQG10T0LR5DmnqRwXF7PpSCVTd6nI4fL4MHYuyoWujYWq9nZOQPsu6WaBPz3J1Vg3/Ivdh+jqc8TTIKPLQUZHF4r8R6sMaEMP6HLxcXV3jQipUa57h5p23UiY0M54gxs2GUste2Q2Trwy7/UtMXn4H+yo1KKYcpedSWDkhy8Pl3AAAA//+ScesXKwEAAA
                 rating: 7
                 locale: in Stanislaus National Forest
+    - id: /ca/stanislaus/lodgepole_lake_alpine
+      url: http://www.fs.usda.gov/stanislaus
+      name: Lodgepole Group Lake Alpine
+      managed_by: Stanislaus National Forest
+      campgrounds:
+        - id: lodgepole_group_lake_alpine
+          name: Lodgepole Group Lake Alpine
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Lodgepole Group Lake Alpine
+                desc: z1SPsUpEMRBFf+V+wGMRG7ESKxs7C+vZfTcv485mQjLxsX8vL4JgdwjkzLmfWQLhWB17ZoGYITJxkVvdmo+ydkjgXa7Eq1UthDQiDbMXvElkNoRvnHD30ZCacv4qK5Lc1O4TM2U9DkXWjsNc0TWIr9EDsTtuauzY2QOeZoPJlSd8MKAFUjDKym+aV66oJsdj4Gl5fH5AImP5C4d2mLSNC5JJLDPAK8uC8wjsGvnfou64mHdOQ/tdWI0l7keK1+otRtFQdiRvyHrVsi1I2vOEw392CS3b6ScAAP//3y3hwVIBAAA
+                rating: 6
+                locale: near Lake Alpine in Stanislaus National Forest
+    - id: /ca/stanislaus/lost_claim
+      url: http://www.fs.usda.gov
+      name: Lost Claim
+      managed_by: Stanislaus National Forest
+      campgrounds:
+        - id: default
+          name: Lost Claim
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Lost Claim
+                desc: zzSQsU4DMRBEf2U+AKJLUlLRICqEojSUm7u5eBWfHe3aF+7vkR3Resbznn0O6lBHToQmCJymdOQZFN9eZRzpjlGWezuc8anX8JAN+8OAEqTgbnnVicgrbY75ATGK4xGYIDGiBMK10FuAIjemRvrJzkUL8SVFc5KIb7EbSu4XKF52OAd28tVyTRNiE9PUC4dhf8RJF3yoEZdqiVMnv+EeKU7wlzaqt4XaCE+joDdNV+TUyygmGn2Hd8zkRIMXoyz/GueaY10ScdKVBqvJcdl61Lyehoxc+xvaPx5f9sPQxsruLwAA//8YWKLjWwEAAA
+                rating: 4
+                locale: near the Tuolumne River in Stanislaus National Forest
+    - id: /ca/stanislaus/pinecrest
+      url: http://www.fs.usda.gov/stanislaus
+      name: Pinecrest
+      managed_by: Stanislaus National Forest
+      campgrounds:
+        - id: default
+          name: Pinecrest
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Pinecrest
+                desc: z1yQUYsTQRCE/0o9KiQhCPp+KAeCguCJz70ztbfNzU6H7k5C/PUye0Hhnrvmq5rvadHAaj2Svg/9w4pHc0biJ/2ihSiynqCBTnH80M6ynb/JCw94QJNzLwv8npKLaJOpcQfpFYIPx/16WhAnsqLpqjli7LN5YYV15EK0Oy1dtKGol8b4d3lFtTBMLr0sDNg8I20bNd3wWXLWWO6jvnZQvN0Q53Wl7wbHOWqfzSpGUvszZnNEWnlhhYv2ya5It3Me8LQQbLxIqvXx8OPu0/GImcwDfmtP+uZlYManW7Mr66uiMfq/pi9y2/8K4sEpB7x7NEdliraATHbON0Z3CHJDfKdUu16UVzSN3JqGKw2URU5JP7z/GwAA//8udiKvvQEAAA
+                rating: 7
+                locale: near Pinecrest Lake in Stanislaus National Forest
+    - id: /ca/stanislaus/pioneer_trail
+      url: http://www.fs.usda.gov/stanislaus
+      name: Pioneer Trail Group Camp
+      managed_by: Stanislaus National Forest
+      campgrounds:
+        - id: pioneer_trail_group_camp
+          name: Pioneer Trail Group Camp
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Pioneer Trail Group Camp
+                desc: zyTPQUoEMRAF0Kv8pULTzEa8gSAoCK5cxsxPdzGZVEhVppmd1/B6nkTSvSuq4L/6rwl37X8/v41YVMoCV3xIYWw0x1u4EJv4ioDPqN3hTbVO8FUMYvCVsKo+waREQnxsjY5eYZVRksSQ8x1JG5amvdqML+1Y6Phm6C6pZ8RGXhDKGXmQN+Fm0yEPIoZr3VODIxQw8xZctEATnqbn0wmJ9BkPL9rQxvPHWUrSdt3nCUbuYe8MZ90GgSzmo7SUo1FcQ3W2+fE/AAD//y/7FFkYAQAA
+                rating: 8
+                locale: near Pinecrest Lake in Stanislaus National Forest
     - id: /ca/steckel
       url: http://www.venturaparks.org
       name: Steckel Park
@@ -8565,15 +8913,6 @@ properties:
                 desc: zyzOUUrFQAyF4a2cRwXtHm4pPou4gXQmbYMzSUkyQncvlvt+ON//fUigUD8hgcohu3LFZo7dbZwYwRMeKKbFORmrUcKfe1NGl8ZQ8zxAiTwYC/kPFrrwKUWl4OFME14+zCG6mXdKMQWtNhIbdWnXXfAPag2Q1pt5F0VIcrwhmO/rJpGie6BZoeQKU8yjNfIamMnxxcH+a+LT618AAAD//1lgtuzaAAAA
                 rating: 7
                 locale: on Bullards Bar Reservoir in Tahoe National Forest
-        - id: packsaddle
-          name: Packsaddle
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Packsaddle
-                desc: z1SRQW7bQAxFr/IPoAh2irjtMl101UWB9AL0DKVhPJ4RSI4F73KIbnq9nKQYqUCRNcn//uf/SeFiFGNmiIHwvSqb44X1JoFh4gw61+Y4jE+4SmZMWq/od6z4QRcesIonUAHFKC61UMbxCZkubNtMCgiT3PhhE1CK0mzEr8RwJcmJKcIrQpbrGS/CqoRvzZ3t/e13LYw64fnKKoHe3/4YXFu+Y1YmR5KLlHkX6utieG3maAs8MbRSHD9qYmLyptzz7sg64XH4dPqKidlRb6zbbahNbYN381t6G5BkTlnm5BxxvoNgTqIr3fc/HD+fYM6LwRM5sjgr5XzHa3ODFK+oCxfYQoFHPOfcAZ7EegNB61r+CReQeW0l9nw34RVTVaRWonK0frU5Qn9vzoiiHPr7bfxYDzlOw+Pxy56OM9+orw2dV5h0Y0UkMuQ6I9BZig1w7bVPYknKPGwrua4PtnD3V8mlzHuJga7LrN3pf/UufhoOh8NGHf8GAAD//9l1RphoAgAA
-                rating: 6
-                locale: near Packer Lake in Tahoe National Forest
         - id: berger
           name: Berger
           res_url: http://www.recreation.gov
@@ -8806,14 +9145,6 @@ properties:
                 desc: z1zOwQnCQBAF0Fb+USGE4EG0AfHgSWIBQ/zJDiazy+yopHvRow08Xp+0ojgjVgyyFGiFzNkmnHVKb1lxOELsjkjERSNmovfn8CBx1RcdEtg3u67DSEaLzSk7luyE2ph9kdBsDSr5I26l0P+hWWuoTVBDfD9DkhL0dvsJAAD//2vkVVueAAAA
                 rating: 7
                 locale: on the Little Truckee River in Tahoe National Forest
-        - id: faucherie_group_camp
-          name: Faucherie Group Camp
-          refs:
-            cc:
-                name: Faucherie Group Camp
-                desc: zySQzc3cOgxFW7kF+A2+t8kiBeQHyC5pgJKvLcIaUqHobzC7tJH2UkngyZY44Lk4n+SsjaHENzkInchGHGorfMPoUolskrj7TAz66ERhV74TVQyFCEptXOHWnyhPdLd9warbpvXsiaYHJx6aDYIi9RhSjxs+n5wTsovaR3xhEJrQuWAyoYbvygjBHmKahCQ+LP+/vWEjE+x8l1S3BT9PZUJsxQidqcYFgtplTq2QPtSILgdv+HoJoCulY/NAlfgvfaC4pNr+etJkYmWlJTad7TpfaPFsCFEr/nhxJfxhyPAzb/jRdGIPPweq3MdlcXulvMR/fv2eMI9sDMNsHq+JI/ROzOG5/Ktz8X5mZ6IGecAoUZ63vwEAAP//wujCM6UBAAA
-                rating: 7
-                locale: near Bowman Lake in Tahoe National Forest
         - id: logger
           name: Logger
           res_url: http://www.recreation.gov
@@ -8895,15 +9226,6 @@ properties:
                 desc: zxzPwUoEMQyH8Vf5HxWWYZB9gz3oSYQVPIdp2kbbpKSp4tvLeP7gB9/9S1rrpHh2WwM36gMyQYHr5brvyMxxgSkIzWyAjoPnhBslfK4ZsJzxIqX+0C+e9gtIE6rMMJcDb2LK7Hh3kgZfOuFSaiCq2yoVEhse7syIyvioEoxbs5XQZIZogSiiysRRaQQ7sjm6OUM0m3cKMd0e8WpxGhT/0EF9FLel6XxZmtiLndoZnbt9U4NlJKaEcOa5/QUAAP//M8oepwgBAAA
                 rating: 5
                 locale: in Tahoe National Forest
-        - id: indian_springs
-          name: Indian Springs
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Indian Springs
-                desc: z0SQsc7bMBCDX4UPkN/I0qJrlwJdOrRZOp5tWjpE1hmnUwK/fSGjwD9oEUHy+D0ysch+QBso7UQYnLJkbG47fn58u+NkDFkrBDOlh269oDFCa4IEvty+3u/YyIAUqwmRiT/WI+OH+RN/+yz4rS/6hEceUQ2CZJ5ovaGFU/YbvNc6ElfywFw6P5KTFVJXHN2JyG49ZSSXqsEbFtuPwiDeGhlJpQZm62Wlt8v2ee5hVtqEh1sPbNryaNKGTdQnfEfbpRS0t+77UOaLgTZUis/nDZGv6rHsLUEf2mJlHYvohIxXmqHxRZeCIk9e0IblpYtWjXPCL4sxROL6H+iTW6/ryOt1pSfT/wSdu72kwDaslBXhZJv+BQAA///5K9yhsgEAAA
-                rating: 8
-                locale: near the Yuba River in Tahoe National Forest
         - id: lodgepole
           name: Lodgepole
           res_url: http://www.pge.com/recreation
@@ -9038,6 +9360,47 @@ properties:
                 desc: z2SOQUrEQBBFr/IPIENWouvZuNZcoJz8dBcTq0J1JSG3l1YQYbafx39vrNqwBjNP3ORrLeGbTdAGowSOyiA+dNkZuAZ5By0ZDVmJMbbbncS77owLxkpk+JaYtVW10m98ThqK+wQ1ZNdJUDqt7QcwwmdkDfJfQoMsbgVvWuohJ15eITY9avHJPEj7Wzs1SnXiqnn+VnHhLqluXfj8NAwDZjIv3wEAAP//agqaJP4AAAA
                 rating: 8
                 locale: on the Truckee River in Tahoe National Forest
+    - id: /ca/tahoe/faucherie
+      url: http://www.fs.usda.gov/tahoe
+      name: Faucherie Group Camp
+      managed_by: Nevada Irrigation District
+      campgrounds:
+        - id: faucherie_group_camp
+          name: Faucherie Group Camp
+          refs:
+            cc:
+                name: Faucherie Group Camp
+                desc: zySQzc3cOgxFW7kF+A2+t8kiBeQHyC5pgJKvLcIaUqHobzC7tJH2UkngyZY44Lk4n+SsjaHENzkInchGHGorfMPoUolskrj7TAz66ERhV74TVQyFCEptXOHWnyhPdLd9warbpvXsiaYHJx6aDYIi9RhSjxs+n5wTsovaR3xhEJrQuWAyoYbvygjBHmKahCQ+LP+/vWEjE+x8l1S3BT9PZUJsxQidqcYFgtplTq2QPtSILgdv+HoJoCulY/NAlfgvfaC4pNr+etJkYmWlJTad7TpfaPFsCFEr/nhxJfxhyPAzb/jRdGIPPweq3MdlcXulvMR/fv2eMI9sDMNsHq+JI/ROzOG5/Ktz8X5mZ6IGecAoUZ63vwEAAP//wujCM6UBAAA
+                rating: 7
+                locale: near Bowman Lake in Tahoe National Forest
+    - id: /ca/tahoe/indian_springs
+      url: http://www.fs.usda.gov/tahoe
+      name: Indian Springs
+      managed_by: Tahoe National Forest
+      campgrounds:
+        - id: default
+          name: Indian Springs
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Indian Springs
+                desc: z0SQsc7bMBCDX4UPkN/I0qJrlwJdOrRZOp5tWjpE1hmnUwK/fSGjwD9oEUHy+D0ysch+QBso7UQYnLJkbG47fn58u+NkDFkrBDOlh269oDFCa4IEvty+3u/YyIAUqwmRiT/WI+OH+RN/+yz4rS/6hEceUQ2CZJ5ovaGFU/YbvNc6ElfywFw6P5KTFVJXHN2JyG49ZSSXqsEbFtuPwiDeGhlJpQZm62Wlt8v2ee5hVtqEh1sPbNryaNKGTdQnfEfbpRS0t+77UOaLgTZUis/nDZGv6rHsLUEf2mJlHYvohIxXmqHxRZeCIk9e0IblpYtWjXPCL4sxROL6H+iTW6/ryOt1pSfT/wSdu72kwDaslBXhZJv+BQAA///5K9yhsgEAAA
+                rating: 8
+                locale: near the Yuba River in Tahoe National Forest
+    - id: /ca/tahoe/packsaddle
+      url: http://www.fs.usda.gov/tahoe
+      name: Packsaddle
+      managed_by: Tahoe National Forest
+      campgrounds:
+        - id: default
+          name: Packsaddle
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Packsaddle
+                desc: z1SRQW7bQAxFr/IPoAh2irjtMl101UWB9AL0DKVhPJ4RSI4F73KIbnq9nKQYqUCRNcn//uf/SeFiFGNmiIHwvSqb44X1JoFh4gw61+Y4jE+4SmZMWq/od6z4QRcesIonUAHFKC61UMbxCZkubNtMCgiT3PhhE1CK0mzEr8RwJcmJKcIrQpbrGS/CqoRvzZ3t/e13LYw64fnKKoHe3/4YXFu+Y1YmR5KLlHkX6utieG3maAs8MbRSHD9qYmLyptzz7sg64XH4dPqKidlRb6zbbahNbYN381t6G5BkTlnm5BxxvoNgTqIr3fc/HD+fYM6LwRM5sjgr5XzHa3ODFK+oCxfYQoFHPOfcAZ7EegNB61r+CReQeW0l9nw34RVTVaRWonK0frU5Qn9vzoiiHPr7bfxYDzlOw+Pxy56OM9+orw2dV5h0Y0UkMuQ6I9BZig1w7bVPYknKPGwrua4PtnD3V8mlzHuJga7LrN3pf/UufhoOh8NGHf8GAAD//9l1RphoAgAA
+                rating: 6
+                locale: near Packer Lake in Tahoe National Forest
     - id: /ca/tecopa/tecopa_hot_springs
       url: http://www.inyocountycamping.com
       name: Tecopa Hot Springs Campground
@@ -9641,15 +10004,6 @@ properties:
       url: http://www.nps.gov/yose
       name: Yosemite National Park
       campgrounds:
-        - id: hodgdon_meadow
-          name: Hodgdon Meadow
-          res_url: http://www.recreation.gov
-          refs:
-            cc:
-                name: Hodgdon Meadow
-                desc: z0yQwY7TMBCGX+U/7kolChUcuHJYLQeE1FZIHKfxNHFjz1TjcaPceA1ejydBDhXszfLo/2b+71XDGFTwlSnoglhwrcURpcTA8IlxI5txVgtsIN++PscR32jGSyLH02scp4VWvN/3z2BxIxkYxcmjSocv3qh01uog7Pt3OUp1RrB4Z6jgTR6uIGS6quFaZWiEHZaJjUFIfHF4NYHTzAWr1pY/RR0JB6UAktAQP7Rwjs6/f/4qmOI4YdAqbusOUYZUQ5QRp6qpZuFH9dLh6LS2icrWcGu3YU2rP/a5LmTh3wZ8p5R4xdP+I3JMXHAxzZukgfLtucPp8RxNq4SmQpgMhJIpJVyYm9jBmOd2eksetfqEF7X5/5GHeGf7S+PE981tg33Yfer7RvHuTwAAAP//m0uEXssBAAA
-                rating: 7
-                locale: near the Big Oak Flat entrance in Yosemite National Park
         - id: crane_flat
           name: Crane Flat
           res_url: http://www.recreation.gov
@@ -9705,3 +10059,17 @@ properties:
                 desc: z1SQUU4rMQxFt3IXUM3rx9sAgg+QKEKoGzDNncZqao8ST6rZPcrwxf89x0f+8BoZn2ps0IbGgBS3KyITJ9YLE760s054QlTRAl8DPuMi9wWZkhooLSCWUNRuDQ+NvPOLdCZUl/TvFw3HSWv1ine58QBB1xqrFCxSJXF4F/pSOOFtxuYrLm6hthJZb2pXLOPWH8lYPbQUXEd8C18tjWVXPtowvkqZ8eJ37o2RaSiUzr3xLq2x4ZtZLUHarqMFK8402QTPYpvbhHMmWNgl1G086//heDxiJmP6CQAA//+usSg/RwEAAA
                 rating: 9
                 locale: in Yosemite Valley in Yosemite National Park
+    - id: /ca/yosemite/hodgdon_meadow
+      url: http://www.nps.gov/yose
+      name: Hodgdon Meadow
+      managed_by: Yosemite National Park
+      campgrounds:
+        - id: default
+          name: Hodgdon Meadow
+          res_url: http://www.recreation.gov
+          refs:
+            cc:
+                name: Hodgdon Meadow
+                desc: z0yQwY7TMBCGX+U/7kolChUcuHJYLQeE1FZIHKfxNHFjz1TjcaPceA1ejydBDhXszfLo/2b+71XDGFTwlSnoglhwrcURpcTA8IlxI5txVgtsIN++PscR32jGSyLH02scp4VWvN/3z2BxIxkYxcmjSocv3qh01uog7Pt3OUp1RrB4Z6jgTR6uIGS6quFaZWiEHZaJjUFIfHF4NYHTzAWr1pY/RR0JB6UAktAQP7Rwjs6/f/4qmOI4YdAqbusOUYZUQ5QRp6qpZuFH9dLh6LS2icrWcGu3YU2rP/a5LmTh3wZ8p5R4xdP+I3JMXHAxzZukgfLtucPp8RxNq4SmQpgMhJIpJVyYm9jBmOd2eksetfqEF7X5/5GHeGf7S+PE981tg33Yfer7RvHuTwAAAP//m0uEXssBAAA
+                rating: 7
+                locale: near the Big Oak Flat entrance in Yosemite National Park

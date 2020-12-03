@@ -8,9 +8,9 @@ import (
 
 func TestFindBestMatch(t *testing.T) {
 	props := map[string]*campwiz.Property{
-		"/ca/chico/elky": {
-			ID:        "/ca/chico/elky",
-			Name:      "Elky",
+		"/ca/chico/zlky": {
+			ID:        "/ca/chico/zlky",
+			Name:      "Zlky",
 			URL:       "http://www.fs.usda.gov/elsewhere",
 			ManagedBy: "Elk River National Forest",
 			Campgrounds: []*campwiz.Campground{{
@@ -68,6 +68,7 @@ func TestFindBestMatch(t *testing.T) {
 		{`Campy Right`, NameMatch, "campy_right"},
 		{`Just Campy Left`, SubNameMatch, "campy_left"},
 		{`Mount Elky`, DoubleMangledNameMatch, "default"},
+		{`Zlky`, SingleParkNameMatch, "default"},
 	}
 
 	for _, tt := range tests {

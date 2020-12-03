@@ -7,14 +7,18 @@ import (
 
 	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/mangle"
-	"k8s.io/klog"
+	"github.com/tstromberg/campwiz/pkg/metadata"
+
+	"k8s.io/klog/v2"
 )
 
 const (
 	NoMatch = iota
+	ParkNameRoughMatch
 	DoubleMangledSubMatch
 	MangledSubMatch
 	SubNameMatch
+	SingleParkNameMatch
 	DoubleMangledNameMatch
 	MangledNameMatch
 	NameMatch
@@ -24,9 +28,11 @@ const (
 var (
 	scoreNames = map[int]string{
 		NoMatch:                "NoMatch",
+		ParkNameRoughMatch:     "ParkNAmeRoughMatch",
 		DoubleMangledSubMatch:  "DoubleMangledSubMatch",
 		MangledSubMatch:        "MangledSubMatch",
 		SubNameMatch:           "SubNameMatch",
+		SingleParkNameMatch:    "SingleParkNameMatch",
 		DoubleMangledNameMatch: "DoubleMangledNameMatch",
 		MangledNameMatch:       "MangledNameMatch",
 		NameMatch:              "NameMatch",
@@ -52,6 +58,13 @@ func annotate(r campwiz.Result, props map[string]*campwiz.Property) campwiz.Resu
 		if r.Locale == "" && ref.Locale != "" {
 			r.Locale = ref.Locale
 		}
+		if r.Desc == "" && ref.Desc != "" {
+			if ref.URL != "" {
+				r.Desc = ref.Desc
+			} else {
+				r.Desc = mangle.Ellipsis(metadata.Decompress(ref.Desc), 65)
+			}
+		}
 	}
 	return r
 }
@@ -76,8 +89,16 @@ func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {
 			knownName := strings.ToLower(cg.Name)
 
 			if resName == knownName {
-				matches = append(matches, Match{NameMatch, fmt.Sprintf("result %q = known %q", knownName, resName), cg})
+				matches = append(matches, Match{NameMatch, fmt.Sprintf("result %q = known %q", resName, knownName), cg})
 				continue
+			}
+
+			if resName == strings.ToLower(prop.Name) {
+				if len(prop.Campgrounds) == 1 {
+					matches = append(matches, Match{SingleParkNameMatch, fmt.Sprintf("result %q = single park %q", resName, prop.Name), cg})
+				} else {
+					matches = append(matches, Match{SingleParkNameMatch, fmt.Sprintf("result %q = multi park %q", resName, prop.Name), cg})
+				}
 			}
 
 			if strings.Contains(resName, knownName) {
@@ -106,11 +127,11 @@ func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {
 
 			for i, rv := range resVariations {
 				rv = strings.ToLower(rv)
-				klog.Errorf("rv %q vs known %q", rv, knownName)
 				if rv == knownName {
 					matches = append(matches, Match{MangledNameMatch, fmt.Sprintf("variation %d: %q = %q", i, rv, knownName), cg})
 					continue
 				}
+
 				if strings.Contains(knownName, rv) {
 					matches = append(matches, Match{MangledSubMatch, fmt.Sprintf("variation %d: result %q in known %q", i, rv, knownName), cg})
 					continue
@@ -122,7 +143,6 @@ func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {
 
 				for x, kv := range knownVariations {
 					kv = strings.ToLower(kv)
-					klog.Errorf("rv %q vs kv %q", rv, kv)
 					if rv == kv {
 						matches = append(matches, Match{DoubleMangledNameMatch, fmt.Sprintf("variation %d/%d: %q = %q", i, x, rv, knownName), cg})
 						continue

@@ -3,17 +3,18 @@
 {{ .Name }} ({{ printf "%.0f" .Distance }}mi)
 {{ with .Locale }}{{ . }}{{ end }}
 {{- range .Availability}}
-  * {{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}
-    {{.URL}}
+* {{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}
+  {{.URL}}
 {{- end }}
 
 {{ with .Desc }}{{ . }}{{ end }}
 
-{{- range .KnownCampground.Refs }}
- > {{ .Source.Name }}: [{{ .Rating }}/{{ .Source.RatingMax }} {{ .Source.RatingDesc }}]
- >
- >  {{.Desc | Ellipsis }}
+{{ with .KnownCampground }}
+{{ range $k, $v := .Refs }}
+ > {{ $k }}: Rated {{ $v.Rating }}
+ {{ range $v.Lists }} * #{{ .Place }} {{ .Title }}{{ end }}
 {{- end }}
+{{ end }}
 {{ end }}
 
 {{- range .Errors}}ERROR: {{ . }}{{ end -}}
