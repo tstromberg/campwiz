@@ -162,7 +162,7 @@ func (b *RAmerica) avail(q campwiz.Query, d time.Time) ([]campwiz.Result, error)
 
 		prs, currentPage, totalPages, err := b.parse(resp.Body, d, q)
 		if err != nil {
-			return nil, fmt.Errorf("parse: %w", err)
+			return nil, fmt.Errorf("parse: %w, content: %s", err, resp.Body)
 		}
 
 		if currentPage != i {
