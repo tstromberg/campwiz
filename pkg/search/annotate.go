@@ -46,15 +46,29 @@ type Match struct {
 	Campground *campwiz.Campground
 }
 
+func average(xs []float64) float64 {
+	total := 0.0
+	for _, v := range xs {
+		total += v
+	}
+	return total / float64(len(xs))
+}
+
 func annotate(r campwiz.Result, props map[string]*campwiz.Property) campwiz.Result {
 	cg := findBestMatch(r, props)
 	if cg.Score == 0 {
-		klog.Errorf("No site matche for %+v", r)
+		klog.Warningf("No site match for %+v", r)
 		return r
 	}
 	r.KnownCampground = cg.Campground
 
+	ratings := []float64{}
+
 	for _, ref := range cg.Campground.Refs {
+		if ref.Rating > 0 {
+			// TODO: Take into account max
+			ratings = append(ratings, ref.Rating)
+		}
 		if r.Locale == "" && ref.Locale != "" {
 			r.Locale = ref.Locale
 		}
@@ -66,6 +80,8 @@ func annotate(r campwiz.Result, props map[string]*campwiz.Property) campwiz.Resu
 			}
 		}
 	}
+
+	r.Rating = average(ratings)
 	return r
 }
 

@@ -22,9 +22,9 @@ import (
 )
 
 var datesFlag *[]string = pflag.StringSlice("dates", []string{"2021-03-05"}, "dates to search for")
-var milesFlag *int = pflag.Int("max_distance", 100, "distance to search within")
+var milesFlag *int = pflag.Int("max_distance", 200, "distance to search within")
 var nightsFlag *int = pflag.Int("nights", 2, "number of nights to stay")
-var minRatingFlag *float64 = pflag.Float64("min_rating", 6.0, "minimum scenery rating for inclusion")
+var minRatingFlag *float64 = pflag.Float64("min_rating", 0, "minimum scenery rating for inclusion")
 var keywordsFlag *[]string = pflag.StringSlice("keywords", nil, "keywords to search for")
 var latFlag *float64 = pflag.Float64("lat", 37.4092297, "latitude to search from")
 var lonFlag *float64 = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
@@ -110,9 +110,11 @@ func ellipse(s string) string {
 func main() {
 	//	wordPtr := flag.String("word", "foo", "a string")
 	klog.InitFlags(nil)
+	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 	flag.Set("logtostderr", "false")
 	flag.Set("alsologtostderr", "false")
-	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
+	pflag.Set("logtostderr", "false")
+	pflag.Set("alsologtostderr", "false")
 	pflag.Parse()
 
 	if err := processFlags(); err != nil {

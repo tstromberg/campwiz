@@ -7,10 +7,10 @@
 {{ with $r.KnownCampground }}
 {{- range $k, $v := .Refs -}}
  {{- $src := index $srcs $k -}}
- {{ Color "  *" "magenta" }} {{ $src.Name | hmagenta }}: {{ printf "%.0f" $v.Rating | hwhite }}{{ Color "/" "black+h" }}{{ printf "%0.0f" $src.RatingMax | hwhite }}{{ with $src.RatingDesc }} {{$src.RatingDesc }}{{ end }} {{ with $v.Lists }}{{ Color ", " "black+h" }}{{ range . }} {{ printf "#%d" .Place | hmagenta }} {{ .Title }}{{ end }}{{ end }}
+ {{ Color "  *" "magenta" }} {{ $src.Name | hmagenta }}: {{ printf "%.0f" $v.Rating | hwhite }}{{ Color "/" "black+h" }}{{ printf "%0.0f" $src.RatingMax | hwhite }}{{ with $src.RatingDesc }} {{$src.RatingDesc }}{{ end }}{{ with $v.Lists }}{{ Color ", " "black+h" }}{{ range . }} {{ printf "#%d" .Place | hmagenta }} {{ .Title | hwhite }}{{ end }}{{ end }}
 {{- end }}
 {{ end }}
   {{ with $r.Desc | Ellipsis }}{{ . }}{{ end }}
 {{ end }}
 
-{{- range .Errors}}{{ Color "ERROR:" "red" }}{{ . | yellow }}{{ end -}}
+{{- range .Errors}}{{ Color "ERROR: " "red" }}{{ printf "%s" . | yellow }}{{ end -}}

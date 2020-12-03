@@ -2,6 +2,7 @@ package search
 
 import (
 	"fmt"
+	"sort"
 
 	"github.com/tstromberg/campwiz/pkg/backend"
 	"github.com/tstromberg/campwiz/pkg/cache"
@@ -21,12 +22,16 @@ func Run(providers []string, q campwiz.Query, cs cache.Store, props map[string]*
 	for _, r := range rs {
 		as = append(as, annotate(r, props))
 	}
-	return as, errs
+
+	fs := filter(q, as)
+
+	sort.Slice(fs, func(i, j int) bool { return fs[i].Rating > fs[j].Rating })
+	return fs, errs
 }
 
 // unfiltered searches for results across providers, without filters
 func unfiltered(providers []string, q campwiz.Query, cs cache.Store) ([]campwiz.Result, []error) {
-	klog.Infof("search campwiz.Query: %+v", q)
+	klog.V(1).Infof("search campwiz.Query: %+v", q)
 
 	results := []campwiz.Result{}
 	errs := []error{}
@@ -42,7 +47,6 @@ func unfiltered(providers []string, q campwiz.Query, cs cache.Store) ([]campwiz.
 		prs, err := p.List(q)
 		if err != nil {
 			errs = append(errs, fmt.Errorf("%s list: %v", pname, err))
-			klog.Errorf("%s list failed: %v", pname, err)
 			continue
 		}
 
