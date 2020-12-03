@@ -84,3 +84,8 @@ func mergeDates(res []campwiz.Result) []campwiz.Result {
 	}
 	return merged
 }
+
+// endDate returns a calculated end date
+func endDate(start time.Time, stayLength int) time.Time {
+	return start.Add(time.Duration(stayLength) * 24 * time.Hour)
+}

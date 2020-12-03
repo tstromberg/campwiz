@@ -12,7 +12,7 @@ import (
 )
 
 func TestParseSMCSearchPage(t *testing.T) {
-	bs, err := ioutil.ReadFile("testmetadata/smc_feed.xml")
+	bs, err := ioutil.ReadFile("testdata/smc_feed.xml")
 	if err != nil {
 		t.Fatalf("readfile: %v", err)
 	}
@@ -20,13 +20,17 @@ func TestParseSMCSearchPage(t *testing.T) {
 	if err != nil {
 		t.Fatalf("time parse: %v", err)
 	}
+
+	b := &SanMateoCounty{}
+
 	q := campwiz.Query{
-		StayLength: 4,
-		Lon:        -122.07237049999999,
-		Lat:        37.4092297,
+		StayLength:  4,
+		Lon:         -122.07237049999999,
+		Lat:         37.4092297,
+		MaxDistance: 100,
 	}
 
-	got, err := parseSMCSearchPage("coyote-point", bs, date, q)
+	got, err := b.parse(bs, date, q, "coyote-point")
 	if err != nil {
 		t.Fatalf("error: %v", err)
 	}
@@ -90,12 +94,13 @@ func TestSMCSiteRequest(t *testing.T) {
 		Lat:        37.4092297,
 	}
 
-	got := smcSiteRequest("coyote-point", q, date)
+	b := &SanMateoCounty{}
+	got := b.req(q, date, "coyote-point")
 
 	want := cache.Request{
 		Method:   "GET",
-		URL:      "https://secure.itinio.com/sanmateo/feed.html",
-		Referrer: "https://https://secure.itinio.com/sanmateo/coyote-point",
+		URL:      "https://secure.itinio.com/sanmateo/campsites/feed.html",
+		Referrer: "https://secure.itinio.com/sanmateo/coyote-point",
 		MaxAge:   time.Duration(6 * time.Hour),
 		Body:     nil,
 		Form: url.Values{

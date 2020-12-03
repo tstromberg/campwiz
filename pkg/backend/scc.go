@@ -56,7 +56,7 @@ func (b *SantaClaraCounty) List(q campwiz.Query) ([]campwiz.Result, error) {
 
 // url is the root URL to use for requests
 func (b *SantaClaraCounty) url(s string) string {
-	return "https://" + "gooutsideandplay" + ".org"
+	return "https://" + "gooutsideandplay" + ".org" + "/" + s
 }
 
 // req generates a search request
@@ -86,6 +86,7 @@ func (b *SantaClaraCounty) req(q campwiz.Query, arrival time.Time) cache.Request
 		URL:      b.url("/index.asp"),
 		Referrer: b.url("/"),
 		Form:     v,
+		Jar:      b.jar,
 	}
 	return r
 }
