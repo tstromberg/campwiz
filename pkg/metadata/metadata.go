@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"compress/gzip"
 	"encoding/base64"
+	"fmt"
 	"io/ioutil"
 	"strings"
 
@@ -14,18 +15,50 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+var (
+	CompressHeader = `H4sIAAAAAAAA/`
+	CompressPrefix = `z`
+)
+
+// LoadAll returns all cross-reference data
+func LoadAll() (map[string]campwiz.Source, map[string]*campwiz.Property, error) {
+	csrcs := map[string]campwiz.Source{}
+	cprops := map[string]*campwiz.Property{}
+
+	for _, p := range []string{"metadata/srcs.yaml", "metadata/ca.yaml"} {
+		path := relpath.Find(p)
+		if path == "" {
+			klog.Errorf("unable to find %s", p)
+		}
+
+		srcs, props, err := loadPath(path)
+		if err != nil {
+			return srcs, props, fmt.Errorf("loadpath(%s) [%s]: %v", path, p, err)
+		}
+		for k, v := range srcs {
+			csrcs[k] = v
+		}
+		for k, v := range props {
+			cprops[k] = v
+		}
+	}
+
+	return csrcs, cprops, nil
+}
+
+// LoadPath loads YAML data from a Path!
 // LoadCC returns CC cross-reference data
-func LoadCC() (map[string]*campwiz.Property, error) {
-	p := relpath.Find("metadata/ca.yaml")
+func loadPath(path string) (map[string]campwiz.Source, map[string]*campwiz.Property, error) {
+	p := relpath.Find(path)
 	f, err := ioutil.ReadFile(p)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	var ccd campwiz.RefFile
 	err = yaml.Unmarshal(f, &ccd)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	klog.V(1).Infof("Loaded %d entries from %s ...", len(ccd.Properties), p)
@@ -34,18 +67,7 @@ func LoadCC() (map[string]*campwiz.Property, error) {
 	for _, p := range ccd.Properties {
 		props[p.ID] = p
 	}
-	return props, nil
-
-	/*
-		xs := map[string]campwiz.Ref{}
-		for _, e := range ccd.Properties {
-			if strings.HasPrefix(e.Desc, CompressPrefix) {
-				e.Desc = Decompress(e.Desc)
-			}
-			e.Source = ccd.Source
-			xs[e.ID] = e
-		}
-	*/
+	return ccd.Sources, props, nil
 }
 
 func Decompress(s string) string {

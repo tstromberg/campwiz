@@ -97,7 +97,7 @@ func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {
 				if len(prop.Campgrounds) == 1 {
 					matches = append(matches, Match{SingleParkNameMatch, fmt.Sprintf("result %q = single park %q", resName, prop.Name), cg})
 				} else {
-					matches = append(matches, Match{SingleParkNameMatch, fmt.Sprintf("result %q = multi park %q", resName, prop.Name), cg})
+					matches = append(matches, Match{ParkNameRoughMatch, fmt.Sprintf("result %q = multi park %q", resName, prop.Name), cg})
 				}
 			}
 

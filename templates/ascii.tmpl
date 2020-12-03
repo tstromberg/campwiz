@@ -1,21 +1,16 @@
-{{ range .Results}}
---------------------------------------------------------------------------------
-{{ .Name }} ({{ printf "%.0f" .Distance }}mi)
-{{ with .Locale }}{{ . }}{{ end }}
-{{- range .Availability}}
-* {{.SiteType}} available {{ .Date.Month }} {{ .Date.Day }}
-  {{.URL}}
+{{ $srcs := .Sources }}
+{{ range $i, $r := .Results}}
+{{ Color "(" "yellow+d" }}{{ printf "#%d" $i | yellow }}{{ Color ")" "yellow+d" }} {{ Color $r.Name "green+h" }} {{ Color "(" "black+h" }}{{ printf "%.0fmi" $r.Distance | green }}{{ with $r.Locale }}{{ Color "," "black+h"}} {{ . | green }}{{ end }}{{ Color ")" "black+h" }}
+{{- range $r.Availability}}
+{{ Color "  >" "cyan" }} {{ printf "%s %d"  .Date.Month .Date.Day | hwhite }}{{ Color ":" "cyan" }} {{.URL | cyan }}
 {{- end }}
-
-{{ with .Desc }}{{ . }}{{ end }}
-
-{{ with .KnownCampground }}
-{{ range $k, $v := .Refs }}
- > {{ $k }}: Rated {{ $v.Rating }}
- {{ range $v.Lists }} * #{{ .Place }} {{ .Title }}{{ end }}
+{{ with $r.KnownCampground }}
+{{- range $k, $v := .Refs -}}
+ {{- $src := index $srcs $k -}}
+ {{ Color "  *" "magenta" }} {{ $src.Name | hmagenta }}: {{ printf "%.0f" $v.Rating | hwhite }}{{ Color "/" "black+h" }}{{ printf "%0.0f" $src.RatingMax | hwhite }}{{ with $src.RatingDesc }} {{$src.RatingDesc }}{{ end }} {{ with $v.Lists }}{{ Color ", " "black+h" }}{{ range . }} {{ printf "#%d" .Place | hmagenta }} {{ .Title }}{{ end }}{{ end }}
 {{- end }}
 {{ end }}
+  {{ with $r.Desc | Ellipsis }}{{ . }}{{ end }}
 {{ end }}
 
-{{- range .Errors}}ERROR: {{ . }}{{ end -}}
---------------------------------------------------------------------------------
+{{- range .Errors}}{{ Color "ERROR:" "red" }}{{ . | yellow }}{{ end -}}

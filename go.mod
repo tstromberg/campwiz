@@ -7,6 +7,8 @@ require (
 	github.com/google/btree v1.0.0 // indirect
 	github.com/google/go-cmp v0.5.3
 	github.com/kr/pretty v0.2.0 // indirect
+	github.com/mattn/go-colorable v0.1.8 // indirect
+	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/moul/http2curl v1.0.0
 	github.com/peterbourgon/diskv v2.0.1+incompatible
 	github.com/smartystreets/goconvey v1.6.4 // indirect

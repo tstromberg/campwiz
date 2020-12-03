@@ -10,6 +10,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/mgutz/ansi"
 	pflag "github.com/spf13/pflag"
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/campwiz"
@@ -33,6 +34,7 @@ const dateFormat = "2006-01-02"
 
 type templateContext struct {
 	Query   campwiz.Query
+	Sources map[string]campwiz.Source
 	Results []campwiz.Result
 	Errors  []error
 }
@@ -60,9 +62,9 @@ func processFlags() error {
 		q.Dates = append(q.Dates, t)
 	}
 
-	props, err := metadata.Load()
+	srcs, props, err := metadata.LoadAll()
 	if err != nil {
-		return fmt.Errorf("loadcc failed: %w", err)
+		return fmt.Errorf("loadall failed: %w", err)
 	}
 
 	ms, errs := search.Run(*providersFlag, q, cs, props)
@@ -74,6 +76,18 @@ func processFlags() error {
 
 	fmap := template.FuncMap{
 		"Ellipsis": ellipse,
+		"Color":    ansi.Color,
+		"yellow":   func(s string) string { return ansi.Color(s, "yellow") },
+		"green":    func(s string) string { return ansi.Color(s, "green") },
+		"cyan":     func(s string) string { return ansi.Color(s, "cyan") },
+		"blue":     func(s string) string { return ansi.Color(s, "blue") },
+		"magenta":  func(s string) string { return ansi.Color(s, "magenta") },
+		"hyellow":  func(s string) string { return ansi.Color(s, "yellow+h") },
+		"hgreen":   func(s string) string { return ansi.Color(s, "green+h") },
+		"hblue":    func(s string) string { return ansi.Color(s, "blue+h") },
+		"hmagenta": func(s string) string { return ansi.Color(s, "magenta+h") },
+		"hwhite":   func(s string) string { return ansi.Color(s, "white+h") },
+		"grey":     func(s string) string { return ansi.Color(s, "black+h") },
 	}
 
 	t := template.Must(template.New("ascii").Funcs(fmap).Parse(string(bs)))
@@ -81,6 +95,7 @@ func processFlags() error {
 	c := templateContext{
 		Query:   q,
 		Results: ms,
+		Sources: srcs,
 		Errors:  errs,
 	}
 
@@ -89,7 +104,7 @@ func processFlags() error {
 }
 
 func ellipse(s string) string {
-	return mangle.Ellipsis(s, 65)
+	return mangle.Ellipsis(s, 100)
 }
 
 func main() {

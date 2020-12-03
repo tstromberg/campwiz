@@ -1,0 +1,5 @@
+sources:
+ cc:
+    name: "California Camping"
+    rating_max: 10
+    rating_desc: scenery

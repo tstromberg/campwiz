@@ -41,15 +41,15 @@ type Ref struct {
 // RefList is basically an award referenced by this site
 type RefList struct {
 	URL   string `yaml:"url,omitempty"`
-	Title string `yaml:title,omitempty"`
-	Place int    `yaml:place,omitempty"`
+	Title string `yaml:"title,omitempty"`
+	Place int    `yaml:"place,omitempty"`
 }
 
 type Source struct {
-	ID        string
-	Name      string
-	URL       string
-	RatingMax float64 `yaml:"rating_max"`
+	Name       string  `yaml:"name"`
+	URL        string  `yaml:"url,omitempty"`
+	RatingMax  float64 `yaml:"rating_max,omitempty"`
+	RatingDesc string  `yaml:"rating_desc,omitempty"`
 }
 
 type RefFile struct {
