@@ -17,6 +17,7 @@ var (
 		"CP":  "COUNTY PARK",
 		"NP":  "NATIONAL PARK",
 		"NF":  "NATIONAL FOREST",
+		"SHP": "STATE HISTORIC PARK",
 	}
 
 	// ExtraWords are common words that can be thrown out for matching

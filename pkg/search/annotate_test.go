@@ -27,6 +27,21 @@ func TestFindBestMatch(t *testing.T) {
 				},
 			}},
 		},
+		"/ca/chico/colonel": {
+			ID:        "/ca/chico/colonel",
+			Name:      "Colonel Allensworth State Historic Park",
+			Campgrounds: []*campwiz.Campground{{
+				ID:     "colonel",
+				Name:   "Colonel Allensworth State Historic Park",
+				ResURL: "http://www.recreation.gov",
+				Refs: map[string]*campwiz.Ref{
+					"cc": {
+				     	Name:   "Colonel Allensworth State Historic Park",
+						Rating: 2,
+					},
+				},
+			}},
+		},
 		"/ca/campwiz": {
 			ID:        "/ca/campwiz",
 			Name:      "Campwiz National Forest",
@@ -69,6 +84,7 @@ func TestFindBestMatch(t *testing.T) {
 		{`Just Campy Left`, SubNameMatch, "campy_left"},
 		{`Mount Elky`, DoubleMangledNameMatch, "default"},
 		{`Zlky`, SingleParkNameMatch, "default"},
+		{`Colonel Allensworth SHP`, MangledNameMatch, `colonel`},
 	}
 
 	for _, tt := range tests {
