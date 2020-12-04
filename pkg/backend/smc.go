@@ -35,7 +35,6 @@ func (b *SanMateoCounty) Name() string {
 
 // List lists available sites
 func (b *SanMateoCounty) List(q campwiz.Query) ([]campwiz.Result, error) {
-
 	var res []campwiz.Result
 	for _, siteID := range smcSiteIDs {
 		_, err := cache.Fetch(b.startPage(siteID), b.store)

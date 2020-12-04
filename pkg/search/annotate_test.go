@@ -28,15 +28,15 @@ func TestFindBestMatch(t *testing.T) {
 			}},
 		},
 		"/ca/chico/colonel": {
-			ID:        "/ca/chico/colonel",
-			Name:      "Colonel Allensworth State Historic Park",
+			ID:   "/ca/chico/colonel",
+			Name: "Colonel Allensworth State Historic Park",
 			Campgrounds: []*campwiz.Campground{{
 				ID:     "colonel",
 				Name:   "Colonel Allensworth State Historic Park",
 				ResURL: "http://www.recreation.gov",
 				Refs: map[string]*campwiz.Ref{
 					"cc": {
-				     	Name:   "Colonel Allensworth State Historic Park",
+						Name:   "Colonel Allensworth State Historic Park",
 						Rating: 2,
 					},
 				},
@@ -47,18 +47,19 @@ func TestFindBestMatch(t *testing.T) {
 			Name:      "Campwiz National Forest",
 			URL:       "http://www.fs.usda.gov/elsewhere",
 			ManagedBy: "Thomas Stromberg",
-			Campgrounds: []*campwiz.Campground{{
-				ID:   "campy_left",
-				Name: "Campy Left",
-				Refs: map[string]*campwiz.Ref{
-					"cc": {
-						Name:   "Campy Left",
-						Desc:   "This camp is out left field. a tiny, secluded, bug in a program. Bad? Of course, it’s bad.",
-						Rating: 1,
-						Locale: "on the Left Fork of the Test River in Campwiz National Forest",
+			Campgrounds: []*campwiz.Campground{
+				{
+					ID:   "campy_left",
+					Name: "Campy Left",
+					Refs: map[string]*campwiz.Ref{
+						"cc": {
+							Name:   "Campy Left",
+							Desc:   "This camp is out left field. a tiny, secluded, bug in a program. Bad? Of course, it’s bad.",
+							Rating: 1,
+							Locale: "on the Left Fork of the Test River in Campwiz National Forest",
+						},
 					},
 				},
-			},
 				{
 					ID:   "campy_right",
 					Name: "Campy Right",
@@ -71,10 +72,11 @@ func TestFindBestMatch(t *testing.T) {
 						},
 					},
 				},
-			}},
+			},
+		},
 	}
 
-	var tests = []struct {
+	tests := []struct {
 		in    string
 		score int
 		id    string
@@ -104,5 +106,4 @@ func TestFindBestMatch(t *testing.T) {
 			}
 		})
 	}
-
 }

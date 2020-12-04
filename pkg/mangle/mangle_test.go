@@ -3,7 +3,7 @@ package mangle
 import "testing"
 
 func TestLocale(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		in  string
 		out string
 	}{
@@ -23,7 +23,7 @@ func TestLocale(t *testing.T) {
 }
 
 func TestLocaleProperty(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		in  string
 		out string
 	}{
@@ -45,7 +45,7 @@ func TestLocaleProperty(t *testing.T) {
 }
 
 func TestShortLocale(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		in  string
 		out string
 	}{
@@ -65,7 +65,7 @@ func TestShortLocale(t *testing.T) {
 }
 
 func TestShortest(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		in  string
 		out string
 	}{
@@ -83,7 +83,7 @@ func TestShortest(t *testing.T) {
 }
 
 func TestTitle(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		in  string
 		out string
 	}{

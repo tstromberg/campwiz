@@ -10,9 +10,7 @@ import (
 	"k8s.io/klog"
 )
 
-var (
-	DefaultProviders = []string{"ramerica", "rcalifornia", "scc", "smc"}
-)
+var DefaultProviders = []string{"ramerica", "rcalifornia", "scc", "smc"}
 
 // Run is a one-stop query shop: talks to backends, annotates, provides filtering
 func Run(providers []string, q campwiz.Query, cs cache.Store, props map[string]*campwiz.Property) ([]campwiz.Result, []error) {

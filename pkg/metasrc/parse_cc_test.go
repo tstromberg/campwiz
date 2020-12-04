@@ -9,7 +9,7 @@ import (
 )
 
 func TestHTMLText(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		in  string
 		out string
 	}{
@@ -28,7 +28,7 @@ func TestHTMLText(t *testing.T) {
 }
 
 func TestCCPropertyKey(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		name   string
 		locale string
 		out    string
@@ -86,19 +86,20 @@ func TestCC(t *testing.T) {
 			Name:      "Campwiz National Forest",
 			URL:       "http://www.fs.usda.gov/elsewhere",
 			ManagedBy: "Thomas Stromberg",
-			Campgrounds: []*campwiz.Campground{{
-				ID:   "campy_left",
-				Name: "Campy Left",
-				Refs: map[string]*campwiz.Ref{
-					"cc": {
-						Name:    "Campy Left",
-						Desc:    "This camp is out left field. a tiny, secluded, bug in a program. Bad? Of course, it’s bad.",
-						Contact: "Thomas Stromberg, 405/487-5555, www.fs.usda.gov/elsewhere.",
-						Rating:  1,
-						Locale:  "on the Left Fork of the Test River in Campwiz National Forest",
+			Campgrounds: []*campwiz.Campground{
+				{
+					ID:   "campy_left",
+					Name: "Campy Left",
+					Refs: map[string]*campwiz.Ref{
+						"cc": {
+							Name:    "Campy Left",
+							Desc:    "This camp is out left field. a tiny, secluded, bug in a program. Bad? Of course, it’s bad.",
+							Contact: "Thomas Stromberg, 405/487-5555, www.fs.usda.gov/elsewhere.",
+							Rating:  1,
+							Locale:  "on the Left Fork of the Test River in Campwiz National Forest",
+						},
 					},
 				},
-			},
 				{
 					ID:   "campy_right",
 					Name: "Campy Right",
@@ -137,24 +138,26 @@ func TestBestCC(t *testing.T) {
 		"/ca/patalinx_planet/smal_harbor": {
 			ID:   "/ca/patalinx_planet/smal_harbor",
 			Name: "Smal Harbor",
-			Campgrounds: []*campwiz.Campground{{
-				ID:   "default",
-				Name: "Smal Harbor",
-				Refs: map[string]*campwiz.Ref{
-					"cc": {
-						Name:   "Smal Harbor",
-						Desc:   "There is plenty to do here!",
-						Locale: "on Patalinx Planet",
-						Rating: 10,
-						Lists: []campwiz.RefList{{
-							Title: "Best Planet Retreats",
-							Place: 8,
-						}},
+			Campgrounds: []*campwiz.Campground{
+				{
+					ID:   "default",
+					Name: "Smal Harbor",
+					Refs: map[string]*campwiz.Ref{
+						"cc": {
+							Name:   "Smal Harbor",
+							Desc:   "There is plenty to do here!",
+							Locale: "on Patalinx Planet",
+							Rating: 10,
+							Lists: []campwiz.RefList{{
+								Title: "Best Planet Retreats",
+								Place: 8,
+							}},
+						},
 					},
 				},
 			},
-			},
-		}}
+		},
+	}
 
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("CC() mismatch (-want +got):\n%s\nRAW: %+v", diff, got)

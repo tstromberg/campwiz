@@ -91,5 +91,4 @@ func TestFetch(t *testing.T) {
 	if diff := cmp.Diff(want, got, cmpopts.IgnoreUnexported(cookiejar.Jar{})); diff != "" {
 		t.Errorf("applyDefaults() mismatch (-want +got):\n%s", diff)
 	}
-
 }

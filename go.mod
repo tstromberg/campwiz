@@ -18,4 +18,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 	k8s.io/klog v1.0.0
 	k8s.io/klog/v2 v2.4.0
+	mvdan.cc/gofumpt v0.0.0-20201129102820-5c11c50e9475 // indirect
 )

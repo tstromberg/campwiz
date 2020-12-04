@@ -63,7 +63,6 @@ func (r Request) Key() string {
 
 	for _, c := range r.Cookies {
 		buf.WriteString(fmt.Sprintf("+cookie=%s", c.String()))
-
 	}
 	if r.Referrer != "" {
 		buf.WriteString(fmt.Sprintf("+ref=%s", r.Referrer))
@@ -233,7 +232,6 @@ func Fetch(req Request, cs Store) (Response, error) {
 		} else {
 			hr.Header.Add("Content-Type", req.ContentType)
 		}
-
 	}
 
 	cmd, err := http2curl.GetCurlCommand(hr)

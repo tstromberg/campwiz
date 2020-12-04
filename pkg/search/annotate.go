@@ -25,20 +25,18 @@ const (
 	SiteID
 )
 
-var (
-	scoreNames = map[int]string{
-		NoMatch:                "NoMatch",
-		ParkNameRoughMatch:     "ParkNAmeRoughMatch",
-		DoubleMangledSubMatch:  "DoubleMangledSubMatch",
-		MangledSubMatch:        "MangledSubMatch",
-		SubNameMatch:           "SubNameMatch",
-		SingleParkNameMatch:    "SingleParkNameMatch",
-		DoubleMangledNameMatch: "DoubleMangledNameMatch",
-		MangledNameMatch:       "MangledNameMatch",
-		NameMatch:              "NameMatch",
-		SiteID:                 "SiteID",
-	}
-)
+var scoreNames = map[int]string{
+	NoMatch:                "NoMatch",
+	ParkNameRoughMatch:     "ParkNAmeRoughMatch",
+	DoubleMangledSubMatch:  "DoubleMangledSubMatch",
+	MangledSubMatch:        "MangledSubMatch",
+	SubNameMatch:           "SubNameMatch",
+	SingleParkNameMatch:    "SingleParkNameMatch",
+	DoubleMangledNameMatch: "DoubleMangledNameMatch",
+	MangledNameMatch:       "MangledNameMatch",
+	NameMatch:              "NameMatch",
+	SiteID:                 "SiteID",
+}
 
 type Match struct {
 	Score      int

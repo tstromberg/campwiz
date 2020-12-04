@@ -130,7 +130,6 @@ func Locale(s string) string {
 }
 
 func LocaleProperty(s string) string {
-
 	words := strings.Split(s, " ")
 	for i, w := range words {
 		if w == "near" {

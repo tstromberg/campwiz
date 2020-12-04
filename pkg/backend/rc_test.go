@@ -90,7 +90,8 @@ func TestRCaliforniaParse(t *testing.T) {
 				"ails were developed, and a wagon road was built. Later, a railwa",
 				"y was completed and became known as the Crookedest Railroad in t",
 				"he World It was abandoned in 1930 after a wildfire damaged the l",
-				"ine."}, ""),
+				"ine.",
+			}, ""),
 			URL: "http://www.parks.ca.gov/?page_id=471",
 			Availability: []campwiz.Availability{
 				{
@@ -99,7 +100,8 @@ func TestRCaliforniaParse(t *testing.T) {
 					URL:      "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
 				},
 			},
-			Features: []string{"Bicycling", "Birdwatching", "Body surfing", "Camping", "Fishing", "Group Camping", "Hiking", "Horseback riding",
+			Features: []string{
+				"Bicycling", "Birdwatching", "Body surfing", "Camping", "Fishing", "Group Camping", "Hiking", "Horseback riding",
 				"Lodging",
 				"Picnic area",
 				"Scuba diving",

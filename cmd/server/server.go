@@ -16,9 +16,7 @@ import (
 	"k8s.io/klog/v2"
 )
 
-var (
-	cs cache.Store
-)
+var cs cache.Store
 
 type formValues struct {
 	Dates    string
