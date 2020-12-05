@@ -42,6 +42,20 @@ func TestFindBestMatch(t *testing.T) {
 				},
 			}},
 		},
+		"/ca/sj/grant": {
+			ID:   "/ca/sj/grant",
+			Name: "Joseph D. Grant County Park",
+			Campgrounds: []*campwiz.Campground{{
+				ID:   "grant",
+				Name: "Joseph D. Grant County Park",
+				Refs: map[string]*campwiz.Ref{
+					"cc": {
+						Name:   "Joseph D. Grant County Park",
+						Rating: 7,
+					},
+				},
+			}},
+		},
 		"/ca/campwiz": {
 			ID:        "/ca/campwiz",
 			Name:      "Campwiz National Forest",
@@ -83,10 +97,11 @@ func TestFindBestMatch(t *testing.T) {
 	}{
 		{`Sad River`, NoMatch, ""},
 		{`Campy Right`, NameMatch, "campy_right"},
-		{`Just Campy Left`, SubNameMatch, "campy_left"},
-		{`Mount Elky`, DoubleMangledNameMatch, "default"},
-		{`Zlky`, SingleParkNameMatch, "default"},
-		{`Colonel Allensworth SHP`, MangledNameMatch, `colonel`},
+		{`Just Campy Left`, SubMatch, "campy_left"},
+		{`Mount Elky`, BiMangledMatch, "default"},
+		{`Zlky`, SinglePropMatch, "default"},
+		{`Colonel Allensworth SHP`, MangledMatch, `colonel`},
+		{`Joseph Grant Park`, ApproxMatch, `grant`},
 	}
 
 	for _, tt := range tests {

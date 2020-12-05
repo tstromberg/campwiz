@@ -1514,6 +1514,17 @@ properties:
                 desc: z0SQQW7cSgxEr1IHmK/vOAiQfTZZTIwg4wtQEiUR7m42SLYE3T7oGdvZccNX9ep1E8cmHmoywahM2/8T5bqatjLjIIearFIopRNjkxSQgi/fvz2DHISZxE4sZHnAjXc2Sp8fGMmKg4zhISnBg8osZR3wujFqoomxkWNkLhhN27oFWkUoZgq+QBdM2sz5gkNiA8Ez3UFqDC2IzjGtbHH2Y5fORyKP/7KUFgxvtSZhH3DViUK0QHrzmpq/Yzvlh6aWRyHcgoLx82OT32Rv0JJOEDZKC7IkBh10gsp8f70FFfFEzfFHdjaQ5V79hQ/84qSFHVd643uYFBAW2fmj32yy84Cr7NxpFGwXEFZN/+R70iGFTfixZ2Gy8XzsyIn3T6/ny9enJyzMMeBFoyMpOtf4oe1cybph1rGbbJoZ9SH5PidncfbhbwAAAP//gyjGMhwCAAA
                 rating: 6
                 locale: near Columbia
+    - id: /ca/columbia/columbia_shp
+      url: https://www.parks.ca.gov/?page_id=27907
+      name: Columbia SHP
+      campgrounds:
+        - id: hotel
+          name:  Columbia SHP Hotels and Cottages
+          refs:
+            parks.ca.gov:
+               name: Columbia SHP Hotels and Cottages
+               desc: "In one of the best-preserved California Gold Rush towns, Columbia SHP is a popular destination for school living-history programs, special family gatherings, or a year-round getaway. Columbia offers a unique blend of museums, exhibits, town tours, live theater plays, restaurants and attractions."
+               locale: Columbia
     - id: /ca/columbia/marble_quarry
       url: http://www.marblequarryrvpark.com
       name: Marble Quarry RV Park
@@ -7362,12 +7373,12 @@ properties:
                 desc: z2SSQY4VMQxEr1IHaP1DgITYMAsGsfdPu3/MOHFku/vTu7nGXG9OgroHwQh2iRJV1XP5wTwrbMEXczd8oB3WkZVxpx1peKSOR2lsHdRnfGbySHykSOUJWSVQqOPKIAyXxohhicUcX78jnTZW9rjgwZKRlfJUL9TGzW3tMyT66/NLQt58IykZg/wJzsG+UYp1xB7JbcK9SqloTD2O784gZ6Q0DtwrdxSjSNJ3On8S/qDWeMayqp4wZ3rnm1gnfbNstCNSVFFpO1io8OXvcCaE/EQT5QDdj/tw22TmQKO+Y1iEXJURMjPSZcQF3+pvnkrxZu5cnE8uUixURCWFY4L0ouss/QbCzXRBsdWDJ2ymyvuVVCdU8+CoxhiSMSFsyeMFi7DOMaHK0yGRTqIxnahXS+pSSHEjn7n/W4jz6/NLgNC4n6fhEkfnV1uPNld/R33BJ3OENcZgG/8vgjMpcvVuy3L5FQAA//8bgcB2YwIAAA
                 rating: 6
                 locale: near San Luis Obispo
-    - id: /ca/san_luis_reservoir/basalt
+    - id: /ca/san_luis_reservoir
       url: http://www.parks.ca.gov
-      name: Basalt
+      name: San Luis Reservoir SRA
       managed_by: San Luis Reservoir State Recreation Area
       campgrounds:
-        - id: default
+        - id: basalt
           name: Basalt
           res_url: http://www.reservationcalifornia.com
           refs:
@@ -7376,12 +7387,7 @@ properties:
                 desc: z2yTQY7kRBBFr/IP4LZ6hBoQuxGjkZDQjNSFNOtwOlwOKp3hiYh0UzuuwS04A0fhJCjTMw0LdlX2j4z/309fqODnKo5ndrZDxSAOwlqvPGCj8rDRzMh04wFJDzYpV7z5Zvj+8RGUjB0vEiu+fcImmR26wFc1zlJ4wMwHZ915Bm1arvAgu2FRjVVydoRiNz1kZhA81OjKWChJlriDcpuJlfEjZVnUihDefq481xQjfgos/ZTpjkzBeJESbKAytxDVecZuspFJvjcRlWtm8wEvFGwPfpP+r+mdJE9KNrP5iE8rl773Qslo4xKKZznY8I5z0DmPvW67I+jGXdsfDu1nc+7675tFfB26V+l5xDtQ1P2EN2msIy5hsvP8MJF7H2licUzsATn9LJQzXr668z5hjrSSMzytqrlXMJFEPwN6Svs+r7ZQ4hGXvdfYgjNZvsPrtrEhUcHE+FzlpDnfB0w1ECsFNrqxY1HDVfU/xKRcR/yyMmj+lRKXwMe/f//jA0vOeK/GE91bjOaiRzFOxhSibVdg4kTVubnuEqVAplrS2v3pElzOjV+Y9GXG5z09xCW0IeCz++inPOvGpvh4sGXV24jLGTB429koaru4La2mRC5aKOc7+LfEPOPN4+Nff74/k/PBRcrVQcaoXrtuz0xOJUa8qx3kefEGRM2MRXttSbdNy4gPGnwClAL/f/ADJLqdqFZO8DjY7q2JdMv3EZ/Img9kua7h2Npn5HywUYbvGv41ub1+x23JcvI/XfyAtzl3wI6tekOPxBayCM/tiXN+WIxbT23wSw2v/XLm4+xNHE/fPWFhjvGfAAAA//9WA+6IQgQAAA
                 rating: 5
                 locale: on San Luis Reservoir
-    - id: /ca/san_luis_reservoir/san_luis_creek
-      url: http://www.parks.ca.gov
-      name: San Luis Creek
-      managed_by: San Luis Reservoir State Recreation Area
-      campgrounds:
-        - id: default
+        - id: san_luis_creek
           name: San Luis Creek
           res_url: http://www.reservecalifornia.com
           refs:

@@ -2,9 +2,13 @@
 package mangle
 
 import (
+	"regexp"
 	"strings"
+	"unicode"
 
-	"k8s.io/klog/v2"
+	"golang.org/x/text/runes"
+	"golang.org/x/text/transform"
+	"golang.org/x/text/unicode/norm"
 )
 
 var (
@@ -56,6 +60,11 @@ var (
 		"BAY":        true,
 		"BY":         true,
 	}
+
+	// nonWords
+	nonWordRe = regexp.MustCompile(`\W+`)
+	// extra space
+	spaceRe = regexp.MustCompile(`\s+`)
 )
 
 func Expand(s string) string {
@@ -67,20 +76,14 @@ func Expand(s string) string {
 			words = append(words, w)
 		}
 	}
-	expanded := strings.Join(words, " ")
-	if expanded != s {
-		klog.V(1).Infof("Expanded %s to: %s", s, expanded)
-	}
-	return expanded
+	return strings.Join(words, " ")
 }
 
 // Shorten is a one-pass shortening
 func Shorten(s string) (string, bool) {
-	klog.V(3).Infof("Shorten: %s", s)
 	keyWords := strings.Split(Expand(s), " ")
 	for i, kw := range keyWords {
 		if _, exists := ExtraWords[strings.ToUpper(kw)]; exists {
-			klog.V(1).Infof("Removing extra word in %s: %s", s, kw)
 			keyWords = append(keyWords[:i], keyWords[i+1:]...)
 			return strings.Join(keyWords, " "), true
 		}
@@ -98,6 +101,16 @@ func Shortest(s string) string {
 		}
 	}
 	return s
+}
+
+// Normalize removes weird characters so that a string is easy to compare
+func Normalize(s string) string {
+	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+	s, _, _ = transform.String(t, s)
+	s = strings.TrimSpace(strings.ToLower(s))
+	s = strings.Replace(s, `'`, "", -1)
+	s = nonWordRe.ReplaceAllString(s, " ")
+	return spaceRe.ReplaceAllLiteralString(s, " ")
 }
 
 // Locale returns a shorter locale name

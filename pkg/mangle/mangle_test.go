@@ -22,6 +22,25 @@ func TestLocale(t *testing.T) {
 	}
 }
 
+func TestNormalize(t *testing.T) {
+	tests := []struct {
+		in  string
+		out string
+	}{
+		{"Montaña De Oro State Park", "montana de oro state park"},
+		{"Shasta-Trinity Park", "shasta trinity park"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.in, func(t *testing.T) {
+			got := Normalize(tt.in)
+			if got != tt.out {
+				t.Errorf("got %q, want %q", got, tt.out)
+			}
+		})
+	}
+}
+
 func TestLocaleProperty(t *testing.T) {
 	tests := []struct {
 		in  string

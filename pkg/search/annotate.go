@@ -9,33 +9,46 @@ import (
 	"github.com/tstromberg/campwiz/pkg/mangle"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 
+	"github.com/agnivade/levenshtein"
 	"k8s.io/klog/v2"
 )
 
 const (
 	NoMatch = iota
-	ParkNameRoughMatch
-	DoubleMangledSubMatch
+	BiMangledPropSubMatch
+	BiMangledPropMatch
+	MangledPropSubMatch
+	ApproxPropMatch
+	MangledPropMatch
+	PropMatch
+	BiMangledSubMatch
 	MangledSubMatch
-	SubNameMatch
-	SingleParkNameMatch
-	DoubleMangledNameMatch
-	MangledNameMatch
+	SubMatch
+	SinglePropMatch
+	ApproxMatch
+	BiMangledMatch
+	MangledMatch
 	NameMatch
 	SiteID
 )
 
 var scoreNames = map[int]string{
-	NoMatch:                "NoMatch",
-	ParkNameRoughMatch:     "ParkNAmeRoughMatch",
-	DoubleMangledSubMatch:  "DoubleMangledSubMatch",
-	MangledSubMatch:        "MangledSubMatch",
-	SubNameMatch:           "SubNameMatch",
-	SingleParkNameMatch:    "SingleParkNameMatch",
-	DoubleMangledNameMatch: "DoubleMangledNameMatch",
-	MangledNameMatch:       "MangledNameMatch",
-	NameMatch:              "NameMatch",
-	SiteID:                 "SiteID",
+	NoMatch:               "NoMatch",
+	BiMangledPropSubMatch: "BiMangledPropSubMatch",
+	BiMangledPropMatch:    "BiMangledPropMatch",
+	MangledPropSubMatch:   "MangledPropSubMatch",
+	ApproxPropMatch:       "ApproxPropMatch",
+	MangledPropMatch:      "MangledPropMatch",
+	PropMatch:             "PropMatch",
+	BiMangledSubMatch:     "BiMangledSubMatch",
+	MangledSubMatch:       "MangledSubMatch",
+	SubMatch:              "SubMatch",
+	SinglePropMatch:       "SinglePropMatch",
+	BiMangledMatch:        "BiMangledMatch",
+	MangledMatch:          "MangledMatch",
+	ApproxMatch:           "ApproxMatch",
+	NameMatch:             "NameMatch",
+	SiteID:                "SiteID",
 }
 
 type Match struct {
@@ -94,55 +107,91 @@ func findBestMatch(r campwiz.Result, props map[string]*campwiz.Property) Match {
 	return matches[0]
 }
 
+func variations(s string) []string {
+	klog.Infof("variations for %q", s)
+	try := map[string]bool{
+		strings.ToLower(strings.Join(strings.Split(mangle.Shortest(mangle.Expand(s)), " "), "")): true,
+		strings.ToLower(mangle.Shortest(s)):                true,
+		strings.ToLower(mangle.Expand(s)):                  true,
+		strings.ToLower(mangle.Shortest(mangle.Expand(s))): true,
+	}
+
+	vs := []string{}
+	for k, _ := range try {
+		vs = append(vs, k)
+	}
+
+	klog.Infof("variations for %q: %v", s, vs)
+	return vs
+}
+
 func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {
 	var matches []Match
-	resName := strings.TrimSpace(strings.ToLower(r.Name))
+	resName := mangle.Normalize(r.Name)
 
 	for _, prop := range props {
+		propName := mangle.Normalize(prop.Name)
+		// TODO: A better job guessing which campsite to use
+		var cg *campwiz.Campground
+		for _, c := range prop.Campgrounds {
+			cg = c
+		}
+
+		if resName == propName {
+			if len(prop.Campgrounds) == 1 {
+				matches = append(matches, Match{SinglePropMatch, fmt.Sprintf("result %q = single park %q", resName, prop.Name), cg})
+			} else {
+				matches = append(matches, Match{PropMatch, fmt.Sprintf("result %q = multi park %q", resName, prop.Name), cg})
+			}
+		}
+
+		for x, kv := range variations(propName) {
+			if kv == resName {
+				matches = append(matches, Match{MangledPropMatch, fmt.Sprintf("variation %d: %q = %q", x, kv, resName), cg})
+			}
+
+			for i, rv := range variations(resName) {
+				if rv == kv {
+					matches = append(matches, Match{BiMangledPropMatch, fmt.Sprintf("variation %d/%d: %q = %q", i, x, rv, propName), cg})
+				}
+
+				if strings.Contains(kv, rv) {
+					matches = append(matches, Match{BiMangledPropSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, rv, kv), cg})
+					continue
+				}
+				if strings.Contains(rv, kv) {
+					matches = append(matches, Match{BiMangledPropSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, kv, rv), cg})
+					continue
+				}
+
+				d := levenshtein.ComputeDistance(rv, kv)
+				if d < 3 {
+					matches = append(matches, Match{ApproxPropMatch, fmt.Sprintf("variation %d/%d: %q is %d edits from %q", i, x, rv, d, kv), cg})
+					continue
+				}
+			}
+
+		}
+
 		for _, cg := range prop.Campgrounds {
-			knownName := strings.ToLower(cg.Name)
+			knownName := mangle.Normalize(cg.Name)
 
 			if resName == knownName {
 				matches = append(matches, Match{NameMatch, fmt.Sprintf("result %q = known %q", resName, knownName), cg})
 				continue
 			}
 
-			if resName == strings.ToLower(prop.Name) {
-				if len(prop.Campgrounds) == 1 {
-					matches = append(matches, Match{SingleParkNameMatch, fmt.Sprintf("result %q = single park %q", resName, prop.Name), cg})
-				} else {
-					matches = append(matches, Match{ParkNameRoughMatch, fmt.Sprintf("result %q = multi park %q", resName, prop.Name), cg})
-				}
-			}
-
 			if strings.Contains(resName, knownName) {
-				matches = append(matches, Match{SubNameMatch, fmt.Sprintf("known %q in result %q", knownName, resName), cg})
+				matches = append(matches, Match{SubMatch, fmt.Sprintf("known %q in result %q", knownName, resName), cg})
 			}
 
 			if strings.Contains(knownName, resName) {
-				matches = append(matches, Match{SubNameMatch, fmt.Sprintf("result %q in known %q", resName, knownName), cg})
+				matches = append(matches, Match{SubMatch, fmt.Sprintf("result %q in known %q", resName, knownName), cg})
 			}
 
-			// Mangle the result to see if it roughly matches a known site
-			resVariations := []string{
-				strings.Join(strings.Split(mangle.Shortest(mangle.Expand(resName)), " "), ""),
-				mangle.Shortest(resName),
-				mangle.Expand(resName),
-				mangle.Shortest(mangle.Expand(resName)),
-			}
-
-			// Mangle the result to see if it roughly matches a known site
-			knownVariations := []string{
-				strings.Join(strings.Split(mangle.Shortest(mangle.Expand(knownName)), " "), ""),
-				mangle.Shortest(knownName),
-				mangle.Expand(knownName),
-				mangle.Shortest(mangle.Expand(knownName)),
-			}
-
-			for i, rv := range resVariations {
-				rv = strings.ToLower(rv)
+			for i, rv := range variations(resName) {
 				if rv == knownName {
-					matches = append(matches, Match{MangledNameMatch, fmt.Sprintf("variation %d: %q = %q", i, rv, knownName), cg})
+					matches = append(matches, Match{MangledMatch, fmt.Sprintf("variation %d: %q = %q", i, rv, knownName), cg})
 					continue
 				}
 
@@ -155,20 +204,27 @@ func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {
 					continue
 				}
 
-				for x, kv := range knownVariations {
+				for x, kv := range variations(knownName) {
 					kv = strings.ToLower(kv)
 					if rv == kv {
-						matches = append(matches, Match{DoubleMangledNameMatch, fmt.Sprintf("variation %d/%d: %q = %q", i, x, rv, knownName), cg})
+						matches = append(matches, Match{BiMangledMatch, fmt.Sprintf("variation %d/%d: %q = %q", i, x, rv, knownName), cg})
 						continue
 					}
 					if strings.Contains(kv, rv) {
-						matches = append(matches, Match{DoubleMangledSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, rv, kv), cg})
+						matches = append(matches, Match{BiMangledSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, rv, kv), cg})
 						continue
 					}
 					if strings.Contains(rv, kv) {
-						matches = append(matches, Match{DoubleMangledSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, kv, rv), cg})
+						matches = append(matches, Match{BiMangledSubMatch, fmt.Sprintf("variation %d/%d: result %q in known %q", i, x, kv, rv), cg})
 						continue
 					}
+
+					d := levenshtein.ComputeDistance(rv, kv)
+					if d < 3 {
+						matches = append(matches, Match{ApproxMatch, fmt.Sprintf("variation %d/%d: %q is %d edits from %q", i, x, rv, d, kv), cg})
+						continue
+					}
+
 				}
 			}
 		}
