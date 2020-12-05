@@ -96,7 +96,7 @@ func TestRCaliforniaParse(t *testing.T) {
 			Availability: []campwiz.Availability{
 				{
 					SiteType: "campsite",
-					Date:     time.Date(2021, 02, 12, 0, 0, 0, 0, time.UTC),
+					Date:     time.Date(2021, 0o2, 12, 0, 0, 0, 0, time.UTC),
 					URL:      "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
 				},
 			},
@@ -130,7 +130,7 @@ func TestRCaliforniaParse(t *testing.T) {
 			Availability: []campwiz.Availability{
 				{
 					SiteType: "campsite",
-					Date:     time.Date(2021, 02, 12, 0, 0, 0, 0, time.UTC),
+					Date:     time.Date(2021, 0o2, 12, 0, 0, 0, 0, time.UTC),
 					URL:      "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
 				},
 			},
