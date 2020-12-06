@@ -107,8 +107,14 @@ func findBestMatch(r campwiz.Result, props map[string]*campwiz.Property) Match {
 	return matches[0]
 }
 
+var (
+	varCache = map[string][]string{}
+)
+
 func variations(s string) []string {
-	klog.Infof("variations for %q", s)
+	if varCache[s] != nil {
+		return varCache[s]
+	}
 	try := map[string]bool{
 		strings.ToLower(strings.Join(strings.Split(mangle.Shortest(mangle.Expand(s)), " "), "")): true,
 		strings.ToLower(mangle.Shortest(s)):                true,
@@ -122,7 +128,8 @@ func variations(s string) []string {
 	}
 
 	klog.Infof("variations for %q: %v", s, vs)
-	return vs
+	varCache[s] = vs
+	return varCache[s]
 }
 
 func findMatches(r campwiz.Result, props map[string]*campwiz.Property) []Match {

@@ -65,6 +65,8 @@ var (
 	nonWordRe = regexp.MustCompile(`\W+`)
 	// extra space
 	spaceRe = regexp.MustCompile(`\s+`)
+
+	normCache = map[string]string{}
 )
 
 func Expand(s string) string {
@@ -105,12 +107,17 @@ func Shortest(s string) string {
 
 // Normalize removes weird characters so that a string is easy to compare
 func Normalize(s string) string {
+	if normCache[s] != "" {
+		return normCache[s]
+	}
+
 	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
 	s, _, _ = transform.String(t, s)
 	s = strings.TrimSpace(strings.ToLower(s))
 	s = strings.Replace(s, `'`, "", -1)
 	s = nonWordRe.ReplaceAllString(s, " ")
-	return spaceRe.ReplaceAllLiteralString(s, " ")
+	normCache[s] = spaceRe.ReplaceAllLiteralString(s, " ")
+	return normCache[s]
 }
 
 // Locale returns a shorter locale name
