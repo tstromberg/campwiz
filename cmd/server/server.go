@@ -1,86 +1,67 @@
-// The "main" package contains the command-line utility functions.
+// The "main" package contains the HTTP server
 package main
 
 import (
-	"flag"
+	goflag "flag"
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"text/template"
+	"os"
+
+	pflag "github.com/spf13/pflag"
+	"k8s.io/klog/v2"
 
 	"github.com/tstromberg/campwiz/pkg/cache"
-	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/metadata"
 	"github.com/tstromberg/campwiz/pkg/relpath"
 	"github.com/tstromberg/campwiz/pkg/search"
-	"k8s.io/klog/v2"
+	"github.com/tstromberg/campwiz/pkg/site"
 )
 
-var cs cache.Store
+var (
+	persistBackendFlag           = pflag.String("persist-backend", "", "Cache persistence backend (disk, mysql, cloudsql)")
+	persistPathFlag              = pflag.String("persist-path", "", "Where to persist cache to (automatic)")
+	portFlag                     = pflag.Int("port", 8080, "port to run server at")
+	siteFlag                     = pflag.String("site", "site/", "path to site files")
+	thirdPartyFlag               = pflag.String("3p", "third_party/", "path to 3rd party files")
+	providersFlag      *[]string = pflag.StringSlice("providers", search.DefaultProviders, "site providers to include")
 
-type formValues struct {
-	Dates    string
-	Nights   int
-	Distance int
-	Standard bool
-	Group    bool
-	WalkIn   bool
-	BoatIn   bool
-}
-
-type templateContext struct {
-	Query   campwiz.Query
-	Results []campwiz.Result
-	Sources map[string]campwiz.Source
-	Form    formValues
-}
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Incoming request: %+v", r)
-	klog.Infof("Incoming request: %+v", r)
-	q := campwiz.Query{}
-
-	srcs, props, err := metadata.LoadAll()
-	if err != nil {
-		klog.Errorf("loadall failed: %w", err)
-	}
-
-	rs, errs := search.Run(search.DefaultProviders, q, cs, props)
-	if errs != nil {
-		klog.Errorf("search: %v", errs)
-	}
-
-	p := relpath.Find("templates/http.tmpl")
-	outTmpl, err := ioutil.ReadFile(p)
-	if err != nil {
-		klog.Errorf("Failed to read template: %v", err)
-	}
-	tmpl := template.Must(template.New("http").Parse(string(outTmpl)))
-	ctx := templateContext{
-		Query:   q,
-		Sources: srcs,
-		Results: rs,
-		Form: formValues{
-			Dates: "2018-09-20",
-		},
-	}
-	err = tmpl.ExecuteTemplate(w, "http", ctx)
-	if err != nil {
-		klog.Errorf("template: %v", err)
-	}
-}
-
-func init() {
-	flag.Parse()
-}
+	latFlag *float64 = pflag.Float64("lat", 37.4092297, "latitude to search from")
+	lonFlag *float64 = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
+)
 
 func main() {
-	var err error
-	cs, err = cache.Initialize()
+	klog.InitFlags(nil)
+	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
+	pflag.Parse()
+
+	cs, err := cache.Initialize()
 	if err != nil {
 		klog.Exitf("error: %w", err)
 	}
 
-	http.HandleFunc("/", handler)
-	klog.Fatal(http.ListenAndServe(":8080", nil))
+	srcs, props, err := metadata.LoadAll()
+	if err != nil {
+		klog.Exitf("loadall failed: %w", err)
+	}
+
+	s := site.New(&site.Config{
+		BaseDirectory: relpath.Find(*siteFlag),
+		Cache:         cs,
+		Sources:       srcs,
+		Properties:    props,
+		Providers:     *providersFlag,
+		Latitude:      *latFlag,
+		Longitude:     *lonFlag,
+	})
+
+	listenAddr := fmt.Sprintf(":%s", os.Getenv("PORT"))
+	if listenAddr == ":" {
+		listenAddr = fmt.Sprintf(":%d", *portFlag)
+	}
+
+	http.HandleFunc("/", s.Root())
+	http.HandleFunc("/search", s.Search())
+	http.HandleFunc("/healthz", s.Healthz())
+	http.HandleFunc("/threadz", s.Threadz())
+	klog.Fatal(http.ListenAndServe(listenAddr, nil))
 }

@@ -5,7 +5,6 @@ import (
 	"flag"
 	goflag "flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"text/template"
 	"time"
@@ -16,7 +15,6 @@ import (
 	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/mangle"
 	"github.com/tstromberg/campwiz/pkg/metadata"
-	"github.com/tstromberg/campwiz/pkg/relpath"
 	"github.com/tstromberg/campwiz/pkg/search"
 	"k8s.io/klog/v2"
 )
@@ -30,6 +28,25 @@ var (
 	latFlag       *float64  = pflag.Float64("lat", 37.4092297, "latitude to search from")
 	lonFlag       *float64  = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
 	providersFlag *[]string = pflag.StringSlice("providers", search.DefaultProviders, "site providers to include")
+
+	outTmpl = `
+{{ $srcs := .Sources }}
+{{ range $i, $r := .Results}}
+{{ Color "(" "yellow+d" }}{{ printf "#%d" $i | yellow }}{{ Color ")" "yellow+d" }} {{ Color $r.Name "green+h" }} {{ Color "(" "black+h" }}{{ printf "%.0fmi" $r.Distance | green }}{{ with $r.Locale }}{{ Color "," "black+h"}} {{ . | green }}{{ end }}{{ Color ")" "black+h" }}
+{{- range $r.Availability}}
+{{ Color "  >" "cyan" }} {{ printf "%s %d"  .Date.Month .Date.Day | hwhite }}{{ Color ":" "cyan" }} {{.URL | cyan }}
+{{- end }}
+{{ with $r.KnownCampground }}
+{{- range $k, $v := .Refs -}}
+ {{- $src := index $srcs $k -}}
+ {{ Color "  *" "magenta" }} {{ $src.Name | hmagenta }}: {{ printf "%.0f" $v.Rating | hwhite }}{{ Color "/" "black+h" }}{{ printf "%0.0f" $src.RatingMax | hwhite }}{{ with $src.RatingDesc }} {{$src.RatingDesc }}{{ end }}{{ with $v.Lists }}{{ Color ", " "black+h" }}{{ range . }} {{ printf "#%d" .Place | hmagenta }} {{ .Title | hwhite }}{{ end }}{{ end }}
+{{- end }}
+{{ end }}
+  {{ with $r.Desc | Ellipsis }}{{ . }}{{ end }}
+{{ end }}
+
+{{- range .Errors}}{{ Color "ERROR: " "red" }}{{ printf "%s" . | yellow }}{{ end -}}
+`
 )
 
 const dateFormat = "2006-01-02"
@@ -71,11 +88,6 @@ func processFlags() error {
 
 	ms, errs := search.Run(*providersFlag, q, cs, props)
 
-	bs, err := ioutil.ReadFile(relpath.Find("templates/ascii.tmpl"))
-	if err != nil {
-		return fmt.Errorf("readfile: %w", err)
-	}
-
 	fmap := template.FuncMap{
 		"Ellipsis": ellipse,
 		"Color":    ansi.Color,
@@ -92,7 +104,7 @@ func processFlags() error {
 		"grey":     func(s string) string { return ansi.Color(s, "black+h") },
 	}
 
-	t := template.Must(template.New("ascii").Funcs(fmap).Parse(string(bs)))
+	t := template.Must(template.New("ascii").Funcs(fmap).Parse(outTmpl))
 
 	c := templateContext{
 		Query:   q,
