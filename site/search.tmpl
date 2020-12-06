@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>campwiz</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+  
+		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+		<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+</head>
+<body>
+
+<form action="/search" method="get">
+    <fieldset>
+        <label for="dates">Dates</label>
+        <input type="date" id="dates" name="dates" value="{{ .SelectDate }}" min="{{ .Today }}">
+    </fieldset>
+    <fieldset>
+        <label>Nights</label>
+        <input type="number" name="nights" min="1" max="7" step="1" value="{{ .Query.StayLength }}" />
+    </fieldset>
+    <fieldset>
+        <label for="distance">Distance</label>
+        <select name="distance" id="distance">
+            <option value="50">50 miles</option>
+            <option value="100">100 miles</option>
+            <option value="200" selected>200 miles</option>
+			<option value="300">300 miles</option>
+        </select>
+    </fieldset>
+    <!-- not yet supported 
+    <fieldset>
+        <label>Type</label>
+        <input type="checkbox" name="standard" checked >Standard</input>
+        <input type="checkbox" name="group" >Group</input>
+        <input type="checkbox" name="walk-in" >Walk-in</input>
+        <input type="checkbox" name="boat-in" >Boat-in</input>
+        </label>
+    </fieldset>
+    -->
+    <button type="submit">Search</button>
+</form>
+
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+			<th>Name</th>
+			<th>Distance</th>
+			<td>Availability</td>
+			<th>Rating</th>
+			<th>Desc</th>
+        </tr>
+    </thead>
+    <tbody>
+{{ $srcs := .Sources }}
+{{ range $i, $r := .Results}}
+		<tr>
+			<th>{{.Name}}</th>
+			<th>{{ $r.Distance }}mi{{ with $r.Locale }}, {{ . }} {{ end }}</th>
+			<td>
+            <ul>
+            {{- range $r.Availability}}
+                <li><a href="{{.URL}}">{{ printf "%s %d"  .Date.Month .Date.Day }}</a></li>
+            {{- end }}
+            </ul>
+            </td>
+			<td>
+            {{ with $r.KnownCampground }}
+                <ul>
+                {{ range $k, $v := .Refs -}}
+                    {{ $src := index $srcs $k -}}
+                    <li>
+                        {{ $src.Name }}: {{ printf "%.0f" $v.Rating }} / {{ printf "%0.0f" $src.RatingMax }}
+                        {{ with $src.RatingDesc }}
+                            {{$src.RatingDesc }}
+                        {{ end }}
+                        {{ with $v.Lists }}
+                            , 
+                            {{ range . }}
+                                {{ printf "#%d" .Place }} {{ .Title  }}
+                            {{ end }}
+                        {{ end }}
+                    </li>
+                {{ end }}
+                </ul>
+            {{ end }}
+            </td>
+                            
+            <td>{{ with $r.Desc | Ellipsis }}{{ . }}{{ end }}</td>
+        </tr>
+{{end}}
+    </tbody>
+</table>
+
+{{ range .Errors}}<div class="error">{{ . }}</div>{{ end }}
+
+<script>
+    $('#myTable').DataTable({
+		"pageLength": 50
+	});	
+</script>
+</body>
+</html>
