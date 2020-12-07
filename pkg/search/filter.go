@@ -25,8 +25,10 @@ func filter(q campwiz.Query, rs []campwiz.Result) []campwiz.Result {
 		if len(q.Keywords) > 0 {
 			fields := []string{r.Desc, r.Name}
 			fields = append(fields, r.Features...)
-			for _, x := range r.KnownCampground.Refs {
-				fields = append(fields, x.Name, x.Locale, x.Desc)
+			if r.KnownCampground != nil {
+				for _, x := range r.KnownCampground.Refs {
+					fields = append(fields, x.Name, x.Locale, x.Desc)
+				}
 			}
 			found := false
 			for _, f := range fields {

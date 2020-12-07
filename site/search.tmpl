@@ -14,8 +14,12 @@
 
 <form action="/search" method="get">
     <fieldset>
+        <label for="location">Near (hardcoded)</label>
+        <input type="location" id="location" name="location" value="San Francisco, CA" disabled="true">
+    </fieldset>
+    <fieldset>
         <label for="dates">Dates</label>
-        <input type="date" id="dates" name="dates" value="{{ .SelectDate }}" min="{{ .Today }}">
+        <input type="date" id="dates" name="dates" value="{{ .SelectDate | toDate }}" min="{{ .Today }}">
     </fieldset>
     <fieldset>
         <label>Nights</label>
@@ -24,10 +28,9 @@
     <fieldset>
         <label for="distance">Distance</label>
         <select name="distance" id="distance">
-            <option value="50">50 miles</option>
-            <option value="100">100 miles</option>
-            <option value="200" selected>200 miles</option>
-			<option value="300">300 miles</option>
+            <option value="100" {{ if eq .Query.MaxDistance 100}}selected="selected"{{ end }}>100 miles</option>
+			<option value="200" {{ if eq .Query.MaxDistance 200}}selected="selected"{{ end }}>200 miles</option>
+			<option value="300" {{ if eq .Query.MaxDistance 300}}selected="selected"{{ end }}>300 miles</option>
         </select>
     </fieldset>
     <!-- not yet supported 
@@ -101,5 +104,10 @@
         "info": false,
 	});	
 </script>
+
+<footer>
+powered by <a href="https://github.com/tstromberg/campwiz">campwiz {{.Version}}</a>
+</footer>
+
 </body>
 </html>

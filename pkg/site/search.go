@@ -23,6 +23,13 @@ type templateContext struct {
 
 	Today      time.Time
 	SelectDate time.Time
+	Version    string
+}
+
+func futureFriday() time.Time {
+	try := time.Now().Add(time.Duration(7 * 6 * 24 * time.Hour))
+	offset := 5 - int(try.Weekday())
+	return try.Add(time.Duration(offset) * 24 * time.Hour)
 }
 
 // Search returns search results
@@ -38,7 +45,7 @@ func (h *Handlers) Search() http.HandlerFunc {
 			Keywords:    []string{getStr(r.URL, "keywords", "")},
 		}
 
-		selectDate := time.Now()
+		selectDate := futureFriday()
 
 		for _, ds := range r.URL.Query()["dates"] {
 			t, err := time.Parse("2006-01-02", ds)
@@ -69,6 +76,7 @@ func (h *Handlers) Search() http.HandlerFunc {
 
 		fmap := template.FuncMap{
 			"Ellipsis": ellipse,
+			"toDate":   toDate,
 		}
 
 		tmpl := template.Must(template.New("http").Funcs(fmap).Parse(string(outTmpl)))
@@ -79,6 +87,7 @@ func (h *Handlers) Search() http.HandlerFunc {
 			Errors:     errs,
 			SelectDate: selectDate,
 			Today:      time.Now(),
+			Version:    VERSION,
 		}
 		err = tmpl.ExecuteTemplate(w, "http", ctx)
 		if err != nil {
@@ -90,6 +99,10 @@ func (h *Handlers) Search() http.HandlerFunc {
 
 func ellipse(s string) string {
 	return mangle.Ellipsis(s, 100)
+}
+
+func toDate(t time.Time) string {
+	return t.Format("2006-01-02")
 }
 
 // helper to get integers from a URL
