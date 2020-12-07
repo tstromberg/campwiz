@@ -57,8 +57,8 @@
 {{ $srcs := .Sources }}
 {{ range $i, $r := .Results}}
 		<tr>
-			<th>{{.Name}}</th>
-			<th>{{ $r.Distance }}mi{{ with $r.Locale }}, {{ . }} {{ end }}</th>
+			<td>{{.Name}}</th>
+			<td data-order="{{ $r.Distance }}">{{ printf "%0.f" $r.Distance }}mi {{ with $r.Locale }}({{ . }}){{ end }}</th>
 			<td>
             <ul>
             {{- range $r.Availability}}
@@ -66,21 +66,19 @@
             {{- end }}
             </ul>
             </td>
-			<td>
+			<td data-order="{{ $r.Rating }}">
             {{ with $r.KnownCampground }}
                 <ul>
                 {{ range $k, $v := .Refs -}}
                     {{ $src := index $srcs $k -}}
                     <li>
-                        {{ $src.Name }}: {{ printf "%.0f" $v.Rating }} / {{ printf "%0.0f" $src.RatingMax }}
-                        {{ with $src.RatingDesc }}
-                            {{$src.RatingDesc }}
-                        {{ end }}
+                        {{ printf "%.0f" $v.Rating }} / {{ printf "%0.0f" $src.RatingMax }}: {{ $src.Name }}
                         {{ with $v.Lists }}
-                            , 
+                            <ul>
                             {{ range . }}
-                                {{ printf "#%d" .Place }} {{ .Title  }}
+                                <li>{{ printf "#%d" .Place }} {{ .Title  }}</li>
                             {{ end }}
+                            </ul>
                         {{ end }}
                     </li>
                 {{ end }}
@@ -98,7 +96,9 @@
 
 <script>
     $('#myTable').DataTable({
-		"pageLength": 50
+		"pageLength": 50,
+        "paging": false,
+        "info": false,
 	});	
 </script>
 </body>
