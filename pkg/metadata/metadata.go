@@ -30,11 +30,13 @@ func LoadAll() (map[string]campwiz.Source, map[string]*campwiz.Property, error) 
 		if path == "" {
 			klog.Errorf("unable to find %s", p)
 		}
+		klog.Infof("%s is at %s", p, path)
 
 		srcs, props, err := loadPath(path)
 		if err != nil {
-			return srcs, props, fmt.Errorf("loadpath(%s) [%s]: %v", path, p, err)
+			return srcs, props, fmt.Errorf("loadpath %q: %v", path, err)
 		}
+
 		for k, v := range srcs {
 			csrcs[k] = v
 		}

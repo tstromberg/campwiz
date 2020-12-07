@@ -20,8 +20,9 @@ func Find(partial string) string {
 		partial,
 		filepath.Join("..", "..", partial),
 		filepath.Join("..", partial),
-		filepath.Join(filepath.Dir(binpath)),
-		filepath.Join(build.Default.GOPATH, "github.com/tstromberg/campwiz"),
+		filepath.Join("/app", partial),
+		filepath.Join(filepath.Dir(binpath), partial),
+		filepath.Join(build.Default.GOPATH, "github.com/tstromberg/campwiz", partial),
 	}
 
 	for _, path := range try {

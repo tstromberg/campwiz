@@ -41,7 +41,7 @@ func main() {
 
 	srcs, props, err := metadata.LoadAll()
 	if err != nil {
-		klog.Exitf("loadall failed: %w", err)
+		klog.Exitf("loadall failed: %v", err)
 	}
 
 	s := site.New(&site.Config{
@@ -63,5 +63,6 @@ func main() {
 	http.HandleFunc("/search", s.Search())
 	http.HandleFunc("/healthz", s.Healthz())
 	http.HandleFunc("/threadz", s.Threadz())
+	klog.Infof("Listening at: %s", listenAddr)
 	klog.Fatal(http.ListenAndServe(listenAddr, nil))
 }

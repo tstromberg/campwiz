@@ -29,7 +29,7 @@ var (
 	nonWordRe = regexp.MustCompile(`\W+`)
 
 	// How long to cache by default
-	DefaultMaxAge = 4 * time.Hour
+	DefaultMaxAge = 12 * time.Hour
 )
 
 // Request defines what can be passed in as a request
