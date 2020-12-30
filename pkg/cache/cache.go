@@ -29,7 +29,8 @@ var (
 	nonWordRe = regexp.MustCompile(`\W+`)
 
 	// How long to cache by default
-	DefaultMaxAge = 12 * time.Hour
+	RecommendedMaxAge = 12 * time.Hour
+	defaultMaxAge     = RecommendedMaxAge
 )
 
 // Request defines what can be passed in as a request
@@ -140,7 +141,7 @@ func tryCache(req Request, cs Store) (Response, error) {
 func applyDefaults(req Request) (Request, error) {
 	// Apply defaults
 	if req.MaxAge == 0 {
-		req.MaxAge = DefaultMaxAge
+		req.MaxAge = defaultMaxAge
 	}
 	if req.Method == "" {
 		req.Method = "GET"
@@ -295,15 +296,25 @@ func Fetch(req Request, cs Store) (Response, error) {
 	return cr, nil
 }
 
-// Initialize returns an initialized cache
-func Initialize() (*diskv.Diskv, error) {
+type Config struct {
+	MaxAge time.Duration
+}
+
+// New returns a new cache (hardcoded to diskv, for the moment)
+func New(c Config) (*diskv.Diskv, error) {
+	defaultMaxAge = c.MaxAge
+	return initialize()
+}
+
+// initialize returns an initialized cache
+func initialize() (*diskv.Diskv, error) {
 	root, err := os.UserCacheDir()
 	if err != nil {
 		return nil, fmt.Errorf("cache dir: %w", err)
 	}
 	cacheDir := filepath.Join(root, "campwiz")
 	klog.Infof("cache dir is %s", cacheDir)
-	klog.Infof("default expiry is %s", DefaultMaxAge)
+	klog.Infof("default expiry is %s", defaultMaxAge)
 
 	return diskv.New(diskv.Options{
 		BasePath:     cacheDir,
