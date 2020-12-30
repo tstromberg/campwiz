@@ -83,6 +83,10 @@ func annotate(r campwiz.Result, props map[string]*campwiz.Property) campwiz.Resu
 		if r.Locale == "" && ref.Locale != "" {
 			r.Locale = ref.Locale
 		}
+		if r.ImageURL == "" && ref.ImageURL != "" {
+			r.ImageURL = ref.ImageURL
+		}
+
 		if r.Desc == "" && ref.Desc != "" {
 			if ref.URL != "" {
 				r.Desc = ref.Desc

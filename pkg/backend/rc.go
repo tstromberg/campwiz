@@ -80,7 +80,7 @@ type rcRequest struct {
 	PlaceID             int    `json:"PlaceId"`
 	Latitude            string `json:"Latitude"`
 	Longitude           string `json:"Longitude"`
-	HighlightedPlaceId  int    `json:"HighlightedPlaceId"`
+	HighlightedPlaceID  int    `json:"HighlightedPlaceId"`
 	StartDate           string `json:"StartDate"`
 	Nights              string `json:"Nights"`
 	CountNearby         bool   `json:"CountNearby"`
@@ -106,6 +106,7 @@ type rcPlace struct {
 	MilesFromSelected int     `json:"MilesFromSelected"`
 	Name              string  `json:"Name"`
 	PlaceID           int     `json:"PlaceId"`
+	ImageURL          string  `json:"ImageUrl"`
 	URL               string  `json:"Url"`
 }
 
@@ -145,6 +146,7 @@ func (b *RCalifornia) parse(bs []byte, date time.Time, q campwiz.Query) ([]campw
 			Distance:     float64(r.MilesFromSelected),
 			Availability: []campwiz.Availability{a},
 			URL:          r.URL,
+			ImageURL:     r.ImageURL,
 		}
 
 		klog.Infof("%s is available: %+v", r.Name, rr)
