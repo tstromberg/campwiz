@@ -34,7 +34,7 @@ func main() {
 	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 	pflag.Parse()
 
-	cs, err := cache.Initialize()
+	cs, err := cache.New(cache.Config{MaxAge: cache.RecommendedMaxAge})
 	if err != nil {
 		klog.Exitf("error: %w", err)
 	}
