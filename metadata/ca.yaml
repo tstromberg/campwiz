@@ -2440,6 +2440,15 @@ properties:
                 desc: zzySQW/UQAyF/8o7grSNqFqBKg6I9gISEkgFcXYSb8bNZBx5nI2WX488u+1xZjzP33v2M5/YKGOgZa3iXJHYGFUcWkDo83Y8YhdPIGSaGSfhvcPfVsa5MqTAE2MyJmfDI53x1ZgwUMFZN0zs8ET+Bb8Tt0aT6VZGSEXh6pnH0FCa6wG0aJnw6eEjaDCu0CNWsjlTGQ84blakJikTqi6MZRvSTWEeeURNNHKHJz2rM37QzIcg1jIdUMhM9wu+hKuBylkLXrbq0BNbM2AyTgymuDviT/fc4fbD7SEwCaux+xl1s9WkMlxReB90YasdvjuG0Km4v3+4klMZsZqeZAwbhUM02vRcvaFUHNXQU604Xl1do3yNsMNPT2yoKw8SksYxEJ4k56Y/GK2rcIdH9YRVd7ZeyUMqnouWm0VdTf7xiLcXY1DOuvP4+UKkFERbGVKYDdZFMqOoeXrFPkkVV6sYuDhbh+ddlqVB1/CZpBfnsYshRwOL/y1/NiSZo9KNJFdQ3DbRFkNS4wP6zbGocaxKwd1dQ2jzX7bscrNF6Jf/75JavSa86FacpKCX+ZrQ1dv7y+FEkqnPsQ2tbVvlq5Be4qbxhcIVvpGd+IxHJsNTCJ/xi2yOYUfdHpOLTW47k1Xn+uai+x8AAP//9oFBBkkDAAA
                 rating: 8
                 locale: near Gilroy
+            sccgov.org:
+              name: Coyote Lake Harvey Bear Ranch County Park
+              url: https://www.sccgov.org/sites/parks/parkfinder/Pages/CoyoteLake.aspx
+              image_url: https://www.sccgov.org/sites/parks/parkfinder/PublishingImages/StoryMap/CoyoteLake.jpg
+              desc: 'Coyote Bear provides habitats for many species of birds, reptiles, amphibians, insects and mammals. The park is home to rare western pond turtle, California tiger salamander and Bay checkerspot butterfly. Two-Hundred-Nineteen species of birds have been seen, including our “National Bird” the bald eagle. During your visit you can also be sure to see black-tailed deer, and turkeys. Even mountain lions have been seen by visitors in the park’s hinterlands.
+
+The park provides campsites for 73 RV and tent campers. All sites have a table, grill/fire pit, and food storage locker. RV sites have electricity, water hook-ups; and a dump station is located nearby. Hot showers are available to all campers.
+
+Hikers, horseback riders and off-road bicyclists can explore over 33 miles of trails that wind through cool oak forests and along breezy ridgelines with wonderful views. At the Bear Ranch Trailhead in San Martin, there is a 2-mile paved loop that is popular with joggers, dog-walkers, and people just wanting to get outside to exercise and get some fresh air.'
     - id: /ca/gilroy/henry_w_coe
       url: http://www.coepark.org
       name: Henry W. Coe State Park
@@ -5329,6 +5338,12 @@ properties:
                 desc: z1SRwarWQAyFX+UsFWrhguBeQbgLXVyvD5Dbpp3Q/JmSZP76+/QyLYLuZkLON+eceS0S0BZFHzhqnXnGTr6hLnganj5+Ak3OAeNI5UA1ZGEwRbIbQmbuq332gywJX7z9xrfaLEksRjwnCgUIkc1MbAW506OLDkr2hVQDWSgxkeGN4UxT4RmHZEGU6okiG8cAsUnb3BmvLrsyvnbxgM9K04aXOm1/J2Qzgu/spKhZ2GPAjbYuXaojklXJLy7EcIgl+yXbXWwd8Wwg1eGMdjbSY4T8wk3OIhakk+h/tgjBunxYm/QeT+bunHLna3nE95p8pe3clfqtnueJbvvqtdmM/iN12ngGJaJZcI74eafACwf7vYrj3dKplxc66PG+qyatwXMnkireKqXY+q/BRWt/ur1xjH8CAAD//8HOvo76AQAA
                 rating: 8
                 locale: near Morgan Hill
+            sccgov.org:
+              name: Uvas Canyon County Park
+              desc: This lushly wooded park of 1,147 acres, is nestled in upper Uvas Canyon on the eastern side of the Santa Cruz Mountains. This mountain park offers hiking, camping and picnicking opportunities throughout most of the year.
+              url: https://www.sccgov.org/sites/parks/parkfinder/Pages/UvasCanyon.aspx
+              image_url: https://www.sccgov.org/sites/parks/parkfinder/PublishingImages/StoryMap/UvasCanyon.jpg
+              locale: Santa Cruz Mountains, near Morgan Hill
     - id: /ca/morro
       name: Morro Bay
       managed_by: Rancho Colina RV Park
@@ -7285,6 +7300,12 @@ properties:
                 desc: z1xTTWrcShC+yre0QW+wDQ8MXj0MLw44JMQmXpfUpVEx/SOqakZol2vkGDlDbpKThG55nJB1V32/1e+UsuMz5WGCGAh7ZfIOi8SAOdIaKQcM5cQqeY9UlOETZVxfdbe3N6BB2SAZPjHGUnySGA1lRGbSfsWHcsyOB0oSvWR4aZNM5ju8d4xMfqwQ/14jSeS2OsmhkrmSRMPFVNTYMLMmcedw2eHm6vd0iQHaDGihYFWeg5TrwsiDYyyKVGWQZPQNuwNhVnZfEenAuNhyeKQDX3aolt/g30x1GCivJVuHQgfbxvZKZjUj2+F5YgyU5r2WYw41TmMHJQl14Y/Rrr1NFDhsKANl9IyjcQDVFnqyDauJnyPl3BKZGIHWn1+/GZSHWpWUvDH3bF6TY2vmveCBahVfKEZeO7DNPAjFuJ7rWiQ7axNgc6t3mbg9KTeMRHmFVR5HFPfIGJT5YK8JZWnlYSFnHRubZEwSAudzWHd4KM4Rz7XMu7Z4Tz++UyAExieKtD11WCYZJgQts1X1T5TxP0eZGfeVtGuaW2lSrZorUzp7mUkPO7yQpn+aGoxiU7VUj/pEEqmPfB5ulTfbfGKlCEs1JMVcWpH/bb8AJoHhKnNFqYsWy9JhOOppRVA5bYd8Puq/Tv3pmJJ443mU4YCPvbGeyIuurdWN4yS8tDurCE+UnXAfSem1tx1eSgkYRV97LaNzRk85c6h+7JgS6+5XAAAA//828SnIyAMAAA
                 rating: 7
                 locale: near San Jose
+            sccgov.org:
+              name: Joseph D. Grant County Park
+              desc: This 10,882 acre park includes some of the County's finest open space resources, as well as rich environmental, cultural and recreational assets. The landscape is characteristic of the east foothills of the Santa Clara Valley with grasslands and majestic oak trees. As part of the park's tradition and history, cattle grazing currently takes place in some areas, and is monitored under a resource management plan.
+              url: https://www.sccgov.org/sites/parks/parkfinder/Pages/JosephDGrant.aspx
+              image_url: https://www.sccgov.org/sites/parks/parkfinder/PublishingImages/StoryMap/JDGrant.jpg
+              locale: East of Santa Clara Valley
     - id: /ca/san_juan_bautista/fremont_peak
       url: http://www.parks.ca.gov
       name: Fremont Peak State Park
@@ -7656,6 +7677,14 @@ properties:
                 desc: z0yRwY7bMAxEf2U+IMll2y/orcBemqB3xqItwrLoklRc9+sL2bvA3gQMZjRv+MjiEAdhNY7YMdCywjkgFQTjtKkmjGrscYHzItfVZJGQF1/wbIEiM4OwqZV0upKMIxvXgNpTAoMuKxknhCIyg3zNVAI64k4VP9UZVNOh9X+60N93qkH4UcgIv6kU3m94ZHY+Wk6mrSbHxIHM9NrRnKEV3paFDRvzzDX5pccN2sy520/ezJT+NLJg804Hwtvl2/e3Kw3GWMlmRKaAh3EMmR2j6XK0GlUjSyl+9jcKnQht/aS7z3uRyvglaeI+yBcUa//wrq0GSfUbHhvX2K+xKRYpfCRmmaVOCCMpDjIGvUgKPQtfsElk0Cl2BFAcW9zwrh6fJv67FjVGaZ7R78cJXnRl/0j4OKufq1NVmv32PwAA///q9IwICwIAAA
                 rating: 8
                 locale: near Saratoga
+            sccgov.org:
+              name: Sanborn County Park
+              desc: This lushly wooded park of 3,453 acres, is nestled in the Santa Cruz Mountains between Saratoga and Skyline Boulevard. This mountain park of redwoods and tan bark oak, offers hiking, hike-in camping, RV camping and picnicking opportunities year-round.
+              features:
+                - hiking
+              url: https://www.sccgov.org/sites/parks/parkfinder/Pages/Sanborn.aspx
+              image_url: https://www.sccgov.org/sites/parks/parkfinder/PublishingImages/StoryMap/Sanborn.JPG
+              locale: Santa Cruz Mountains between Saratoga and Skyline Boulevard
     - id: /ca/scotts_valley/santa_cruz_ranch
       url: http://www.rvonthego.com
       name: Santa Cruz Ranch RV Park
