@@ -95,6 +95,7 @@ type raAvailability struct {
 
 type raDetails struct {
 	BaseURL      string
+	ImageURL     string // relative URL
 	Availability raAvailability
 }
 
@@ -141,7 +142,8 @@ func (b *RAmerica) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.
 		}
 
 		rr := campwiz.Result{
-			ResURL:       b.url("/"),
+			ResURL:       b.url(r.Details.BaseURL),
+			ImageURL:     b.url(r.Details.ImageURL),
 			ResID:        r.NamingID,
 			Name:         r.Name,
 			Distance:     r.Proximity,
