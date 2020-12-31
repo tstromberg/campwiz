@@ -26,6 +26,7 @@ To search campsites near San Francisco with a minimum rating for a particular se
 
 Roadmap:
 ========
-- Improve Property vs Campground distinction (matching, display)
+- Flush cache on error
+- SQL persistent cache interface
 - Integrate additional metadata sources (Google Maps, Bing, Yelp)
-- Provide a useful web frontend
+- Filtering by campsite type
