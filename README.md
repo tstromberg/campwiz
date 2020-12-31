@@ -33,6 +33,11 @@ go run cmd/server/server.go
 
 By default, campwiz listens on port 8080.
 
+Cloud Run Deployments:
+=======================
+VS Code -> Ctrl-Shift-P -> Cloud Code: Deploy to Cloud Run
+
+
 Roadmap:
 ========
 - Flush cache on error
