@@ -31,7 +31,7 @@ func TestApplyDefaults(t *testing.T) {
 		URL:      "/",
 		Referrer: "",
 		Jar:      empty,
-		MaxAge:   DefaultMaxAge,
+		MaxAge:   RecommendedMaxAge,
 	}
 
 	if diff := cmp.Diff(want, got, cmpopts.IgnoreUnexported(cookiejar.Jar{})); diff != "" {
