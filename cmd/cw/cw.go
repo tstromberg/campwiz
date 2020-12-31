@@ -20,14 +20,15 @@ import (
 )
 
 var (
-	datesFlag     *[]string = pflag.StringSlice("dates", []string{"2021-03-05"}, "dates to search for")
-	milesFlag     *int      = pflag.Int("max_distance", 200, "distance to search within")
-	nightsFlag    *int      = pflag.Int("nights", 2, "number of nights to stay")
-	minRatingFlag *float64  = pflag.Float64("min_rating", 0, "minimum scenery rating for inclusion")
-	keywordsFlag  *[]string = pflag.StringSlice("keywords", nil, "keywords to search for")
-	latFlag       *float64  = pflag.Float64("lat", 37.4092297, "latitude to search from")
-	lonFlag       *float64  = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
-	providersFlag *[]string = pflag.StringSlice("providers", search.DefaultProviders, "site providers to include")
+	datesFlag       *[]string      = pflag.StringSlice("dates", []string{"2021-03-05"}, "dates to search for")
+	milesFlag       *int           = pflag.Int("max_distance", 200, "distance to search within")
+	nightsFlag      *int           = pflag.Int("nights", 2, "number of nights to stay")
+	minRatingFlag   *float64       = pflag.Float64("min_rating", 0, "minimum scenery rating for inclusion")
+	keywordsFlag    *[]string      = pflag.StringSlice("keywords", nil, "keywords to search for")
+	maxCacheAgeFlag *time.Duration = pflag.Duration("max_cache_age", cache.RecommendedMaxAge, "max age of cache")
+	latFlag         *float64       = pflag.Float64("lat", 37.4092297, "latitude to search from")
+	lonFlag         *float64       = pflag.Float64("lon", -122.07237049999999, "longitude to search from")
+	providersFlag   *[]string      = pflag.StringSlice("providers", search.DefaultProviders, "site providers to include")
 
 	outTmpl = `
 {{ $srcs := .Sources }}
@@ -59,7 +60,7 @@ type templateContext struct {
 }
 
 func processFlags() error {
-	cs, err := cache.Initialize()
+	cs, err := cache.New(cache.Config{MaxAge: *maxCacheAgeFlag})
 	if err != nil {
 		return err
 	}

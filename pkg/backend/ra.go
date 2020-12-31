@@ -95,6 +95,7 @@ type raAvailability struct {
 
 type raDetails struct {
 	BaseURL      string
+	ImageURL     string // relative URL
 	Availability raAvailability
 }
 
@@ -105,6 +106,8 @@ type raResponse struct {
 	EndIndex     int
 	Control      raControl
 	Records      []raRecord
+
+	Code string
 }
 
 // parse parses the search response
@@ -116,6 +119,10 @@ func (b *RAmerica) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.
 		return nil, 0, 0, fmt.Errorf("unmarshal: %w", err)
 	}
 	klog.V(2).Infof("unmarshalled: %+v", jr)
+
+	if jr.Code != "" {
+		return nil, 0, 0, fmt.Errorf("unexpected error code %q", jr.Code)
+	}
 
 	var results []campwiz.Result
 	for _, r := range jr.Records {
@@ -135,7 +142,8 @@ func (b *RAmerica) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.
 		}
 
 		rr := campwiz.Result{
-			ResURL:       b.url("/"),
+			ResURL:       b.url(r.Details.BaseURL),
+			ImageURL:     b.url(r.Details.ImageURL),
 			ResID:        r.NamingID,
 			Name:         r.Name,
 			Distance:     r.Proximity,
@@ -144,6 +152,10 @@ func (b *RAmerica) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.
 
 		klog.Infof("%s is available: %+v", r.Name, rr)
 		results = append(results, rr)
+	}
+
+	if len(results) == 0 {
+		klog.Warningf("empty results for: %s", bs)
 	}
 
 	return results, jr.Control.CurrentPage, jr.TotalPages, nil

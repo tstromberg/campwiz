@@ -23,7 +23,8 @@ type Campground struct {
 
 // Ref is a cross-reference entry
 type Ref struct {
-	URL string `yaml:"url,omitempty"`
+	URL      string `yaml:"url,omitempty"`
+	ImageURL string `yaml:"image_url,omitempty"`
 
 	Name    string `yaml:"name,omitempty"`
 	Desc    string `yaml:"desc,omitempty"`

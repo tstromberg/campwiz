@@ -72,7 +72,12 @@
     {{ $srcs := .Sources }}
     {{ range $i, $r := .Results}}
             <tr>
-                <td>{{.Name}}</th>
+                <td>{{.Name}}
+                  {{ with $r.ImageURL }}
+                  <br />
+                  <img src="{{ . }}" width="240" />
+                  {{ end  }}
+                </td>
                 <td data-order="{{ $r.Distance }}">{{ printf "%0.f" $r.Distance }}mi {{ with $r.Locale }}({{ . }}){{ end }}</th>
                 <td>
                 <ul>

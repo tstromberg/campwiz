@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// Availability represents what's actually available at the site
 type Availability struct {
 	SiteType string
 	Count    int
@@ -23,6 +24,8 @@ type Result struct {
 
 	Desc string
 	URL  string
+
+	ImageURL string
 
 	Availability []Availability
 	Features     []string
