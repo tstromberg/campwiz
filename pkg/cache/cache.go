@@ -28,8 +28,8 @@ var (
 	// nonWords
 	nonWordRe = regexp.MustCompile(`\W+`)
 
-	// How long to cache by default
-	RecommendedMaxAge = 12 * time.Hour
+	// How long to cache by default: needs to be less than session cookie (12 hours is too long)
+	RecommendedMaxAge = 4 * time.Hour
 	defaultMaxAge     = RecommendedMaxAge
 )
 
@@ -190,7 +190,7 @@ func Fetch(req Request, cs Store) (Response, error) {
 	if err != nil {
 		klog.V(2).Infof("MISS[%s]: %+v, tryCache returned: %v", req.Key(), req, err)
 	} else {
-		klog.V(2).Infof("HIT[%s]: max-age: %d", req.Key(), req.MaxAge)
+		klog.Infof("HIT[%s]: age: %s (max-age: %d)", req.Key(), time.Since(res.MTime), req.MaxAge)
 		klog.V(3).Infof("cached cookies: %v", res.Cookies)
 		klog.V(4).Infof("cached body: %s", res.Body)
 		res.Cached = true
