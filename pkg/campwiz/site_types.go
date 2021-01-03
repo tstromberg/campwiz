@@ -15,6 +15,7 @@ const (
 	Day        SiteKind = "🥪"
 	Equestrian SiteKind = "🏇"
 	Boat       SiteKind = "⛵"
+	Walk       SiteKind = "🥾" // May be a tiny walk
 
 	// Features
 	Biking                 = 4001

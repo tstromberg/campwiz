@@ -149,7 +149,7 @@ func (b *SantaClaraCounty) parse(bs []byte, date time.Time, q campwiz.Query) ([]
 		availKey := fmt.Sprintf("%s=%s", sType, sKind)
 		a, ok := avail[name][availKey]
 		if ok {
-			a.SpotCount += 1
+			a.SpotCount++
 			return
 		}
 

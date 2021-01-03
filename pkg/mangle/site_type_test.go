@@ -20,6 +20,7 @@ func TestSiteKind(t *testing.T) {
 		{"Joseph Grant Park", "Camping - Tent/Non-Electric", "#8-Horse Camp Only *", campwiz.Equestrian},
 		{"Moo", "?", "13RV", campwiz.RV},
 		{"Zoo", "Camping - RV/Electric", "1E ADA", campwiz.RVADA},
+		{"Ayala Cove Group Picnic Area", "", "614", campwiz.Day},
 	}
 
 	for _, tt := range tests {

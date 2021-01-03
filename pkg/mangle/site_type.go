@@ -10,7 +10,9 @@ func SiteKind(title string, kind string, sid string) campwiz.SiteKind {
 	if strings.Contains(sid, "RV") {
 		return campwiz.RV
 	}
-
+	if strings.Contains(title, "Picnic") {
+		return campwiz.Day
+	}
 	for _, in := range []string{sid, kind, title} {
 		in = nonWordRe.ReplaceAllString(in, " ")
 		for _, w := range strings.Split(strings.ToLower(in), " ") {
@@ -20,20 +22,23 @@ func SiteKind(title string, kind string, sid string) campwiz.SiteKind {
 					return campwiz.RVADA
 				}
 				return campwiz.TentADA
-			case "tent", "tent/non-electric":
+			case "tent":
 				return campwiz.Tent
 			case "horse", "equestrian":
 				return campwiz.Equestrian
-			case "RV", "hook-up", "hookup", "rv/electric":
+			case "RV", "hook", "hookup", "electric":
 				return campwiz.RV
 			case "cabin", "yurt", "lodge", "hotel", "hostel", "motel", "lodging":
 				return campwiz.Lodging
-			case "boat", "boat-in", "kayak", "canoe":
+			case "boat", "kayak", "canoe":
 				return campwiz.Boat
-			case "group":
-				return campwiz.Group
+				// before group
 			case "day", "picnic":
 				return campwiz.Day
+			case "group":
+				return campwiz.Group
+			case "walk", "hike":
+				return campwiz.Walk
 			}
 		}
 	}

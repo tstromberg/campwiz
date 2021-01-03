@@ -83,12 +83,12 @@ func (b *SanMateoCounty) req(q campwiz.Query, arrival time.Time, siteID string) 
 	return r
 }
 
-type Sites struct {
-	XMLName xml.Name `xml:"sites"`
-	Sites   []Site   `xml:"site"`
+type smcSites struct {
+	XMLName xml.Name  `xml:"sites"`
+	Sites   []smcSite `xml:"site"`
 }
 
-type Site struct {
+type smcSite struct {
 	XMLName   xml.Name `xml:"site"`
 	SiteID    string   `xml:"siteId,attr"`
 	Available int      `xml:"avail,attr"`
@@ -100,7 +100,7 @@ func siteIDToTitle(s string) string {
 
 // parse parses the search response
 func (b *SanMateoCounty) parse(bs []byte, date time.Time, q campwiz.Query, siteID string) ([]campwiz.Result, error) {
-	var sites Sites
+	var sites smcSites
 	var results []campwiz.Result
 
 	err := xml.Unmarshal(bs, &sites)
