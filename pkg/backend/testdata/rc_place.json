@@ -70,7 +70,7 @@
           "UnitTypes": {
             "4303": {
               "UnitTypeId": 4303,
-              "Name": "Campsite",
+              "Name": "campsite",
               "Available": false,
               "AvailableFiltered": false,
               "UnitCategoryId": 1,

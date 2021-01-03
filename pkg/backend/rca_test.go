@@ -11,8 +11,8 @@ import (
 	"github.com/tstromberg/campwiz/pkg/campwiz"
 )
 
-func TestRCaliforniaReq(t *testing.T) {
-	rc := &RCalifornia{}
+func TestRCaliforniaAdvReq(t *testing.T) {
+	rc := &RCaliforniaAdv{}
 
 	date, err := time.Parse("2006-01-02", "2021-02-12")
 	if err != nil {
@@ -34,11 +34,11 @@ func TestRCaliforniaReq(t *testing.T) {
 
 	want := cache.Request{
 		Method:      "POST",
-		URL:         "https://calirdr.usedirect.com/rdr/rdr/search/place",
-		Referrer:    "https://www.reservecalifornia.com/",
+		URL:         "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/AdvanceSearch.aspx/GetPlaceData",
+		Referrer:    "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/AdvanceSearch.aspx",
 		MaxAge:      time.Duration(6 * time.Hour),
 		ContentType: "application/json",
-		Body:        []byte(`{"PlaceId":0,"Latitude":"37.4092","Longitude":"-122.0724","HighlightedPlaceId":0,"StartDate":"02-12-2021","Nights":"4","CountNearby":true,"NearbyLimit":100,"NearbyOnlyAvailable":true,"NearbyCountLimit":100,"Sort":"Distance","CustomerID":"0","RefreshFavourites":true,"IsADA":false,"UnitCategoryId":0,"SleepingUnitId":0,"MinVehicleLength":0,"UnitTypeGroupIds":null}`),
+		Body:        []byte(`{"googlePlaceSearchParameters":{"Latitude":"37.17159","Longitude":"-122.22203","South":37.00781829886819,"North":37.335007514028106,"East":-121.96076138427298,"West":-122.48329861572044,"Filter":true,"BackToHome":"","ZoomLevel":9,"CenterLatitude":37.17159,"CenterLongitude":-122.22203,"ChangeDragandZoom":true,"BacktoFacility":true,"ChooseActivity":null,"IsFilterClick":false,"AvailabilitySearchParams":{"RegionId":0,"PlaceId":["0"],"FacilityId":0,"StartDate":"01/04/2021","Nights":"1","CategoryId":0,"UnitTypeIds":[],"UnitTypesCategory":[],"ShowOnlyAdaUnits":false,"ShowOnlyTentSiteUnits":"false","ShowOnlyRvSiteUnits":"false","MinimumVehicleLength":"0","PageIndex":0,"PageSize":20,"Page1":20,"NoOfRecords":100,"ShowSiteUnitsName":"0","Autocomplitename":"Big Basin Redwoods SP","ParkFinder":[],"ParkCategory":8,"ChooseActivity":"1","IsPremium":false},"IsFacilityLevel":false,"PlaceIdFacilityLevel":0,"MapboxPlaceid":0},"Screenresolution":1421}'`),
 	}
 
 	if diff := cmp.Diff(want, got); diff != "" {
@@ -46,10 +46,10 @@ func TestRCaliforniaReq(t *testing.T) {
 	}
 }
 
-func TestRCaliforniaParse(t *testing.T) {
+func TestRCaliforniaAdvParse(t *testing.T) {
 	ra := &RCalifornia{}
 
-	bs, err := ioutil.ReadFile("testdata/rc_place.json")
+	bs, err := ioutil.ReadFile("testdata/rca.json")
 	if err != nil {
 		t.Fatalf("readfile: %v", err)
 	}

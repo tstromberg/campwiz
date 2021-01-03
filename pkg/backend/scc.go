@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http/cookiejar"
 	"net/url"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -13,6 +14,7 @@ import (
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/campwiz"
 	"github.com/tstromberg/campwiz/pkg/geo"
+	"github.com/tstromberg/campwiz/pkg/mangle"
 	"k8s.io/klog/v2"
 )
 
@@ -56,7 +58,7 @@ func (b *SantaClaraCounty) List(q campwiz.Query) ([]campwiz.Result, error) {
 
 // url is the root URL to use for requests
 func (b *SantaClaraCounty) url(s string) string {
-	return "https://" + "gooutsideandplay" + ".org" + "/" + s
+	return "https://" + "gooutsideandplay" + ".org" + s
 }
 
 // req generates a search request
@@ -98,17 +100,18 @@ func (b *SantaClaraCounty) startPage() cache.Request {
 
 // parse parses the search response
 func (b *SantaClaraCounty) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Result, error) {
-	var results []campwiz.Result
+	// name to result
+	sites := map[string]*campwiz.Result{}
+	// name+kind to avail
+	avail := map[string]map[string]*campwiz.Availability{}
 
 	// Load the HTML document
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(bs))
 	if err != nil {
-		return results, fmt.Errorf("new doc: %w", err)
+		return nil, fmt.Errorf("new doc: %w", err)
 	}
 
 	listing := doc.Find("#list_camping")
-
-	seen := map[string]bool{}
 
 	// Find the review items
 	listing.Find("tr").Each(func(i int, s *goquery.Selection) {
@@ -124,31 +127,65 @@ func (b *SantaClaraCounty) parse(bs []byte, date time.Time, q campwiz.Query) ([]
 			return
 		}
 
-		stype := s.Find(".body_blue").Text()
+		sid := s.Find(".heavy_blue").Text()
+		if name == "" {
+			klog.Warningf("no sid within: %s", h)
+			return
+		}
 
-		klog.Infof("name: %s type: %s", name, stype)
-		if seen[name+stype] {
+		sid = strings.TrimSpace(sid)
+		sType := s.Find(".body_blue").Text()
+
+		klog.Infof("name: %s type: %s sid: %s", name, sType, sid)
+
+		_, ok := avail[name]
+		if !ok {
+			avail[name] = map[string]*campwiz.Availability{}
+		}
+
+		sKind := mangle.SiteKind(name, sType, sid)
+
+		// Group availability by type + kind (may differ based on site id)
+		availKey := fmt.Sprintf("%s=%s", sType, sKind)
+		a, ok := avail[name][availKey]
+		if ok {
+			a.SpotCount += 1
 			return
 		}
 
 		// TODO: Support multiple types + populate count
-		seen[name+stype] = true
-		a := campwiz.Availability{
-			SiteType: stype,
-			Date:     date,
-			URL:      b.url(s.Find(".FilterElement a").AttrOr("href", "")),
+		avail[name][availKey] = &campwiz.Availability{
+			SiteKind:  sKind,
+			SiteDesc:  sType,
+			Name:      name,
+			Date:      date,
+			SpotCount: 1,
+			URL:       b.url(s.Find(".FilterElement a").AttrOr("href", "")),
 		}
 
-		r := campwiz.Result{
-			ResURL:       b.url("/"),
-			ResID:        strings.ToLower(strings.Replace(name, " ", "_", -1)),
-			Name:         name,
-			Distance:     geo.MilesApart(q.Lat, q.Lon, sccCenterLat, sccCenterLon),
-			Availability: []campwiz.Availability{a},
+		sites[name] = &campwiz.Result{
+			ResURL:   b.url("/"),
+			ResID:    strings.ToLower(strings.Replace(name, " ", "_", -1)),
+			Name:     name,
+			Distance: geo.MilesApart(q.Lat, q.Lon, sccCenterLat, sccCenterLon),
 		}
 
-		results = append(results, r)
 	})
+
+	// combine everything
+	results := []campwiz.Result{}
+	for _, r := range sites {
+		for _, a := range avail[r.Name] {
+			r.Availability = append(r.Availability, *a)
+		}
+
+		sort.Slice(r.Availability, func(i, j int) bool {
+			return string(r.Availability[i].SiteKind)+r.Availability[i].SiteDesc < string(r.Availability[j].SiteKind)+r.Availability[j].SiteDesc
+		})
+		results = append(results, *r)
+	}
+
+	sort.Slice(results, func(i, j int) bool { return results[i].Name < results[j].Name })
 
 	return results, nil
 }

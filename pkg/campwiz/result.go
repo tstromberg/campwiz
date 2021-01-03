@@ -6,10 +6,16 @@ import (
 
 // Availability represents what's actually available at the site
 type Availability struct {
-	SiteType string
-	Count    int
-	Date     time.Time
-	URL      string
+	SiteKind SiteKind
+	SiteDesc string
+
+	Name        string
+	Description string
+
+	SpotCount int
+
+	Date time.Time
+	URL  string
 }
 
 // Result is supposed to be a vendor neutral result of results

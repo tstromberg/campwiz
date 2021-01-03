@@ -50,6 +50,8 @@ func New(c Config) (Provider, error) {
 		return &RAmerica{store: c.Store, jar: jar}, nil
 	case "rcalifornia":
 		return &RCalifornia{store: c.Store, jar: jar}, nil
+	case "rcaliforniaAdv":
+		return &RCaliforniaAdv{store: c.Store, jar: jar}, nil
 	case "scc":
 		return &SantaClaraCounty{store: c.Store, jar: jar}, nil
 	case "smc":
