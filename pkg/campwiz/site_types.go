@@ -3,13 +3,12 @@ package campwiz
 type SiteKind string
 
 const (
-	RV    SiteKind = "🚙"
-	RVADA SiteKind = "♿🚙"
-
-	Lodging SiteKind = "🛏️"
-
-	Tent    SiteKind = "⛺"
-	TentADA SiteKind = "♿⛺"
+	RV                 SiteKind = "🚚"
+	AccessibleRV       SiteKind = "♿🚚"
+	Standard           SiteKind = "🚗"
+	AccessibleStandard SiteKind = "♿🚗"
+	Lodging            SiteKind = "🛏️"
+	Tent               SiteKind = "⛺"
 
 	Group      SiteKind = "🧑‍🤝‍🧑"
 	Day        SiteKind = "🥪"

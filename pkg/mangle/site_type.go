@@ -19,10 +19,10 @@ func SiteKind(title string, kind string, sid string) campwiz.SiteKind {
 			switch w {
 			case "ada", "accessible", "handicapped":
 				if strings.Contains(kind, "RV") {
-					return campwiz.RVADA
+					return campwiz.AccessibleRV
 				}
-				return campwiz.TentADA
-			case "tent":
+				return campwiz.AccessibleStandard
+			case "tent", "environmental":
 				return campwiz.Tent
 			case "horse", "equestrian":
 				return campwiz.Equestrian
@@ -43,5 +43,5 @@ func SiteKind(title string, kind string, sid string) campwiz.SiteKind {
 		}
 	}
 
-	return campwiz.Tent
+	return campwiz.Standard
 }

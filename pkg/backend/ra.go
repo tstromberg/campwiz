@@ -136,9 +136,9 @@ func (b *RAmerica) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.
 		}
 
 		a := campwiz.Availability{
-			SiteKind: campwiz.Tent,
-			Date:     date,
-			URL:      b.url(r.Details.BaseURL + "&arrivalDate=" + date.Format("2006-01-02") + "&lengthOfStay=" + strconv.Itoa(q.StayLength)),
+			Kind: campwiz.Tent,
+			Date: date,
+			URL:  b.url(r.Details.BaseURL + "&arrivalDate=" + date.Format("2006-01-02") + "&lengthOfStay=" + strconv.Itoa(q.StayLength)),
 		}
 
 		rr := campwiz.Result{

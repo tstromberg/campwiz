@@ -95,9 +95,9 @@ func TestRCaliforniaParse(t *testing.T) {
 			URL: "http://www.parks.ca.gov/?page_id=471",
 			Availability: []campwiz.Availability{
 				{
-					SiteKind: campwiz.Tent,
-					Date:     time.Date(2021, 0o2, 12, 0, 0, 0, 0, time.UTC),
-					URL:      "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
+					Kind: campwiz.Tent,
+					Date: time.Date(2021, 0o2, 12, 0, 0, 0, 0, time.UTC),
+					URL:  "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
 				},
 			},
 			Features: []string{
@@ -129,9 +129,9 @@ func TestRCaliforniaParse(t *testing.T) {
 			URL: "http://www.parks.ca.gov/?page_id=517",
 			Availability: []campwiz.Availability{
 				{
-					SiteKind: campwiz.Tent,
-					Date:     time.Date(2021, 0o2, 12, 0, 0, 0, 0, time.UTC),
-					URL:      "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
+					Kind: campwiz.Tent,
+					Date: time.Date(2021, 0o2, 12, 0, 0, 0, 0, time.UTC),
+					URL:  "https://www.reservecalifornia.com/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx",
 				},
 			},
 			Features: []string{"Bicycling", "Birdwatching", "Camping", "Group Camping", "Hiking", "Horseback riding", "Museum", "Picnic area", "Visitor Center"},

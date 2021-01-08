@@ -35,7 +35,7 @@ var (
 {{ range $i, $r := .Results}}
 {{ Color "(" "yellow+d" }}{{ printf "#%d" $i | yellow }}{{ Color ")" "yellow+d" }} {{ Color $r.Name "green+h" }} {{ Color "(" "black+h" }}{{ printf "%.0fmi" $r.Distance | green }}{{ with $r.Locale }}{{ Color "," "black+h"}} {{ . | green }}{{ end }}{{ Color ")" "black+h" }}
 {{- range $r.Availability}}
-{{ Color "  >" "cyan" }} {{ printf "%s %d"  .Date.Month .Date.Day | hwhite }}{{ Color ":" "cyan" }} {{.SpotCount}}x{{.SiteKind}} - {{.URL | cyan }}
+{{ Color "  >" "cyan" }} {{ printf "%s %d"  .Date.Month .Date.Day | hwhite }}{{ Color ":" "cyan" }} {{.SpotCount}}x{{.Kind}} - {{.URL | cyan }}
 {{- end }}
 {{ with $r.KnownCampground }}
 {{- range $k, $v := .Refs -}}

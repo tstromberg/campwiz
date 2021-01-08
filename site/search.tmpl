@@ -82,7 +82,7 @@
                 <td>
                 <ul>
                 {{- range $r.Availability}}
-                    <li><a href="{{.URL}}">{{ printf "%s %d"  .Date.Month .Date.Day }}</a>: {{ .SpotCount }}x{{ .SiteKind }} </li>
+                    <li><a href="{{.URL}}">{{ printf "%s %d"  .Date.Month .Date.Day }}</a>: {{ .SpotCount }}x{{ .Kind }} </li>
                 {{- end }}
                 </ul>
                 </td>

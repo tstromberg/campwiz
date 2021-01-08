@@ -155,8 +155,8 @@ func (b *SantaClaraCounty) parse(bs []byte, date time.Time, q campwiz.Query) ([]
 
 		// TODO: Support multiple types + populate count
 		avail[name][availKey] = &campwiz.Availability{
-			SiteKind:  sKind,
-			SiteDesc:  sType,
+			Kind:      sKind,
+			Desc:      sType,
 			Name:      name,
 			Date:      date,
 			SpotCount: 1,
@@ -180,7 +180,7 @@ func (b *SantaClaraCounty) parse(bs []byte, date time.Time, q campwiz.Query) ([]
 		}
 
 		sort.Slice(r.Availability, func(i, j int) bool {
-			return string(r.Availability[i].SiteKind)+r.Availability[i].SiteDesc < string(r.Availability[j].SiteKind)+r.Availability[j].SiteDesc
+			return string(r.Availability[i].Kind)+r.Availability[i].Desc < string(r.Availability[j].Kind)+r.Availability[j].Desc
 		})
 		results = append(results, *r)
 	}

@@ -115,9 +115,9 @@ func (b *SanMateoCounty) parse(bs []byte, date time.Time, q campwiz.Query, siteI
 			continue
 		}
 		a := campwiz.Availability{
-			SiteKind: campwiz.Tent,
-			Date:     date,
-			URL:      b.url("/" + siteID),
+			Kind: campwiz.Tent,
+			Date: date,
+			URL:  b.url("/" + siteID),
 		}
 
 		r := campwiz.Result{

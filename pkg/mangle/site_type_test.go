@@ -11,7 +11,7 @@ func TestSiteKind(t *testing.T) {
 		title string
 		kind  string
 		sid   string
-		out   campwiz.SiteKind
+		out   campwiz.Kind
 	}{
 		{"Frank Valley Horse Camp", "", "", campwiz.Equestrian},
 		{"Shasta-Trinity Park", "", "", campwiz.Tent},
@@ -19,7 +19,7 @@ func TestSiteKind(t *testing.T) {
 		{"Angel Island Group Campsite", "", "", campwiz.Group},
 		{"Joseph Grant Park", "Camping - Tent/Non-Electric", "#8-Horse Camp Only *", campwiz.Equestrian},
 		{"Moo", "?", "13RV", campwiz.RV},
-		{"Zoo", "Camping - RV/Electric", "1E ADA", campwiz.RVADA},
+		{"Zoo", "Camping - RV/Electric", "1E ADA", campwiz.AccessibleRV},
 		{"Ayala Cove Group Picnic Area", "", "614", campwiz.Day},
 	}
 

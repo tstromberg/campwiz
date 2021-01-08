@@ -132,9 +132,9 @@ func (b *RCalifornia) parse(bs []byte, date time.Time, q campwiz.Query) ([]campw
 		}
 
 		a := campwiz.Availability{
-			SiteKind: campwiz.Tent,
-			Date:     date,
-			URL:      b.url("/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx"),
+			Kind: campwiz.Tent,
+			Date: date,
+			URL:  b.url("/CaliforniaWebHome/Facilities/SearchViewUnitAvailabity.aspx"),
 		}
 
 		rr := campwiz.Result{

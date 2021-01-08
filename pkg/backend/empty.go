@@ -76,9 +76,9 @@ func (b *Empty) parse(bs []byte, date time.Time, q campwiz.Query) ([]campwiz.Res
 		Distance: float64(q.MaxDistance) - 1,
 		Availability: []campwiz.Availability{
 			{
-				SiteKind: campwiz.Tent,
-				Date:     date,
-				URL:      b.url("/site" + "&arrivalDate=" + date.Format("2006-01-02") + "&lengthOfStay=" + strconv.Itoa(q.StayLength)),
+				Kind: campwiz.Tent,
+				Date: date,
+				URL:  b.url("/site" + "&arrivalDate=" + date.Format("2006-01-02") + "&lengthOfStay=" + strconv.Itoa(q.StayLength)),
 			},
 		},
 	}

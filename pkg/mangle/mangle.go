@@ -214,3 +214,15 @@ func Ellipsis(s string, max int) string {
 	}
 	return strings.Join(words[0:max], " ") + " ..."
 }
+
+// Features returns a list of features from a raw string
+func Features(s string) []string {
+	hs := []string{}
+	for _, st := range strings.Split(s, ",") {
+		feature := strings.TrimSpace(st)
+		if len(feature) > 2 {
+			hs = append(hs, feature)
+		}
+	}
+	return hs
+}

@@ -6,11 +6,10 @@ import (
 
 // Availability represents what's actually available at the site
 type Availability struct {
-	SiteKind SiteKind
-	SiteDesc string
+	Kind SiteKind
 
-	Name        string
-	Description string
+	Name string
+	Desc string
 
 	SpotCount int
 

@@ -33,9 +33,9 @@ func TestEmptyParse(t *testing.T) {
 			Distance: 99,
 			Availability: []campwiz.Availability{
 				{
-					SiteKind: campwiz.Tent,
-					Date:     time.Date(2021, 2, 12, 0, 0, 0, 0, time.UTC),
-					URL:      "https://www.example.com/",
+					Kind: campwiz.Tent,
+					Date: time.Date(2021, 2, 12, 0, 0, 0, 0, time.UTC),
+					URL:  "https://www.example.com/",
 				},
 			},
 		},

@@ -4,11 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http/cookiejar"
+	"sort"
 	"strings"
 	"time"
 
 	"github.com/tstromberg/campwiz/pkg/cache"
 	"github.com/tstromberg/campwiz/pkg/campwiz"
+	"github.com/tstromberg/campwiz/pkg/mangle"
 	"k8s.io/klog/v2"
 )
 
@@ -125,9 +127,10 @@ type placeInfo struct {
 	Longitude    float64        `json:"Longitude"`
 	PlaceID      int            `json:"PlaceId"`
 	ImageURL     string         `json:"ImageUrl"`
-	Highlights   string         `json:"AllHighlights"`
+	Highlights   string         `json:"AllHightlights"` // that's really the field name: it's not a typo
 	FacilityInfo []facilityInfo `json:"JsonFacilityInfos"`
 	Available    bool           `json:"IsavailableSpots"`
+	URL          string         `json:"PlaceinfoUrl"`
 }
 
 type rcaResponse struct {
@@ -152,19 +155,50 @@ func (b *RCaliforniaAdv) parse(bs []byte, date time.Time, q campwiz.Query) ([]ca
 			continue
 		}
 
-		rr := campwiz.Result{
+		r := campwiz.Result{
 			ResURL:       b.url("/"),
 			ResID:        fmt.Sprintf("%2d", p.PlaceID),
 			Name:         p.Name,
 			Desc:         p.Description,
-			Features:     strings.Split(strings.TrimSuffix(p.Highlights, " , "), " , "),
+			URL:          p.URL,
+			Features:     mangle.Features(p.Highlights),
 			Distance:     float64(p.Distance),
-			Availability: []campwiz.Availability{},
 			ImageURL:     p.ImageURL,
+			Availability: []campwiz.Availability{},
 		}
 
 		klog.Infof("%s may be available: %+v", p.Name, rr)
-		results = append(results, rr)
+		avail := map[string]*campwiz.Availability{}
+
+		for _, fi := range p.FacilityInfo {
+			for _, sp := range fi.Spots {
+				kind := mangle.SiteKind(sp.Name, sp.Type, "")
+				name := strings.TrimSpace(strings.Split(sp.Name, "(")[0])
+				key := fmt.Sprintf("%s=%s", name, kind)
+				a, ok := avail[key]
+				if ok {
+					a.SpotCount++
+					continue
+				}
+
+				avail[key] = &campwiz.Availability{
+					Kind:      kind,
+					Name:      name,
+					Desc:      sp.Type,
+					SpotCount: sp.Count,
+					Date:      date,
+				}
+			}
+		}
+
+		for _, a := range avail {
+			r.Availability = append(r.Availability, *a)
+		}
+
+		sort.Slice(r.Availability, func(i, j int) bool {
+			return string(r.Availability[i].Kind)+r.Availability[i].Desc < string(r.Availability[j].Kind)+r.Availability[j].Desc
+		})
+		results = append(results, r)
 	}
 
 	return results, nil
